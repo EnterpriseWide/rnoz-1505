@@ -34,10 +34,6 @@ wwwroot/App_Data/TEMP
 wwwroot/App_Data/umbraco.config
 wwwroot/obj
 **.user
-data/fed/.git
-data/fed/.gitignore
-data/fed/app/jspm_packages
-data/fed/node_modules
 data/rightNow/node_modules/
 data/rightNow/.tmp
 data/rightNow/report
