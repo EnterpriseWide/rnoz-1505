@@ -10,6 +10,7 @@ create empty database and update /wwwroot/web.config/configuration/connectionstr
 update apiurl /data/rightnow/src/client/app/core/dataservice.js on line to point to http://rightnow.oztrain.local
 
 client installation:
+cd data/rightNo
 npm install
 
 development: this serves an unoptimised stand alone client
