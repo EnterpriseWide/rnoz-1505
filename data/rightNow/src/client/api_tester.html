@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web API Example</title>
+</head>
+<body>
+
+    <h1>API Tester</h1>
+
+    <table>
+        <tr>
+            <td width="50%" height="100%">
+                User Management:
+                <ul>
+                    <li>Registration: <input placeholder="Username" id="um_username" /> <input type="password" placeholder="Password" id="um_password" /> <input type="password" placeholder="Confirm Password" id="um_confirmpassword" /> <input type="button" value="Register" id="um_register_btn" /></li>
+                    <li>Get Access Token: <input placeholder="Username" id="um_username_1" /> <input type="password" placeholder="Password" id="um_password_1" />  <input type="button" value="Get" id="um_get_access_token_btn" /><input type="hidden" id="um_access_token" /></li>
+                </ul>
+                Data Management:
+                <ul>
+                    <li><input type="button" value="Get All Programs" id="api_get_all_programs_btn" /></li>
+                    <li><input type="button" value="Get All Claims" id="api_get_all_claims_btn" /></li>
+                    <li><input type="button" value="Get All Values (No Auth Required)" id="api_get_all_values_btn" /></li>
+                </ul>
+                Api Server Url (leave blank if this page is on the same server the api is on):
+                <ul>
+                    <li>Url: <input placeholder="e.g., http://localhost:49166/" id='api_url' value="http://rightnow.oztrain.local/" /></li>
+                </ul>
+            </td>
+            <td width="50%" height="100%">
+                <textarea id="resultsData" style="width: 100%; height: 100%;" rows="20" cols="80"></textarea>
+            </td>
+        </tr>
+    </table>
+    <script src="http://api.oztrain.local/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#um_register_btn').click(function () {
+                var _data = {
+                    "Email": $('#um_username').val(),
+                    "Password": $('#um_password').val(),
+                    "ConfirmPassword": $('#um_confirmpassword').val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: $('#api_url').val() + 'api/Account/Register/',
+                    data: JSON.stringify(_data),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (_d) { showResponse(JSON.stringify(_d)); }
+                }).fail(function (_d) { showResponse(JSON.stringify(_d)); });
+            });
+            $('#um_get_access_token_btn').click(function () {
+                var theUrl = $('#api_url').val() + 'Token';
+                var theData = 'grant_type=password&username=' + $('#um_username_1').val() + '&password=' + $('#um_password_1').val();
+                showResponse('calling ' + theUrl + "\n" + theData);
+                $.ajax({
+                    type: "POST",
+                    url: theUrl,
+                    data: theData,
+                    contentType: "Content-Type: application/x-www-form-urlencoded",
+                    success: function (_d) { showResponse(JSON.stringify(_d)); $('#um_access_token').text(_d.access_token); }
+                }).fail(function (_d) { showResponse(JSON.stringify(_d)); });
+            });
+
+            $('#api_get_all_programs_btn').click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: $('#api_url').val() + 'api/programs',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", 'Bearer ' + $('#um_access_token').text());
+                    },
+                    success: function (_d) { showResponse(JSON.stringify(_d)); }
+                }).fail(function (_d) { showResponse(JSON.stringify(_d)); });
+            });
+            $('#api_get_all_claims_btn').click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: $('#api_url').val() + 'api/claims',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", 'Bearer ' + $('#um_access_token').text());
+                    },
+                    success: function (_d) { showResponse(JSON.stringify(_d)); }
+                }).fail(function (_d) { showResponse(JSON.stringify(_d)); });
+            });
+            $('#api_get_all_values_btn').click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: $('#api_url').val() + 'api/values',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", 'Bearer ' + $('#um_access_token').text());
+                    },
+                    success: function (_d) { showResponse(JSON.stringify(_d)); }
+                }).fail(function (_d) { showResponse(JSON.stringify(_d)); });
+            });
+            $('#api_get_one_program_btn').click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: $('#api_url').val() + 'api/programs/?index=' + $('#api_get_one_program_index').val(),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", 'Bearer ' + $('#um_access_token').text());
+                    },
+                    success: function (_d) { showResponse(JSON.stringify(_d)); }
+                }).fail(function (_d) { showResponse(JSON.stringify(_d)); });
+            });
+            $('#api_add_one_btn').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: $('#api_url').val() + 'api/values/',
+                    data: { '': $('#api_add_one_value').val() },
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", 'Bearer ' + $('#um_access_token').text());
+                    },
+                    success: function (_d) { showResponse('done'); }
+                }).fail(function (_d) { showResponse(JSON.stringify(_d)); });
+            });
+            $('#api_update_one_btn').click(function () {
+                $.ajax({
+                    type: "PUT",
+                    url: $('#api_url').val() + 'api/values/?index=' + $('#api_update_one_index').val(),
+                    data: { '': $('#api_update_one_value').val() },
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", 'Bearer ' + $('#um_access_token').text());
+                    },
+                    success: function (_d) { showResponse('done'); }
+                }).fail(function (_d) { showResponse(JSON.stringify(_d)); });
+            });
+            $('#api_delete_one_btn').click(function () {
+                $.ajax({
+                    type: "DELETE",
+                    url: $('#api_url').val() + 'api/values/?index=' + $('#api_delete_one_index').val(),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", 'Bearer ' + $('#um_access_token').text());
+                    },
+                    success: function (_d) { showResponse('done'); }
+                }).fail(function (_d) { showResponse(JSON.stringify(_d)); });
+            });
+        });
+        function showResponse(message) {
+            $('#resultsData').val(
+              '== New Response ==\n' + message + '\n\n' + $('#resultsData').val()
+            );
+        }
+    </script>
+</body>
+</html>

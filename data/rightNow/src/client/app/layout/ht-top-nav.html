@@ -1,0 +1,25 @@
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-header">
+        <a href="/" class="navbar-brand"><span class="brand-title">{{vm.navline.title}}</span></a>
+        <a class="btn navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <div class="pull-right navbar-logo">
+            <ul class="nav navbar-nav pull-right">
+                <li ng-show="vm.authData.isAuthenticated">
+                    <p>Welcome {{ vm.authData.firstName }}</p>
+                </li>
+                <li ng-show="!vm.authData.isAuthenticated" class="dropdown dropdown-big">
+                    <a href="/login">Login</a>
+                </li>
+                <li ng-show="vm.authData.isAuthenticated" class="dropdown dropdown-big">
+                    <a ng-click="vm.logoutUser()" href="">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

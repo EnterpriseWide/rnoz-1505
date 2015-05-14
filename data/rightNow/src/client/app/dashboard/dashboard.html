@@ -1,0 +1,58 @@
+<section id="dashboard-view" class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="widget wviolet">
+                        <div ht-widget-header title="Active Coaching Programs" allow-collapse="true"></div>
+                        <div class="widget-content text-center text-info">
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Coach</th>
+                                        <th>Coachee</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.programs">
+                                        <td>{{p.Coach.FirstName}}</td>
+                                        <td>{{p.Coachee.FirstName}}</td>
+                                        <td><a href="/program/{{p.Id}}/" class="btn btn-primary">Open</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="widget wviolet">
+                        <div ht-widget-header title="Sessions" allow-collapse="true"></div>
+                        <div class="widget-content text-center text-info">
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Coach</th>
+                                        <th>Coachee</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.sessions">
+                                        <td>{{p.CoachingProgram.Coach.FirstName}}</td>
+                                        <td>{{p.CoachingProgram.Coachee.FirstName}}</td>
+                                        <td><a href="/program/{{p.CoachingProgram.Id}}/session/{{p.Id}}/" class="btn btn-primary">Open</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

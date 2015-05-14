@@ -1,0 +1,23 @@
+<section id="dashboard-view" class="mainbar" data-ng-controller="LoginController as vm">
+    <section class="matter">
+        <div class="container">
+            <span ng-show="vm.authData.isAuthenticated">{{vm.welcome}}</span>
+            <form ng-show="!vm.authData.isAuthenticated" ng-submit="vm.loginUser()">
+                <input ng-model="vm.loginData.userName" type="text" name="user" placeholder="Username" />
+                <input ng-model="vm.loginData.password" type="password" name="pass" placeholder="Password" />
+                <button class="btn btn-primary" type="submit">Login</button>
+            </form>
+            <div>
+            <a class="btn btn-primary" href="" ng-click="vm.loginAUser('admin')">Login As Admin</a>
+            <a class="btn btn-primary" href="" ng-click="vm.loginAUser('user1')">Login As User 1</a>
+            <a class="btn btn-primary" href="" ng-click="vm.loginAUser('user2')">Login As User 2</a>
+            <a class="btn btn-primary" href="" ng-click="vm.loginAUser('user3')">Login As User 3</a>
+            </div>
+            <div ng-show="vm.authData.isAuthenticated">
+                <a ng-click="vm.callRestricted()" href="">You are already Logged In!</a>
+            </div>
+            <br />
+            <div>{{vm.message}}</div>
+        </div>
+    </section>
+</section>

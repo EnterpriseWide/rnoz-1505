@@ -1,0 +1,23 @@
+syntax: glob
+data/code/App_Data/NuGetBackup
+data/code/bin
+data/code/obj
+**.suo
+packages
+media
+wwwroot/App_Data/Logs
+wwwroot/App_Data/NuGetBackup
+wwwroot/App_Data/TEMP
+wwwroot/App_Data/umbraco.config
+wwwroot/obj
+**.user
+data/fed/.git
+data/fed/.gitignore
+data/fed/app/jspm_packages
+data/fed/node_modules
+data/rightNow/node_modules
+data/rightNow/bower_components
+data/rightNow/.tmp
+data/rightNow/report
+data/rightNow/build
+samples
