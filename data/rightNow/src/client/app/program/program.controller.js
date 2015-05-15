@@ -3,11 +3,11 @@
 
     angular
         .module('app.program')
-        .controller('ProgramViewController', ProgramViewController);
+        .controller('ProgramController', ProgramController);
 
-    ProgramViewController.$inject = ['logger'];
+    ProgramController.$inject = ['logger'];
     /* @ngInject */
-    function ProgramViewController(logger) {
+    function ProgramController(logger) {
         var vm = this;
         vm.title = 'Program';
 

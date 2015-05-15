@@ -2,7 +2,7 @@
 describe('program routes', function () {
     describe('state', function () {
         var controller;
-        var view = 'app/program/program-view.html';
+        var view = 'app/program/program.html';
 
         beforeEach(function() {
             module('app.program', bard.fakeToastr);
@@ -14,7 +14,7 @@ describe('program routes', function () {
         });
 
         it('should map /program route to program View template', function () {
-            expect($state.get('viewProgram').templateUrl).to.equal(view);
+            expect($state.get('program').templateUrl).to.equal(view);
         });
     });
 });

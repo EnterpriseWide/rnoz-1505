@@ -14,12 +14,11 @@
     function getStates() {
         return [
             {
-                state: 'viewProgram',
+                state: 'program',
                 config: {
-                    //state for showing single movie
                     url: '/program/:id/',
-                    templateUrl: 'app/program/program-view.html',
-                    controller: 'ProgramViewController',
+                    templateUrl: 'app/program/program.html',
+                    controller: 'ProgramController',
                     controllerAs: 'vm',
                     title: 'Program View',
                 }

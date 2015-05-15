@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('ProgramViewController', function() {
+describe('ProgramController', function() {
     var controller;
 
     beforeEach(function() {
@@ -8,7 +8,7 @@ describe('ProgramViewController', function() {
     });
 
     beforeEach(function () {
-        controller = $controller('ProgramViewController');
+        controller = $controller('ProgramController');
         $rootScope.$apply();
     });
 

@@ -17,7 +17,6 @@
             getUserInfo: getUserInfo,
             getPrograms: getPrograms,
             getSessions: getSessions,
-            getMessageCount: getMessageCount
         };
 
         return service;
@@ -49,8 +48,6 @@
         function getUserInfo() {
             return $http.get(service.apiurl + '/api/account/userinfo');
         }
-
-        function getMessageCount() { return $q.when(72); }
 
         function getPrograms() {
             return $http.get(service.apiurl + '/api/programs')

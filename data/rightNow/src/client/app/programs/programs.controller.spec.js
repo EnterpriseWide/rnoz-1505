@@ -1,31 +1,31 @@
 /* jshint -W117, -W030 */
-describe('DashboardController', function() {
+describe('ProgramsController', function() {
     var controller;
     var programs = mockData.getMockPrograms();
     var sessions = mockData.getMockSessions();
 
     beforeEach(function() {
-        bard.appModule('app.dashboard');
+        bard.appModule('app.programs');
         bard.inject('$controller', '$log', '$q', '$rootScope', 'dataservice');
     });
 
     beforeEach(function () {
         sinon.stub(dataservice, 'getPrograms').returns($q.when(programs));
         sinon.stub(dataservice, 'getSessions').returns($q.when(sessions));
-        controller = $controller('DashboardController');
+        controller = $controller('ProgramsController');
         $rootScope.$apply();
     });
 
     bard.verifyNoOutstandingHttpRequests();
 
-    describe('Dashboard controller', function() {
+    describe('Programs controller', function() {
         it('should be created successfully', function () {
             expect(controller).to.be.defined;
         });
 
         describe('after activate', function() {
-            it('should have title of Dashboard', function () {
-                expect(controller.title).to.equal('Dashboard');
+            it('should have title of Programs', function () {
+                expect(controller.title).to.equal('Programs');
             });
 
             it('should have logged "Activated"', function() {

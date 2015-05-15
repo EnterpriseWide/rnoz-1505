@@ -2,31 +2,24 @@
     'use strict';
 
     angular
-        .module('app.dashboard')
-        .controller('DashboardController', DashboardController);
+        .module('app.programs')
+        .controller('ProgramsController', ProgramsController);
 
-    DashboardController.$inject = ['$q', 'dataservice', 'logger'];
+    ProgramsController.$inject = ['$q', 'dataservice', 'logger'];
     /* @ngInject */
-    function DashboardController($q, dataservice, logger) {
+    function ProgramsController($q, dataservice, logger) {
         var vm = this;
         vm.messageCount = 0;
         vm.programs = [];
         vm.sessions = [];
-        vm.title = 'Dashboard';
+        vm.title = 'Programs';
 
         activate();
 
         function activate() {
-            var promises = [getMessageCount(), getPrograms(), getSessions()];
+            var promises = [getPrograms(), getSessions()];
             return $q.all(promises).then(function() {
-                logger.info('Activated Dashboard View');
-            });
-        }
-
-        function getMessageCount() {
-            return dataservice.getMessageCount().then(function (data) {
-                vm.messageCount = data;
-                return vm.messageCount;
+                logger.info('Activated ' + vm.title + ' View');
             });
         }
 

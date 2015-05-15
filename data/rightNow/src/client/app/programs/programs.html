@@ -17,7 +17,7 @@
                                     <tr ng-repeat="p in vm.programs">
                                         <td>{{p.Coach.FirstName}}</td>
                                         <td>{{p.Coachee.FirstName}}</td>
-                                        <td><a href="/program/{{p.Id}}/" class="btn btn-primary">Open</a></td>
+                                        <td><a ui-sref="program({id:p.Id})" class="btn btn-primary">Open</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -42,7 +42,7 @@
                                     <tr ng-repeat="p in vm.sessions">
                                         <td>{{p.CoachingProgram.Coach.FirstName}}</td>
                                         <td>{{p.CoachingProgram.Coachee.FirstName}}</td>
-                                        <td><a href="/program/{{p.CoachingProgram.Id}}/session/{{p.Id}}/" class="btn btn-primary">Open</a></td>
+                                        <td><a href="session({id:p.Id})" class="btn btn-primary">Open</a></td>
                                     </tr>
                                 </tbody>
                             </table>

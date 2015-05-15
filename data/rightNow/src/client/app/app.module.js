@@ -5,8 +5,8 @@
         'app.core',
         'app.widgets',
         'app.admin',
-        'app.dashboard',
         'app.layout',
+        'app.programs',
         'app.program',
         'app.login'
     ]);
