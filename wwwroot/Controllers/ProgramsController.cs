@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ewide.web.Controllers
 {
@@ -31,7 +32,13 @@ namespace ewide.web.Controllers
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
             return Ok(AppDb.CoachingPrograms
-                .Where(i => i.Coach.Id == currentUser.Id)
+                .Include("Coach")
+                .Include("Coachee")
+                .Include("CoachingSessions")
+                .Where(i =>
+                    i.Coach.Id == currentUser.Id ||
+                    i.Coachee.Id == currentUser.Id
+                )
                 .FirstOrDefault(i => i.Id == id));
         }
 

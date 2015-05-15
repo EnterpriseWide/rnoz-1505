@@ -18,5 +18,6 @@ namespace ewide.web.Models
         [Required]
         public virtual ApplicationUser Coachee { get; set; }
         public String LearningPlan { get; set; }
+        public ICollection<CoachingSession> CoachingSessions { get; set; }
     }
 }
