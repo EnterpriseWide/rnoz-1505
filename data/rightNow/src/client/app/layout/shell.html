@@ -1,5 +1,5 @@
 <div ng-controller="ShellController as vm">
-    <header class="clearfix">
+    <header class="clearfix" ng-show="vm.authData.isAuthenticated">
         <ht-top-nav navline="vm.navline"></ht-top-nav>
     </header>
     <section id="content" class="content">
@@ -14,4 +14,7 @@
             <div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>
         </div>
     </section>
+    <footer class="clearfix" ng-show="vm.authData.isAuthenticated">
+        <div class="row right"><p>right.now. developed by <img src="/images/oztrainLogo.png" alt="oztrain logo" /></p></div>
+    </footer>
 </div>

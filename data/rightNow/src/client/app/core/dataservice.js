@@ -16,6 +16,7 @@
             logout: logout,
             getUserInfo: getUserInfo,
             getPrograms: getPrograms,
+            getProgram: getProgram,
             getSessions: getSessions,
         };
 
@@ -60,6 +61,22 @@
 
             function fail(error) {
                 var msg = 'query for programs failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function getProgram(id) {
+            return $http.get(service.apiurl + '/api/programs/' + id + '/')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for program ' + id + ' failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }

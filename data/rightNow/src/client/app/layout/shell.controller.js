@@ -15,8 +15,6 @@
         $rootScope.showSplash = true;
         vm.navline = {
             title: config.appTitle,
-            text: 'What do you want to go here',
-            link: 'http://muchmedia.com.au/'
         };
         vm.authData = authservice.authData;
 

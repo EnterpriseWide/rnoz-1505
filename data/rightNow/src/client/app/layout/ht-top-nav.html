@@ -10,13 +10,19 @@
     <div class="navbar-collapse collapse">
         <div class="pull-right navbar-logo">
             <ul class="nav navbar-nav pull-right">
-                <li ng-show="vm.authData.isAuthenticated">
-                    <p>Welcome {{ vm.authData.firstName }}</p>
+                <li>
+                    <a ui-sref="programs">Dashboard</a>
                 </li>
-                <li ng-show="!vm.authData.isAuthenticated" class="dropdown dropdown-big">
-                    <a href="/login">Login</a>
+                <li ng-show="vm.authData.isAdmin">
+                    <a ui-sref="admin">Admin</a>
                 </li>
-                <li ng-show="vm.authData.isAuthenticated" class="dropdown dropdown-big">
+                <li>
+                    <a ui-sref="profile">My Profile</a>
+                </li>
+                <li>
+                    <a ui-sref="profile">Help</a>
+                </li>
+                <li>
                     <a ng-click="vm.logoutUser()" href="">Logout</a>
                 </li>
             </ul>
