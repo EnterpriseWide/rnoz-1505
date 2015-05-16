@@ -15,19 +15,19 @@
         <div class="pull-right navbar-logo">
             <ul class="nav navbar-nav pull-right">
                 <li>
-                    <a ui-sref="programs">Dashboard</a>
+                    <a ui-sref="programs"><i class="fa fa-lock"></i> Dashboard</a>
                 </li>
                 <li ng-show="vm.authData.isAdmin">
-                    <a ui-sref="admin">Admin</a>
+                    <a ui-sref="admin"><i class="fa fa-lock"></i> Admin</a>
                 </li>
                 <li>
-                    <a ui-sref="profile">My Profile</a>
+                    <a ui-sref="profile"><i class="fa fa-lock"></i> My Profile</a>
                 </li>
                 <li>
-                    <a ui-sref="profile">Help</a>
+                    <a ui-sref="help"><i class="fa fa-lock"></i> Help</a>
                 </li>
                 <li>
-                    <a ng-click="vm.logoutUser()" href="">Logout</a>
+                    <a ng-click="vm.logoutUser()" href=""><i class="fa fa-lock"></i> Logout</a>
                 </li>
             </ul>
         </div>

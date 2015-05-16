@@ -40,21 +40,10 @@ namespace ewide.web.Controllers
                 FirstName = appuser.FirstName,
                 LastName = appuser.LastName,
                 //LoginProvider = externalLogin.LoginProvider,
-                Roles = new List<string>(),
+                Roles = appuser.GetRoles(),
                 IsAdmin = false,
             };
-            foreach (var role in appuser.Roles)
-            {
-                var newRole = AppRoleManager.FindById(role.RoleId);
-                if (newRole != null)
-                {
-                    user.Roles.Add(newRole.Name);
-                    if (newRole.Name.ToLower() == "admins")
-                    {
-                        user.IsAdmin = true;
-                    }
-                }
-            }
+            
             return user;
         }
 

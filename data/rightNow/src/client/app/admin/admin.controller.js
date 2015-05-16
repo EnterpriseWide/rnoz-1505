@@ -16,7 +16,6 @@
         activate();
 
         function activate() {
-            authservice.fillData();
             logger.info('Activated Admin View');
         }
     }
