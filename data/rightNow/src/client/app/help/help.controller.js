@@ -12,6 +12,8 @@
         var vm = this;
         vm.title = 'Help';
         vm.authData = authservice.authData;
+        vm.bodyText = '<p>Contact Info</p><p>PDF Instructions</p>' +
+            '<p>And a few paragraphs of basic instructions</p>';
 
         activate();
 

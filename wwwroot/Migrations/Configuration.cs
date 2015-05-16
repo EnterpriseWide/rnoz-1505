@@ -20,18 +20,22 @@ namespace ewide.web.Migrations
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-
-            if (roleManager.FindById("Super Admins") == null)
+            
+            if (roleManager.FindById("Super Admin") == null)
             {
-                roleManager.Create(new IdentityRole { Name = "Super Admins" });
+                roleManager.Create(new IdentityRole { Name = "Super Admin" });
             }
-            if (roleManager.FindById("Admins") == null)
+            if (roleManager.FindById("Admin") == null)
             {
-                roleManager.Create(new IdentityRole { Name = "Admins" });
+                roleManager.Create(new IdentityRole { Name = "Admin" });
             }
-            if (roleManager.FindById("Users") == null)
+            if (roleManager.FindById("Coach") == null)
             {
-                roleManager.Create(new IdentityRole { Name = "Users" });
+                roleManager.Create(new IdentityRole { Name = "Coach" });
+            }
+            if (roleManager.FindById("Everyone") == null)
+            {
+                roleManager.Create(new IdentityRole { Name = "Everyone" });
             }
             if (manager.FindByEmail("superadmin@ewide.biz") == null)
             {
@@ -44,7 +48,7 @@ namespace ewide.web.Migrations
                     LastName = "Smith",
                 }, "Abcd!234");
                 var superadminUser = manager.FindByEmail("superadmin@ewide.biz");
-                manager.AddToRoles(superadminUser.Id, new string[] { "Super Admins", "Admins", "Users" });
+                manager.AddToRoles(superadminUser.Id, new string[] { "Super Admin", "Admin", "Everyone" });
             }
             if (manager.FindByEmail("admin@ewide.biz") == null)
             {
@@ -57,7 +61,7 @@ namespace ewide.web.Migrations
                     LastName = "Smith",
                 }, "Abcd!234");
                 var adminUser = manager.FindByEmail("admin@ewide.biz");
-                manager.AddToRoles(adminUser.Id, new string[] { "Admins", "Users" });
+                manager.AddToRoles(adminUser.Id, new string[] { "Admin", "Everyone" });
             }
             if (manager.FindByEmail("user1@ewide.biz") == null)
             {
@@ -70,7 +74,7 @@ namespace ewide.web.Migrations
                     LastName = "Smith",
                 }, "Abcd!234");
                 var user = manager.FindByEmail("user1@ewide.biz");
-                manager.AddToRoles(user.Id, new string[] { "Users" });
+                manager.AddToRoles(user.Id, new string[] { "Coach", "Everyone" });
             }
             if (manager.FindByEmail("user2@ewide.biz") == null)
             {
@@ -83,7 +87,7 @@ namespace ewide.web.Migrations
                     LastName = "Smith",
                 }, "Abcd!234");
                 var user = manager.FindByEmail("user2@ewide.biz");
-                manager.AddToRoles(user.Id, new string[] { "Users" });
+                manager.AddToRoles(user.Id, new string[] { "Everyone" });
             }
             if (manager.FindByEmail("user3@ewide.biz") == null)
             {
@@ -96,7 +100,7 @@ namespace ewide.web.Migrations
                     LastName = "Smith",
                 }, "Abcd!234");
                 var user = manager.FindByEmail("user3@ewide.biz");
-                manager.AddToRoles(user.Id, new string[] { "Users" });
+                manager.AddToRoles(user.Id, new string[] { "Everyone" });
             }
 
             if (context.CoachingPrograms.Count() <= 0)

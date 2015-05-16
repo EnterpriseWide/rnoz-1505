@@ -40,10 +40,8 @@ namespace ewide.web.Controllers
                 FirstName = appuser.FirstName,
                 LastName = appuser.LastName,
                 //LoginProvider = externalLogin.LoginProvider,
-                Roles = appuser.GetRoles(),
-                IsAdmin = false,
+                Roles = appuser.GetRoles(AppRoleManager),
             };
-            
             return user;
         }
 

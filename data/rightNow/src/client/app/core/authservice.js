@@ -13,6 +13,7 @@
             token: '',
             isAuthenticated: false,
             isAdmin: false,
+            isCoach: false,
             userName: '',
             userRetrieved: false,
             firstName: '',
@@ -60,8 +61,9 @@
             authData.firstName = '';
             authData.lastName = '';
             authData.email = '';
-            authData.isAdmin = false;
             authData.roles.slice(0, authData.roles.length);
+            authData.isAdmin = false;
+            authData.isCoach = false;
         }
 
         function fillData() {
@@ -78,6 +80,8 @@
                         authData.firstName = userData.FirstName;
                         authData.lastName = userData.LastName;
                         authData.isAdmin = userData.IsAdmin;
+                        authData.isAdmin = authData.roles.indexOf('Admin') >= 0;
+                        authData.isCoach = authData.roles.indexOf('Coach') >= 0;
                     });
                 }
             }
