@@ -1,10 +1,13 @@
 <section id="dashboard-view" class="mainbar" data-ng-controller="LoginController as vm">
     <section class="matter">
         <div class="container">
+            <p><a href="http://oztrain.com.au" target="_blank"><img src="/images/oztrainLogo.png" alt="oztrain logo" /></a></p>
             <form ng-show="!vm.authData.isAuthenticated" ng-submit="vm.loginUser()">
                 <input ng-model="vm.loginData.userName" type="text" name="user" placeholder="Username" />
                 <input ng-model="vm.loginData.password" type="password" name="pass" placeholder="Password" />
+                <br />
                 <button class="btn btn-primary" type="submit">Login</button>
+                <a class="btn btn-default">Forgot your password</a>
             </form>
             <div ng-show="!vm.authData.isAuthenticated">
                 <a class="btn btn-primary" href="" ng-click="vm.loginAUser('admin')">Login As Admin</a>

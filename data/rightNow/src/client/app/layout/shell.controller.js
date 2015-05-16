@@ -14,7 +14,9 @@
         vm.isBusy = true;
         $rootScope.showSplash = true;
         vm.navline = {
+            logo: config.logo,
             title: config.appTitle,
+            tagline: config.tagLine,
         };
         vm.authData = authservice.authData;
 

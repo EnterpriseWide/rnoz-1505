@@ -15,7 +15,9 @@
 
     var config = {
         appErrorPrefix: '[rightNow Error] ',
-        appTitle: 'rightNow'
+        logo: '/images/logo.png',
+        appTitle: 'right.now.',
+        tagLine: 'Executive coaching program'
     };
 
     core.value('config', config);

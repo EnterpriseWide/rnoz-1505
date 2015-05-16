@@ -15,10 +15,6 @@ describe('Programs routes', function () {
 
         bard.verifyNoOutstandingHttpRequests();
 
-        it('should map state programs to url / ', function() {
-            expect($state.href('programs', {})).to.equal('/');
-        });
-
         it('should map /programs route to programs View template', function () {
             expect($state.get('programs').templateUrl).to.equal(view);
         });

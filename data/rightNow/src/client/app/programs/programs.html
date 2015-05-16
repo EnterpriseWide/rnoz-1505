@@ -3,24 +3,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="widget wviolet">
-                        <div ht-widget-header title="Active Coaching Programs" allow-collapse="true"></div>
+                    <div class="widget wred" ng-repeat="p in vm.programs">
+                        <div ht-widget-header title="{{p.Coach.FirstName}}"></div>
                         <div class="widget-content text-center text-info">
-                            <table class="table table-condensed table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Coach</th>
-                                        <th>Coachee</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="p in vm.programs">
-                                        <td>{{p.Coach.FirstName}}</td>
-                                        <td>{{p.Coachee.FirstName}}</td>
-                                        <td><a ui-sref="program({id:p.Id})" class="btn btn-primary">Open</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <a ui-sref="program({id: p.Id})" class="btn btn-default">Open Program >></a>
                         </div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>
@@ -28,21 +14,20 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="widget wviolet">
+                    <div class="widget wlightblue">
                         <div ht-widget-header title="Sessions" allow-collapse="true"></div>
                         <div class="widget-content text-center text-info">
                             <table class="table table-condensed table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Coach</th>
                                         <th>Coachee</th>
+                                        <th>Started At</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="p in vm.sessions">
-                                        <td>{{p.CoachingProgram.Coach.FirstName}}</td>
-                                        <td>{{p.CoachingProgram.Coachee.FirstName}}</td>
-                                        <td><a href="session({id:p.Id})" class="btn btn-primary">Open</a></td>
+                                        <td>{{p.CoachingProgram.Coach.FirstName}} {{p.CoachingProgram.Coach.LastName}}</td>
+                                        <td>{{p.StartedAt}}</td>
                                     </tr>
                                 </tbody>
                             </table>

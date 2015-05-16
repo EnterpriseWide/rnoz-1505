@@ -1,13 +1,15 @@
 /* jshint -W117, -W030 */
 describe('ProgramController', function() {
     var controller;
+    var program = mockData.getMockProgram();
 
     beforeEach(function() {
         bard.appModule('app.program');
-        bard.inject('$controller', '$log', '$rootScope');
+        bard.inject('$controller', '$log', '$rootScope', 'dataservice', '$q');
     });
 
     beforeEach(function () {
+        sinon.stub(dataservice, 'getProgram').returns($q.when(program));
         controller = $controller('ProgramController');
         $rootScope.$apply();
     });
