@@ -20,7 +20,6 @@ using System.Web.Http.Cors;
 
 namespace ewide.web.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Authorize]
     [RoutePrefix("api/account")]
     [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]

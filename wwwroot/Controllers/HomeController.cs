@@ -11,7 +11,6 @@ namespace ewide.web.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
             return View();
         }
     }
