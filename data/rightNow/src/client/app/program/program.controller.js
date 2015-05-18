@@ -11,16 +11,19 @@
         var vm = this;
         vm.title = 'Program';
         vm.program = [];
-        vm.bodyTextYourCoach = '<p>Read more information about your coach, or send them a ' +
-            'message</p>';
-        vm.bodyTextLearningPlan = '<p>This document is created over teh course of your coaching ' +
-            'program - both you and your coach can edit it, export it or email a copy.</p>';
-        vm.bodyTextAssignments = '<p>These assignments are specified by your coach and are ' +
-            'updated over the course of your coaching program.</p>';
-        vm.bodyTextResources = '<p>Read more information about Resources here</p>';
-        vm.bodyTextUploads = '<p>Read more information about Uploads here</p>';
-        vm.bodyTextSurveys = '<p>Read more information about sruveys here</p>';
-
+        vm.screenconfig = {
+            bodyTextYourCoach: '<p>Read more information about your coach, or send them a ' +
+                'message</p>',
+            bodyTextLearningPlan: '<p>This document is created over teh course of your coaching ' +
+                'program - both you and your coach can edit it, export it or email a copy.</p>',
+            bodyTextAssignments: '<p>These assignments are specified by your coach and are ' +
+                'updated over the course of your coaching program.</p>',
+            bodyTextResources: '<p>Read more information about Resources here</p>',
+            bodyTextUploads: '<p>Read more information about Uploads here</p>',
+            bodyTextSessions: '<p>Read more information about Sessionshere</p>',
+            bodyTextSurveys: '<p>Read more information about sruveys here</p>'
+        };
+        
         activate();
 
         function activate() {

@@ -5,42 +5,42 @@
                 <div class="col-md-6">
                     <div class="widget wred">
                         <div ht-widget-header title="Your Coach" rightText="{{vm.program.Coach.FirstName}} {{vm.program.Coach.LastName}} >"></div>
-                        <div class="widget-content text-info" ng-bind-html="vm.bodyTextYourCoach"></div>
+                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextYourCoach"></div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="widget worange">
                         <div ht-widget-header title="Learning Plan"></div>
-                        <div class="widget-content text-info" ng-bind-html="vm.bodyTextLearningPlan"></div>
+                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextLearningPlan"></div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="widget wyellow">
                         <div ht-widget-header title="Assignments"></div>
-                        <div class="widget-content text-info" ng-bind-html="vm.bodyTextAssignments"></div>
+                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextAssignments"></div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="widget wblue">
                         <div ht-widget-header title="Resources"></div>
-                        <div class="widget-content text-info" ng-bind-html="vm.bodyTextResources"></div>
+                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextResources"></div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="widget wgreen">
                         <div ht-widget-header title="Uploads"></div>
-                        <div class="widget-content text-info" ng-bind-html="vm.bodyTextUploads"></div>
+                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextUploads"></div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="widget wviolet">
                         <div ht-widget-header title="Surveys"></div>
-                        <div class="widget-content text-info" ng-bind-html="vm.bodyTextSurveys"></div>
+                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextSurveys"></div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>
                         </div>
@@ -50,21 +50,13 @@
                     <div class="widget wlightblue">
                         <div ht-widget-header title="Video Coaching Sessions"></div>
                         <div class="widget-content text-center text-info">
-                                <table class="table table-condensed table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Coachee</th>
-                                        <th>Started At</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="p in vm.program.CoachingSessions">
-                                        <td>{{p.CoachingProgram.Coach.FirstName}} {{p.CoachingProgram.Coach.LastName}}</td>
-                                        <td>{{p.StartedAt}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
+                            <div class="text-info" ng-bind-html="vm.screenconfig.bodyTextSessions"></div>
+                            <hr />
+                            <ul>
+                                <li ng-repeat="p in vm.program.CoachingSessions">
+                                    {{p.StartedAt}}
+                                </li>
+                            </ul>
                         </div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>

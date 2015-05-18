@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="widget wred" ng-repeat="p in vm.programs">
-                        <div ht-widget-header title="{{p.Coach.FirstName}}"></div>
+                        <div ht-widget-header title="{{p.Coachee.FirstName}} {{p.Coachee.LastName}}"></div>
                         <div class="widget-content text-center text-info">
                             <a ui-sref="program({id: p.Id})" class="btn btn-default">Open Program >></a>
                         </div>
@@ -26,7 +26,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="p in vm.sessions">
-                                        <td>{{p.CoachingProgram.Coach.FirstName}} {{p.CoachingProgram.Coach.LastName}}</td>
+                                        <td>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}</td>
                                         <td>{{p.StartedAt}}</td>
                                     </tr>
                                 </tbody>
