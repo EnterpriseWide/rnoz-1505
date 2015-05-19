@@ -10,6 +10,7 @@
             'blocks.router',
             'ui.router',
             'ngplus',
-            'LocalStorageModule'
+            'LocalStorageModule',
+            'textAngular'
         ]);
 })();

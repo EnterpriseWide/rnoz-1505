@@ -21,9 +21,8 @@
             bodyTextResources: '<p>Read more information about Resources here</p>',
             bodyTextUploads: '<p>Read more information about Uploads here</p>',
             bodyTextSessions: '<p>Read more information about Sessionshere</p>',
-            bodyTextSurveys: '<p>Read more information about sruveys here</p>'
+            bodyTextSurveys: '<p>Read more information about surveys here</p>'
         };
-        
         activate();
 
         function activate() {

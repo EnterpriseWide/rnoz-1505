@@ -67,7 +67,7 @@
         }
 
         function getProgram(id) {
-            return $http.get(service.apiurl + '/api/programs/' + id + '/')
+            return $http.get(service.apiurl + '/api/programs?id=' + id)
                 .then(success)
                 .catch(fail);
 
