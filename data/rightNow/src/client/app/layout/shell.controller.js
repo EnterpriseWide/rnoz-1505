@@ -22,6 +22,7 @@
 
         function activate() {
             logger.success(config.appTitle + ' loaded!', null);
+            authservice.fillData();
             if (!vm.authData.isAuthenticated) {
                 $location.path('/login');
             }
