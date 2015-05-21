@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using ewide.web.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,9 @@ using System.Web.Http;
 namespace ewide.web.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/sessions")]
     public class SessionsController : BaseApiController
     {
-        [Route("")]
-        public IHttpActionResult Get()
+        public IQueryable<CoachingSession> Get()
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
             var sessions = AppDb
@@ -24,7 +23,7 @@ namespace ewide.web.Controllers
                 .Where(i => 
                     i.CoachingProgram.Coach.Id == currentUser.Id ||
                     i.CoachingProgram.Coachee.Id == currentUser.Id);
-            return Ok(sessions);
+            return sessions;
         }
 
         public IHttpActionResult Get(int id)

@@ -186,8 +186,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\LearningPlanController.cs" />
     <Compile Include="Controllers\SessionsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
+    <Compile Include="Models\LearningPlanDTO.cs" />
     <Compile Include="Models\CoachingProgram.cs" />
     <Compile Include="Models\CoachingSession.cs" />
     <Compile Include="Global.asax.cs">
@@ -313,7 +315,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
