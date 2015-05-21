@@ -17,6 +17,8 @@
             getUserInfo: getUserInfo,
             getPrograms: getPrograms,
             getProgram: getProgram,
+            getLearningPlan: getLearningPlan,
+            putLearningPlan: putLearningPlan,
             getSessions: getSessions,
         };
 
@@ -67,7 +69,7 @@
         }
 
         function getProgram(id) {
-            return $http.get(service.apiurl + '/api/programs?id=' + id)
+            return $http.get(service.apiurl + '/api/programs/' + id)
                 .then(success)
                 .catch(fail);
 
@@ -96,6 +98,37 @@
                 logger.error(msg);
                 return $q.reject(msg);
             }
+        }
+
+        function getLearningPlan(id) {
+            return $http.get(service.apiurl + '/api/learningplan/' + id)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for learning plan ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function putLearningPlan(id, learningPlanData) {
+            var url = service.apiurl + '/api/learningplan/' + id;
+            var data = learningPlanData;
+
+            var deferred = $q.defer();
+
+            $http.put(url, data).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
         }
     }
 })();
