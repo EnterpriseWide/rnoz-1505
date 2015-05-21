@@ -4,10 +4,8 @@
     angular
         .module('app.layout')
         .controller('ShellController', ShellController);
-
     ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice',
         '$location'];
-    /* @ngInject */
     function ShellController($rootScope, $timeout, config, logger, authservice, $location) {
         var vm = this;
         vm.busyMessage = 'Please wait ...';

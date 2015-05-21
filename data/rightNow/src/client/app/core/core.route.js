@@ -4,8 +4,6 @@
     angular
         .module('app.core')
         .run(appRun);
-
-    /* @ngInject */
     function appRun(routerHelper) {
         var otherwise = '/404';
         routerHelper.configureStates(getStates(), otherwise);
