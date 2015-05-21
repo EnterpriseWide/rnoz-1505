@@ -1,11 +1,12 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app')
-        .factory('authInterceptor', authInterceptor);
+    angular.module('app')
+        .factory('authInterceptor', authInterceptor)
+        .config(appConfig);
 
     authInterceptor.$inject = ['$q', '$location', 'localStorageService'];
+    appConfig.$inject = ['$httpProvider'];
 
     function authInterceptor($q, $location, localStorageService) {
 
@@ -41,9 +42,8 @@
         }
     }
 
-    angular.module('app')
-        .config(['$httpProvider', function ($httpProvider) {
-            $httpProvider.interceptors.push('authInterceptor');
-        }]);
+    function appConfig($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptor');
+    }
 
 })();
