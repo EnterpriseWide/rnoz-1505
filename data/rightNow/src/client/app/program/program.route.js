@@ -4,9 +4,7 @@
     angular
         .module('app.program')
         .run(appRun);
-
     appRun.$inject = ['routerHelper'];
-    /* @ngInject */
     function appRun(routerHelper) {
         routerHelper.configureStates(getStates());
     }
@@ -20,7 +18,7 @@
                     templateUrl: 'app/program/program.html',
                     controller: 'ProgramController',
                     controllerAs: 'vm',
-                    title: 'Program View',
+                    title: 'Program View'
                 }
             }
         ];
