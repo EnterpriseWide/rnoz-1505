@@ -13,6 +13,9 @@
                     <div class="widget worange">
                         <div ht-widget-header title="Learning Plan"></div>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextLearningPlan"></div>
+                        <div class="widget-content text-info">
+                            <a ui-sref="learningplan({id: vm.program.Id})" class="btn btn-default">Edit Learning Plan >></a>
+                        </div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>
                         </div>
@@ -57,19 +60,6 @@
                                     {{p.StartedAt}}
                                 </li>
                             </ul>
-                        </div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="widget wred">
-                        <div ht-widget-header title="Your Coach" rightText="{{vm.program.Coach.FirstName}} {{vm.program.Coach.LastName}} >"></div>
-                        <div class="widget-content text-info">
-                            <text-angular ng-model="vm.program.LearningPlan"></text-angular>
                         </div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>
