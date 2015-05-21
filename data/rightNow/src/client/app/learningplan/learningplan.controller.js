@@ -11,22 +11,29 @@
     function LearningPlanController(logger, $stateParams, $q, dataservice) {
         var vm = this;
         vm.title = 'Learning Plan';
-        vm.program = [];
+        vm.data = [];
+        vm.save = save;
 
         activate();
 
         function activate() {
             var id = $stateParams.id;
-            var promises = [getProgram(id)];
+            var promises = [getLearningPlan(id)];
             return $q.all(promises).then(function() {
                 logger.info('Activated ' + vm.title + ' View');
             });
         }
 
-        function getProgram(id) {
-            return dataservice.getProgram(id).then(function (data) {
-                vm.program = data;
-                return vm.program;
+        function getLearningPlan(id) {
+            return dataservice.getLearningPlan(id).then(function (data) {
+                vm.data = data;
+                return vm.data;
+            });
+        }
+
+        function save() {
+            dataservice.putLearningPlan(vm.data.Id, vm.data).then(function (data) {
+                logger.info('Learning Plan Saved');
             });
         }
 

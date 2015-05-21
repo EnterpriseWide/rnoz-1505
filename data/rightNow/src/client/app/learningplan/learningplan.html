@@ -5,7 +5,8 @@
                 <div class="widget worange">
                     <div ht-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
-                        <text-angular ng-model="vm.program.LearningPlan"></text-angular>
+                        <button class="btn btn-default" data-ng-click="vm.save()">Save Learning Plan</button>
+                        <text-angular ng-model="vm.data.LearningPlan"></text-angular>
                     </div>
                     <div class="widget-foot">
                         <div class="clearfix"></div>

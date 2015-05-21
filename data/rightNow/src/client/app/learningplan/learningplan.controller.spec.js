@@ -1,7 +1,7 @@
 /* jshint -W117, -W030 */
 describe('LearningPlanController', function() {
     var controller;
-    var program = mockData.getMockProgram();
+    var learningPlan = mockData.getMockProgram();
 
     beforeEach(function() {
         bard.appModule('app.learningplan');
@@ -9,7 +9,7 @@ describe('LearningPlanController', function() {
     });
 
     beforeEach(function () {
-        sinon.stub(dataservice, 'getProgram').returns($q.when(program));
+        sinon.stub(dataservice, 'getLearningPlan').returns($q.when(learningPlan));
         controller = $controller('LearningPlanController');
         $rootScope.$apply();
     });
