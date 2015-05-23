@@ -69,7 +69,9 @@
         function fillData() {
             var data = localStorageService.get('authorizationData');
             if (data) {
+                authData.userRetrieved = false;
                 authData.isAuthenticated = true;
+                authData.token = data.token;
                 authData.userName = data.userName;
                 if (!authData.userRetrieved) {
                     return dataservice.getUserInfo().then(function(result) {

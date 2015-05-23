@@ -4,8 +4,6 @@
     angular
         .module('app.layout')
         .directive('htTopNav', htTopNav);
-
-    /* @ngInject */
     function htTopNav () {
         var directive = {
             bindToController: true,
@@ -20,7 +18,6 @@
 
         TopNavController.$inject = ['authservice', '$location', 'logger'];
 
-        /* @ngInject */
         function TopNavController(authservice, $location, logger) {
             var vm = this;
 
@@ -32,7 +29,6 @@
             activate();
 
             function activate() {
-                logger.info('Activated Top Bar');
             }
 
             function loginUser() {
