@@ -27,18 +27,6 @@ namespace ewide.web.Controllers
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
-        //protected ModelFactory TheModelFactory
-        //{
-        //    get
-        //    {
-        //        if (_modelFactory == null)
-        //        {
-        //            _modelFactory = new ModelFactory(this.Request, this.AppUserManager);
-        //        }
-        //        return _modelFactory;
-        //    }
-        //}
-
         protected IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)
