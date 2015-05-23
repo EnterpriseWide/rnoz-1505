@@ -20,12 +20,11 @@ namespace ewide.web.Controllers
     [RoutePrefix("api/learningplan")]
     public class LearningPlanController : BaseApiController
     {
-        private IQueryable<CoachingProgram> GetCoachingPrograms()
+        private IQueryable<CoachingProgram> GetCoachingPrograms(ApplicationUser currentUser)
         {
-            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             var programs = AppDb.CoachingPrograms
-                .Include("Coach")
-                .Include("Coachee")
+                .Include(i => i.Coach)
+                .Include(i => i.Coachee)
                 .Where(i =>
                     i.Coach.Id == currentUser.Id ||
                     i.Coachee.Id == currentUser.Id
@@ -36,7 +35,8 @@ namespace ewide.web.Controllers
         [ResponseType(typeof(LearningPlanDTO))]
         public IHttpActionResult GetLearningPlan(int id)
         {
-            var item = GetCoachingPrograms()
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var item = GetCoachingPrograms(currentUser)
                 .FirstOrDefault(i => i.Id == id);
             if (item == null)
             {
@@ -55,32 +55,16 @@ namespace ewide.web.Controllers
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             var program = AppDb.CoachingPrograms
-                .Include("Coach")
-                .Include("Coachee")
-                //.Include("CoachingSessions")
-                .Where(i =>
-                    i.Coach.Id == currentUser.Id ||
-                    i.Coachee.Id == currentUser.Id
-                )
                 .FirstOrDefault(i => i.Id == id);
-            try
-            {
-                var converter = new SelectPdf.HtmlToPdf();
-                var html = String.Format("<html><body>{0}</body></html>", program.LearningPlan);
-                var doc = converter.ConvertHtmlString(html);
-                var result = new HttpResponseMessage(HttpStatusCode.OK);
-                var stream = new MemoryStream();
-                doc.Save(stream);
-                result.Content = new StreamContent(stream);
-                result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
-                result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
-                result.Content.Headers.ContentDisposition.FileName = String.Format("LearningPlan.{0}.pdf", DateTime.Now.ToString("yyyyMMdd.HHmmss"));
-                return result;
-            }
-            catch
-            {
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
-            }
+            Request.Headers.Accept.Clear();
+            Request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
+            return Request.CreateResponse(HttpStatusCode.OK,
+                new LearningPlanDTO
+                {
+                    Id = program.Id,
+                    LearningPlan = program.LearningPlan,
+                    UpdatedAt = program.UpdatedAt,
+                });
         }
 
         [ResponseType(typeof(void))]
@@ -96,15 +80,18 @@ namespace ewide.web.Controllers
                 return BadRequest();
             }
 
-            var coachingProgram = GetCoachingPrograms()
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId()); 
+            var coachingProgram = GetCoachingPrograms(currentUser)
                 .SingleOrDefault(i => i.Id == item.Id);
             if (id != item.Id)
             {
                 return BadRequest("Learning Program Not Found");
             }
+
             coachingProgram.LearningPlan = item.LearningPlan;
+            AppDb.Entry(coachingProgram).Property(i => i.LearningPlan).IsModified = true;
             coachingProgram.UpdatedAt = DateTime.Now;
-            AppDb.Entry(coachingProgram).State = EntityState.Modified;
+            AppDb.Entry(coachingProgram).Property(i => i.UpdatedAt).IsModified = true;
 
             try
             {
@@ -112,7 +99,7 @@ namespace ewide.web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CoachingProgramExists(id))
+                if (!CoachingProgramExists(id, currentUser))
                 {
                     return NotFound();
                 }
@@ -125,9 +112,9 @@ namespace ewide.web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        private bool CoachingProgramExists(int id)
+        private bool CoachingProgramExists(int id, ApplicationUser currentUser)
         {
-            return GetCoachingPrograms().Count(e => e.Id == id) > 0;
+            return GetCoachingPrograms(currentUser).Count(e => e.Id == id) > 0;
         }
 
     }

@@ -189,6 +189,7 @@
     <Compile Include="Controllers\LearningPlanController.cs" />
     <Compile Include="Controllers\SessionsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
+    <Compile Include="MediaTypeFormatter\LearningPlanPDFMediaTypeFormatter.cs" />
     <Compile Include="Models\LearningPlanDTO.cs" />
     <Compile Include="Models\CoachingProgram.cs" />
     <Compile Include="Models\CoachingSession.cs" />
