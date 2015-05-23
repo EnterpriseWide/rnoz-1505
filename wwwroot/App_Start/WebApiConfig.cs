@@ -5,6 +5,8 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
+using ewide.web.MediaTypeFormatter;
 
 namespace ewide.web
 {
@@ -16,6 +18,8 @@ namespace ewide.web
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            config.Formatters.JsonFormatter.SerializerSettings.Re‌ferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            config.Formatters.Add(new LearningPlanPDFMediaTypeFormatter()); 
 
             // Web API routes
             config.MapHttpAttributeRoutes();

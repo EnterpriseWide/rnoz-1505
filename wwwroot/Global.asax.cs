@@ -1,6 +1,5 @@
 ﻿using ewide.web.Migrations;
 using ewide.web.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,7 +21,18 @@ namespace ewide.web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Re‌ferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        }
+
+        void Application_BeginRequest(object sender, EventArgs e)
+        {
+            if (ReferenceEquals(null, HttpContext.Current.Request.Headers["Authorization"]))
+            {
+                var token = HttpContext.Current.Request.Params["access_token"];
+                if (!String.IsNullOrEmpty(token))
+                {
+                    HttpContext.Current.Request.Headers.Add("Authorization", "Bearer " + token);
+                }
+            }
         }
     }
 }

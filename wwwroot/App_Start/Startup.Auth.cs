@@ -40,7 +40,9 @@ namespace ewide.web
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+#if DEBUG
                 AllowInsecureHttp = true
+#endif
             };
 
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
