@@ -16,7 +16,7 @@
                 <a class="btn btn-primary" href="" ng-click="vm.loginAUser('user3')">Login As User 3</a>
             </div>
             <div ng-show="vm.authData.isAuthenticated">
-                <a ng-click="vm.callRestricted()" href="">You are already Logged In!</a>
+                <a ui-sref="programs">You are already Logged In!</a>
             </div>
             <br />
             <div>{{vm.message}}</div>
