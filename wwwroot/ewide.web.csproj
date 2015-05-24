@@ -40,6 +40,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -131,12 +139,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -184,12 +186,103 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AssignmentsController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\LearningPlanController.cs" />
     <Compile Include="Controllers\SessionsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
-    <Compile Include="MediaTypeFormatter\LearningPlanPDFMediaTypeFormatter.cs" />
+    <Compile Include="MediaTypeFormatters\LearningPlanPDFMediaTypeFormatter.cs" />
+    <Compile Include="Migrations\201505241140407_Add Assignment Tables.cs" />
+    <Compile Include="Migrations\201505241140407_Add Assignment Tables.Designer.cs">
+      <DependentUpon>201505241140407_Add Assignment Tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AssignmentFile.cs" />
+    <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\LearningPlanDTO.cs" />
     <Compile Include="Models\CoachingProgram.cs" />
     <Compile Include="Models\CoachingSession.cs" />
@@ -215,6 +308,32 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Areas\HelpPage\TestClient.css" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TestClientDialogs.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TestClientReferences.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -315,7 +434,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\AssignmentFile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -330,6 +449,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505050733147_Create Program and Session.resx">
       <DependentUpon>201505050733147_Create Program and Session.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505241140407_Add Assignment Tables.resx">
+      <DependentUpon>201505241140407_Add Assignment Tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
