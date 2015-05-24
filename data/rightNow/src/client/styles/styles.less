@@ -4,6 +4,7 @@
 @color_warning: #f88529;
 @color_important: #fa3031;
 @color_violet: #932ab6;
+@color_yellow: #d7df01;
 
 * {
     /*-webkit-box-shadow: none !important;
@@ -959,6 +960,13 @@ form {
         color: #fff;
     }
 
+    .widget.wyellow .widget-head {
+        background-color: @color_yellow;
+        border: 1px solid @color_yellow;
+        color: #fff;
+    }
+
+        .widget.wyellow .widget-head .widget-icons a,
         .widget.wred .widget-head .widget-icons a,
         .widget.wblue .widget-head .widget-icons a,
         .widget.wlightblue .widget-head .widget-icons a,
@@ -968,6 +976,7 @@ form {
             color: #fff;
         }
 
+            .widget.wyellow .widget-head .widget-icons a:hover,
             .widget.wred .widget-head .widget-icons a:hover,
             .widget.wblue .widget-head .widget-icons a:hover,
             .widget.wlightblue .widget-head .widget-icons a:hover,
