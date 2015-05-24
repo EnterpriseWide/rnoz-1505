@@ -9,7 +9,6 @@
     /* @ngInject */
     function ProgramsController($q, dataservice, logger) {
         var vm = this;
-        vm.messageCount = 0;
         vm.programs = [];
         vm.sessions = [];
         vm.title = 'Programs';

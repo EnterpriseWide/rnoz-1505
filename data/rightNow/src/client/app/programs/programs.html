@@ -3,10 +3,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="widget wred" ng-repeat="p in vm.programs">
-                        <div ht-widget-header title="{{p.Coachee.FirstName}} {{p.Coachee.LastName}}"></div>
+                    <div class="widget wred">
+                        <div ht-widget-header title="Programs"></div>
                         <div class="widget-content text-center text-info">
-                            <a ui-sref="program({id: p.Id})" class="btn btn-default">Open Program >></a>
+                            <ul>
+                                <li ng-repeat="p in vm.programs">
+                                    <a ui-sref="program({id: p.Id})" class="btn btn-default">Open Program for {{p.Coachee.FirstName}} {{p.Coachee.LastName}}>></a>
+                                </li>
+                            </ul>
                         </div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>
