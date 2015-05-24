@@ -6,7 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{33FD8034-11EE-48C6-9B26-B029E482054E}"
 	ProjectSection(SolutionItems) = preProject
 		.hgignore = .hgignore
-		readme.txt = readme.txt
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "sql(1)", "http://localhost:51111", "{2809715F-1523-49E0-A1B5-AEC9E969F37C}"

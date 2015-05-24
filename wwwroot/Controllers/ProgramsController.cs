@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -18,16 +18,21 @@ namespace ewide.web.Controllers
     [Authorize]
     public class ProgramsController : BaseApiController
     {
-        public IQueryable<CoachingProgram> GetCoachingProgram()
+        private IQueryable<CoachingProgram> GetCoachingPrograms(ApplicationUser currentUser)
         {
-            var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
-            var programs = AppDb
-                .CoachingPrograms
-                .Include("Coach")
-                .Include("Coachee")
+            var programs = AppDb.CoachingPrograms
+                .Include(i => i.Coach)
+                .Include(i => i.Coachee)
                 .Where(i =>
                     i.Coach.Id == currentUser.Id ||
                     i.Coachee.Id == currentUser.Id);
+            return programs;
+        }
+
+        public IQueryable<CoachingProgram> GetCoachingProgram()
+        {
+            var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
+            var programs = GetCoachingPrograms(currentUser);
             return programs;
         }
 
@@ -35,15 +40,8 @@ namespace ewide.web.Controllers
         public IHttpActionResult GetCoachingProgram(int id)
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
-            var program = AppDb.CoachingPrograms
-                .Include("Coach")
-                .Include("Coachee")
-                .Include("CoachingSessions")
-                .Where(i =>
-                    i.Coach.Id == currentUser.Id ||
-                    i.Coachee.Id == currentUser.Id
-                )
-                .FirstOrDefault(i => i.Id == id);
+            var program = GetCoachingPrograms(currentUser)
+                .SingleOrDefault(i => i.Id == id);
             return Ok(program);
         }
     }
