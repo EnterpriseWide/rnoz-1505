@@ -23,6 +23,9 @@
                     <div class="widget wyellow">
                         <div ht-widget-header title="Assignments"></div>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextAssignments"></div>
+                        <div class="widget-content text-info">
+                            <a ui-sref="assignments({id: vm.program.Id})" class="btn btn-default">Assignments >></a>
+                        </div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>
                         </div>
