@@ -1,6 +1,7 @@
 /* jshint -W079 */
 var mockData = (function() {
     return {
+        getMockAssignments: getMockAssignments,
         getMockProgram: getMockProgram,
         getMockPrograms: getMockPrograms,
         getMockSessions: getMockSessions,
@@ -26,6 +27,17 @@ var mockData = (function() {
 
     function getMockSessions() {
         return [
+        ];
+    }
+
+    function getMockAssignments() {
+        return [
+        {'Id':1, 'CreatedAt':'2015-05-25T00:00:00', 'UpdatedAt':'2015-05-25T00:00:00', 'Name':'Assignment 1',
+        'Description':'This is the description for assignment 1',
+        'BodyText':'<p>this is the body text for assignment 1</p>', 'CoachingProgram':null},
+        {'Id':2, 'CreatedAt':'2015-05-25T00:00:00', 'UpdatedAt':'2015-05-25T00:00:00', 'Name':'Assignment 2',
+        'Description':'This is the description for Assignment 2',
+        'BodyText':'<p>this is the body text for assignment 2</p>', 'CoachingProgram':null}
         ];
     }
 
