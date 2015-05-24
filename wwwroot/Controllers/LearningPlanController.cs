@@ -17,7 +17,7 @@ using System.Net.Http.Headers;
 namespace ewide.web.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/learningplan")]
+    [RoutePrefix("api/LearningPlan")]
     public class LearningPlanController : BaseApiController
     {
         private IQueryable<CoachingProgram> GetCoachingPrograms(ApplicationUser currentUser)
@@ -50,8 +50,8 @@ namespace ewide.web.Controllers
             });
         }
 
-        [Route("DownloadPdf")]
-        public HttpResponseMessage GetPdf(int id)
+        [Route("DownloadPDF")]
+        public HttpResponseMessage DownloadPDF(int id)
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             var program = AppDb.CoachingPrograms
