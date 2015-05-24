@@ -6,8 +6,8 @@
                     <div ht-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
                         <ul>
-                            <li ng-repeat="p in vm.program.Assignments">
-                                <a ui-sref="assignment({id: p.Id}}">{{p.Name}}</a>
+                            <li ng-repeat="p in vm.assignments">
+                                <a>{{p.Name}}</a>
                                 <p>{{p.Description}}</p>
                             </li>
                         </ul>

@@ -1,13 +1,15 @@
 /* jshint -W117, -W030 */
 describe('AssignmentsController', function() {
     var controller;
+    var assignments = mockData.getMockAssignments();
 
     beforeEach(function() {
         bard.appModule('app.assignments');
-        bard.inject('$controller', '$log', '$rootScope');
+        bard.inject('$controller', '$log', '$rootScope', 'dataservice', '$q');
     });
 
     beforeEach(function () {
+        sinon.stub(dataservice, 'getAssignments').returns($q.when(assignments));
         controller = $controller('AssignmentsController');
         $rootScope.$apply();
     });

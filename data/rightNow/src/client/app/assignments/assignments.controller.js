@@ -9,7 +9,7 @@
     function AssignmentsController(logger, authservice, $stateParams, $q, dataservice) {
         var vm = this;
         vm.title = 'Assignments';
-        vm.program = [];
+        vm.assignments = [];
         vm.screenconfig = {};
         vm.authData = authservice.authData;
 
@@ -17,16 +17,16 @@
 
         function activate() {
             var id = $stateParams.id;
-            var promises = [getProgramWithAssignments(id)];
+            var promises = [getAssignments(id)];
             return $q.all(promises).then(function() {
                 logger.info('Activated ' + vm.title + ' View');
             });
         }
 
-        function getProgramWithAssignments(id) {
-            return dataservice.getProgramWithAssignments(id).then(function (data) {
-                vm.sessions = data;
-                return vm.sessions;
+        function getAssignments(id) {
+            return dataservice.getAssignments(id).then(function (data) {
+                vm.assignments = data;
+                return vm.assignments;
             });
         }
 

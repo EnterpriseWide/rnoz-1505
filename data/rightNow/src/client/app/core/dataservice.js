@@ -9,15 +9,15 @@
     /* @ngInject */
     function dataservice($http, $q, logger) {
         var service = {
-            // apiurl: 'http://rightnow.oztrain.local',
-            apiurl: '',
-            // apiurl: 'http://localhost:54141',
+            apiurl: '', // prod
+            // apiurl: 'http://rightnow.muchmedia.com.au', // stage
+            // apiurl: 'http://localhost:54141', // dev
             login: login,
             logout: logout,
             getUserInfo: getUserInfo,
             getPrograms: getPrograms,
             getProgram: getProgram,
-            getProgramWithAssignments: getProgramWithAssignments,
+            getAssignments: getAssignments,
             getLearningPlan: getLearningPlan,
             putLearningPlan: putLearningPlan,
             getSessions: getSessions,
@@ -85,8 +85,8 @@
             }
         }
 
-        function getProgramWithAssignments(id) {
-            return $http.get(service.apiurl + '/api/programs/' + id)
+        function getAssignments(id) {
+            return $http.get(service.apiurl + '/api/assignments?programid=' + id)
                 .then(success)
                 .catch(fail);
 
