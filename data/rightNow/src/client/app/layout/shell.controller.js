@@ -4,8 +4,8 @@
     angular
         .module('app.layout')
         .controller('ShellController', ShellController);
-    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice', '$location'];
-    function ShellController($rootScope, $timeout, config, logger, authservice, $location, $stateParams) {
+    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice', '$location', '$stateParams', '$state'];
+    function ShellController($rootScope, $timeout, config, logger, authservice, $location, $stateParams, $state) {
         var vm = this;
         vm.authData = {};
         vm.busyMessage = 'Please wait ...';

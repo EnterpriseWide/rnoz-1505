@@ -1,14 +1,26 @@
 <section id="dashboard-view" class="mainbar" data-ng-controller="LoginController as vm">
     <section class="matter">
         <div class="container">
-            <p><a href="http://oztrain.com.au" target="_blank"><img src="/images/oztrainLogo.png" alt="oztrain logo" /></a></p>
-            <form ng-show="!vm.authData.isAuthenticated" ng-submit="vm.loginUser()">
-                <input ng-model="vm.loginData.userName" type="text" name="user" placeholder="Username" />
-                <input ng-model="vm.loginData.password" type="password" name="pass" placeholder="Password" />
-                <br />
-                <button class="btn btn-primary" type="submit">Login</button>
-                <a class="btn btn-default">Forgot your password</a>
-            </form>
+                <div class="loginCont">
+                    <div class="row">
+                        <div class="col-sm-5 logo">
+                            <p><a href="http://oztrain.com.au" target="_blank"><img src="/images/oztrainLogo.png" class="img-thumbnail" alt="oztrain logo"></a></p>
+                        </div>                
+                        <div class="col-sm-7 login-form">
+                            <form ng-show="!vm.authData.isAuthenticated" ng-submit="vm.loginUser()">
+                                <input ng-model="vm.loginData.userName" type="text" name="user" placeholder="Username" />
+                                <input ng-model="vm.loginData.password" type="password" name="pass" placeholder="Password" />
+                                <br />
+                                <button class="btn btn-primary" type="submit">Login</button>
+                                <a class="btn btn-default pull-right">Forgot your password</a>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row introCol">
+                        <div class="col-sm-10" ng-bind-html="vm.screenconfig.blurb"></div>
+                        <div class="col-sm-2"><a href="http://oztrain.com.au" target="_blank"><img src="/images/oztrain-footer-Logo.png" alt="oztrain logo" /></a></div>
+                    </div>
+                </div>
             <div ng-show="!vm.authData.isAuthenticated">
                 <a class="btn btn-primary" href="" ng-click="vm.loginAUser('admin')">Login As Admin</a>
                 <a class="btn btn-primary" href="" ng-click="vm.loginAUser('user1')">Login As User 1</a>
@@ -20,10 +32,6 @@
             </div>
             <br />
             <div>{{vm.message}}</div>
-            <div class="row">
-                <div class="col-sm-10" ng-bind-html="vm.screenconfig.blurb"></div>
-                <div class="col-sm-2"><a href="http://oztrain.com.au" target="_blank"><img src="/images/oztrainLogo.png" alt="oztrain logo" /></a></div>
-            </div>
             <div>{{ vm.authData }}</div>
         </div>
     </section>
