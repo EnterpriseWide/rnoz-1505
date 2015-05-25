@@ -51,6 +51,7 @@ namespace ewide.web.Controllers
         }
 
         [Route("DownloadPDF")]
+        [HttpGet]
         public HttpResponseMessage DownloadPDF(int id)
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
@@ -80,7 +81,7 @@ namespace ewide.web.Controllers
                 return BadRequest();
             }
 
-            var currentUser = AppUserManager.FindById(User.Identity.GetUserId()); 
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             var coachingProgram = GetCoachingPrograms(currentUser)
                 .SingleOrDefault(i => i.Id == item.Id);
             if (id != item.Id)
