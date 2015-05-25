@@ -9,8 +9,8 @@
     /* @ngInject */
     function dataservice($http, $q, logger) {
         var service = {
-            apiurl: '', // prod
-            // apiurl: 'http://rightnow.muchmedia.com.au', // stage
+            //apiurl: '', // prod
+            apiurl: 'http://rightnow.muchmedia.com.au', // stage
             // apiurl: 'http://localhost:54141', // dev
             login: login,
             logout: logout,
