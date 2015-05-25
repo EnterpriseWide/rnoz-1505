@@ -3,10 +3,10 @@
 
     angular
         .module('app.assignments')
-        .controller('AssignmentsController', AssignmentsController);
-    AssignmentsController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice'];
+        .controller('AssignmentListController', AssignmentListController);
+    AssignmentListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice'];
 
-    function AssignmentsController(logger, authservice, $stateParams, $q, dataservice) {
+    function AssignmentListController(logger, authservice, $stateParams, $q, dataservice) {
         var vm = this;
         vm.title = 'Assignments';
         vm.assignments = [];
@@ -16,7 +16,7 @@
         activate();
 
         function activate() {
-            var id = $stateParams.id;
+            var id = $stateParams.programId;
             var promises = [getAssignments(id)];
             return $q.all(promises).then(function() {
                 logger.info('Activated ' + vm.title + ' View');
