@@ -5,7 +5,8 @@
                 <div class="widget wyellow">
                     <div ht-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
-                        <a ui-sref="assignmentCreate({programId: vm.program.Id})" class="btn btn-default">Add New Assignment >></a>
+                        <a ui-sref="assignmentCreate({programId: vm.programId})" class="btn btn-default">Add New Assignment >></a>
+                        <a class="btn btn-default" ui-sref="program({id: vm.programId})"><< Go Back</a>
                         <ul>
                             <li ng-repeat="p in vm.assignments">
                                 <a>{{p.Name}}</a>

@@ -17,7 +17,7 @@
         activate();
 
         function activate() {
-            vm.data.programId = $stateParams.programId;
+            vm.programId = $stateParams.programId;
             logger.info('Activated ' + vm.title + ' View');
         }
 

@@ -14,7 +14,7 @@
             {
                 state: 'learningplan',
                 config: {
-                    url: '/program/:id/learningplan/',
+                    url: '/program/:programId/learningplan/',
                     templateUrl: 'app/learningplan/learningplan.html',
                     controller: 'LearningPlanController',
                     controllerAs: 'vm',
