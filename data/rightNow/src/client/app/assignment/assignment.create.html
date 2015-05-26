@@ -7,12 +7,9 @@
                     <div class="widget-content user">
                         <button class="btn btn-default" data-ng-click="vm.save()">Save Assignment</button>
                         <a class="btn btn-default" ui-sref="assignments({programId: vm.programId})"><< Go Back</a>
-                        <ul>
-                            <li ng-repeat="p in vm.assignments">
-                                <a>{{p.Name}}</a>
-                                <p>{{p.Description}}</p>
-                            </li>
-                        </ul>
+                        <form class="form-horizontal" role="form" ng-submit="add()">
+                            <div ng-include="'app/assignment/_form.html'"></div>
+                        </form>
                     </div>
                     <div class="widget-foot">
                         <div class="clearfix"></div>

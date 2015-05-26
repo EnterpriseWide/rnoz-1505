@@ -99,6 +99,23 @@
             }
         }
 
+        function postAssignment(data) {
+            console.log(data);
+            return $http.post(service.apiurl + '/api/assignments', data)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'creation of a new assignment for program ' + data.CoachingProgramId + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
         function getSessions() {
             return $http.get(service.apiurl + '/api/sessions')
                 .then(success)

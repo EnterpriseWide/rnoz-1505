@@ -17,12 +17,12 @@
         activate();
 
         function activate() {
-            vm.programId = $stateParams.programId;
+            vm.data.CoachingProgramId = $stateParams.programId;
             logger.info('Activated ' + vm.title + ' View');
         }
 
         function save() {
-            dataservice.postAssignment(vm.data.programId, vm.data).then(function (data) {
+            dataservice.postAssignment(vm.data).then(function (data) {
                 logger.info('Assignment Created');
             });
         }
