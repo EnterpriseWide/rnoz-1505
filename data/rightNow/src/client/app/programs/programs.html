@@ -4,11 +4,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="widget wred">
-                        <div ht-widget-header title="Programs"></div>
-                        <div class="widget-content text-center text-info">
+                        <div ht-widget-header title="Programs" icon="fa-users"></div>
+                        <div class="widget-content text-center text-info listLessLink">
                             <ul>
                                 <li ng-repeat="p in vm.programs">
-                                    <a ui-sref="program({id: p.Id})" class="btn btn-default">Open Program for {{p.Coachee.FirstName}} {{p.Coachee.LastName}}>></a>
+                                    <a ui-sref="program({id: p.Id})" class="btn btn-default"><i class="fa fa-user"></i> Open Program for {{p.Coachee.FirstName}} {{p.Coachee.LastName}} <span>Company Name</span>
+                                    <i class="fa fa-angle-right rightArrow"></i>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -19,22 +21,25 @@
                 </div>
                 <div class="col-md-6">
                     <div class="widget wlightblue">
-                        <div ht-widget-header title="Sessions" allow-collapse="true"></div>
+                        <div ht-widget-header title="Sessions" allow-collapse="true" icon="fa-caret-square-o-right"></div>
                         <div class="widget-content text-center text-info">
-                            <table class="table table-condensed table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Coachee</th>
-                                        <th>Started At</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="p in vm.sessions">
-                                        <td>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}</td>
-                                        <td>{{p.StartedAt}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <p class="smallText">Manage your upcoming coaching sessions with your coachees. To begin a coaching session, click 'begin session,. then Right.Now. will attempt to connect you to your coachee. To cretoe a new session request, click into the specific coaching program.</p>
+
+                        <ul class="borderList">
+                            <li ng-repeat="p in vm.sessions">
+                                <div class="row">
+                                    <div class="col-sm-7 leftCol">
+                                        <i class="fa fa-calendar-o"></i> <strong>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}</strong><br> <strong>{{p.StartedAt}}</strong>
+                                        <span class="btnGroup">
+                                            <a href="javascrip:void(0)" class="greyBtn">Cancel <i class="fa fa-angle-right"></i></a>
+                                            <a href="javascrip:void(0)" class="greyBtn">Reschedule <i class="fa fa-angle-right"></i></a>
+                                            <a href="javascrip:void(0)" class="greyBtn">Set as Complete <i class="fa fa-angle-right"></i></a>
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-5 rightCol"> <a href="javascrip:void(0)" class="greenBtn">BEGIN SESSION <i class="fa fa-angle-right"></i></a></div>
+                                </div>
+                            </li>
+                        </ul>                        
                         </div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>

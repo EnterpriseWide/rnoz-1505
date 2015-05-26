@@ -18,7 +18,8 @@
                 'title': '@',
                 'subtitle': '@',
                 'rightText': '@',
-                'allowCollapse': '@'
+                'allowCollapse': '@',
+                'icon': '@'
             },
             templateUrl: 'app/widgets/widget-header.html',
             restrict: 'EA'
