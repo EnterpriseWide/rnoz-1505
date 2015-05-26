@@ -4,8 +4,8 @@
     angular
         .module('app.layout')
         .controller('ShellController', ShellController);
-    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice', '$location'];
-    function ShellController($rootScope, $timeout, config, logger, authservice, $location) {
+    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice', '$location', '$stateParams', '$state'];
+    function ShellController($rootScope, $timeout, config, logger, authservice, $location, $stateParams, $state) {
         var vm = this;
         vm.authData = {};
         vm.busyMessage = 'Please wait ...';
@@ -24,11 +24,11 @@
             authservice.fillData();
             vm.authData = authservice.authData;
             if (!vm.authData.isAuthenticated) {
-                $location.path('/login');
+                $state.go('login');
             } else if (vm.authData.isAdmin) {
-                $location.path('/admin');
+                $state.go('admin');
             } else if (vm.authData.isCoach) {
-                $location.path('/');
+                $state.go('programs');
             }
             hideSplash();
         }

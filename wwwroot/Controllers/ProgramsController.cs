@@ -40,6 +40,7 @@ namespace ewide.web.Controllers
         public IHttpActionResult GetCoachingProgram(int id)
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
+
             var program = GetCoachingPrograms(currentUser)
                 .SingleOrDefault(i => i.Id == id);
             return Ok(program);

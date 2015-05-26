@@ -4,13 +4,11 @@
     angular
         .module('app.core')
         .factory('dataservice', dataservice);
-
     dataservice.$inject = ['$http', '$q', 'logger'];
-    /* @ngInject */
     function dataservice($http, $q, logger) {
         var service = {
-            //apiurl: '', // prod
-            apiurl: 'http://rightnow.muchmedia.com.au', // stage
+            apiurl: '', // prod
+            // apiurl: 'http://rightnow.muchmedia.com.au', // stage
             // apiurl: 'http://localhost:54141', // dev
             login: login,
             logout: logout,

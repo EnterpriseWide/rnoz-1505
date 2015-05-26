@@ -6,7 +6,8 @@
                     <div ht-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
                         <button class="btn btn-default" data-ng-click="vm.save()">Save Learning Plan</button>
-                        <a href="{{vm.apiurl}}/api/learningplan/DownloadPdf?id={{vm.data.Id}}&access_token={{vm.authData.token}}" target="_blank" class="btn btn-default">Download Learning Plan as PDF</a>
+                        <a class="btn btn-default" ui-sref="program({id: vm.programId})"><< Go Back</a>
+                        <a href="{{vm.apiurl}}/api/learningplan/DownloadPdf?id={{vm.programId}}&access_token={{vm.authData.token}}" target="_blank" class="btn btn-default">Download Learning Plan as PDF</a>
                         <text-angular ng-model="vm.data.LearningPlan"></text-angular>
                     </div>
                     <div class="widget-foot">
