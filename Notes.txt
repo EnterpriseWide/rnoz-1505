@@ -52,3 +52,26 @@ c:\Program Files (x86)\AMD APP\bin\x86_64;c:\Program Files (x86)\AMD APP\bin\x86
 
 
 C:\Program Files (x86)\Git\bin;C:\Program Files (x86)\Git\cmd;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Windows\System32;%SystemRoot%\system32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\
+
+
+
+
+
+
+
+@color_lightblue: #54bbff;
+@color_blue: #1171a3;
+@color_success: #43c83c;
+@color_warning: #f88529;
+@color_important: #fa3031;
+@color_violet: #932ab6;
+@color_yellow: #d7df01;
+@color_grey: #e8e8e8
+@color_lightgrey: #dfdddd
+
+
+
+
+
+
+
