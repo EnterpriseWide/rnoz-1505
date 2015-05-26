@@ -16,6 +16,7 @@
             getPrograms: getPrograms,
             getProgram: getProgram,
             getAssignments: getAssignments,
+            postAssignment: postAssignment,
             getLearningPlan: getLearningPlan,
             putLearningPlan: putLearningPlan,
             getSessions: getSessions,
