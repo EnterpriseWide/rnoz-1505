@@ -1,4 +1,5 @@
-﻿using ewide.web.Models;
+﻿using AutoMapper;
+using ewide.web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -23,6 +24,17 @@ namespace ewide.web.Controllers
                     i.CoachingProgram.Coach.Id == currentUser.Id ||
                     i.CoachingProgram.Coachee.Id == currentUser.Id);
             return assignments;
+        }
+
+        private IQueryable<CoachingProgram> GetCoachingPrograms(ApplicationUser currentUser)
+        {
+            var programs = AppDb.CoachingPrograms
+                .Include(i => i.Coach)
+                .Include(i => i.Coachee)
+                .Where(i =>
+                    i.Coach.Id == currentUser.Id ||
+                    i.Coachee.Id == currentUser.Id);
+            return programs;
         }
 
         // GET: api/Assignments
@@ -90,19 +102,30 @@ namespace ewide.web.Controllers
         //    return StatusCode(HttpStatusCode.NoContent);
         //}
 
-        //// POST: api/Assignments
-        //[ResponseType(typeof(Assignment))]
-        //[Authorize(Roles = "Coach")]
-        //public IHttpActionResult PostAssignment(Assignment assignment)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    AppDb.Assignment.Add(assignment);
-        //    AppDb.SaveChanges();
-        //    return CreatedAtRoute("DefaultApi", new { id = assignment.Id }, assignment);
-        //}
+        // POST: api/Assignments
+        [ResponseType(typeof(Assignment))]
+        [Authorize(Roles = "Coach")]
+        public IHttpActionResult PostAssignment(AssignmentDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var coachingProgram = GetCoachingPrograms(currentUser)
+                .SingleOrDefault(i => i.Id == dto.CoachingProgramId);
+            if (coachingProgram == null)
+            {
+                ModelState.AddModelError("CoachingProgramId", "Coaching Program Is Required");
+                return BadRequest(ModelState);
+            }
+
+            var assignment = dto.CreateAssignment(coachingProgram);
+            AppDb.Assignment.Add(assignment);
+            AppDb.SaveChanges();
+            return CreatedAtRoute("DefaultApi", new { id = assignment.Id }, assignment);
+        }
 
         //// DELETE: api/Assignments/5
         //[ResponseType(typeof(Assignment))]
