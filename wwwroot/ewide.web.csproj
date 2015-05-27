@@ -40,6 +40,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -281,8 +287,10 @@
     <Compile Include="Migrations\201505241140407_Add Assignment Tables.Designer.cs">
       <DependentUpon>201505241140407_Add Assignment Tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\AssignmentFile.cs" />
     <Compile Include="Models\Assignment.cs" />
+    <Compile Include="Models\CoachingProgramDTO.cs" />
     <Compile Include="Models\LearningPlanDTO.cs" />
     <Compile Include="Models\CoachingProgram.cs" />
     <Compile Include="Models\CoachingSession.cs" />
@@ -489,6 +497,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Select.HtmlToPdf.1.0.0.1\build\Select.HtmlToPdf.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Select.HtmlToPdf.1.0.0.1\build\Select.HtmlToPdf.targets'))" />
   </Target>
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
