@@ -17,6 +17,8 @@ namespace ewide.web.Models
         public String Name { get; set; }
         public String Description { get; set; }
         public String BodyText { get; set; }
+        [Required]
+        public int CoachingProgramId { get; set; }
         public virtual CoachingProgram CoachingProgram { get; set; }
     }
 }
