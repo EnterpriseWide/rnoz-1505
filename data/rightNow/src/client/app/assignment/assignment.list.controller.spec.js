@@ -1,29 +1,29 @@
 /* jshint -W117, -W030 */
-describe('ProgramController', function() {
+describe('AssignmentListController', function() {
     var controller;
     var program = mockData.getMockProgram();
 
     beforeEach(function() {
-        bard.appModule('app.program');
+        bard.appModule('app.assignments');
         bard.inject('$controller', '$log', '$rootScope', 'dataservice', '$q');
     });
 
     beforeEach(function () {
         sinon.stub(dataservice, 'getProgram').returns($q.when(program));
-        controller = $controller('ProgramController');
+        controller = $controller('AssignmentListController');
         $rootScope.$apply();
     });
 
     bard.verifyNoOutstandingHttpRequests();
 
-    describe('Program controller', function() {
+    describe('AssignmentList controller', function() {
         it('should be created successfully', function () {
             expect(controller).to.be.defined;
         });
 
         describe('after activate', function() {
             it('should have title of Program', function() {
-                expect(controller.title).to.equal('Program');
+                expect(controller.title).to.equal('Assignments');
             });
 
             it('should have logged "Activated"', function() {
