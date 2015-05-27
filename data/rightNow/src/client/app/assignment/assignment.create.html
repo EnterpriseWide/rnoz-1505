@@ -6,7 +6,7 @@
                     <div ht-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
                         <button class="btn btn-default" data-ng-click="vm.save()">Save Assignment</button>
-                        <a class="btn btn-default" ui-sref="assignments({programId: vm.programId})"><< Go Back</a>
+                        <a class="btn btn-default" ui-sref="assignments({programId: vm.data.CoachingProgramId})"><< Go Back</a>
                         <form class="form-horizontal" role="form" ng-submit="add()">
                             <div ng-include="'app/assignment/_form.html'"></div>
                         </form>

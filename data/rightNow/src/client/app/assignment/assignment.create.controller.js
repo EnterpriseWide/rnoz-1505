@@ -4,9 +4,9 @@
     angular
         .module('app.assignments')
         .controller('AssignmentCreateController', AssignmentCreateController);
-    AssignmentCreateController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice'];
+    AssignmentCreateController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice'];
 
-    function AssignmentCreateController(logger, authservice, $stateParams, $q, dataservice) {
+    function AssignmentCreateController(logger, authservice, $state, $stateParams, $q, dataservice) {
         var vm = this;
         vm.title = 'Add New Assignment';
         vm.data = {};
@@ -24,6 +24,7 @@
         function save() {
             dataservice.postAssignment(vm.data).then(function (data) {
                 logger.info('Assignment Created');
+                $state.go('assignments', { programId: vm.data.CoachingProgramId });
             });
         }
 
