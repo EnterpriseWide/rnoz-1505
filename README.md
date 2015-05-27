@@ -1,7 +1,6 @@
 # rnoz-1505
 
 rightNow Client
-
 open a command prompt in /data/rightNow
 
 server installation:
