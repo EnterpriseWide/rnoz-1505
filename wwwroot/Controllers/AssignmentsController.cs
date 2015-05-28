@@ -132,20 +132,22 @@ namespace ewide.web.Controllers
             return CreatedAtRoute("DefaultApi", new { id = assignment.Id }, assignment);
         }
 
-        //// DELETE: api/Assignments/5
-        //[ResponseType(typeof(Assignment))]
-        //[Authorize(Roles = "Coach")]
-        //public IHttpActionResult DeleteAssignment(int id)
-        //{
-        //    Assignment assignment = AppDb.Assignment.Find(id);
-        //    if (assignment == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    AppDb.Assignment.Remove(assignment);
-        //    AppDb.SaveChanges();
-        //    return Ok(assignment);
-        //}
+        // DELETE: api/Assignments/5
+        [ResponseType(typeof(Assignment))]
+        [Authorize(Roles = "Coach")]
+        public IHttpActionResult DeleteAssignment(int id)
+        {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var assignment = GetAssignments(currentUser)
+                .SingleOrDefault(i => i.Id == id);
+            if (assignment == null)
+            {
+                return NotFound();
+            }
+            AppDb.Assignment.Remove(assignment);
+            AppDb.SaveChanges();
+            return Ok(assignment);
+        }
 
         private bool AssignmentExists(int id, ApplicationUser currentUser)
         {
