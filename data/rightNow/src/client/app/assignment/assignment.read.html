@@ -1,0 +1,19 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wyellow">
+                    <div ht-widget-header title="{{vm.title + ' - ' + vm.data.Name}}"></div>
+                    <div class="widget-content user">
+                        <a ui-sref="assignmentUpdate({programId: vm.programId, assignmentId: vm.data.Id})" class="btn btn-default">Update Assignment >></a>
+                        <a class="btn btn-default" ui-sref="assignments({programId: vm.programId})"><< Go Back</a>
+                        <div ng-bind-html="vm.data.BodyText"></div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

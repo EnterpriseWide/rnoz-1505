@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -59,48 +60,52 @@ namespace ewide.web.Controllers
             return Ok(assignment);
         }
 
-        //[Route("DownloadPDF")]
-        //public HttpResponseMessage GetAssignmentAsPDF(int id)
-        //{
-        //    var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
-        //    var assignment = GetAssignments(currentUser)
-        //        .SingleOrDefault(i => i.Id == id);
-        //    Request.Headers.Accept.Clear();
-        //    Request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
-        //    return Request.CreateResponse(HttpStatusCode.OK, assignment);
-        //}
+        // PUT: api/Assignments/5
+        [ResponseType(typeof(void))]
+        [Authorize(Roles = "Coach")]
+        public IHttpActionResult PutAssignment(int id, Assignment item)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (id != item.Id)
+            {
+                return BadRequest();
+            }
 
-        //// PUT: api/Assignments/5
-        //[ResponseType(typeof(void))]
-        //[Authorize(Roles = "Coach")]
-        //public IHttpActionResult PutAssignment(int id, Assignment assignment)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    if (id != assignment.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    AppDb.Entry(assignment).State = EntityState.Modified;
-        //    try
-        //    {
-        //        AppDb.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!AssignmentExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var assignment = GetAssignments(currentUser)
+                .SingleOrDefault(i => i.Id == item.Id);
+            if (id != item.Id)
+            {
+                return BadRequest("Learning Program Not Found");
+            }
+
+            AppDb.Entry(assignment).State = EntityState.Modified;
+
+            assignment.Name = item.Name;
+            assignment.Description = item.Description;
+            assignment.BodyText = item.BodyText;
+            assignment.UpdatedAt = DateTime.Now;
+
+            try
+            {
+                AppDb.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AssignmentExists(id, currentUser))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
 
         // POST: api/Assignments
         [ResponseType(typeof(Assignment))]
@@ -142,9 +147,9 @@ namespace ewide.web.Controllers
         //    return Ok(assignment);
         //}
 
-        //private bool AssignmentExists(int id)
-        //{
-        //    return AppDb.Assignment.Count(e => e.Id == id) > 0;
-        //}
+        private bool AssignmentExists(int id, ApplicationUser currentUser)
+        {
+            return GetAssignments(currentUser).Count(e => e.Id == id) > 0;
+        }
     }
 }

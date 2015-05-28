@@ -24,7 +24,7 @@
         function save() {
             dataservice.postAssignment(vm.data).then(function (data) {
                 logger.info('Assignment Created');
-                $state.go('assignments', { programId: vm.data.CoachingProgramId });
+                $state.go('assignments', {programId: vm.data.CoachingProgramId});
             });
         }
 

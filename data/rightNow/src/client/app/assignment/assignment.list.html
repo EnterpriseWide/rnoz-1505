@@ -9,7 +9,7 @@
                         <a class="btn btn-default" ui-sref="program({id: vm.programId})"><< Go Back</a>
                         <ul>
                             <li ng-repeat="p in vm.assignments">
-                                <a>{{p.Name}}</a>
+                                <a ui-sref="assignmentRead({programId: p.CoachingProgramId, assignmentId: p.Id})" class="btn btn-default">Open {{p.Name}}</a>
                                 <p>{{p.Description}}</p>
                             </li>
                         </ul>
