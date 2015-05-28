@@ -4,57 +4,39 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="widget wred">
-                        <div ht-widget-header title="Your Coach" rightText="{{vm.program.Coach.FirstName}} {{vm.program.Coach.LastName}} >"></div>
+                        <div ht-widget-header title="Your Coach" rightText="{{vm.program.Coach.FirstName}} {{vm.program.Coach.LastName}} >" icon="fa-user"></div>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextYourCoach"></div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
-                        </div>
                     </div>
                     <div class="widget worange">
-                        <div ht-widget-header title="Learning Plan"></div>
+                        <a ui-sref="learningplan({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Learning Plan" icon="fa-cube"></div></a>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextLearningPlan"></div>
                         <div class="widget-content text-info">
-                            <a ui-sref="learningplan({programId: vm.program.Id})" class="btn btn-default">Edit Learning Plan >></a>
-                        </div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
+                            Edit Learning Plan
                         </div>
                     </div>
                     <div class="widget wyellow">
-                        <div ht-widget-header title="Assignments"></div>
+                        <a ui-sref="assignments({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Assignments" icon="fa-th"></div></a>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextAssignments"></div>
                         <div class="widget-content text-info">
-                            <a ui-sref="assignments({programId: vm.program.Id})" class="btn btn-default">Assignments >></a>
-                        </div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
+                            Assignments
                         </div>
                     </div>
                     <div class="widget wblue">
-                        <div ht-widget-header title="Resources"></div>
+                        <div ht-widget-header title="Resources" icon="fa-book"></div>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextResources"></div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
-                        </div>
                     </div>
                     <div class="widget wgreen">
-                        <div ht-widget-header title="Uploads"></div>
+                        <div ht-widget-header title="Uploads" icon="fa-cloud-upload"></div>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextUploads"></div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
-                        </div>
                     </div>
                     <div class="widget wviolet">
-                        <div ht-widget-header title="Surveys"></div>
+                        <div ht-widget-header title="Surveys" icon="fa-comment"></div>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextSurveys"></div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="widget wlightblue">
-                        <div ht-widget-header title="Video Coaching Sessions"></div>
+                        <div ht-widget-header title="Video Coaching Sessions" icon="fa-caret-square-o-right"></div>
                         <div class="widget-content text-center text-info">
                             <div class="text-info" ng-bind-html="vm.screenconfig.bodyTextSessions"></div>
                             <hr />
@@ -63,9 +45,6 @@
                                     {{p.StartedAt}}
                                 </li>
                             </ul>
-                        </div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>

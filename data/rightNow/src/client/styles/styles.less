@@ -916,7 +916,7 @@ form {
     }
 
     .widget .widget-foot {
-        background-color: #e3e3e3;
+        background-color: #f9f9f9;
         border: 1px solid #ddd;
         border-top: 0;
         padding: 8px 15px;
@@ -925,6 +925,12 @@ form {
     }
 
     /* Widget colors */
+
+    .widget.wgrey .widget-head {
+        background-color: @color_lightgrey;
+        border: 1px solid @color_lightgrey;
+        color: #fff;
+    }
 
     .widget.wred .widget-head {
         background-color: @color_important;
@@ -970,6 +976,7 @@ form {
 
         .widget.wyellow .widget-head .widget-icons a,
         .widget.wred .widget-head .widget-icons a,
+        .widget.wgrey .widget-head .widget-icons a,
         .widget.wblue .widget-head .widget-icons a,
         .widget.wlightblue .widget-head .widget-icons a,
         .widget.worange .widget-head .widget-icons a,
@@ -980,6 +987,7 @@ form {
 
             .widget.wyellow .widget-head .widget-icons a:hover,
             .widget.wred .widget-head .widget-icons a:hover,
+            .widget.wgrey .widget-head .widget-icons a:hover,
             .widget.wblue .widget-head .widget-icons a:hover,
             .widget.wlightblue .widget-head .widget-icons a:hover,
             .widget.worange .widget-head .widget-icons a:hover,
@@ -1527,14 +1535,12 @@ small {
     /*background: url(../images/gg.png) no-repeat left top !important;*/
     margin: 0 1em;
     height: 45px;
-    display:inline-flex;
 }
 
 .navbar .brand-title {
     /*margin-left: 4em;*/
     color: #FFFFFF;
-    font-style:italic; padding-left:20px;    
-    padding-top:10px;
+    font-style:italic; padding-left:20px;
 }
 
 .navbar-logo img {
@@ -1952,6 +1958,7 @@ a {
     }
 }
 
+
 /* --- Start New Css (25-05-2015) --- */
 .img-thumbnail{border:0px; background:inherit; box-shadow:inherit; padding:0px;}
 .loginCont{width:768px; margin:0px auto;}
@@ -1965,9 +1972,22 @@ a {
 .loginCont .btn-primary {background:@color_lightblue !important; border:0px; text-transform:uppercase;}
 .loginCont .btn-default {background:@color_grey !important; border:0px; color:#FFF; text-transform:uppercase;}
 
-.widget.wred .widget-head{background-color:#e3e3e3; color:#525051; font-size:22px; border:0px;}
-.widget.wred .widget-head > .page-title{color:#525051;}
-.widget .widget-content{background-color:#e3e3e3;}
+.widget .widget-head{background-color:#e3e3e3; color:#525051; font-size:22px; border:0px;}
+.widget.wgrey .widget-head > .page-title{color:#525051;}
+.widget .widget-content{background-color:#ddd;}
+
+.widget.wred .widget-head{background:#ef0e52; color:eee;}
+.widget.worange .widget-head{background:#f68a1e; color:eee;}
+.widget.wyellow .widget-head{background:#fac110; color:eee;}
+.widget.wblue .widget-head{background:#1283bd; color:eee;}
+.widget.wgreen .widget-head{background:#becd12; color:eee;}
+.widget.wviolet .widget-head{background:#dd1285; color:eee;}
+.widget .widget-head .widget-icons .fa{font-size: 36px; line-height:22px; margin-left: 10px;}
+
+.widgetLink{display:block; padding:0px; position:relative; overflow:hidden; color:#fff;}
+.widgetLink:hover .widget-head{color:#484848; background:#e6e6e6;  border:1px solid #adadad;}
+.widgetLink:hover .page-title-subtle{color:#484848 !important;}
+.widgetLink:hover .page-title{color:#484848 !important;}
 
 
 .listLessLink ul{margin:0px; padding:0 10px; list-style:none;}
@@ -1977,7 +1997,7 @@ a {
     padding:15px 20px; margin:10px 0; color:#FFF; font-size:20px !important;
     }
 .listLessLink li a span{font-size:14px; padding-left:5px;}
-.listLessLink .rightArrow{font-size:36px; position:absolute; right:10px; top:10px;}
+.rightArrow{font-size:36px; position:absolute; right:10px; top:10px;}
 
 .widget.wlightblue .widget-head {background-color:#39bee7; font-size:22px; border-bottom:0px; padding:12px 15px 18px;}
 
@@ -1993,22 +2013,22 @@ a {
 .leftCol .btnGroup a{margin-right:2px; margin-bottom:4px;}
 
 .greenBtn{
-    background:#43c83c; font-size:12px; text-transform:uppercase; 
-    color:#FFF; padding:7px 10px; display:inline-block; font-weight:bold;
+    background:#43c83c; font-size:12px; text-transform:uppercase; border:1px solid #43c83c;
+    color:#FFF; padding:5px 8px; display:inline-block; font-weight:bold;
     }
-.greenBtn:hover{color:#FFF;}
+.greenBtn:hover{color:#484848; background:#e6e6e6; border:1px solid #adadad;}
 
 .greyBtn{
-    background:#c3c5c4; font-size:12px; text-transform:uppercase; 
-    color:#FFF; padding:7px 10px; display:inline-block; font-weight:bold;
+    background:#c3c5c4; font-size:12px; text-transform:uppercase; border:1px solid #c3c5c4; 
+    color:#FFF; padding:5px 8px; display:inline-block; font-weight:bold;
     }
-.greyBtn:hover{color:#FFF;}
+.greyBtn:hover{color:#484848; background:#e6e6e6; border:1px solid #adadad;}
 
 .blueBtn{
-    background:#39bee7; font-size:12px; text-transform:uppercase; 
-    color:#FFF; padding:7px 10px; display:inline-block; font-weight:bold;
+    background:#39bee7; font-size:12px; text-transform:uppercase; border:1px solid #39bee7; 
+    color:#FFF; padding:5px 8px; display:inline-block; font-weight:bold;
     }
-.blueBtn:hover{color:#FFF;}
+.blueBtn:hover{color:#484848; background:#e6e6e6; border:1px solid #adadad;}
 
 .smallText{font-size:11px; font-style:italic; text-align:left; line-height:normal; border-bottom:1px solid #ccc; padding-bottom:15px !important;}
 
