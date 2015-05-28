@@ -4,9 +4,9 @@
     angular
         .module('app.learningplan')
         .controller('AssignmentUpdateController', AssignmentUpdateController);
-    AssignmentUpdateController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice'];
+    AssignmentUpdateController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice', '$state'];
 
-    function AssignmentUpdateController(logger, $stateParams, $q, dataservice, authservice) {
+    function AssignmentUpdateController(logger, $stateParams, $q, dataservice, authservice, $state) {
         var vm = this;
         vm.title = 'Assignment Update';
         vm.data = {};
@@ -34,6 +34,7 @@
 
         function save() {
             dataservice.putAssignment(vm.data.Id, vm.data).then(function (data) {
+                $state.go('assignments', {programId: vm.data.CoachingProgramId});
                 logger.info('Assignment Saved');
             });
         }

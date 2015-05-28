@@ -79,7 +79,7 @@ namespace ewide.web.Controllers
                 .SingleOrDefault(i => i.Id == item.Id);
             if (id != item.Id)
             {
-                return BadRequest("Learning Program Not Found");
+                return BadRequest("Assignment Not Found");
             }
 
             AppDb.Entry(assignment).State = EntityState.Modified;

@@ -5,11 +5,15 @@
                 <div class="widget wyellow">
                     <div ht-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
-                        <a ui-sref="assignmentCreate({programId: vm.programId})" class="btn btn-default">Add New Assignment >></a>
+                        <a ui-sref="assignmentCreate({programId: vm.programId})" class="btn btn-default" ng-show="vm.authData.isCoach">Add New Assignment >></a>
                         <a class="btn btn-default" ui-sref="program({id: vm.programId})"><< Go Back</a>
                         <ul>
                             <li ng-repeat="p in vm.assignments">
-                                <a ui-sref="assignmentRead({programId: p.CoachingProgramId, assignmentId: p.Id})" class="btn btn-default">Open {{p.Name}}</a>
+                                <p>
+                                    <span><a ui-sref="assignmentRead({programId: p.CoachingProgramId, assignmentId: p.Id})" class="btn btn-default">Open {{p.Name}}</a></span>
+                                    <span><a ui-sref="assignmentUpdate({programId: p.CoachingProgramId, assignmentId: p.Id})" class="btn btn-default" ng-show="vm.authData.isCoach">Update Assignment >></a></span>
+                                    <span><a ui-sref="assignmentUpdate({programId: p.CoachingProgramId, assignmentId: p.Id})" class="btn btn-default" ng-show="vm.authData.isCoach">Delete Assignment >></a></span>
+                                </p>
                                 <p>{{p.Description}}</p>
                             </li>
                         </ul>

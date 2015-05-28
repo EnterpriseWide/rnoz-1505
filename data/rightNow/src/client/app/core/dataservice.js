@@ -15,8 +15,10 @@
             getUserInfo: getUserInfo,
             getPrograms: getPrograms,
             getProgram: getProgram,
+            getAssignment: getAssignment,
             getAssignments: getAssignments,
             postAssignment: postAssignment,
+            putAssignment: putAssignment,
             getLearningPlan: getLearningPlan,
             putLearningPlan: putLearningPlan,
             getSessions: getSessions,
@@ -78,7 +80,23 @@
             }
 
             function fail(error) {
-                var msg = 'query for program ' + id + ' failed. ' + error.data.description;
+                var msg = 'query for assignment ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function getAssignment(id) {
+            return $http.get(service.apiurl + '/api/assignments/' + id + '/')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for assignment ' + id + ' failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }
@@ -115,6 +133,21 @@
                 logger.error(msg);
                 return $q.reject(msg);
             }
+        }
+
+        function putAssignment(id, assignmentData) {
+            var url = service.apiurl + '/api/assignments/' + id;
+            var data = assignmentData;
+
+            var deferred = $q.defer();
+
+            $http.put(url, data).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
         }
 
         function getSessions() {
