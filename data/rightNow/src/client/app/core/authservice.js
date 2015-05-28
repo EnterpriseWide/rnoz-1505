@@ -83,7 +83,8 @@
                         authData.lastName = userData.LastName;
                         authData.isAdmin = userData.IsAdmin;
                         authData.isAdmin = authData.roles.indexOf('Admin') >= 0;
-                        authData.isCoach = authData.roles.indexOf('Coach') >= 0;
+                        authData.isCoach = authData.roles.indexOf('Coach') >= 0 ||
+                            authData.roles.indexOf('Admin') >= 0;
                     });
                 }
             }

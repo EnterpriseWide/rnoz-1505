@@ -11,6 +11,7 @@
             'ui.router',
             'ngplus',
             'LocalStorageModule',
-            'textAngular'
+            'textAngular',
+            'ui.bootstrap'
         ]);
 })();

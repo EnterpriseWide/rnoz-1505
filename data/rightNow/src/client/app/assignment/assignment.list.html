@@ -12,7 +12,7 @@
                                 <p>
                                     <span><a ui-sref="assignmentRead({programId: p.CoachingProgramId, assignmentId: p.Id})" class="btn btn-default">Open {{p.Name}}</a></span>
                                     <span><a ui-sref="assignmentUpdate({programId: p.CoachingProgramId, assignmentId: p.Id})" class="btn btn-default" ng-show="vm.authData.isCoach">Update Assignment >></a></span>
-                                    <span><a ui-sref="assignmentUpdate({programId: p.CoachingProgramId, assignmentId: p.Id})" class="btn btn-default" ng-show="vm.authData.isCoach">Delete Assignment >></a></span>
+                                    <span><a ng-click="vm.deleteAssignment(p.Id)" class="btn btn-default" ng-show="vm.authData.isCoach">Delete Assignment >></a></span>
                                 </p>
                                 <p>{{p.Description}}</p>
                             </li>

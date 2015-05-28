@@ -30,5 +30,19 @@
             });
         }
 
+        function deleteAssignment(id) {
+            var modalInstance = $modal.open({
+                templateUrl: 'app/assignment/assignment.delete.html',
+                controller: 'AssignmentDeleteController',
+            });
+
+            modalInstance.result.then(function () {
+                logger.success('closed model with ok');
+            }, function () {
+                logger.fail('Modal dismissed with cancel at: ' + new Date());
+            });
+
+        }
+
     }
 })();

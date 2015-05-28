@@ -5,7 +5,7 @@
                 <div class="widget wyellow">
                     <div ht-widget-header title="{{vm.title + ' - ' + vm.data.Name}}"></div>
                     <div class="widget-content user">
-                        <a ui-sref="assignmentUpdate({programId: vm.programId, assignmentId: vm.data.Id})" class="btn btn-default">Update Assignment >></a>
+                        <a ui-sref="assignmentUpdate({programId: vm.programId, assignmentId: vm.data.Id})" class="btn btn-default" ng-show="vm.authData.isCoach">Update Assignment >></a>
                         <a class="btn btn-default" ui-sref="assignments({programId: vm.programId})"><< Go Back</a>
                         <div ng-bind-html="vm.data.BodyText"></div>
                     </div>
