@@ -4,14 +4,15 @@
     angular
         .module('app.assignments')
         .controller('AssignmentListController', AssignmentListController);
-    AssignmentListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice'];
+    AssignmentListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', '$modal'];
 
-    function AssignmentListController(logger, authservice, $stateParams, $q, dataservice) {
+    function AssignmentListController(logger, authservice, $stateParams, $q, dataservice, $modal) {
         var vm = this;
         vm.title = 'Assignments';
         vm.assignments = [];
         vm.screenconfig = {};
         vm.authData = authservice.authData;
+        vm.deleteAssignment = deleteAssignment;
 
         activate();
 
@@ -37,9 +38,9 @@
             });
 
             modalInstance.result.then(function () {
-                logger.success('closed model with ok');
+                logger.success('closed modal with ok');
             }, function () {
-                logger.fail('Modal dismissed with cancel at: ' + new Date());
+                logger.error('Modal dismissed with cancel at: ' + new Date());
             });
 
         }

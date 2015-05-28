@@ -4,9 +4,9 @@
     angular
         .module('app.assignments')
         .controller('AssignmentDeleteController', AssignmentDeleteController);
-    AssignmentDeleteController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice'];
+    AssignmentDeleteController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', '$modalInstance'];
 
-    function AssignmentDeleteController(logger, authservice, $state, $stateParams, $q, dataservice) {
+    function AssignmentDeleteController(logger, authservice, $state, $stateParams, $q, dataservice, $modalInstance) {
         var vm = this;
         vm.title = 'Delete Assignment';
         vm.data = {};
@@ -20,11 +20,11 @@
             logger.info('Activated ' + vm.title + ' View');
         }
 
-        $scope.ok = function () {
-            $modalInstance.close($scope.selected.item);
+        vm.ok = function () {
+            $modalInstance.close();
         };
 
-        $scope.cancel = function () {
+        vm.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
     }
