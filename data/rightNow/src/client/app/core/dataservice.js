@@ -15,10 +15,11 @@
             getUserInfo: getUserInfo,
             getPrograms: getPrograms,
             getProgram: getProgram,
-            getAssignment: getAssignment,
-            getAssignments: getAssignments,
-            postAssignment: postAssignment,
-            putAssignment: putAssignment,
+            createAssignment: createAssignment,
+            readAssignment: readAssignment,
+            updateAssignment: updateAssignment,
+            deleteAssignment: deleteAssignment,
+            listAssignments: listAssignments,
             getLearningPlan: getLearningPlan,
             putLearningPlan: putLearningPlan,
             getSessions: getSessions,
@@ -86,39 +87,7 @@
             }
         }
 
-        function getAssignment(id) {
-            return $http.get(service.apiurl + '/api/assignments/' + id + '/')
-                .then(success)
-                .catch(fail);
-
-            function success(response) {
-                return response.data;
-            }
-
-            function fail(error) {
-                var msg = 'query for assignment ' + id + ' failed. ' + error.data.description;
-                logger.error(msg);
-                return $q.reject(msg);
-            }
-        }
-
-        function getAssignments(id) {
-            return $http.get(service.apiurl + '/api/assignments?programid=' + id)
-                .then(success)
-                .catch(fail);
-
-            function success(response) {
-                return response.data;
-            }
-
-            function fail(error) {
-                var msg = 'query for program ' + id + ' failed. ' + error.data.description;
-                logger.error(msg);
-                return $q.reject(msg);
-            }
-        }
-
-        function postAssignment(data) {
+        function createAssignment(data) {
             console.log(data);
             return $http.post(service.apiurl + '/api/assignments', data)
                 .then(success)
@@ -135,7 +104,23 @@
             }
         }
 
-        function putAssignment(id, assignmentData) {
+        function readAssignment(id) {
+            return $http.get(service.apiurl + '/api/assignments/' + id + '/')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for assignment ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function updateAssignment(id, assignmentData) {
             var url = service.apiurl + '/api/assignments/' + id;
             var data = assignmentData;
 
@@ -148,6 +133,38 @@
             });
 
             return deferred.promise;
+        }
+
+        function deleteAssignment(id) {
+            return $http.delete(service.apiurl + '/api/assignments/' + id + '/')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'delete for assignment ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function listAssignments(id) {
+            return $http.get(service.apiurl + '/api/assignments?programid=' + id)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for assignments for program id ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
         }
 
         function getSessions() {

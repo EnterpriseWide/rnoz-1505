@@ -4,27 +4,25 @@
     angular
         .module('app.assignments')
         .controller('AssignmentDeleteController', AssignmentDeleteController);
-    AssignmentDeleteController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', '$modalInstance'];
+    AssignmentDeleteController.$inject = ['logger', '$modalInstance', 'id'];
 
-    function AssignmentDeleteController(logger, authservice, $state, $stateParams, $q, dataservice, $modalInstance) {
+    function AssignmentDeleteController(logger, $modalInstance, id) {
         var vm = this;
         vm.title = 'Delete Assignment';
-        vm.data = {};
-        vm.screenconfig = {};
-        vm.authData = authservice.authData;
+        vm.ok = ok;
+        vm.cancel = cancel;
 
         activate();
 
         function activate() {
-            vm.data.CoachingProgramId = $stateParams.programId;
-            logger.info('Activated ' + vm.title + ' View');
+            vm.id = id;
         }
 
-        vm.ok = function () {
-            $modalInstance.close();
+        function ok() {
+            $modalInstance.close(vm.id);
         };
 
-        vm.cancel = function () {
+        function cancel() {
             $modalInstance.dismiss('cancel');
         };
     }

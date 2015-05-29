@@ -26,14 +26,14 @@
         }
 
         function getAssignment(id) {
-            return dataservice.getAssignment(id).then(function (data) {
+            return dataservice.readAssignment(id).then(function (data) {
                 vm.data = data;
                 return vm.data;
             });
         }
 
         function save() {
-            dataservice.putAssignment(vm.data.Id, vm.data).then(function (data) {
+            dataservice.updateAssignment(vm.data.Id, vm.data).then(function (data) {
                 $state.go('assignments', {programId: vm.data.CoachingProgramId});
                 logger.info('Assignment Saved');
             });

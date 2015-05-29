@@ -25,7 +25,7 @@
         }
 
         function getAssignments(id) {
-            return dataservice.getAssignments(id).then(function (data) {
+            return dataservice.listAssignments(id).then(function (data) {
                 vm.assignments = data;
                 return vm.assignments;
             });
@@ -35,12 +35,19 @@
             var modalInstance = $modal.open({
                 templateUrl: 'app/assignment/assignment.delete.html',
                 controller: 'AssignmentDeleteController',
+                controllerAs: 'vm',
+                resolve: {
+                    id: function() {
+                        return id;
+                    }
+                }
             });
 
-            modalInstance.result.then(function () {
-                logger.success('closed modal with ok');
-            }, function () {
-                logger.error('Modal dismissed with cancel at: ' + new Date());
+            modalInstance.result.then(function (id) {
+                var promises = [dataservice.deleteAssignment(id), getAssignments(vm.programId)];
+                return $q.all(promises).then(function() {
+                    logger.info('Assignment deleted');
+                });
             });
 
         }

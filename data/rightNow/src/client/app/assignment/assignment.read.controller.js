@@ -25,7 +25,7 @@
         }
 
         function getAssignment(id) {
-            return dataservice.getAssignment(id).then(function (data) {
+            return dataservice.readAssignment(id).then(function (data) {
                 vm.data = data;
                 return vm.data;
             });
