@@ -3,10 +3,18 @@
         <div class="container">
             <div class="row">
                 <div class="widget wyellow">
-                    <div ht-widget-header title="{{vm.title}}"></div>
+                    <div class="widget-head">
+                        <div class="page-title pull-left"><i class="fa fa-th"></i> {{vm.title}}</div>
+                        <div class="pull-right">
+                            <a ui-sref="assignmentCreate({programId: vm.programId})" class="linkBtn darkGreenBtn" ng-show="vm.authData.isCoach"><i class="fa fa-plus"></i> Add New Assignment</a>
+                            <a class="linkBtn greyBtn" ui-sref="program({id: vm.programId})"><i class="fa fa-angle-double-left"></i> Go Back</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>                    
+
+
                     <div class="widget-content user">
-                        <a ui-sref="assignmentCreate({programId: vm.programId})" class="btn btn-default" ng-show="vm.authData.isCoach">Add New Assignment >></a>
-                        <a class="btn btn-default" ui-sref="program({id: vm.programId})"><< Go Back</a>
+
                         <ul>
                             <li ng-repeat="p in vm.assignments">
                                 <p>
@@ -17,9 +25,6 @@
                                 <p>{{p.Description}}</p>
                             </li>
                         </ul>
-                    </div>
-                    <div class="widget-foot">
-                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>

@@ -33,6 +33,7 @@ input, select {
     display: inline-block !important;
 }
 
+
 .navbar * {
     background-image: none !important;
     -webkit-text-shadow: none !important;
@@ -2011,23 +2012,19 @@ a {
 
 .leftCol .btnGroup a{margin-right:2px; margin-bottom:4px;}
 
-.greenBtn{
-    background:#43c83c; font-size:12px; text-transform:uppercase; border:1px solid #43c83c;
-    color:#FFF; padding:5px 8px; display:inline-block; font-weight:bold;
+.linkBtn{
+    font-size:12px; font-weight: bold; text-transform:uppercase;
+    color:#FFF; padding:3px 10px; display:inline-block; border:1px solid #5f976a;
     }
-.greenBtn:hover{color:#484848; background:#e6e6e6; border:1px solid #adadad;}
+.linkBtn .fa{margin-right:5px;}
+.linkBtn:hover{color:#484848; background:#e6e6e6; border:1px solid #adadad;}
 
-.greyBtn{
-    background:#c3c5c4; font-size:12px; text-transform:uppercase; border:1px solid #c3c5c4; 
-    color:#FFF; padding:5px 8px; display:inline-block; font-weight:bold;
-    }
-.greyBtn:hover{color:#484848; background:#e6e6e6; border:1px solid #adadad;}
 
-.blueBtn{
-    background:#39bee7; font-size:12px; text-transform:uppercase; border:1px solid #39bee7; 
-    color:#FFF; padding:5px 8px; display:inline-block; font-weight:bold;
-    }
-.blueBtn:hover{color:#484848; background:#e6e6e6; border:1px solid #adadad;}
+.greyBtn{background: #c3c5c4; border:1px solid #c3c5c4;}
+.blueBtn{background: #39bee7; border:1px solid #39bee7;}
+.orangeBtn{background: #d37213; border:1px solid #d37213;}
+.greenBtn{background: #43c83c; border:1px solid #43c83c;}
+.darkGreenBtn{background: #5f976a; border:1px solid #5f976a;}
 
 .smallText{font-size:11px; font-style:italic; text-align:left; line-height:normal; border-bottom:1px solid #ccc; padding-bottom:15px !important;}
 
@@ -2035,6 +2032,9 @@ a {
 .navbar-nav > li > a{padding-top: 21px; padding-bottom:21px;}
 .navbar-logo img {height:inherit;}
 .navbar{min-height:62px;}
+
+.lp-detail p{margin:0 20px 20px !important; font-size: 14px; font-style: italic;}
+.lp-EditText{background-color:#fff;}
 
 @media (max-width: 850px) {
 .loginCont{width:100%;} 
@@ -2046,6 +2046,3 @@ a {
 }
 
 /*#endregion */
-
-/* adding support for angular-bootstrap */
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

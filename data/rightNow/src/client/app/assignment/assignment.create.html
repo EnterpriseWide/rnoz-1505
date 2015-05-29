@@ -3,16 +3,27 @@
         <div class="container">
             <div class="row">
                 <div class="widget wyellow">
-                    <div ht-widget-header title="{{vm.title}}"></div>
-                    <div class="widget-content user">
-                        <button class="btn btn-default" data-ng-click="vm.save()">Save Assignment</button>
-                        <a class="btn btn-default" ui-sref="assignments({programId: vm.data.CoachingProgramId})"><< Go Back</a>
-                        <form class="form-horizontal" role="form" ng-submit="add()">
-                            <div ng-include="'app/assignment/_form.html'"></div>
-                        </form>
-                    </div>
-                    <div class="widget-foot">
+                    <div class="widget-head">
+                        <div class="page-title pull-left"><i class="fa fa-th"></i> {{vm.title}}</div>
+                        <div class="pull-right">
+                            <button class="linkBtn darkGreenBtn" data-ng-click="vm.save()"><i class="fa fa-check-circle-o"></i>Save Assignment</button>
+                            <a class="linkBtn greyBtn" ui-sref="assignments({programId: vm.data.CoachingProgramId})"><i class="fa fa-angle-double-left"></i> Go Back</a>
+                        </div>
                         <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content user">
+                        <div class="row">                    
+                            <div class="col-sm-3 lp-detail">
+                                <p>Description and instructions about the learning plan eg. This document is created over the course of your coaching program - both you and your coach can edit it ,export it to PDF, email a copy etc.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Aenean commodo ligula engaettoqduTpeu:leantgrilsTrns7:g CnLiirds°c"s parturient montes, nascetur ridiculus mus. </p>
+                                <p>Pomp quoin fais, ultricies nec, pellentesque eu,pretium quis, sem. Nulla consequat mosso quis enim. Donec pede justo, fringilla vet aliquet nec, vulputate eget arcu. In enim justo,rhoncus ut, imperdiet a,venenatis vitae, just</p>
+                            </div>
+                            <div class="col-sm-9">                    
+                                <form class="form-horizontal" role="form" ng-submit="add()">
+                                    <div ng-include="'app/assignment/_form.html'"></div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
