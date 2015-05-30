@@ -12,16 +12,22 @@
             // apiurl: 'http://localhost:54141', // dev
             login: login,
             logout: logout,
-            getUserInfo: getUserInfo,
+
+            readUserInfo: readUserInfo,
+            updateUserInfo: updateUserInfo,
+
             getPrograms: getPrograms,
             getProgram: getProgram,
+
             createAssignment: createAssignment,
             readAssignment: readAssignment,
             updateAssignment: updateAssignment,
             deleteAssignment: deleteAssignment,
             listAssignments: listAssignments,
+
             getLearningPlan: getLearningPlan,
             putLearningPlan: putLearningPlan,
+
             getSessions: listSessions,
         };
 
@@ -51,8 +57,22 @@
             return $http.post(url);
         }
 
-        function getUserInfo() {
+        function readUserInfo() {
             return $http.get(service.apiurl + '/api/account/userinfo');
+        }
+
+        function updateUserInfo(data) {
+            var url = service.apiurl + '/api/account/userinfo';
+
+            var deferred = $q.defer();
+
+            $http.put(url, data).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
         }
 
         function getPrograms() {
