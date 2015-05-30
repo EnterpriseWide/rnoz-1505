@@ -17,6 +17,9 @@ using ewide.web.Models;
 using ewide.web.Providers;
 using ewide.web.Results;
 using System.Web.Http.Cors;
+using System.Web.Http.Description;
+using System.Data.Entity.Infrastructure;
+using System.Net;
 
 namespace ewide.web.Controllers
 {
@@ -32,16 +35,51 @@ namespace ewide.web.Controllers
         public UserInfoViewModel GetUserInfo()
         {
             //var externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
-            var appuser = AppUserManager.FindById(User.Identity.GetUserId());
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             var user = new UserInfoViewModel
             {
-                Email = appuser.Email,
-                FirstName = appuser.FirstName,
-                LastName = appuser.LastName,
+                Email = currentUser.Email,
+                FirstName = currentUser.FirstName,
+                LastName = currentUser.LastName,
                 //LoginProvider = externalLogin.LoginProvider,
-                Roles = appuser.GetRoles(AppRoleManager),
+                Roles = currentUser.GetRoles(AppRoleManager),
+                Phone = currentUser.Phone,
+                Company = currentUser.Company,
+                Position = currentUser.Position,
+                CoachingExperience = currentUser.CoachingExperience,
+                WorkExperience = currentUser.WorkExperience,
             };
             return user;
+        }
+
+        // PUT: api/Assignments/5
+        [ResponseType(typeof(void))]
+        [Authorize]
+        [Route("userinfo")]
+        public IHttpActionResult PutUserInfo(UserInfoViewModel item)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            if (currentUser == null)
+            {
+                return NotFound();
+            }
+
+            currentUser.FirstName = item.FirstName;
+            currentUser.LastName = item.LastName;
+            currentUser.Phone = item.Phone;
+            currentUser.Company = item.Company;
+            currentUser.Position = item.Position;
+            currentUser.CoachingExperience = item.CoachingExperience;
+            currentUser.WorkExperience = item.WorkExperience;
+
+            AppUserManager.Update(currentUser);
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST api/Account/Logout

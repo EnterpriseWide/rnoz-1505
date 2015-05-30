@@ -29,15 +29,10 @@ namespace ewide.web.Models
         public string CoachingExperience { get; set; }
         public string WorkExperience { get; set; }
         public List<string> Roles { get; set; }
-
         public string Phone { get; set; }
         public string Company { get; set; }
-
         public string Avatar { get; set; }
         public string AvatarFileUrl { get; set; }
-        public string ABN { get; set; }
-        public string BusinessName { get; set; }
-        public string Address { get; set; }
     }
 
     public class UserLoginInfoViewModel
