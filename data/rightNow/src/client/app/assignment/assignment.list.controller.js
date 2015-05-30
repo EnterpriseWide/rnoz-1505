@@ -44,9 +44,7 @@
             });
 
             modalInstance.result.then(function (id) {
-                logger.success('Deleting Assignment ' + id);
                 dataservice.deleteAssignment(id).then(function(data) {
-                    console.log(data);
                     logger.success('Deleted Assignment ' + data.Id);
                     getAssignments(vm.programId);
                 });

@@ -12,7 +12,6 @@
         vm.data = {};
         vm.authData = authservice.authData;
         vm.save = save;
-        vm.apiurl = dataservice.apiurl;
 
         activate();
 
