@@ -287,6 +287,10 @@
     <Compile Include="Migrations\201505241140407_Add Assignment Tables.Designer.cs">
       <DependentUpon>201505241140407_Add Assignment Tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505300028525_Update to Profile Table.cs" />
+    <Compile Include="Migrations\201505300028525_Update to Profile Table.Designer.cs">
+      <DependentUpon>201505300028525_Update to Profile Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\AssignmentFile.cs" />
     <Compile Include="Models\Assignment.cs" />
@@ -460,6 +464,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505241140407_Add Assignment Tables.resx">
       <DependentUpon>201505241140407_Add Assignment Tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505300028525_Update to Profile Table.resx">
+      <DependentUpon>201505300028525_Update to Profile Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -17,12 +17,10 @@ namespace ewide.web.Models
         public string FirstName { get; set; }
         [MaxLength(100)]
         public string LastName { get; set; }
+        public string Phone { get; set; }
+        public string Company { get; set; }
         public string Avatar { get; set; }
         public string AvatarFileUrl { get; set; }
-        public string Experience { get; set; }
-        public string ABN { get; set; }
-        public string BusinessName { get; set; }
-        public string Address { get; set; }
         public string Position { get; set; }
         public string CoachingExperience { get; set; }
         public string WorkExperience { get; set; }
