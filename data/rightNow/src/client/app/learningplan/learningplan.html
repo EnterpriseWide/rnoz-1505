@@ -7,22 +7,18 @@
                         <div class="page-title pull-left"><i class="fa fa-cube"></i> {{vm.title}}</div>
                         <div class="pull-right">
                             <button class="linkBtn darkGreenBtn" data-ng-click="vm.save()"><i class="fa fa-check-circle-o"></i> Save Learning Plan</button>
-                            <a href="{{vm.apiurl}}/api/learningplan/DownloadPdf?id={{vm.programId}}&access_token={{vm.authData.token}}" target="_blank" class="linkBtn orangeBtn"><i class="fa fa-file-pdf-o"></i> Download Learning Plan as PDF</a>
+                            <a href="{{vm.apiurl}}/api/learningplan/DownloadPdf?id={{vm.programId}}&access_token={{vm.authData.token}}" target="_blank" class="linkBtn orangeBtn"><i class="fa fa-file-pdf-o"></i> Download PDF</a>
                             <a class="linkBtn greyBtn" ui-sref="program({id: vm.programId})"><i class="fa fa-angle-double-left"></i> Go Back</a>
                         </div>
                         <div class="clearfix"></div>
                     </div>                    
                     <div class="widget-content user">
-                    <div class="row">                    
-                        <div class="col-sm-3 lp-detail">
-                            <p>Description and instructions about the learning plan eg. This document is created over the course of your coaching program - both you and your coach can edit it ,export it to PDF, email a copy etc.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Aenean commodo ligula engaettoqduTpeu:leantgrilsTrns7:g CnLiirds°c"s parturient montes, nascetur ridiculus mus. </p>
-                            <p>Pomp quoin fais, ultricies nec, pellentesque eu,pretium quis, sem. Nulla consequat mosso quis enim. Donec pede justo, fringilla vet aliquet nec, vulputate eget arcu. In enim justo,rhoncus ut, imperdiet a,venenatis vitae, just</p>
-                        </div>
-                        <div class="col-sm-9">                    
+                        <div class="row">
+                            <div class="col-sm-3 lp-detail" ng-bind-html="vm.screenconfig.BodyText"></div>
+                            <div class="col-sm-9">                    
                                 <text-angular ng-model="vm.data.LearningPlan"></text-angular>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>

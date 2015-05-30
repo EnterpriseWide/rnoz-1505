@@ -9,7 +9,6 @@
     function AssignmentUpdateController(logger, $stateParams, $q, dataservice, authservice, $state) {
         var vm = this;
         vm.title = 'Assignment Update';
-        vm.data = {};
         vm.authData = authservice.authData;
         vm.save = save;
 
@@ -27,7 +26,6 @@
         function getAssignment(id) {
             return dataservice.readAssignment(id).then(function (data) {
                 vm.data = data;
-                return vm.data;
             });
         }
 
