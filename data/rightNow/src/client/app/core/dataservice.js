@@ -22,7 +22,7 @@
             listAssignments: listAssignments,
             getLearningPlan: getLearningPlan,
             putLearningPlan: putLearningPlan,
-            getSessions: getSessions,
+            getSessions: listSessions,
         };
 
         return service;
@@ -167,7 +167,7 @@
             }
         }
 
-        function getSessions() {
+        function listSessions() {
             return $http.get(service.apiurl + '/api/sessions')
                 .then(success)
                 .catch(fail);

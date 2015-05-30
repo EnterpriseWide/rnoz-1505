@@ -4,9 +4,9 @@
     angular
         .module('app.assignments')
         .controller('AssignmentListController', AssignmentListController);
-    AssignmentListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', '$modal'];
+    AssignmentListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', '$modal', '$state'];
 
-    function AssignmentListController(logger, authservice, $stateParams, $q, dataservice, $modal) {
+    function AssignmentListController(logger, authservice, $stateParams, $q, dataservice, $modal, $state) {
         var vm = this;
         vm.title = 'Assignments';
         vm.assignments = [];
@@ -44,12 +44,13 @@
             });
 
             modalInstance.result.then(function (id) {
-                var promises = [dataservice.deleteAssignment(id), getAssignments(vm.programId)];
-                return $q.all(promises).then(function() {
-                    logger.info('Assignment deleted');
+                logger.success('Deleting Assignment ' + id);
+                dataservice.deleteAssignment(id).then(function(data) {
+                    console.log(data);
+                    logger.success('Deleted Assignment ' + data.Id);
+                    getAssignments(vm.programId);
                 });
             });
-
         }
 
     }

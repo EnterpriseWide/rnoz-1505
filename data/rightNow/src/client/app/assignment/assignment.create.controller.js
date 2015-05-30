@@ -18,7 +18,6 @@
 
         function activate() {
             vm.data.CoachingProgramId = $stateParams.programId;
-            logger.info('Activated ' + vm.title + ' View');
         }
 
         function save() {
