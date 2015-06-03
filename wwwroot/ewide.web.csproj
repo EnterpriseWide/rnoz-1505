@@ -280,6 +280,9 @@
     <Compile Include="Controllers\AssignmentsController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\LearningPlanController.cs" />
+    <Compile Include="Controllers\ProgramMediaController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\SessionsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
     <Compile Include="MediaTypeFormatters\LearningPlanPDFMediaTypeFormatter.cs" />
@@ -291,9 +294,17 @@
     <Compile Include="Migrations\201505300028525_Update to Profile Table.Designer.cs">
       <DependentUpon>201505300028525_Update to Profile Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505301844090_Add ProgramMedia Table.cs" />
+    <Compile Include="Migrations\201505301844090_Add ProgramMedia Table.Designer.cs">
+      <DependentUpon>201505301844090_Add ProgramMedia Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506020824314_Remove ProgramMedia Table.cs" />
+    <Compile Include="Migrations\201506020824314_Remove ProgramMedia Table.Designer.cs">
+      <DependentUpon>201506020824314_Remove ProgramMedia Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
-    <Compile Include="Models\AssignmentFile.cs" />
     <Compile Include="Models\Assignment.cs" />
+    <Compile Include="Models\ProgramMedia.cs" />
     <Compile Include="Models\CoachingProgramDTO.cs" />
     <Compile Include="Models\LearningPlanDTO.cs" />
     <Compile Include="Models\CoachingProgram.cs" />
@@ -446,7 +457,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\AssignmentFile\" />
+    <Folder Include="App_Data\ProgramMedia\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -467,6 +478,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505300028525_Update to Profile Table.resx">
       <DependentUpon>201505300028525_Update to Profile Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505301844090_Add ProgramMedia Table.resx">
+      <DependentUpon>201505301844090_Add ProgramMedia Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506020824314_Remove ProgramMedia Table.resx">
+      <DependentUpon>201506020824314_Remove ProgramMedia Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

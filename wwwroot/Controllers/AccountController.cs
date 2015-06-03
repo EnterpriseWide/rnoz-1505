@@ -32,10 +32,14 @@ namespace ewide.web.Controllers
 
         // GET api/Account/UserInfo
         [Route("userinfo")]
-        public UserInfoViewModel GetUserInfo()
+        public IHttpActionResult GetUserInfo()
         {
             //var externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            if (currentUser == null)
+            {
+                return NotFound();
+            }
             var user = new UserInfoViewModel
             {
                 Email = currentUser.Email,
@@ -49,7 +53,7 @@ namespace ewide.web.Controllers
                 CoachingExperience = currentUser.CoachingExperience,
                 WorkExperience = currentUser.WorkExperience,
             };
-            return user;
+            return Ok(user);
         }
 
         // PUT: api/Assignments/5

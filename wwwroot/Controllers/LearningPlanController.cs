@@ -20,18 +20,6 @@ namespace ewide.web.Controllers
     [RoutePrefix("api/LearningPlan")]
     public class LearningPlanController : BaseApiController
     {
-        private IQueryable<CoachingProgram> GetCoachingPrograms(ApplicationUser currentUser)
-        {
-            var programs = AppDb.CoachingPrograms
-                .Include(i => i.Coach)
-                .Include(i => i.Coachee)
-                .Where(i =>
-                    i.Coach.Id == currentUser.Id ||
-                    i.Coachee.Id == currentUser.Id
-                );
-            return programs;
-        }
-
         [ResponseType(typeof(LearningPlanDTO))]
         public IHttpActionResult GetLearningPlan(int id)
         {

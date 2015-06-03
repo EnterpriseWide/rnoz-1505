@@ -12,6 +12,7 @@
             'ngplus',
             'LocalStorageModule',
             'textAngular',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'ngFileUpload'
         ]);
 })();

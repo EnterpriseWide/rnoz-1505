@@ -23,7 +23,7 @@
         }
 
         function getSessions() {
-            return dataservice.getSessions().then(function (data) {
+            return dataservice.listSessions().then(function (data) {
                 vm.sessions = data;
                 return vm.sessions;
             });

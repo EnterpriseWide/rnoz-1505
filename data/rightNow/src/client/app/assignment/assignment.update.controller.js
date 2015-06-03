@@ -11,6 +11,7 @@
         vm.title = 'Assignment Update';
         vm.authData = authservice.authData;
         vm.save = save;
+        vm.data = {};
 
         activate();
 

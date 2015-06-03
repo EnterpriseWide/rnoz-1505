@@ -10,27 +10,21 @@
                     <div class="widget worange">
                         <a ui-sref="learningplan({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Learning Plan" icon="fa-cube"></div></a>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextLearningPlan"></div>
-                        <div class="widget-content text-info">
-                            Edit Learning Plan
-                        </div>
                     </div>
                     <div class="widget wyellow">
                         <a ui-sref="assignments({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Assignments" icon="fa-th"></div></a>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextAssignments"></div>
-                        <div class="widget-content text-info">
-                            Assignments
-                        </div>
                     </div>
                     <div class="widget wblue">
-                        <div ht-widget-header title="Resources" icon="fa-book"></div>
+                        <a ui-sref="resources({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Resources" icon="fa-book"></div></a>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextResources"></div>
                     </div>
                     <div class="widget wgreen">
-                        <div ht-widget-header title="Uploads" icon="fa-cloud-upload"></div>
+                        <a ui-sref="uploads({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Uploads" icon="fa-cloud-upload"></div></a>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextUploads"></div>
                     </div>
                     <div class="widget wviolet">
-                        <div ht-widget-header title="Surveys" icon="fa-comment"></div>
+                        <a ui-sref="surveys({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Surveys" icon="fa-comment"></div></a>
                         <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextSurveys"></div>
                     </div>
                 </div>

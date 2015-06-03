@@ -27,17 +27,6 @@ namespace ewide.web.Controllers
             return assignments;
         }
 
-        private IQueryable<CoachingProgram> GetCoachingPrograms(ApplicationUser currentUser)
-        {
-            var programs = AppDb.CoachingPrograms
-                .Include(i => i.Coach)
-                .Include(i => i.Coachee)
-                .Where(i =>
-                    i.Coach.Id == currentUser.Id ||
-                    i.Coachee.Id == currentUser.Id);
-            return programs;
-        }
-
         // GET: api/Assignments
         public IQueryable<Assignment> GetAssignments(int programId)
         {

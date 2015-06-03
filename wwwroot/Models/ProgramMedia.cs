@@ -6,7 +6,12 @@ using System.Web;
 
 namespace ewide.web.Models
 {
-    public class AssignmentFile
+    public enum MediaType
+    {
+        Resource,
+        Upload,
+    }
+    public class ProgramMedia
     {
         public int Id { get; set; }
         [Required]
@@ -14,8 +19,13 @@ namespace ewide.web.Models
         [Required]
         public DateTime UpdatedAt { get; set; }
         [Required]
+        public int CoachingProgramId { get; set; }
+        public virtual CoachingProgram CoachingProgram { get; set; }
+        [Required]
         public String Name { get; set; }
         public String FileName { get; set; }
-        public virtual Assignment Assignment { get; set; }
+        [Required]
+        public MediaType MediaType { get; set; }
+        public Int64 Size { get; set; }
     }
 }

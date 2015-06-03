@@ -28,7 +28,9 @@
             getLearningPlan: getLearningPlan,
             putLearningPlan: putLearningPlan,
 
-            getSessions: listSessions,
+            listSessions: listSessions,
+
+            listResources: listResources
         };
 
         return service;
@@ -233,5 +235,22 @@
 
             return deferred.promise;
         }
+
+        function listResources(id) {
+            return $http.get(service.apiurl + '/api/ProgramMedia?programid=' + id + '&mediatype=0')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for resources for program id ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
     }
 })();

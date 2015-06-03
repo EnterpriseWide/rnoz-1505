@@ -18,17 +18,6 @@ namespace ewide.web.Controllers
     [Authorize]
     public class ProgramsController : BaseApiController
     {
-        private IQueryable<CoachingProgram> GetCoachingPrograms(ApplicationUser currentUser)
-        {
-            var programs = AppDb.CoachingPrograms
-                .Include(i => i.Coach)
-                .Include(i => i.Coachee)
-                .Where(i =>
-                    i.Coach.Id == currentUser.Id ||
-                    i.Coachee.Id == currentUser.Id);
-            return programs;
-        }
-
         public IQueryable<CoachingProgram> GetCoachingProgram()
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
@@ -40,7 +29,6 @@ namespace ewide.web.Controllers
         public IHttpActionResult GetCoachingProgram(int id)
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
-
             var program = GetCoachingPrograms(currentUser)
                 .SingleOrDefault(i => i.Id == id);
             return Ok(program);

@@ -1,0 +1,61 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wblue">
+                    <div ht-widget-header title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+                        <div class="row">
+                            <div ngf-drop="" ngf-select="" ng-model="vm.files" ng-model-rejected="rejFiles" ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box col-sm-12" ngf-multiple="true" ngf-allow-dir="true" ngf-accept="'image/*,application/pdf'" ngf-drop-available="dropAvailable" ngf-change="vm.upload()">
+                                <div ng-hide="dropAvailable">File Drop not available</div>
+                                <div ng-show="dropAvailable">Drop Images or PDFs</div>
+                                <div>click to select</div>
+                            </div>
+                        </div>
+                        Upload Log:
+                        <ul style="clear:both" ng-show="rejFiles.length > 0" class="response">
+                            <li class="sel-file" ng-repeat="f in rejFiles">
+                                Rejected file: {{f.name}} - size: {{f.size}}B - type: {{f.type}}
+                            </li>
+                        </ul>
+                        <ul style="clear:both" ng-show="vm.files.length > 0" class="response">
+                            <li class="sel-file" ng-repeat="f in vm.files">
+                                <img ng-show="f.type.indexOf('image') > -1" ngf-src="f" class="thumb" ngf-accept="'image/*'">
+                                <span class="progress" ng-show="f.progress >= 0">                       
+                                    <div style="width:{{f.progress}}%">{{f.progress}}%</div>
+                                </span>             
+                                <button class="button" ng-click="f.upload.abort();f.upload.aborted=true" 
+                                        ng-show="f.upload != null && f.progress < 100 && !f.upload.aborted">Abort</button>
+                                {{f.name}} - size: {{f.size}}B - type: {{f.type}}
+                                <a ng-show="f.result" href="javascript:void(0)" ng-click="f.showDetail = !f.showDetail">details</a>
+                                <div ng-show="f.showDetail">
+                                    <br/>
+                                    <div data-ng-show="f.result.result == null">{{f.result}}</div>
+                                    <ul>
+                                        <li ng-repeat="item in f.result.result">
+                                            <div data-ng-show="item.name">file name: {{item.name}}</div>
+                                            <div data-ng-show="item.fieldName">name: {{item.fieldName}}</div>
+                                            <div data-ng-show="item.size">size on the server: {{item.size}}</div>
+                                            <div data-ng-show="item.value">value: {{item.value}}</div>
+                                        </li>
+                                    </ul>
+                                    <div data-ng-show="f.result.requestHeaders" class="reqh">request headers: {{f.result.requestHeaders}}</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ol>
+                            <li ng-repeat="f in vm.resources">
+                                {{f.Name}}
+                            </li>
+                        </ol>
+                        <br/>
+                        <div style="clear:both" class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
