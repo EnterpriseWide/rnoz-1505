@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.learningplan')
+        .module('app.assignment')
         .controller('AssignmentUpdateController', AssignmentUpdateController);
     AssignmentUpdateController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice', '$state'];
 
