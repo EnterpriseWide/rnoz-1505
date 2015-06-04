@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.assignments')
+        .module('app.assignment')
         .controller('AssignmentDeleteController', AssignmentDeleteController);
     AssignmentDeleteController.$inject = ['logger', '$modalInstance', 'id'];
 
@@ -20,10 +20,10 @@
 
         function ok() {
             $modalInstance.close(vm.id);
-        };
+        }
 
         function cancel() {
             $modalInstance.dismiss('cancel');
-        };
+        }
     }
 })();

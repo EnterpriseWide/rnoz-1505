@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('app', [
-        'app.assignments',
+        'app.assignment',
         'app.admin',
         'app.core',
         'app.help',

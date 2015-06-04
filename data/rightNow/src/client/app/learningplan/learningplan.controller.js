@@ -28,14 +28,14 @@
         }
 
         function getLearningPlan(id) {
-            return dataservice.getLearningPlan(id).then(function (data) {
+            return dataservice.readLearningPlan(id).then(function (data) {
                 vm.data = data;
                 return vm.data;
             });
         }
 
         function save() {
-            dataservice.putLearningPlan(vm.data.Id, vm.data).then(function (data) {
+            dataservice.updateLearningPlan(vm.data.Id, vm.data).then(function (data) {
                 logger.info('Learning Plan Saved');
             });
         }

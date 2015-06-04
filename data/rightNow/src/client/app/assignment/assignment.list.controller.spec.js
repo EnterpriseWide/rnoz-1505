@@ -4,7 +4,7 @@ describe('AssignmentListController', function() {
     var program = mockData.getMockProgram();
 
     beforeEach(function() {
-        bard.appModule('app.assignments');
+        bard.appModule('app.assignment');
         bard.inject('$controller', '$log', '$rootScope', 'dataservice', '$q');
     });
 

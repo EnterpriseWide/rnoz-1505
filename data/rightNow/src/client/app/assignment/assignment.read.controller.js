@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.assignments')
+        .module('app.assignment')
         .controller('AssignmentReadController', AssignmentReadController);
     AssignmentReadController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice'];
 

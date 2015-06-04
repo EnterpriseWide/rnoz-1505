@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('app.assignments', [
+    angular.module('app.assignment', [
         'app.core',
         'app.widgets'
       ]);
