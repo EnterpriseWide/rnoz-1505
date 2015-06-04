@@ -29,6 +29,15 @@ namespace ewide.web.Controllers
                     i.CoachingProgram.Coachee.Id == currentUser.Id);
         }
 
+        private IEnumerable<ProgramMedia> GetProgramMediaListFull(ApplicationUser currentUser)
+        {
+            return AppDb.ProgramMedia
+                .Include(i => i.CoachingProgram.Coach)
+                .Where(i =>
+                    i.CoachingProgram.Coach.Id == currentUser.Id ||
+                    i.CoachingProgram.Coachee.Id == currentUser.Id);
+        }
+
         public IHttpActionResult GetProgramMedias(Int64 programId, MediaType mediaType)
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
@@ -77,7 +86,7 @@ namespace ewide.web.Controllers
             {
                 return NotFound();
             }
-            if (!(programMedia.MediaType == MediaType.Resource && (AppUserManager.IsInRole(currentUser.Id, "Coach") || AppUserManager.IsInRole(currentUser.Id, "Admin"))))
+            if (programMedia.MediaType == MediaType.Resource && !(AppUserManager.IsInRole(currentUser.Id, "Coach") || AppUserManager.IsInRole(currentUser.Id, "Admin")))
             {
                 return BadRequest("Only Coaches can upload Resources");
             }
@@ -109,7 +118,7 @@ namespace ewide.web.Controllers
         public async Task<HttpResponseMessage> PostFormData(int programId, MediaType mediaType)
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
-            if (mediaType == MediaType.Upload && !(AppUserManager.IsInRole(currentUser.Id, "Coach") || AppUserManager.IsInRole(currentUser.Id, "Admin")))
+            if (mediaType == MediaType.Resource && !(AppUserManager.IsInRole(currentUser.Id, "Coach") || AppUserManager.IsInRole(currentUser.Id, "Admin")))
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Only Coaches can upload Resources");
             }
@@ -156,6 +165,43 @@ namespace ewide.web.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
             }
+        }
+
+        // DELETE: api/Assignments/5
+        [ResponseType(typeof(ProgramMedia))]
+        public IHttpActionResult DeleteAssignment(int id)
+        {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var programMedia = GetProgramMediaListFull(currentUser)
+                .FirstOrDefault(i => i.Id == id);
+            if (programMedia == null)
+            {
+                return NotFound();
+            }
+            if (!AppUserManager.IsInRole(currentUser.Id, "Admin"))
+            {
+                switch (programMedia.MediaType)
+                {
+                    case MediaType.Resource:
+                        if (currentUser.Id != programMedia.CoachingProgram.Coach.Id)
+                        {
+                            return BadRequest("Only Coaches can delete Resources");
+                        }
+                        break;
+                    case MediaType.Upload:
+                    default:
+                        break;
+                }
+            }
+            AppDb.ProgramMedia.Remove(programMedia);
+            string ProgramMediaDirectory = HttpContext.Current.Server.MapPath("~/App_Data/ProgramMedia/");
+            var fileName = String.Format("{0}{1}", ProgramMediaDirectory, programMedia.FileName);
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+            AppDb.SaveChanges();
+            return Ok(programMedia);
         }
 
         private bool ProgramMediaExists(int id, ApplicationUser currentUser)
