@@ -16,6 +16,7 @@
         vm.log = '';
         vm.files = [];
         vm.apiurl = dataservice.apiurl;
+        vm.deleteResource = deleteResource;
 
         activate();
 
@@ -50,5 +51,26 @@
                 }
             }
         }
+
+        function deleteResource(id) {
+            var modalInstance = $modal.open({
+                templateUrl: 'app/resource/resource.delete.html',
+                controller: 'ResourceDeleteController',
+                controllerAs: 'vm',
+                resolve: {
+                    id: function() {
+                        return id;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (id) {
+                dataservice.deleteResource(id).then(function(data) {
+                    logger.success('Deleted Resource ' + data.Id);
+                    getResources(vm.programId);
+                });
+            });
+        }
+
     }
 })();

@@ -50,8 +50,12 @@
                         </ul>
                         <h3>Resources</h3>
                         <ol>
-                            <li ng-repeat="f in vm.resources">
-                                <a ui-sref="resourceRead({programId: vm.programId, resourceId: f.Id})">{{f.Name}}</a>
+                            <li ng-repeat="p in vm.resources">
+                                <p>
+                                    <span><a ui-sref="resourceRead({programId: p.CoachingProgramId, resourceId: p.Id})" class="btn btn-default">Open {{p.Name}}</a></span>
+                                    <span><a ui-sref="resourceUpdate({programId: p.CoachingProgramId, resourceId: p.Id})" class="btn btn-default" ng-show="vm.authData.isCoach">Update Resource >></a></span>
+                                    <span><a ng-click="vm.deleteResource(p.Id)" class="btn btn-default" ng-show="vm.authData.isCoach">Delete Resource >></a></span>
+                                </p>
                             </li>
                         </ol>
                         <br/>
