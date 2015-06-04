@@ -268,7 +268,7 @@
         }
 
         function deleteResource(id) {
-            return $http.delete(service.apiurl + '/api/ProgramMedia/' + id + '?mediaType=0')
+            return $http.delete(service.apiurl + '/api/ProgramMedia/' + id + '/')
                 .then(success)
                 .catch(fail);
 
