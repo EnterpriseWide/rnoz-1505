@@ -25,11 +25,14 @@
             deleteAssignment: deleteAssignment,
             listAssignments: listAssignments,
 
-            getLearningPlan: getLearningPlan,
-            putLearningPlan: putLearningPlan,
+            readLearningPlan: readLearningPlan,
+            updateLearningPlan: updateLearningPlan,
 
             listSessions: listSessions,
 
+            readResource: readResource,
+            updateResource: updateResource,
+            deleteResource: deleteResource,
             listResources: listResources
         };
 
@@ -142,9 +145,8 @@
             }
         }
 
-        function updateAssignment(id, assignmentData) {
+        function updateAssignment(id, data) {
             var url = service.apiurl + '/api/assignments/' + id;
-            var data = assignmentData;
 
             var deferred = $q.defer();
 
@@ -205,7 +207,7 @@
             }
         }
 
-        function getLearningPlan(id) {
+        function readLearningPlan(id) {
             return $http.get(service.apiurl + '/api/learningplan/' + id)
                 .then(success)
                 .catch(fail);
@@ -221,9 +223,8 @@
             }
         }
 
-        function putLearningPlan(id, learningPlanData) {
+        function updateLearningPlan(id, data) {
             var url = service.apiurl + '/api/learningplan/' + id;
-            var data = learningPlanData;
 
             var deferred = $q.defer();
 
@@ -234,6 +235,52 @@
             });
 
             return deferred.promise;
+        }
+
+        function readResource(id) {
+            return $http.get(service.apiurl + '/api/ProgramMedia/' + id + '?mediaType=0')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for ProgramMedia ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function updateResource(id, data) {
+            var url = service.apiurl + '/api/ProgramMedia/' + id;
+
+            var deferred = $q.defer();
+
+            $http.put(url, data).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
+        }
+
+        function deleteResource(id) {
+            return $http.delete(service.apiurl + '/api/ProgramMedia/' + id + '?mediaType=0')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'delete for ProgramMedia ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
         }
 
         function listResources(id) {

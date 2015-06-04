@@ -1,0 +1,26 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wblue">
+                    <div class="widget-head">
+                        <div class="page-title pull-left"><i class="fa fa-th"></i> {{vm.title}}</div>
+                        <div class="pull-right">
+                            <button class="linkBtn darkGreenBtn" data-ng-click="vm.save()"><i class="fa fa-check-circle-o"></i>Save Resource</button>
+                            <a class="linkBtn greyBtn" ui-sref="resources({resourceId: vm.data.CoachingProgramId})"><i class="fa fa-angle-double-left"></i> Go Back</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content user">
+                        <form class="form-horizontal" role="form" ng-submit="add()">
+                            <div ng-include="'app/resource/resource.form.html'"></div>
+                        </form>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

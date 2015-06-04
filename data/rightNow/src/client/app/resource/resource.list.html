@@ -3,7 +3,13 @@
         <div class="container">
             <div class="row">
                 <div class="widget wblue">
-                    <div ht-widget-header title="{{vm.title}}"></div>
+                    <div class="widget-head">
+                        <div class="page-title pull-left"><i class="fa fa-th"></i> {{vm.title}}</div>
+                        <div class="pull-right">
+                            <a class="linkBtn greyBtn" ui-sref="program({id: vm.programId})"><i class="fa fa-angle-double-left"></i> Go Back</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>                    
                     <div class="widget-content user">
                         <div class="row">
                             <div ngf-drop="" ngf-select="" ng-model="vm.files" ng-model-rejected="rejFiles" ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box col-sm-12" ngf-multiple="true" ngf-allow-dir="true" ngf-accept="'image/*,application/pdf'" ngf-drop-available="dropAvailable" ngf-change="vm.upload()">
@@ -12,10 +18,9 @@
                                 <div>click to select</div>
                             </div>
                         </div>
-                        Upload Log:
                         <ul style="clear:both" ng-show="rejFiles.length > 0" class="response">
                             <li class="sel-file" ng-repeat="f in rejFiles">
-                                Rejected file: {{f.name}} - size: {{f.size}}B - type: {{f.type}}
+                                <p style="color: red">Rejected file: {{f.name}} - size: {{f.size}}B - type: {{f.type}}</p>
                             </li>
                         </ul>
                         <ul style="clear:both" ng-show="vm.files.length > 0" class="response">
@@ -33,7 +38,7 @@
                                     <div data-ng-show="f.result.result == null">{{f.result}}</div>
                                     <ul>
                                         <li ng-repeat="item in f.result.result">
-                                            <div data-ng-show="item.name">file name: {{item.name}}</div>
+                                            <div data-ng-show="item.name">file name: {{item.Name}}</div>
                                             <div data-ng-show="item.fieldName">name: {{item.fieldName}}</div>
                                             <div data-ng-show="item.size">size on the server: {{item.size}}</div>
                                             <div data-ng-show="item.value">value: {{item.value}}</div>
@@ -43,9 +48,10 @@
                                 </div>
                             </li>
                         </ul>
+                        <h3>Resources</h3>
                         <ol>
                             <li ng-repeat="f in vm.resources">
-                                {{f.Name}}
+                                <a ui-sref="resourceRead({programId: vm.programId, resourceId: f.Id})">{{f.Name}}</a>
                             </li>
                         </ol>
                         <br/>

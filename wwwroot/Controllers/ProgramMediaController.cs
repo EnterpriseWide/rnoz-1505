@@ -21,14 +21,15 @@ namespace ewide.web.Controllers
     [Authorize]
     public class ProgramMediaController : BaseApiController
     {
-        private IEnumerable<FileInfo> GetList(ApplicationUser currentUser, string root)
+        private IEnumerable<ProgramMedia> GetProgramMediaList(ApplicationUser currentUser)
         {
-            var dir = Directory.CreateDirectory(root);
-            return dir.GetFiles();
+            return AppDb.ProgramMedia
+                .Where(i =>
+                    i.CoachingProgram.Coach.Id == currentUser.Id ||
+                    i.CoachingProgram.Coachee.Id == currentUser.Id);
         }
 
-        // GET: api/Assignments
-        public IHttpActionResult GetResources(int programId, MediaType mediaType)
+        public IHttpActionResult GetProgramMedias(Int64 programId, MediaType mediaType)
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             var program = GetCoachingPrograms(currentUser)
@@ -37,19 +38,72 @@ namespace ewide.web.Controllers
             {
                 return NotFound();
             }
-            string root = HttpContext.Current.Server.MapPath(String.Format("~/App_Data/ProgramMedia/{0}/{1}/", program.Id, MediaType.Resource));
-            var list = GetList(currentUser, root)
-                .Select(i => new ProgramMedia
-                {
-                    Name = i.Name,
-                    CreatedAt = i.CreationTime,
-                    UpdatedAt = i.LastWriteTime,
-                    Size = i.Length / 1024,
-                    CoachingProgram = program,
-                    FileName = i.FullName,
-                    MediaType = mediaType,
-                });
+            string root = HttpContext.Current.Server.MapPath("~/App_Data/ProgramMedia/");
+            var list = GetProgramMediaList(currentUser)
+                .Where(i => i.MediaType == mediaType);
             return Ok(list);
+        }
+
+        [ResponseType(typeof(ProgramMedia))]
+        public IHttpActionResult GetProgramMedia(Int64 id, MediaType mediaType)
+        {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var item = GetProgramMediaList(currentUser)
+                .Where(i => i.MediaType == mediaType)
+                .FirstOrDefault(i => i.Id == id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return Ok(item);
+        }
+
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutProgramMedia(int id, ProgramMedia item)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (id != item.Id)
+            {
+                return BadRequest();
+            }
+
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var programMedia = GetProgramMediaList(currentUser)
+                .FirstOrDefault(i => i.Id == item.Id);
+            if (id != item.Id)
+            {
+                return NotFound();
+            }
+            if (!(programMedia.MediaType == MediaType.Resource && (AppUserManager.IsInRole(currentUser.Id, "Coach") || AppUserManager.IsInRole(currentUser.Id, "Admin"))))
+            {
+                return BadRequest("Only Coaches can upload Resources");
+            }
+
+            AppDb.Entry(programMedia).State = EntityState.Modified;
+
+            programMedia.Name = item.Name;
+            programMedia.BodyText = item.BodyText;
+            programMedia.UpdatedAt = DateTime.Now;
+
+            try
+            {
+                AppDb.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProgramMediaExists(id, currentUser))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         public async Task<HttpResponseMessage> PostFormData(int programId, MediaType mediaType)
@@ -70,10 +124,9 @@ namespace ewide.web.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
-            string root = HttpContext.Current.Server.MapPath(String.Format("~/App_Data/ProgramMedia/{0}/{1}/", programId, mediaType));
+            string root = HttpContext.Current.Server.MapPath("~/App_Data/ProgramMedia/");
             Directory.CreateDirectory(root);
-            var provider = new CustomMultipartFormDataStreamProvider(root);
-            //var provider = new MultipartFormDataStreamProvider(root);
+            var provider = new MultipartFormDataStreamProvider(root);
             try
             {
                 // Read the form data.
@@ -81,18 +134,22 @@ namespace ewide.web.Controllers
                 var programMediaList = new List<ProgramMedia>();
                 foreach (var file in provider.FileData)
                 {
-                    var fileInfo = new FileInfo(file.LocalFileName);
-                    programMediaList.Add(new ProgramMedia
+                    var originalFileName = file.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
+                    var programMedia = new ProgramMedia
                     {
-                        Name = fileInfo.Name,
-                        CreatedAt = fileInfo.CreationTime,
-                        UpdatedAt = fileInfo.LastWriteTime,
-                        Size = fileInfo.Length / 1024,
+                        BodyText = String.Empty,
                         CoachingProgram = program,
-                        FileName = fileInfo.FullName,
+                        CreatedAt = DateTime.Now,
+                        Name = originalFileName,
+                        OriginalFileName = originalFileName,
+                        FileName = Path.GetFileName(file.LocalFileName),
                         MediaType = mediaType,
-                    });
+                        UpdatedAt = DateTime.Now,
+                    };
+                    AppDb.ProgramMedia.Add(programMedia);
+                    programMediaList.Add(programMedia);
                 }
+                AppDb.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, programMediaList);
             }
             catch (System.Exception e)
@@ -100,31 +157,10 @@ namespace ewide.web.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
             }
         }
-    }
 
-    // We implement MultipartFormDataStreamProvider to override the filename of File which
-    // will be stored on server, or else the default name will be of the format like Body-
-    // Part_{GUID}. In the following implementation we simply get the FileName from 
-    // ContentDisposition Header of the Request Body.
-    public class CustomMultipartFormDataStreamProvider : MultipartFormDataStreamProvider
-    {
-        public CustomMultipartFormDataStreamProvider(string path) : base(path) { }
-        public override string GetLocalFileName(HttpContentHeaders headers)
+        private bool ProgramMediaExists(int id, ApplicationUser currentUser)
         {
-            var ordinal = 1;
-            var filename = headers.ContentDisposition.FileName.Replace("\"", string.Empty);
-            var fileInfo = new FileInfo(filename);
-            var newFileInfo = new FileInfo(Path.Combine(this.RootPath, fileInfo.Name));
-            var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileInfo.Name);
-            var fileNameExtension = fileInfo.Extension;
-            while (File.Exists(newFileInfo.FullName))
-            {
-                newFileInfo = new FileInfo(Path.Combine(
-                    this.RootPath,
-                    String.Format("{0} ({1}){2}", fileNameWithoutExtension, ordinal++, fileNameExtension)
-                    ));
-            }
-            return newFileInfo.Name;
+            return GetProgramMediaList(currentUser).Count(e => e.Id == id) > 0;
         }
     }
 }

@@ -58,6 +58,7 @@ namespace ewide.web.Models
         public DbSet<CoachingProgram> CoachingPrograms { get; set; }
         public DbSet<CoachingSession> CoachingSessions { get; set; }
         public DbSet<Assignment> Assignment { get; set; }
+        public DbSet<ProgramMedia> ProgramMedia { get; set; }
 
         public static ApplicationDbContext Create()
         {

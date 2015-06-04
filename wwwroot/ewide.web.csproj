@@ -302,6 +302,10 @@
     <Compile Include="Migrations\201506020824314_Remove ProgramMedia Table.Designer.cs">
       <DependentUpon>201506020824314_Remove ProgramMedia Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506040746535_Add ProgramMedia Table back in again.cs" />
+    <Compile Include="Migrations\201506040746535_Add ProgramMedia Table back in again.Designer.cs">
+      <DependentUpon>201506040746535_Add ProgramMedia Table back in again.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\ProgramMedia.cs" />
@@ -484,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506020824314_Remove ProgramMedia Table.resx">
       <DependentUpon>201506020824314_Remove ProgramMedia Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506040746535_Add ProgramMedia Table back in again.resx">
+      <DependentUpon>201506040746535_Add ProgramMedia Table back in again.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
