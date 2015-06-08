@@ -1,9 +1,8 @@
 <div ng-controller="ShellController as vm" layout="column" layout-fill flex>
     <md-toolbar>
         <div class="md-toolbar-tools docs-toolbar-tools" ng-click="vm.toggleMenu()" tabindex="-1" role="button">
-            <md-button><i class="fa fa-bars"></i></md-button>
+            <md-button class="mm-nav-button"><i class="fa fa-bars"></i></md-button>
             <span class="navbar-logo"><img src="{{vm.navline.logo}}" alt="right.now. logo" /></span>
-            <span class="ng-binding hidden-xs hidden-sm">{{vm.navline.tagline}}</span>
         </div>
     </md-toolbar>
     <md-content flex>
