@@ -4,6 +4,7 @@
     angular
         .module('app.core', [
             'ngAnimate',
+            'ngMaterial',
             'ngSanitize',
             'blocks.exception',
             'blocks.logger',
@@ -12,7 +13,7 @@
             'ngplus',
             'LocalStorageModule',
             'textAngular',
-            'ui.bootstrap',
-            'ngFileUpload'
+            'ngFileUpload',
+            'ngMdIcons'
         ]);
 })();

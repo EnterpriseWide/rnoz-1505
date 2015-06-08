@@ -1,20 +1,29 @@
-<div ng-controller="ShellController as vm">
-    <header class="clearfix" ng-show="vm.authData.isAuthenticated">
-        <ht-top-nav navline="vm.navline"></ht-top-nav>
-    </header>
-    <section id="content" class="content">
-        <div ui-view class="shuffle-animation"></div>
-
-        <div ngplus-overlay
-             ngplus-overlay-delay-in="50"
-             ngplus-overlay-delay-out="700"
-             ngplus-overlay-animation="dissolve-animation">
-            <img src="images/busy.gif"/>
-
-            <div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>
+<div ng-controller="ShellController as vm" layout="column" layout-fill flex>
+    <md-toolbar>
+        <div class="md-toolbar-tools docs-toolbar-tools" ng-click="vm.toggleMenu()" tabindex="-1" role="button">
+            <md-button><i class="fa fa-bars"></i></md-button>
+            <span class="navbar-logo"><img src="{{vm.navline.logo}}" alt="right.now. logo" /></span>
+            <span class="ng-binding hidden-xs hidden-sm">{{vm.navline.tagline}}</span>
         </div>
-    </section>
-    <footer class="clearfix" ng-show="vm.authData.isAuthenticated">
-        <div class="col-xs-12 text-right"><p>right.now. developed by <img src="/images/small-footer-Logo.png" alt="oztrain logo" /></p></div>
-    </footer>
+    </md-toolbar>
+    <md-content flex>
+        <md-sidenav class="md-sidenav-left" md-component-id="left" ng-click="vm.toggleMenu()">
+            <div layout="column">
+                <md-button ui-sref="programs"><md-icon md-font-icon="fa-gear" class="fa"></md-icon>&nbsp;Dashboard</md-button>
+            </div>
+            <hr>
+            <div layout="column">
+            </div>
+            <hr>
+            <div layout="column">
+                <md-button ng-click="vm.logoutUser()"><md-icon md-font-icon="fa-times" class="fa"></md-icon>&nbsp;Logout</md-button>
+            </div>
+        </md-sidenav>
+        <md-content ui-view></md-content>
+    </md-content>
+    <div ng-show="vm.authData.isAuthenticated" layout="row">
+        <div flex></div>
+        <p>right.now. developed by <img src="/images/small-footer-Logo.png" alt="oztrain logo" /></p>
+        <div flex="5"></div>
+    </div>
 </div>
