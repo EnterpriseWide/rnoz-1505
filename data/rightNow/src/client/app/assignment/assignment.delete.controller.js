@@ -5,7 +5,6 @@
         .module('app.assignment')
         .controller('AssignmentDeleteController', AssignmentDeleteController);
     AssignmentDeleteController.$inject = ['logger', '$modalInstance', 'id'];
-
     function AssignmentDeleteController(logger, $modalInstance, id) {
         var vm = this;
         vm.title = 'Delete Assignment';

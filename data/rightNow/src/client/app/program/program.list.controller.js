@@ -2,12 +2,11 @@
     'use strict';
 
     angular
-        .module('app.programs')
-        .controller('ProgramsController', ProgramsController);
+        .module('app.program')
+        .controller('ProgramListController', ProgramListController);
 
-    ProgramsController.$inject = ['$q', 'dataservice', 'logger'];
-    /* @ngInject */
-    function ProgramsController($q, dataservice, logger) {
+    ProgramListController.$inject = ['$q', 'dataservice', 'logger'];
+    function ProgramListController($q, dataservice, logger) {
         var vm = this;
         vm.programs = [];
         vm.sessions = [];

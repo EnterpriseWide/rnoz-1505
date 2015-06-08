@@ -1,27 +1,24 @@
-<section class="mainbar">
-    <section class="matter">
-        <div class="container">
-            <div class="row">
-                <div class="widget worange">
-                    <div class="widget-head">
-                        <div class="page-title pull-left"><i class="fa fa-cube"></i> {{vm.title}}</div>
-                        <div class="pull-right">
-                            <button class="linkBtn darkGreenBtn" data-ng-click="vm.save()"><i class="fa fa-check-circle-o"></i> Save Learning Plan</button>
-                            <a href="{{vm.apiurl}}/api/learningplan/DownloadPdf?id={{vm.programId}}&access_token={{vm.authData.token}}" target="_blank" class="linkBtn orangeBtn"><i class="fa fa-file-pdf-o"></i> Download PDF</a>
-                            <a class="linkBtn greyBtn" ui-sref="program({id: vm.programId})"><i class="fa fa-angle-double-left"></i> Go Back</a>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>                    
-                    <div class="widget-content user">
-                        <div class="row">
-                            <div class="col-sm-3 lp-detail" ng-bind-html="vm.screenconfig.BodyText"></div>
-                            <div class="col-sm-9">                    
-                                <text-angular ng-model="vm.data.LearningPlan"></text-angular>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="content-heading learning-plan-bg">
+    <div class="container">
+        <h1 class="heading"><span class="icon icon-layers" />&nbsp;{{vm.title}}</h1>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+        <div class="clearfix sub-header" ng-show="vm.authData.isCoach">
+            <h2 class="content-sub-heading pull-left">
+                <a ui-sref="program({id: vm.programId})"><span class="icon icon-chevron-left"></span>&nbsp;Back to Assignments</a>
+            </h2>
+            <p class="pull-right">
+                <a href="{{vm.apiurl}}/api/learningplan/DownloadPdf?id={{vm.programId}}&access_token={{vm.authData.token}}" target="_blank" class="btn linkBtn orangeBtn"><i class="fa fa-file-pdf-o"></i> Download PDF</a>
+                <button data-ng-click="vm.save()" class="btn btn-blue waves-button waves-effect waves-light"><span class="icon icon-my-library-add" /></span>&nbsp;Save Learning Plan</button>
+            </p>
         </div>
-    </section>
-</section>
+        <form class="form-horizontal" role="form" ng-submit="add()">
+            <div class="col-sm-3 lp-detail" ng-bind-html="vm.screenconfig.BodyText"></div>
+            <div class="col-sm-9">                    
+                <text-angular ng-model="vm.data.LearningPlan"></text-angular>
+            </div>
+        </form>
+    </div>
+</div>

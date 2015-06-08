@@ -3,11 +3,9 @@
 
     angular
         .module('app.program')
-        .controller('ProgramController', ProgramController);
-
-    ProgramController.$inject = ['logger', '$stateParams', '$q', 'dataservice'];
-    /* @ngInject */
-    function ProgramController(logger, $stateParams, $q, dataservice) {
+        .controller('ProgramReadController', ProgramReadController);
+    ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice'];
+    function ProgramReadController(logger, $stateParams, $q, dataservice) {
         var vm = this;
         vm.title = 'Program';
         vm.program = [];
@@ -26,7 +24,7 @@
         activate();
 
         function activate() {
-            var id = $stateParams.id;
+            var id = $stateParams.programId;
             var promises = [getProgram(id)];
             return $q.all(promises).then(function() {
                 logger.info('Activated ' + vm.title + ' View');

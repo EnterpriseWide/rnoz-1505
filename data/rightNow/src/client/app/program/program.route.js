@@ -15,10 +15,24 @@
                 state: 'program',
                 config: {
                     url: '/program/:programId/',
-                    templateUrl: 'app/program/program.html',
-                    controller: 'ProgramController',
+                    templateUrl: 'app/program/program.read.html',
+                    controller: 'ProgramReadController',
                     controllerAs: 'vm',
                     title: 'Program View'
+                }
+            }, {
+                state: 'programs',
+                config: {
+                    url: '/',
+                    templateUrl: 'app/program/program.list.html',
+                    controller: 'ProgramListController',
+                    controllerAs: 'vm',
+                    title: 'Programs',
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-programs"></i> Programs',
+                        showOnNav: true
+                    }
                 }
             }
         ];

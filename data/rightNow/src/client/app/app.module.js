@@ -10,7 +10,6 @@
         'app.learningplan',
         'app.login',
         'app.profile',
-        'app.programs',
         'app.program',
         'app.resource',
         'app.widgets'

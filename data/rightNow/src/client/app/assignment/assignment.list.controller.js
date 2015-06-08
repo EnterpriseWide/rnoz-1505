@@ -44,10 +44,10 @@
             });
 
             modalInstance.result.then(function (id) {
-                dataservice.deleteAssignment(id).then(function(data) {
-                    logger.success('Deleted Assignment ' + data.Id);
-                    getAssignments(vm.programId);
-                });
+                // dataservice.deleteAssignment(id).then(function(data) {
+                //     logger.success('Deleted Assignment ' + data.Id);
+                //     getAssignments(vm.programId);
+                // });
             });
         }
 

@@ -1,19 +1,18 @@
-<section class="mainbar">
-    <section class="matter">
-        <div class="container">
-            <div class="row">
-                <div class="widget wyellow">
-                    <div ht-widget-header title="{{vm.title + ' - ' + vm.data.Name}}"></div>
-                    <div class="widget-content user">
-                        <a ui-sref="assignmentUpdate({programId: vm.programId, assignmentId: vm.data.Id})" class="btn btn-default" ng-show="vm.authData.isCoach">Update Assignment >></a>
-                        <a class="btn btn-default" ui-sref="assignments({programId: vm.programId})"><< Go Back</a>
-                        <div ng-bind-html="vm.data.BodyText"></div>
-                    </div>
-                    <div class="widget-foot">
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
+<div class="content-heading assignments-bg">
+    <div class="container">
+        <h1 class="heading"><span class="icon icon-content-copy">&nbsp;{{vm.title}}</h1>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+        <div class="clearfix sub-header" ng-show="vm.authData.isCoach">
+            <h2 class="content-sub-heading pull-left">
+                <a ui-sref="assignments({programId: vm.programId})"><span class="icon icon-chevron-left"></span>&nbsp;Back to Assignments</a>
+            </h2>
+            <p class="pull-right">
+                <a class="btn btn-blue waves-button waves-effect waves-light" ui-sref="assignmentUpdate({programId: vm.programId, assignmentId: vm.data.Id})"><span class="icon icon-my-library-add"></span>&nbsp;Update Assignment</a>
+            </p>
         </div>
-    </section>
-</section>
+        <div ng-bind-html="vm.data.BodyText"></div>
+    </div>
+</div>
