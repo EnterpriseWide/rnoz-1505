@@ -18,18 +18,18 @@
     <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
     <link rel="stylesheet" href="/bower_components/bootstrap-css-only/css/bootstrap.css" />
     <link rel="stylesheet" href="/bower_components/textAngular/src/textAngular.css" />
-    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:css styles/app.css -->
     <!-- inject:css -->
+    <link rel="stylesheet" href="/.tmp/base.dm.css">
     <link rel="stylesheet" href="/.tmp/styles.css">
     <!-- endinject -->
     <!-- endbuild -->
 </head>
 <body>
-        <div ng-include="'app/layout/shell.html'" layout="row" layout-fill></div>
+        <div ng-include="'app/layout/shell.html'"></div>
         <div id="splash-page" ng-show="showSplash">
             <div class="page-splash">
                 <div class="page-splash-message">
@@ -65,7 +65,6 @@
     <script src="/bower_components/angular-file-upload/angular-file-upload.js"></script>
     <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="/bower_components/angular-aria/angular-aria.js"></script>
-    <script src="/bower_components/angular-material/angular-material.js"></script>
     <script src="/bower_components/angular-material-icons/angular-material-icons.min.js"></script>
     <script src="/bower_components/svg-morpheus/compile/minified/svg-morpheus.js"></script>
     <!-- endbower -->

@@ -1,28 +1,23 @@
-<div ng-controller="ShellController as vm" layout="column" layout-fill flex>
-    <md-toolbar>
-        <div class="md-toolbar-tools docs-toolbar-tools" ng-click="vm.toggleMenu()" tabindex="-1" role="button">
-            <md-button class="mm-nav-button"><i class="fa fa-bars"></i></md-button>
-            <span class="navbar-logo"><img src="{{vm.navline.logo}}" alt="right.now. logo" /></span>
-        </div>
-    </md-toolbar>
-    <md-content flex>
-        <md-sidenav class="md-sidenav-left" md-component-id="left" ng-click="vm.toggleMenu()">
-            <div layout="column">
-                <md-button ui-sref="programs"><md-icon md-font-icon="fa-gear" class="fa"></md-icon>&nbsp;Dashboard</md-button>
-            </div>
-            <hr>
-            <div layout="column">
-            </div>
-            <hr>
-            <div layout="column">
-                <md-button ng-click="vm.logoutUser()"><md-icon md-font-icon="fa-times" class="fa"></md-icon>&nbsp;Logout</md-button>
-            </div>
-        </md-sidenav>
-        <md-content ui-view></md-content>
-    </md-content>
-    <div ng-show="vm.authData.isAuthenticated" layout="row">
-        <div flex></div>
-        <p>right.now. developed by <img src="/images/small-footer-Logo.png" alt="oztrain logo" /></p>
-        <div flex="5"></div>
+<div ng-controller="ShellController as vm">
+    <header class="header" ng-show="vm.authData.isAuthenticated">
+        <ul class="nav nav-list pull-left">
+            <li>
+                <a class="menu-toggle" href="#menu">
+                    <span class="access-hide">Menu</span>
+                    <span class="icon icon-menu icon-lg"></span>
+                    <span class="header-close icon icon-close icon-lg"></span>
+                </a>
+            </li>
+        </ul>
+        <a class="header-logo" href="index.html"><img src="{{vm.navline.logo}}" /></a>
+        <a class="pull-right" href="#">Temporary Logout button</a>
+    </header>
+    <div class="content">
+        <div ui-view></div>
     </div>
+    <footer class="footer" ng-show="vm.authData.isAuthenticated">
+        <div class="container">
+            <p class="pull-right"><a href="http://www.oztrain.com.au" target="_blank">Right.Now. developed by <img class="logo" src="/images/oztrain-logo.png" /></a></p>
+        </div>
+    </footer>
 </div>

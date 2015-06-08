@@ -1,10 +1,47 @@
-/* Material Overrides */
-md-toolbar.md-default-theme { background-color: #444; }
-.navbar-logo img { max-height: 28px; }
-md-toolbar.md-default-theme { height: 48px; max-height: 48px; }
-.md-display-3 { font-size: 36px; font-weight: 300; }
 
-/* Custom CSS */
-.mm-container { max-width: 1200px; width: 100%; margin: 0 auto; }
-.mm-light-grey-bg { background-color: #777 !important; }
-.mm-nav-button { min-width: 40px; padding: 0; }
+body { color: #555; font-size: 14px; }
+a:focus, a:hover { text-decoration: none; }
+h1, .h1 { font-size: 30px; line-height: 30px; }
+.footer .logo { max-width: 50px; }
+.btn { font-size: 14px; }
+.lighter { opacity: 0.6; }
+.image-container-sm img { width: 100%; }
+.nav { font-size: 16px; }
+.header { background-color: #444; }
+.header.fixed, .header.open, .menu-open .header { background-color: #555; }
+.header .nav > li > a .header-close:after { background-color: #7a7979; }
+.grey-bg { background-color: #777; }
+.card-title { border-radius: 2px 2px 0 0; }
+.card-title .card-heading { margin-top: 0px; margin-bottom: 24px; padding-top: 24px; padding-bottom: 24px; color: #fff; }
+.coach-bg { background-color: #ee0e52; }
+.sessions-bg { background-color: #39bee7; }
+.learning-plan-bg { background-color: #f68a1e; }
+.assignments-bg { background-color: #fbc111; }
+.resources-bg { background-color: #1283bc; }
+.uploads-bg { background-color: #becd12; }
+.surveys-bg { background-color: #dd1384; }
+.card-button { color: inherit !important; }
+.no-touch .card-button:hover { text-decoration: none; }
+.no-touch .card-button:hover .card { opacity: 0.9; }
+hr { border-top: 1px solid #e0e0e0; }
+.sub-header p, .sub-header h2 { margin-bottom: 0; }
+
+.login-page { height: 100%; }
+.login-page body { height: 100%; margin-bottom: 0 !important; display: table; width: 100%; }
+.content-login { display: table-cell; vertical-align: middle; }
+.login-logo img { max-width: 150px; }
+
+.content-sub-heading { margin-top: 21px; }
+
+/* medium & above */
+@media only screen and (min-width: 480px) {
+    .image-container-sm img { width: auto; }
+    .login-logo img { max-width: none; margin-top: 30px;}
+    h1, .h1 { font-size: 44px; line-height: 48px; }
+    .btn { font-size: 16px; }
+}
+
+/* large & above */
+@media only screen and (min-width: 1000px) {
+    .login-page .content { background: url(/images/login-bg.jpg) no-repeat #fff; background-size: 70% auto; background-position:  bottom right; }
+}

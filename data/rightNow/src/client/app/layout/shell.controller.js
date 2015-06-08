@@ -4,8 +4,8 @@
     angular
         .module('app.layout')
         .controller('ShellController', ShellController);
-    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice', '$location', '$stateParams', '$state', '$mdSidenav'];
-    function ShellController($rootScope, $timeout, config, logger, authservice, $location, $stateParams, $state, $mdSidenav) {
+    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice', '$location', '$stateParams', '$state'];
+    function ShellController($rootScope, $timeout, config, logger, authservice, $location, $stateParams, $state) {
         var vm = this;
         vm.authData = {};
         vm.busyMessage = 'Please wait ...';
@@ -16,9 +16,7 @@
             title: config.appTitle,
             tagline: config.tagLine,
         };
-        vm.toggleMenu = toggleMenu;
         vm.logoutUser = logoutUser;
-        vm.clickIcon = "menu";
 
         activate();
 
@@ -41,17 +39,6 @@
             $timeout(function() {
                 $rootScope.showSplash = false;
             }, 1000);
-        }
-
-        function toggleMenu() {
-                if (vm.clickIcon == 'menu') {
-                    vm.clickIcon = 'close';
-                } else {
-                    vm.clickIcon = 'menu';
-                }
-            $timeout(function() {
-                $mdSidenav('left').toggle();
-            }, 300);
         }
 
         function logoutUser() {

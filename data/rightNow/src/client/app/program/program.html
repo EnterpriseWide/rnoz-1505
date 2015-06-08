@@ -1,37 +1,99 @@
-<section class="mainbar">
-    <section class="matter">
-        <div class="container">
+ <div class="content-heading grey-bg">
+    <div class="container">
+        <h1 class="heading"><span class="icon icon-dashboard"></span>&nbsp;Dashboard</h1>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+
+        <div class="clearfix sub-header" ng-show="vm.authData.isCoach">
+            <h2 class="content-sub-heading pull-left"><a ui-sref="programs"><span class="icon icon-chevron-left"></span>&nbsp;Back to Program List</a></h2>
+        </div>
+        <div class="card-wrap">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="widget wred">
-                        <div ht-widget-header title="Your Coach" rightText="{{vm.program.Coach.FirstName}} {{vm.program.Coach.LastName}} >" icon="fa-user"></div>
-                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextYourCoach"></div>
-                    </div>
-                    <div class="widget worange">
-                        <a ui-sref="learningplan({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Learning Plan" icon="fa-cube"></div></a>
-                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextLearningPlan"></div>
-                    </div>
-                    <div class="widget wyellow">
-                        <a ui-sref="assignments({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Assignments" icon="fa-th"></div></a>
-                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextAssignments"></div>
-                    </div>
-                    <div class="widget wblue">
-                        <a ui-sref="resources({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Resources" icon="fa-book"></div></a>
-                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextResources"></div>
-                    </div>
-                    <div class="widget wgreen">
-                        <a ui-sref="uploads({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Uploads" icon="fa-cloud-upload"></div></a>
-                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextUploads"></div>
-                    </div>
-                    <div class="widget wviolet">
-                        <a ui-sref="surveys({programId: vm.program.Id})" class="widgetLink"><div ht-widget-header title="Surveys" icon="fa-comment"></div></a>
-                        <div class="widget-content text-info" ng-bind-html="vm.screenconfig.bodyTextSurveys"></div>
-                    </div>
+                <div class="col-sm-6">
+                    <a ui-sref="coach({programId: vm.program.Id})" class="card-button">
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner card-title coach-bg">
+                                    <p class="card-heading"><span class="icon icon-person"></span>&nbsp;Your coach<span class="icon icon-chevron-right pull-right"></span></p>
+                                </div>
+                                <div class="card-inner" ng-bind-html="vm.screenconfig.bodyTextYourCoach"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a ui-sref="learningplan({programId: vm.program.Id})" class="card-button">
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner card-title learning-plan-bg">
+                                    <p class="card-heading"><span class="icon icon-layers"></span>&nbsp;Learning Plan<span class="icon icon-chevron-right pull-right"></span></p>
+                                </div>
+                                <div class="card-inner" ng-bind-html="vm.screenconfig.bodyTextLearningPlan"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a ui-sref="assignments({programId: vm.program.Id})" class="card-button">
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner card-title assignments-bg">
+                                    <p class="card-heading"><span class="icon icon-content-copy"></span>&nbsp;Assignments<span class="icon icon-chevron-right pull-right"></span></p>
+                                </div>
+                                <div class="card-inner" ng-bind-html="vm.screenconfig.bodyTextAssignments"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a ui-sref="resources({programId: vm.program.Id})" class="card-button">
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner card-title resources-bg">
+                                    <p class="card-heading"><span class="icon icon-insert-drive-file"></span>&nbsp;Resources<span class="icon icon-chevron-right pull-right"></span></p>
+                                </div>
+                                <div class="card-inner" ng-bind-html="vm.screenconfig.bodyTextResources"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a ui-sref="uploads({programId: vm.program.Id})" class="card-button">
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner card-title uploads-bg">
+                                    <p class="card-heading"><span class="icon icon-file-upload"></span>&nbsp;Uploads<span class="icon icon-chevron-right pull-right"></span></p>
+                                </div>
+                                <div class="card-inner" ng-bind-html="vm.screenconfig.bodyTextUploads"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a ui-sref="surveys({programId: vm.program.Id})" class="card-button">
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner card-title surveys-bg">
+                                    <p class="card-heading"><span class="icon icon-comment"></span>&nbsp;Surveys<span class="icon icon-chevron-right pull-right"></span></p>
+                                </div>
+                                <div class="card-inner" ng-bind-html="vm.screenconfig.bodyTextSurveys"></div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-md-6">
-                    <div class="widget wlightblue">
-                        <div ht-widget-header title="Video Coaching Sessions" icon="fa-caret-square-o-right"></div>
-                        <div class="widget-content text-center text-info">
+                
+
+                
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Sessions</p>
+                            </div>
+                            <hr />
+                            <div class="card-inner">
+                                <p>
+                                    Session stuff here
+                                </p>
+                            </div>
+                            <hr />
+                            <div class="card-inner">
+                                <p>
+                                    Session stuff here
+                                </p>
+                            </div>
                             <div class="text-info" ng-bind-html="vm.screenconfig.bodyTextSessions"></div>
                             <hr />
                             <ul>
@@ -39,10 +101,12 @@
                                     {{p.StartedAt}}
                                 </li>
                             </ul>
+
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </section>
-</section>
+    </div>
+</div>

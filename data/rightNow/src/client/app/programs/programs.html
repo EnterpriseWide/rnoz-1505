@@ -1,49 +1,55 @@
-<section>
-    <md-toolbar class="md-tall mm-light-grey-bg"><span flex></span>
-        <div class="mm-container">
-            <h1 class="md-display-3">Dashboard</h1>
-        </div>
-    </md-toolbar>
-        <div class="mm-container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="widget wgrey">
-                        <div ht-widget-header title="Programs" icon="fa-users"></div>
-                        <div class="widget-content text-center text-info listLessLink">
-                            <ul>
-                                <li ng-repeat="p in vm.programs">
-                                    <a ui-sref="program({id: p.Id})" class="btn btn-default"><i class="fa fa-user"></i> Open Program for {{p.Coachee.FirstName}} {{p.Coachee.LastName}} <span>Company Name</span>
-                                    <i class="fa fa-angle-right rightArrow"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+<div class="content-heading grey-bg">
+    <div class="container">
+        <h1 class="heading"><span class="icon icon-view-agenda"></span>&nbsp;Programs</h1>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="widget wgrey">
+                    <div ht-widget-header title="Programs" icon="fa-users"></div>
+                    <div class="widget-content text-center text-info listLessLink">
+                        <ul>
+                            <li ng-repeat="p in vm.programs">
+                                <a ui-sref="program({id: p.Id})" class="btn btn-default"><i class="fa fa-user"></i> Open Program for {{p.Coachee.FirstName}} {{p.Coachee.LastName}} <span>Company Name</span>
+                                <i class="fa fa-angle-right rightArrow"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="widget wlightblue">
-                        <div ht-widget-header title="Sessions" allow-collapse="true" icon="fa-caret-square-o-right"></div>
-                        <div class="widget-content text-center text-info">
-                        <p class="smallText">Manage your upcoming coaching sessions with your coachees. To begin a coaching session, click 'begin session,. then Right.Now. will attempt to connect you to your coachee. To cretoe a new session request, click into the specific coaching program.</p>
+            </div>
+            <div class="col-md-6">
+                <div class="widget wlightblue">
+                    <div ht-widget-header title="Sessions" allow-collapse="true" icon="fa-caret-square-o-right"></div>
+                    <div class="widget-content text-center text-info">
+                    <p class="smallText">Manage your upcoming coaching sessions with your coachees. To begin a coaching session, click 'begin session,. then Right.Now. will attempt to connect you to your coachee. To cretoe a new session request, click into the specific coaching program.</p>
 
-                        <ul class="borderList">
-                            <li ng-repeat="p in vm.sessions">
-                                <div class="row">
-                                    <div class="col-sm-7 leftCol">
-                                        <i class="fa fa-calendar-o"></i> <strong>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}</strong><br> <strong>{{p.StartedAt}}</strong>
-                                        <span class="btnGroup">
-                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Cancel <i class="fa fa-angle-right"></i></a>
-                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Reschedule <i class="fa fa-angle-right"></i></a>
-                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Set as Complete <i class="fa fa-angle-right"></i></a>
-                                        </span>
-                                    </div>
-                                    <div class="col-sm-5 rightCol"> <a href="javascrip:void(0)" class="linkBtn greenBtn">BEGIN SESSION <i class="fa fa-angle-right"></i></a></div>
+                    <ul class="borderList">
+                        <li ng-repeat="p in vm.sessions">
+                            <div class="row">
+                                <div class="col-sm-7 leftCol">
+                                    <i class="fa fa-calendar-o"></i> <strong>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}</strong><br> <strong>{{p.StartedAt}}</strong>
+                                    <span class="btnGroup">
+                                        <a href="javascrip:void(0)" class="linkBtn greyBtn">Cancel <i class="fa fa-angle-right"></i></a>
+                                        <a href="javascrip:void(0)" class="linkBtn greyBtn">Reschedule <i class="fa fa-angle-right"></i></a>
+                                        <a href="javascrip:void(0)" class="linkBtn greyBtn">Set as Complete <i class="fa fa-angle-right"></i></a>
+                                    </span>
                                 </div>
-                            </li>
-                        </ul>                        
-                        </div>
+                                <div class="col-sm-5 rightCol"> <a href="javascrip:void(0)" class="linkBtn greenBtn">BEGIN SESSION <i class="fa fa-angle-right"></i></a></div>
+                            </div>
+                        </li>
+                    </ul>                        
                     </div>
                 </div>
             </div>
         </div>
-</section>
+    </div>
+</div>
+   
+
+
+
+
+         
