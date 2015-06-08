@@ -14,7 +14,7 @@
             {
                 state: 'program',
                 config: {
-                    url: '/program/:id/',
+                    url: '/program/:programId/',
                     templateUrl: 'app/program/program.html',
                     controller: 'ProgramController',
                     controllerAs: 'vm',

@@ -12,7 +12,7 @@
                     <div class="widget-content text-center text-info listLessLink">
                         <ul>
                             <li ng-repeat="p in vm.programs">
-                                <a ui-sref="program({id: p.Id})" class="btn btn-default"><i class="fa fa-user"></i> Open Program for {{p.Coachee.FirstName}} {{p.Coachee.LastName}} <span>Company Name</span>
+                                <a ui-sref="program({programId: p.Id})" class="btn btn-default"><i class="fa fa-user"></i> Open Program for {{p.Coachee.FirstName}} {{p.Coachee.LastName}} <span>Company Name</span>
                                 <i class="fa fa-angle-right rightArrow"></i>
                                 </a>
                             </li>

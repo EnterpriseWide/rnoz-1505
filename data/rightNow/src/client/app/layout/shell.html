@@ -9,8 +9,8 @@
                 </a>
             </li>
         </ul>
-        <a class="header-logo" href="index.html"><img src="{{vm.navline.logo}}" /></a>
-        <a class="pull-right" href="#">Temporary Logout button</a>
+        <a class="header-logo" ui-sref="programs"><img src="{{vm.navline.logo}}" /></a>
+        <a class="pull-right" ng-click="vm.logoutUser()">Temporary Logout button</a>
     </header>
     <div class="content">
         <div ui-view></div>

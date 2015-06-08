@@ -8,6 +8,7 @@
             'blocks.exception',
             'blocks.logger',
             'blocks.router',
+            'ui.bootstrap',
             'ui.router',
             'ngplus',
             'LocalStorageModule',
