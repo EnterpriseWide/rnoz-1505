@@ -1,10 +1,53 @@
 <div class="content-heading grey-bg">
     <div class="container">
-        <h1 class="heading"><span class="icon icon-view-agenda"></span>&nbsp;Programs</h1>
+        <h1 class="heading"><span class="icon icon-people"></span>&nbsp;Programs</h1>
     </div>
 </div>
 <div class="content-inner">
     <div class="container">
+        <div class="card-wrap">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div ng-repeat="p in vm.programs">
+                        <a ui-sref="program({programId: p.Id})" class="card-button" >
+                            <div class="card">
+                                <div class="card-main">
+                                    <div class="card-inner card-title border-radius coach-bg">
+                                        <p class="card-heading"><span class="icon icon-person"></span>&nbsp;{{p.Coachee.FirstName}} {{p.Coachee.LastName}}  <span class="small">Company Name</span><span class="icon icon-chevron-right pull-right"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-main">
+                            
+                            <div class="card-inner">
+                                <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Sessions</p>
+                            </div>
+                            <div  ng-repeat="p in vm.sessions">
+                                <hr />
+                                <div class="card-inner">
+                                   <i class="fa fa-calendar-o"></i> <strong>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}</strong><br> <strong>{{p.StartedAt}}</strong>
+                                    <span class="btnGroup">
+                                        <a href="javascrip:void(0)" class="linkBtn greyBtn">Cancel <i class="fa fa-angle-right"></i></a>
+                                        <a href="javascrip:void(0)" class="linkBtn greyBtn">Reschedule <i class="fa fa-angle-right"></i></a>
+                                        <a href="javascrip:void(0)" class="linkBtn greyBtn">Set as Complete <i class="fa fa-angle-right"></i></a>
+                                    </span>
+
+                                    <a href="javascrip:void(0)" class="linkBtn greenBtn">BEGIN SESSION <i class="fa fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-6">
                 <div class="widget wgrey">
