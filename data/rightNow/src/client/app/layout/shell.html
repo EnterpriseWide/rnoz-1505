@@ -10,6 +10,7 @@
             </li>
         </ul>
         <a class="header-logo" ui-sref="programs"><img src="{{vm.navline.logo}}" /></a>
+        <a class="pull-right" ui-sref="admin" ng-show="vm.authData.isAdmin">Admin</a>
         <a class="pull-right" ng-click="vm.logoutUser()">Temporary Logout button</a>
     </header>
     <div class="content">
