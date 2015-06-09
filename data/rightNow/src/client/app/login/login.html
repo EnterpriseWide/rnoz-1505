@@ -1,5 +1,85 @@
+        <div class="content-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-lg-push-2 col-sm-6">
+                         <p class="text-center login-logo">
+                            <img alt="Login" src="/images/logo-vertical.png">
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-lg-push-2 col-sm-6">
+                        <div class="card-wrap">
+                            <div class="card">
+                                <div class="card-main">
+                                    <div class="card-inner">
+                                        <form class="form" ng-show="!vm.authData.isAuthenticated" ng-submit="vm.loginUser()">
+                                            <div class="form-group form-group-label">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-push-1">
+                                                        <!--<label class="floating-label" for="login-username">Username</label>-->
+                                                        <input ng-model="vm.loginData.userName" type="text" name="user" id="login-username" placeholder="Username" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-label">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-push-1">
+                                                        <!--<label class="floating-label" for="login-password">Password</label>-->
+                                                        <input ng-model="vm.loginData.password" type="password" name="pass" id="login-password" placeholder="Password" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-push-1">
+                                                        <div class="form-error-message">{{vm.message}}</div>
+                                                        <button type="submit" class="btn btn-block btn-blue waves-button waves-effect waves-light">Log In</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!--<div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-push-1">
+                                                        <div class="checkbox checkbox-adv">
+                                                            <label for="login-remember">
+                                                                <input class="access-hide" id="login-remember" name="login-remember" type="checkbox">Stay logged in
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <p class="margin-no-top pull-left"><a href="javascript:void(0)">Need help?</a></p>
+                            <p class="margin-no-top pull-right"><a href="javascript:void(0)">Forgot your password?</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-lg-push-2 col-sm-12">
+                        <hr />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-lg-push-2 col-sm-9 " ng-bind-html="vm.screenconfig.blurb">
+                        <!--<p class="margin-no">Right.Now. is an online coaching app... more descriptive text here Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolorfdg. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient mont, nascetur ridiculus mus. <a href="#">Read More ></a></p>-->
+                    </div>
+                    <div class="col-lg-2 col-lg-push-2 col-sm-3 text-right ">
+                        <a href="{{vm.screenconfig.oztrainUrl}}" target="_blank"><img alt="OzTrain" src="/images/oztrain-logo.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
         <div class="container">
-                <div class="loginCont">
+                <!--<div class="loginCont">
                     <div class="row">
                         <div class="col-sm-5 logo">
                             <p><a href="{{vm.screenconfig.oztrainUrl}}" target="_blank"><img src="/images/oztrainLogo.png" class="img-thumbnail" alt="oztrain logo"></a></p>
@@ -22,7 +102,7 @@
                         <div class="col-sm-10" ng-bind-html="vm.screenconfig.blurb"></div>
                         <div class="col-sm-2"><a href="{{vm.screenconfig.oztrainUrl}}" target="_blank"><img src="/images/oztrain-footer-Logo.png" alt="oztrain logo" /></a></div>
                     </div>
-                </div>
+                </div>-->
             <div ng-show="!vm.authData.isAuthenticated">
                 <a class="btn btn-primary" href="" ng-click="vm.loginAUser('admin')">Login As Admin</a>
                 <a class="btn btn-primary" href="" ng-click="vm.loginAUser('user1')">Login As User 1</a>
