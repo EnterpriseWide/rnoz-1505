@@ -12,6 +12,7 @@
         'app.profile',
         'app.program',
         'app.resource',
+        'app.upload',
         'app.widgets'
     ]);
 

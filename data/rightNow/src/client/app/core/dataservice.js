@@ -30,10 +30,10 @@
 
             listSessions: listSessions,
 
-            readResource: readResource,
-            updateResource: updateResource,
-            deleteResource: deleteResource,
-            listResources: listResources
+            readProgramMedia: readProgramMedia,
+            updateProgramMedia: updateProgramMedia,
+            deleteProgramMedia: deleteProgramMedia,
+            listProgramMedias: listProgramMedias
         };
 
         return service;
@@ -237,8 +237,8 @@
             return deferred.promise;
         }
 
-        function readResource(id) {
-            return $http.get(service.apiurl + '/api/ProgramMedia/' + id + '?mediaType=0')
+        function readProgramMedia(id, mediaType) {
+            return $http.get(service.apiurl + '/api/ProgramMedia/' + id + '?mediaType=' + mediaType)
                 .then(success)
                 .catch(fail);
 
@@ -253,7 +253,7 @@
             }
         }
 
-        function updateResource(id, data) {
+        function updateProgramMedia(id, data) {
             var url = service.apiurl + '/api/ProgramMedia/' + id;
 
             var deferred = $q.defer();
@@ -267,7 +267,7 @@
             return deferred.promise;
         }
 
-        function deleteResource(id) {
+        function deleteProgramMedia(id) {
             return $http.delete(service.apiurl + '/api/ProgramMedia/' + id + '/')
                 .then(success)
                 .catch(fail);
@@ -283,8 +283,8 @@
             }
         }
 
-        function listResources(id) {
-            return $http.get(service.apiurl + '/api/ProgramMedia?programid=' + id + '&mediatype=0')
+        function listProgramMedias(id, mediaType) {
+            return $http.get(service.apiurl + '/api/ProgramMedia?programid=' + id + '&mediatype=' + mediaType)
                 .then(success)
                 .catch(fail);
 
@@ -298,6 +298,5 @@
                 return $q.reject(msg);
             }
         }
-
     }
 })();

@@ -4,10 +4,10 @@
     angular
         .module('app.program')
         .controller('ProgramReadController', ProgramReadController);
-    ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice'];
-    function ProgramReadController(logger, $stateParams, $q, dataservice) {
+    ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice'];
+    function ProgramReadController(logger, $stateParams, $q, dataservice, authservice) {
         var vm = this;
-        vm.title = 'Program';
+        vm.title = 'Dashboard';
         vm.program = [];
         vm.screenconfig = {
             bodyTextYourCoach: '<p>Read more information about your coach, or send them a ' +
@@ -26,6 +26,7 @@
         function activate() {
             var id = $stateParams.programId;
             var promises = [getProgram(id)];
+            vm.authData = authservice.authData;
             return $q.all(promises).then(function() {
                 logger.info('Activated ' + vm.title + ' View');
             });

@@ -1,0 +1,20 @@
+<div class="content-heading uploads-bg">
+    <div class="container">
+        <h1 class="heading"><span class="icon icon-file-upload" />&nbsp;{{vm.title}}</h1>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+        <div class="clearfix sub-header" ng-show="vm.authData.isCoach">
+            <h2 class="content-sub-heading pull-left">
+                <a ui-sref="uploads({programId: vm.programId})"><span class="icon icon-chevron-left"></span>&nbsp;Back to Uploads</a>
+            </h2>
+            <p class="pull-right">
+                <button data-ng-click="vm.save()" class="btn btn-blue waves-button waves-effect waves-light"><span class="icon icon-my-library-add"></span>&nbsp;Save Upload</button>
+            </p>
+        </div>
+        <form class="form-horizontal" role="form" ng-submit="add()">
+            <div ng-include="'app/upload/upload.form.html'"></div>
+        </form>
+    </div>
+</div>

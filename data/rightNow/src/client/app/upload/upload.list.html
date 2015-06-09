@@ -1,6 +1,6 @@
-<div class="content-heading resources-bg">
+<div class="content-heading uploads-bg">
     <div class="container">
-        <h1 class="heading"><span class="icon icon-content-copy">&nbsp;{{vm.title}}</h1>
+        <h1 class="heading"><span class="icon icon-file-upload" />&nbsp;{{vm.title}}</h1>
     </div>
 </div>
 <div class="content-inner">
@@ -47,7 +47,7 @@
                         </div>
                     </li>
                 </ul>
-                    <div class="col-md-4 col-sm-6" ng-repeat="p in vm.resources">
+                    <div class="col-md-4 col-sm-6" ng-repeat="p in vm.uploads">
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner">
@@ -60,7 +60,7 @@
                                         <a ng-click="vm.deleteRecord(p.Id)" ng-show="vm.authData.isCoach"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
                                     </li>
                                     <li>
-                                        <a ui-sref="resourceRead({programId: p.CoachingProgramId, resourceId: p.Id})">Read More&nbsp;<span class="icon icon-chevron-right"></span></a>
+                                        <a ui-sref="uploadRead({programId: p.CoachingProgramId, uploadId: p.Id})">Read More&nbsp;<span class="icon icon-chevron-right" /></a>
                                     </li>
                                 </ul>
                             </div>
