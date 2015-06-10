@@ -25,15 +25,15 @@
 
         function activate() {
             var id = $stateParams.programId;
-            var promises = [getProgram(id)];
+            var promises = [readProgram(id)];
             vm.authData = authservice.authData;
             return $q.all(promises).then(function() {
                 logger.info('Activated ' + vm.title + ' View');
             });
         }
 
-        function getProgram(id) {
-            return dataservice.getProgram(id).then(function (data) {
+        function readProgram(id) {
+            return dataservice.readProgram(id).then(function (data) {
                 vm.program = data;
                 return vm.program;
             });

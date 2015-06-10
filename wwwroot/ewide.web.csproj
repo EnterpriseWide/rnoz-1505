@@ -284,6 +284,7 @@
     <Compile Include="Controllers\ProgramMediaController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\SendEmailToCoachController.cs" />
     <Compile Include="Controllers\WebRTCController.cs" />
     <Compile Include="Controllers\SessionsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
@@ -314,6 +315,7 @@
     </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
+    <Compile Include="Models\EmailDTO.cs" />
     <Compile Include="Models\ProgramMedia.cs" />
     <Compile Include="Models\CoachingProgramDTO.cs" />
     <Compile Include="Models\LearningPlanDTO.cs" />
@@ -469,6 +471,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\Emails\" />
     <Folder Include="App_Data\ProgramMedia\" />
   </ItemGroup>
   <ItemGroup>

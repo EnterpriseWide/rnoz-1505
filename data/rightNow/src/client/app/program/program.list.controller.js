@@ -15,21 +15,21 @@
         activate();
 
         function activate() {
-            var promises = [getPrograms(), getSessions()];
+            var promises = [listPrograms(), listSessions()];
             return $q.all(promises).then(function() {
                 logger.info('Activated ' + vm.title + ' View');
             });
         }
 
-        function getSessions() {
+        function listSessions() {
             return dataservice.listSessions().then(function (data) {
                 vm.sessions = data;
                 return vm.sessions;
             });
         }
 
-        function getPrograms() {
-            return dataservice.getPrograms().then(function (data) {
+        function listPrograms() {
+            return dataservice.listPrograms().then(function (data) {
                 vm.programs = data;
                 return vm.programs;
             });
