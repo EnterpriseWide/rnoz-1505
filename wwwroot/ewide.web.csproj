@@ -62,6 +62,10 @@
     <Reference Include="Microsoft.Owin.Cors">
       <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Select.HtmlToPdf">
       <HintPath>..\packages\Select.HtmlToPdf.1.0.0.1\lib\net40\Select.HtmlToPdf.dll</HintPath>
     </Reference>
@@ -97,9 +101,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
@@ -283,6 +284,7 @@
     <Compile Include="Controllers\ProgramMediaController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\WebRTCController.cs" />
     <Compile Include="Controllers\SessionsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
     <Compile Include="MediaTypeFormatters\LearningPlanPDFMediaTypeFormatter.cs" />
@@ -305,6 +307,10 @@
     <Compile Include="Migrations\201506040746535_Add ProgramMedia Table back in again.cs" />
     <Compile Include="Migrations\201506040746535_Add ProgramMedia Table back in again.Designer.cs">
       <DependentUpon>201506040746535_Add ProgramMedia Table back in again.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506100903282_Add Sight Call UID.cs" />
+    <Compile Include="Migrations\201506100903282_Add Sight Call UID.Designer.cs">
+      <DependentUpon>201506100903282_Add Sight Call UID.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
@@ -428,6 +434,8 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Data\weemo.config\authCA.crt" />
+    <Content Include="App_Data\weemo.config\client.p12" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -492,6 +500,19 @@
     <EmbeddedResource Include="Migrations\201506040746535_Add ProgramMedia Table back in again.resx">
       <DependentUpon>201506040746535_Add ProgramMedia Table back in again.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506100903282_Add Sight Call UID.resx">
+      <DependentUpon>201506100903282_Add Sight Call UID.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\data\Server-SDKs\NET\Weemo.Api.HttpWebRequest\Weemo.Api.HttpWebRequest.csproj">
+      <Project>{9ec95da2-c356-4f23-8727-fe4d7318303b}</Project>
+      <Name>Weemo.Api.HttpWebRequest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\data\Server-SDKs\NET\Weemo.Api\Weemo.Api.csproj">
+      <Project>{ad870687-0fbd-482b-9a06-9418a93ae7c0}</Project>
+      <Name>Weemo.Api</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
