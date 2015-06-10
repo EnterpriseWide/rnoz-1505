@@ -4,9 +4,9 @@
     angular
         .module('app.resource')
         .controller('ResourceListController', ResourceListController);
-    ResourceListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', '$modal', '$state', 'Upload'];
+    ResourceListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', '$mdDialog', '$state', 'Upload'];
 
-    function ResourceListController(logger, authservice, $stateParams, $q, dataservice, $modal, $state, Upload) {
+    function ResourceListController(logger, authservice, $stateParams, $q, dataservice, $mdDialog, $state, Upload) {
         var vm = this;
         vm.title = 'Resources';
         vm.mediaType = 0;
@@ -53,23 +53,21 @@
             }
         }
 
-        function deleteRecord(id) {
-            var modalInstance = $modal.open({
-                templateUrl: 'app/resource/resource.delete.html',
-                controller: 'ResourceDeleteController',
-                controllerAs: 'vm',
-                resolve: {
-                    id: function() {
-                        return id;
-                    }
-                }
-            });
-
-            modalInstance.result.then(function (id) {
+        function deleteRecord(id, ev) {
+            var confirm = $mdDialog.confirm()
+                .parent(angular.element(document.body))
+                .title('Would you like to Delete the Resource?')
+                .ariaLabel('Delete Resource')
+                .ok('OK')
+                .cancel('Cancel')
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function() {
                 dataservice.deleteProgramMedia(id).then(function(data) {
                     logger.success('Deleted Resource ' + data.Id);
                     getResources(vm.programId, vm.mediaType);
                 });
+            }, function() {
+                // Do Nothing
             });
         }
 

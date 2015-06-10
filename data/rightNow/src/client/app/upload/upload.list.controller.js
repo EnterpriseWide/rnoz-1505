@@ -4,9 +4,9 @@
     angular
         .module('app.upload')
         .controller('UploadListController', UploadListController);
-    UploadListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', '$modal', '$state', 'Upload'];
+    UploadListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', '$mdDialog', '$state', 'Upload'];
 
-    function UploadListController(logger, authservice, $stateParams, $q, dataservice, $modal, $state, Upload) {
+    function UploadListController(logger, authservice, $stateParams, $q, dataservice, $mdDialog, $state, Upload) {
         var vm = this;
         vm.title = 'Uploads';
         vm.MediaType = 1;
@@ -52,23 +52,21 @@
             }
         }
 
-        function deleteRecord(id) {
-            var modalInstance = $modal.open({
-                templateUrl: 'app/resource/resource.delete.html',
-                controller: 'UploadDeleteController',
-                controllerAs: 'vm',
-                resolve: {
-                    id: function() {
-                        return id;
-                    }
-                }
-            });
-
-            modalInstance.result.then(function (id) {
+        function deleteRecord(id, ev) {
+            var confirm = $mdDialog.confirm()
+                .parent(angular.element(document.body))
+                .title('Would you like to Delete the Upload?')
+                .ariaLabel('Delete Upload')
+                .ok('OK')
+                .cancel('Cancel')
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function() {
                 dataservice.deleteProgramMedia(id).then(function(data) {
                     logger.success('Deleted Upload ' + data.Id);
                     getUploads(vm.programId, vm.MediaType);
                 });
+            }, function() {
+                // Do Nothing
             });
         }
 

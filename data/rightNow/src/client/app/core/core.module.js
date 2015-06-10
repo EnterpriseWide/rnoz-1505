@@ -11,6 +11,7 @@
             'ui.bootstrap',
             'ui.router',
             'ngplus',
+            'ngMaterial',
             'LocalStorageModule',
             'textAngular',
             'ngFileUpload'

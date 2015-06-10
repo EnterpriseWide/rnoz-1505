@@ -57,7 +57,7 @@
                             <div class="card-action">
                                 <ul class="nav nav-list pull-right">
                                     <li>
-                                        <a ng-click="vm.deleteRecord(p.Id)" ng-show="vm.authData.isCoach"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
+                                        <a ng-click="vm.deleteRecord(p.Id, $event)" ng-show="vm.authData.isCoach"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
                                     </li>
                                     <li>
                                         <a ui-sref="uploadRead({programId: p.CoachingProgramId, uploadId: p.Id})">Read More&nbsp;<span class="icon icon-chevron-right" /></a>
