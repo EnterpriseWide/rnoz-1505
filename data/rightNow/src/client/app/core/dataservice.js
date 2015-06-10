@@ -16,8 +16,8 @@
             readUserInfo: readUserInfo,
             updateUserInfo: updateUserInfo,
 
-            getPrograms: getPrograms,
-            getProgram: getProgram,
+            readProgram: readProgram,
+            listPrograms: listPrograms,
 
             createAssignment: createAssignment,
             readAssignment: readAssignment,
@@ -33,7 +33,9 @@
             readProgramMedia: readProgramMedia,
             updateProgramMedia: updateProgramMedia,
             deleteProgramMedia: deleteProgramMedia,
-            listProgramMedias: listProgramMedias
+            listProgramMedias: listProgramMedias,
+
+            sendEmailToCoach: sendEmailToCoach
         };
 
         return service;
@@ -80,7 +82,7 @@
             return deferred.promise;
         }
 
-        function getPrograms() {
+        function listPrograms() {
             return $http.get(service.apiurl + '/api/programs')
                 .then(success)
                 .catch(fail);
@@ -96,7 +98,7 @@
             }
         }
 
-        function getProgram(id) {
+        function readProgram(id) {
             return $http.get(service.apiurl + '/api/programs/' + id)
                 .then(success)
                 .catch(fail);
@@ -113,7 +115,6 @@
         }
 
         function createAssignment(data) {
-            console.log(data);
             return $http.post(service.apiurl + '/api/assignments', data)
                 .then(success)
                 .catch(fail);
@@ -298,5 +299,22 @@
                 return $q.reject(msg);
             }
         }
+
+        function sendEmailToCoach(data) {
+            return $http.post(service.apiurl + '/api/SendEmailToCoach/', data)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'creation of a new email for program ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
     }
 })();

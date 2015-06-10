@@ -71,7 +71,7 @@ namespace ewide.web.Controllers
 
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             var coachingProgram = GetCoachingPrograms(currentUser)
-                .SingleOrDefault(i => i.Id == item.Id);
+                .FirstOrDefault(i => i.Id == item.Id);
             if (id != item.Id)
             {
                 return BadRequest("Learning Program Not Found");
