@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="app" class="{{ bodyClass }}">
 <head>
     <style>
         /* This helps the ng-show/ng-hide animations start at the right place. */
@@ -31,8 +31,8 @@
     <!-- endinject -->
     <!-- endbuild -->
 </head>
-<body class="{{ bodyClass }}">
-        <div ng-include="'app/layout/shell.html'"></div>
+<body>
+        <div ng-include="'app/layout/shell.html'" class="outer"></div>
         <div id="splash-page" ng-show="showSplash">
             <div class="page-splash">
                 <div class="page-splash-message">
