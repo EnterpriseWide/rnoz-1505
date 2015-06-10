@@ -310,7 +310,7 @@
             }
 
             function fail(error) {
-                var msg = 'creation of a new email for program ' + id + ' failed. ' + error.data.description;
+                var msg = 'creation of a new email for program ' + data.Id + ' failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }

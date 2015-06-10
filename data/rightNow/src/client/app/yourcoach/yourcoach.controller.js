@@ -10,7 +10,7 @@
         var vm = this;
         vm.title = 'Your Coach';
         vm.data = {};
-        vm.email = "";
+        vm.email = '';
         vm.authData = authservice.authData;
         vm.sendEmail = sendEmail;
         vm.screenconfig = {
@@ -36,7 +36,7 @@
 
         function sendEmail() {
             dataservice.sendEmailToCoach({Id: vm.programId, EmailBodyText: vm.email}).then(function (data) {
-                vm.email = "";
+                vm.email = '';
                 logger.info('Email Sent');
             });
         }

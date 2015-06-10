@@ -22,11 +22,11 @@
     function appRun($rootScope, logger) {
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             switch (toState.controller) {
-                case "LoginController":
+                case 'LoginController':
                     $rootScope.bodyClass = toState.controller;
                     break;
                 default:
-                    $rootScope.bodyClass = "";
+                    $rootScope.bodyClass = '';
                     break;
             }
         });
