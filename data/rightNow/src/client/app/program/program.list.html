@@ -12,8 +12,11 @@
                         <a ui-sref="program({programId: p.Id})" class="card-button" >
                             <div class="card">
                                 <div class="card-main">
-                                    <div class="card-inner card-title border-radius coach-bg">
-                                        <p class="card-heading"><span class="icon icon-person"></span>&nbsp;{{p.Coachee.FirstName}} {{p.Coachee.LastName}}  <span class="small">Company Name</span><span class="icon icon-chevron-right pull-right"></span></p>
+                                    <div class="card-inner card-title border-radius coach-bg clearfix">
+                                        <div class="pull-left">
+                                        <p class="card-heading"><span class="icon icon-person"></span>&nbsp;{{p.Coachee.FirstName}} {{p.Coachee.LastName}}  <span class="small">Company Name</span></p>
+                                        </div>
+                                        <p class="card-heading pull-right"><span class="icon icon-chevron-right"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -24,21 +27,20 @@
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-main">
-                            
-                            <div class="card-inner">
+                            <div class="card-inner card-title sessions-bg">
                                 <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Sessions</p>
                             </div>
-                            <div  ng-repeat="p in vm.sessions">
-                                <hr />
+                            <div ng-repeat="p in vm.sessions" class="session-list-item">
                                 <div class="card-inner">
-                                   <i class="fa fa-calendar-o"></i> <strong>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}</strong><br> <strong>{{p.StartedAt}}</strong>
-                                    <span class="btnGroup">
-                                        <a href="javascrip:void(0)" class="linkBtn greyBtn">Cancel <i class="fa fa-angle-right"></i></a>
-                                        <a href="javascrip:void(0)" class="linkBtn greyBtn">Reschedule <i class="fa fa-angle-right"></i></a>
-                                        <a href="javascrip:void(0)" class="linkBtn greyBtn">Set as Complete <i class="fa fa-angle-right"></i></a>
-                                    </span>
-
-                                    <a href="javascrip:void(0)" class="linkBtn greenBtn">BEGIN SESSION <i class="fa fa-angle-right"></i></a>
+                                   <i class="fa fa-calendar-o"></i> <strong>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}</strong>, <strong>{{p.StartedAt | date:'EEE dd MMM yyyy HH:mm'}} - {Finish Time}</strong>
+                                   <div>
+                                        <span class="btnGroup">
+                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Cancel <i class="fa fa-angle-right"></i></a>
+                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Reschedule <i class="fa fa-angle-right"></i></a>
+                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Set as Complete <i class="fa fa-angle-right"></i></a>
+                                        </span>
+                                   </div>
+                                    <a href="javascrip:void(0)" class="pull-right btn btn-flat btn-green waves-button waves-effect">Begin Session<span class="icon icon-chevron-right"></span></a>
                                 </div>
                             </div>
                             
