@@ -19,7 +19,7 @@
         <div class="card-wrap">
             <div class="row">
                 <div class="col-sm-6">
-                    <a ui-sref="yourcoach({programId: vm.program.Id})" class="card-button">
+                    <a ui-sref="yourcoach({programId: vm.data.Id})" class="card-button">
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner card-title yourcoach-bg">
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                     </a>
-                    <a ui-sref="learningplan({programId: vm.program.Id})" class="card-button">
+                    <a ui-sref="learningplan({programId: vm.data.Id})" class="card-button">
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner card-title learning-plan-bg">
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </a>
-                    <a ui-sref="assignments({programId: vm.program.Id})" class="card-button">
+                    <a ui-sref="assignments({programId: vm.data.Id})" class="card-button">
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner card-title assignments-bg">
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                     </a>
-                    <a ui-sref="resources({programId: vm.program.Id})" class="card-button">
+                    <a ui-sref="resources({programId: vm.data.Id})" class="card-button">
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner card-title resources-bg">
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </a>
-                    <a ui-sref="uploads({programId: vm.program.Id})" class="card-button">
+                    <a ui-sref="uploads({programId: vm.data.Id})" class="card-button">
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner card-title uploads-bg">
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                     </a>
-                    <a ui-sref="surveys({programId: vm.program.Id})" class="card-button">
+                    <a ui-sref="surveys({programId: vm.data.Id})" class="card-button">
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner card-title surveys-bg">
@@ -107,7 +107,7 @@
                             <div class="text-info" ng-bind-html="vm.screenconfig.bodyTextSessions"></div>
                             <hr />
                             <ul>
-                                <li ng-repeat="p in vm.program.CoachingSessions">
+                                <li ng-repeat="p in vm.data.CoachingSessions">
                                     {{p.StartedAt}}
                                 </li>
                             </ul>

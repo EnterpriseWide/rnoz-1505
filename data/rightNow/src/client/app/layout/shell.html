@@ -14,7 +14,18 @@
         <a class="pull-right" ng-click="vm.logoutUser()">Temporary Logout button</a>
     </header>
     <div class="content">
-        <div ui-view></div>
+        <div ng-include="'app/layout/sidebar.html'"></div>
+
+        <div ui-view class="shuffle-animation"></div>
+
+        <div ngplus-overlay
+             ngplus-overlay-delay-in="50"
+             ngplus-overlay-delay-out="700"
+             ngplus-overlay-animation="dissolve-animation">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+
+            <div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>
+        </div>
     </div>
     <footer class="footer" ng-show="vm.authData.isAuthenticated">
         <div class="container">
