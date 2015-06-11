@@ -62,6 +62,8 @@ hr { border-top: 1px solid #e0e0e0; }
 .form-control { box-shadow: none; }
 .form-control:focus { box-shadow: none; }
 .ta-text { border: 1px solid #ddd; }
+.ta-text h1 { font-size: 25px; line-height: 30px; }
+.ta-text h2 { font-size: 19px; line-height: 24px; }
 .ta-toolbar .btn { box-shadow: none; border: 1px solid #ddd; }
 .form-error-message { color: #ff0000; }
 
@@ -78,12 +80,22 @@ hr { border-top: 1px solid #e0e0e0; }
 	.yourcoach-bg .card-heading .small { display: inline-block; }
 }
 
+
+/* medium & above */
+@media only screen and (min-width: 768px) {
+	.list-items > .list-item:nth-of-type(2n+1) {  clear: both; }
+	.list-items > .list-item:nth-of-type(3n+1) {  clear: none; }
+}
+
 /* large & above */
 @media only screen and (min-width: 992px) {
 .LoginController body { background: url(/images/login-bg.jpg) no-repeat #fff; background-size: 70% auto; background-position:  bottom right; }
 	.container {
 		max-width: 1400px;
 	}
+
+	.list-items > .list-item:nth-of-type(2n+1) {  clear: none; }
+	.list-items > .list-item:nth-of-type(3n+1) {  clear: both; }
 }
 
 /* bootstrap overrides */
@@ -104,3 +116,7 @@ hr { border-top: 1px solid #e0e0e0; }
 th.wide { width: 33%; }
 th.center, td.center { text-align: center; }
 table .buttons { padding: 6px !important; }
+
+/* material design overrrides */
+/*md-progress-circular .md-inner .md-left .md-half-circle, md-progress-circular .md-inner .md-right .md-half-circle { border: 5px solid #ddd; }*/
+md-progress-circular { margin: 0 auto; }
