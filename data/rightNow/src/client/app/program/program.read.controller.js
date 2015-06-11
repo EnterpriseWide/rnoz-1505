@@ -65,7 +65,7 @@
                 .cancel('Cancel')
                 .targetEvent(ev);
             $mdDialog.show(confirm).then(function() {
-                logger.error('Close Program Not Implemented Yet ' + vm.data.Id)
+                logger.error('Close Program Not Implemented Yet ' + vm.data.Id);
             }, function() {
                 // Do Nothing
             });
