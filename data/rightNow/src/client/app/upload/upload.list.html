@@ -47,22 +47,24 @@
                         </div>
                     </li>
                 </ul>
-                    <div class="col-md-4 col-sm-6" ng-repeat="p in vm.uploads">
-                    <div class="card">
-                        <div class="card-main">
-                            <div class="card-inner">
-                                <p class="card-heading">{{p.Name}}</p>
-                                <p>{{p.Description}}</p>
-                            </div>
-                            <div class="card-action">
-                                <ul class="nav nav-list pull-right">
-                                    <li>
-                                        <a ng-click="vm.deleteRecord(p.Id, $event)" ng-show="vm.authData.isCoach"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
-                                    </li>
-                                    <li>
-                                        <a ui-sref="uploadRead({programId: p.CoachingProgramId, uploadId: p.Id})">Read More&nbsp;<span class="icon icon-chevron-right" /></a>
-                                    </li>
-                                </ul>
+                <div class="list-items">
+                    <div class="col-md-4 col-sm-6 list-item" ng-repeat="p in vm.uploads">
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner">
+                                    <p class="card-heading">{{p.Name}}</p>
+                                    <p>{{p.Description}}</p>
+                                </div>
+                                <div class="card-action">
+                                    <ul class="nav nav-list pull-right">
+                                        <li>
+                                            <a ng-click="vm.deleteRecord(p.Id, $event)" ng-show="vm.authData.isCoach"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
+                                        </li>
+                                        <li>
+                                            <a ui-sref="uploadRead({programId: p.CoachingProgramId, uploadId: p.Id})">Read More&nbsp;<span class="icon icon-chevron-right" /></a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
