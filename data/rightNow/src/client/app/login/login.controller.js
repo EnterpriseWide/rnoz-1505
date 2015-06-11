@@ -5,9 +5,9 @@
         .module('app.login')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['authservice', '$location', 'logger'];
+    LoginController.$inject = ['authservice', '$location', 'logger', '$state'];
 
-    function LoginController(authservice, $location, logger) {
+    function LoginController(authservice, $location, logger, $state) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'Login';
@@ -28,7 +28,9 @@
         activate();
 
         function activate() {
-            logger.info('Activated Login View');
+            if (vm.authData.isAuthenticated) {
+                $state.go('programs');
+            }
         }
 
         function loginUser() {
