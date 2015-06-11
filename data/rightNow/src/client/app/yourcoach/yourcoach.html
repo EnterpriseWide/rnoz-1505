@@ -1,0 +1,44 @@
+<div class="content-heading yourcoach-bg">
+    <div class="container">
+        <h1 class="heading"><span class="icon icon-person"></span>&nbsp;{{vm.title}}</h1>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+        <div class="clearfix sub-header" ng-show="vm.authData.isCoach">
+            <h2 class="content-sub-heading pull-left">
+                <a ui-sref="program({programId: vm.programId})"><span class="icon icon-chevron-left"></span>&nbsp;Back to Program</a>
+            </h2>
+        </div>
+        <div class="card-wrap">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <div class="col-sm-12 margin-top margin-bottom clearfix">
+                                    <p>Name: {{ vm.data.Coach.FirstName }} {{ vm.data.Coach.LastName }}</p>
+                                    <p>Phone: {{ vm.data.Coach.PhoneNumber }}</p>
+                                    <p ng-bind-html="vm.data.Coach.CoachingExperience"></p>
+                                    <p ng-bind-html="vm.data.Coach.WorkExperience"></p>
+                                    <p>Phone: {{ vm.data.Coach.Phone }}</p>
+                                </div>
+                                <div class="col-sm-12 margin-top margin-bottom clearfix">
+                                    <div class="pull-right">
+                                        <button data-ng-click="vm.sendEmail()" class="btn btn-green waves-button waves-effect waves-light"><span class="icon icon-check"></span>&nbsp;Send Email</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 margin-bottom">
+                                    <form class="form-horizontal" role="form">
+                                        <text-angular ng-model="vm.email"></text-angular>
+                                    </form>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

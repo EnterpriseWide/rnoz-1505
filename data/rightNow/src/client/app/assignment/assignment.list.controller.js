@@ -4,15 +4,15 @@
     angular
         .module('app.assignment')
         .controller('AssignmentListController', AssignmentListController);
-    AssignmentListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', '$modal', '$state'];
+    AssignmentListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', '$modal', '$state', '$mdDialog'];
 
-    function AssignmentListController(logger, authservice, $stateParams, $q, dataservice, $modal, $state) {
+    function AssignmentListController(logger, authservice, $stateParams, $q, dataservice, $modal, $state, $mdDialog) {
         var vm = this;
         vm.title = 'Assignments';
         vm.assignments = [];
         vm.screenconfig = {};
         vm.authData = authservice.authData;
-        vm.deleteAssignment = deleteAssignment;
+        vm.deleteRecord = deleteRecord;
 
         activate();
 
@@ -31,23 +31,21 @@
             });
         }
 
-        function deleteAssignment(id) {
-            var modalInstance = $modal.open({
-                templateUrl: 'app/assignment/assignment.delete.html',
-                controller: 'AssignmentDeleteController',
-                controllerAs: 'vm',
-                resolve: {
-                    id: function() {
-                        return id;
-                    }
-                }
-            });
-
-            modalInstance.result.then(function (id) {
-                // dataservice.deleteAssignment(id).then(function(data) {
-                //     logger.success('Deleted Assignment ' + data.Id);
-                //     getAssignments(vm.programId);
-                // });
+        function deleteRecord(id, ev) {
+            var confirm = $mdDialog.confirm()
+                .parent(angular.element(document.body))
+                .title('Would you like to Delete the Assignment?')
+                .ariaLabel('Delete Assignment')
+                .ok('OK')
+                .cancel('Cancel')
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function() {
+                dataservice.deleteAssignment(id).then(function(data) {
+                    logger.success('Deleted Assignment ' + data.Id);
+                    getAssignments(vm.programId);
+                });
+            }, function() {
+                // Do Nothing
             });
         }
 

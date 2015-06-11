@@ -36,6 +36,7 @@ http://blogs.msdn.com/b/webdev/archive/2013/10/20/building-a-simple-todo-applica
 http://bitoftech.net/2015/01/21/asp-net-identity-2-with-asp-net-web-api-2-accounts-management/
 4. CORS Integration based on
 http://blog.rfaisal.com/2014/01/14/building-your-own-api-and-securing-it-with-oauth-2-0-in-asp-net-webapi-2/
+5. https://github.com/weemo/Server-SDKs
 
 MSSQL Information
 Open Visual Studio Package Management Console

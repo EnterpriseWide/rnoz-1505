@@ -1,11 +1,11 @@
 <div class="content-heading resources-bg">
     <div class="container">
-        <h1 class="heading"><span class="icon icon-content-copy">&nbsp;{{vm.title}}</h1>
+        <h1 class="heading"><span class="icon icon-content-copy"></span>&nbsp;{{vm.title}}</h1>
     </div>
 </div>
 <div class="content-inner">
     <div class="container">
-        <div class="clearfix sub-header" ng-show="vm.authData.isCoach">
+        <div class="clearfix sub-header">
             <h2 class="content-sub-heading pull-left">
                 <a ui-sref="program({programId: vm.programId})"><span class="icon icon-chevron-left"></span>&nbsp;Back to Program</a>
             </h2>
@@ -57,7 +57,7 @@
                             <div class="card-action">
                                 <ul class="nav nav-list pull-right">
                                     <li>
-                                        <a ng-click="vm.deleteRecord(p.Id)" ng-show="vm.authData.isCoach"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
+                                        <a ng-click="vm.deleteRecord(p.Id, $event)" ng-show="vm.authData.isCoach"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
                                     </li>
                                     <li>
                                         <a ui-sref="resourceRead({programId: p.CoachingProgramId, resourceId: p.Id})">Read More&nbsp;<span class="icon icon-chevron-right"></span></a>

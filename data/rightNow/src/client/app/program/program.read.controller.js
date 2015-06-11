@@ -4,11 +4,13 @@
     angular
         .module('app.program')
         .controller('ProgramReadController', ProgramReadController);
-    ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice'];
-    function ProgramReadController(logger, $stateParams, $q, dataservice, authservice) {
+    ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice', '$mdDialog'];
+    function ProgramReadController(logger, $stateParams, $q, dataservice, authservice, $mdDialog) {
         var vm = this;
         vm.title = 'Dashboard';
-        vm.program = [];
+        vm.data = {};
+        vm.sendInvoice = sendInvoice;
+        vm.closeProgram = closeProgram;
         vm.screenconfig = {
             bodyTextYourCoach: '<p>Read more information about your coach, or send them a ' +
                 'message</p>',
@@ -21,23 +23,52 @@
             bodyTextSessions: '<p>Read more information about Sessionshere</p>',
             bodyTextSurveys: '<p>Read more information about surveys here</p>'
         };
+
         activate();
 
         function activate() {
             var id = $stateParams.programId;
-            var promises = [getProgram(id)];
+            var promises = [readProgram(id)];
             vm.authData = authservice.authData;
             return $q.all(promises).then(function() {
                 logger.info('Activated ' + vm.title + ' View');
             });
         }
 
-        function getProgram(id) {
-            return dataservice.getProgram(id).then(function (data) {
-                vm.program = data;
-                return vm.program;
+        function readProgram(id) {
+            return dataservice.readProgram(id).then(function (data) {
+                vm.data = data;
             });
         }
 
+        function sendInvoice(ev) {
+            var confirm = $mdDialog.confirm()
+                .parent(angular.element(document.body))
+                .title('Are you sure?')
+                .ariaLabel('Send Invoice')
+                .ok('OK')
+                .cancel('Cancel')
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function() {
+                logger.error('Send Invoice Not Implemented Yet ' + vm.data.Id);
+            }, function() {
+                // Do Nothing
+            });
+        }
+
+        function closeProgram(ev) {
+            var confirm = $mdDialog.confirm()
+                .parent(angular.element(document.body))
+                .title('Are you sure?')
+                .ariaLabel('Close Program')
+                .ok('OK')
+                .cancel('Cancel')
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function() {
+                logger.error('Close Program Not Implemented Yet ' + vm.data.Id)
+            }, function() {
+                // Do Nothing
+            });
+        }
     }
 })();

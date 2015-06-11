@@ -41,3 +41,8 @@ data/rightNow/build
 data/rightNow/bower_components/
 data/samples
 wwwroot/App_Data/ProgramMedia/
+data/Server-SDKs/Java/
+data/Server-SDKs/PHP/
+data/Server-SDKs/Ruby/
+data/Server-SDKs/Node.js/
+wwwroot/App_Data/Emails/

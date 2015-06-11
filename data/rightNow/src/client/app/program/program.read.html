@@ -11,14 +11,18 @@
                     <span class="icon icon-chevron-left"></span>&nbsp;Back to Program List
                 </a>
             </h2>
+            <p class="pull-right">
+                <a class="btn btn-blue waves-button waves-effect waves-light margin-right" ng-click="vm.sendInvoice($event)"><span class="icon icon-email"></span>&nbsp;Send Invoice</a>
+                <a class="btn btn-blue waves-button waves-effect waves-light" ng-click="vm.closeProgram($event)"><span class="icon icon-close"></span>&nbsp;Close Program</a>
+            </p>
         </div>
         <div class="card-wrap">
             <div class="row">
                 <div class="col-sm-6">
-                    <a ui-sref="coach({programId: vm.program.Id})" class="card-button">
+                    <a ui-sref="yourcoach({programId: vm.program.Id})" class="card-button">
                         <div class="card">
                             <div class="card-main">
-                                <div class="card-inner card-title coach-bg">
+                                <div class="card-inner card-title yourcoach-bg">
                                     <p class="card-heading"><span class="icon icon-person"></span>&nbsp;Your coach<span class="icon icon-chevron-right pull-right"></span></p>
                                 </div>
                                 <div class="card-inner" ng-bind-html="vm.screenconfig.bodyTextYourCoach"></div>
@@ -82,8 +86,11 @@
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-main">
-                            <div class="card-inner">
+                            <div class="card-inner card-title sessions-bg">
                                 <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Sessions</p>
+                            </div>
+                            <div class="card-inner">
+                                <p class="smallText">Manage your upcoming coaching sessions with your coach. To begin a coaching session, click 'begin session', then Right.Now. will attempt to connect you to your coach.</p>
                             </div>
                             <hr />
                             <div class="card-inner">
