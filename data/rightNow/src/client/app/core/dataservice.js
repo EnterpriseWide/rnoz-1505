@@ -45,9 +45,7 @@
             var data = 'grant_type=password&username=' +
                 loginData.userName + '&password=' + loginData.password;
             var header = {'Content-Type': 'application/x-www-form-urlencoded'};
-
             var deferred = $q.defer();
-
             $http.post(url, data, {
                 headers: header
             }).success(function (response) {
@@ -55,13 +53,18 @@
             }).error(function (error, status) {
                 deferred.reject(error);
             });
-
             return deferred.promise;
         }
 
         function logout() {
             var url = service.apiurl + '/api/account/Logout';
-            return $http.post(url);
+            var deferred = $q.defer();
+            $http.post(url).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
         }
 
         function readUserInfo() {
@@ -70,9 +73,7 @@
 
         function updateUserInfo(data) {
             var url = service.apiurl + '/api/account/userinfo';
-
             var deferred = $q.defer();
-
             $http.put(url, data).success(function (response) {
                 deferred.resolve(response);
             }).error(function (error, status) {

@@ -46,7 +46,8 @@
         }
 
         function logout() {
-            dataservice.logout().then(function() {
+            $q.all(dataservice.logout())
+            .then(function() {
                 clearAuthStorage();
             }, function() {
                 clearAuthStorage();

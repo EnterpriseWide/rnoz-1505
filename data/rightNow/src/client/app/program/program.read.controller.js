@@ -7,7 +7,7 @@
     ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice', '$mdDialog'];
     function ProgramReadController(logger, $stateParams, $q, dataservice, authservice, $mdDialog) {
         var vm = this;
-        vm.title = 'Dashboard';
+        vm.title = 'Program';
         vm.data = {};
         vm.sendInvoice = sendInvoice;
         vm.closeProgram = closeProgram;

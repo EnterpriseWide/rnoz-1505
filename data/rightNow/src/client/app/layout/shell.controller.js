@@ -4,8 +4,8 @@
     angular
         .module('app.layout')
         .controller('ShellController', ShellController);
-    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice', '$location', '$stateParams', '$state'];
-    function ShellController($rootScope, $timeout, config, logger, authservice, $location, $stateParams, $state) {
+    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice', '$location', '$stateParams', '$state', '$q'];
+    function ShellController($rootScope, $timeout, config, logger, authservice, $location, $stateParams, $state, $q) {
         var vm = this;
         vm.authData = {};
         vm.busyMessage = 'Please wait ...';
@@ -42,9 +42,10 @@
         }
 
         function logoutUser() {
-            authservice.logout();
-            $location.path('/login');
-            logger.success('logged out!');
+            $q.all(authservice.logout())
+            .then(function () {
+                $state.go('login');
+            });
         }
     }
 })();
