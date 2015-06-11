@@ -1,5 +1,6 @@
 
-body { color: #555; font-size: 14px; margin-bottom: 84px; }
+html { height: auto; position: relative; background-color: #fafafa; }
+body { color: #555; font-size: 14px; position:static; margin-bottom: 84px; }
 a:focus, a:hover { text-decoration: none; }
 h1, .h1 { font-size: 30px; line-height: 30px; }
 .footer .logo { max-width: 50px; }
@@ -33,7 +34,7 @@ hr { border-top: 1px solid #e0e0e0; }
 
 .yourcoach-bg .card-heading .small { display: block; }
 
-.LoginController { height: 100%; }
+.LoginController { height: 100%; background-color: #fff; }
 .LoginController body { height: 100%; margin-bottom: 0 !important; display: table; width: 100%; }
 .LoginController .outer { display: table-cell; vertical-align: middle; }
 .login-logo img { max-width: 150px; }
@@ -77,9 +78,9 @@ hr { border-top: 1px solid #e0e0e0; }
 
 /* large & above */
 @media only screen and (min-width: 992px) {
+.LoginController body { background: url(/images/login-bg.jpg) no-repeat #fff; background-size: 70% auto; background-position:  bottom right; }
 	.container {
-	    .LoginController .content { background: url(/images/login-bg.jpg) no-repeat #fff; background-size: 70% auto; background-position:  bottom right; }
-		max-width: 1260px;
+		max-width: 1400px;
 	}
 }
 
