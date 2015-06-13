@@ -18,7 +18,7 @@
                     <div ng-show="vm.authData.isAdmin">
                         <ul class="nav">
                             <li>
-                                <a href="/"><span class="icon icon-dashboard"></span>&nbsp;Admin Dashboard</a>
+                                <a ui-sref="admin"><span class="icon icon-dashboard"></span>&nbsp;Admin Dashboard</a>
                             </li>
                         </ul>
                         <hr>
@@ -70,7 +70,7 @@
                     </div>
                     <ul class="nav">
                         <li>
-                            <a href="#"><span class="icon icon-account-box"></span>&nbsp;Your profile</a>
+                            <a ui-sref="profile"><span class="icon icon-account-box"></span>&nbsp;Your profile</a>
                         </li>
                         <li>
                             <a ng-click="vm.logoutUser()"><span class="icon icon-cancel"></span>&nbsp;Logout</a>
