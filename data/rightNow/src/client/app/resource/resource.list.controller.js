@@ -4,9 +4,9 @@
     angular
         .module('app.resource')
         .controller('ResourceListController', ResourceListController);
-    ResourceListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', '$mdDialog', '$state', 'Upload'];
+    ResourceListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', 'ngDialog', '$state', 'Upload'];
 
-    function ResourceListController(logger, authservice, $stateParams, $q, dataservice, $mdDialog, $state, Upload) {
+    function ResourceListController(logger, authservice, $stateParams, $q, dataservice, ngDialog, $state, Upload) {
         var vm = this;
         vm.title = 'Resources';
         vm.mediaType = 0;
@@ -54,14 +54,15 @@
         }
 
         function deleteRecord(id, ev) {
-            var confirm = $mdDialog.confirm()
-                .parent(angular.element(document.body))
-                .title('Would you like to Delete the Resource?')
-                .ariaLabel('Delete Resource')
-                .ok('OK')
-                .cancel('Cancel')
-                .targetEvent(ev);
-            $mdDialog.show(confirm).then(function() {
+            ngDialog.openConfirm({
+                template:'\
+                    <p>Would you like to Delete the Resource?</p>\
+                    <div class="ngdialog-buttons">\
+                        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>\
+                        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>\
+                    </div>',
+                plain: true
+            }).then(function() {
                 dataservice.deleteProgramMedia(id).then(function(data) {
                     logger.success('Deleted Resource ' + data.Id);
                     getResources(vm.programId, vm.mediaType);
