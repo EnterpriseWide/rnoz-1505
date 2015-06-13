@@ -7,6 +7,8 @@ h1, .h1 { font-size: 30px; line-height: 30px; }
 .btn { font-size: 14px; }
 hr { border-top: 1px solid #e0e0e0; }
 
+[ng-click], [data-ng-click], [x-ng-click] { cursor: pointer; }
+
 .lighter { opacity: 0.6; }
 .no-border { border: none; }
 
@@ -21,6 +23,7 @@ hr { border-top: 1px solid #e0e0e0; }
 .heading-right { position: absolute; right: 16px; bottom: 0; }
 .heading-right .btn { color: rgba(255,255,255,0.8); }
 .heading-right .btn:hover { background-color: rgba(255,255,255,0.2); color: #fff; }
+.heading-right .btn:focus { background:none; }
 .content-heading .container { position: relative; }
 .grey-bg { background-color: #777; }
 .card-title { border-radius: 2px 2px 0 0; }
@@ -82,7 +85,7 @@ hr { border-top: 1px solid #e0e0e0; }
 @media only screen and (min-width: 480px) {
     .image-container-sm img { width: auto; }
     .login-logo img { max-width: none; margin-top: 30px;}
-    h1, .h1 { font-size: 44px; line-height: 48px; }
+    h1, .h1 { font-size: 38px; line-height: 48px; }
     .btn { font-size: 16px; }
     .btn-small { font-size: 14px; padding: 4px 10px; }
 
