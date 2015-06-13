@@ -42,12 +42,11 @@
 
         function sendInvoice(ev) {
             ngDialog.openConfirm({
-                template:'\
-                    <p>Are you sure?</p>\
-                    <div class="ngdialog-buttons">\
-                        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>\
-                        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>\
-                    </div>',
+                template: '<p>Are you sure?</p>' +
+                    '<div class="ngdialog-buttons">' +
+                        '<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>' +
+                        '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>' +
+                    '</div>',
                 plain: true
             }).then(function() {
                 logger.error('Send Invoice Not Implemented Yet ' + vm.data.Id);
@@ -58,12 +57,11 @@
 
         function closeProgram(ev) {
             ngDialog.openConfirm({
-                template:'\
-                    <p>Are you sure?</p>\
-                    <div class="ngdialog-buttons">\
-                        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>\
-                        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>\
-                    </div>',
+                template: '<p>Are you sure?</p>' +
+                    '<div class="ngdialog-buttons">' +
+                        '<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>' +
+                        '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>' +
+                    '</div>',
                 plain: true
             }).then(function() {
                 logger.error('Close Program Not Implemented Yet ' + vm.data.Id);

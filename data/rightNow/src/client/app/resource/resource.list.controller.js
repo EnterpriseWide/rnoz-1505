@@ -55,12 +55,11 @@
 
         function deleteRecord(id, ev) {
             ngDialog.openConfirm({
-                template:'\
-                    <p>Would you like to Delete the Resource?</p>\
-                    <div class="ngdialog-buttons">\
-                        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>\
-                        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>\
-                    </div>',
+                template: '<p>Would you like to Delete the Resource?</p>' +
+                    '<div class="ngdialog-buttons">' +
+                        '<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>' +
+                        '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>' +
+                    '</div>',
                 plain: true
             }).then(function() {
                 dataservice.deleteProgramMedia(id).then(function(data) {
