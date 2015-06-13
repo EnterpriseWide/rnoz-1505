@@ -78,6 +78,20 @@ hr { border-top: 1px solid #e0e0e0; }
 .ta-text h2 { font-size: 19px; line-height: 24px; }
 .ta-toolbar .btn { box-shadow: none; border: 1px solid #ddd; }
 .form-error-message { color: #ff0000; }
+label.wide { width: 100%; }
+.hide-placeholders ::-webkit-input-placeholder { /* WebKit browsers */
+    opacity: 0;
+}
+.hide-placeholders :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   opacity: 0;
+}
+.hide-placeholders ::-moz-placeholder { /* Mozilla Firefox 19+ */
+   opacity: 0;
+}
+.hide-placeholders :-ms-input-placeholder { /* Internet Explorer 10+ */
+   opacity: 0;
+}
+
 
 .content-sub-heading { margin-top: 21px; }
 
