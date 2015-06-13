@@ -285,7 +285,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\SendEmailToCoachController.cs" />
-    <Compile Include="Controllers\WebRTCController.cs" />
     <Compile Include="Controllers\SessionsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
     <Compile Include="MediaTypeFormatters\LearningPlanPDFMediaTypeFormatter.cs" />
@@ -312,6 +311,10 @@
     <Compile Include="Migrations\201506100903282_Add Sight Call UID.cs" />
     <Compile Include="Migrations\201506100903282_Add Sight Call UID.Designer.cs">
       <DependentUpon>201506100903282_Add Sight Call UID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506130518355_Add Vidyo Account Id and Remove Sight Call UID.cs" />
+    <Compile Include="Migrations\201506130518355_Add Vidyo Account Id and Remove Sight Call UID.Designer.cs">
+      <DependentUpon>201506130518355_Add Vidyo Account Id and Remove Sight Call UID.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
@@ -436,8 +439,6 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="App_Data\weemo.config\authCA.crt" />
-    <Content Include="App_Data\weemo.config\client.p12" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -472,7 +473,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Emails\" />
-    <Folder Include="App_Data\ProgramMedia\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -506,16 +506,9 @@
     <EmbeddedResource Include="Migrations\201506100903282_Add Sight Call UID.resx">
       <DependentUpon>201506100903282_Add Sight Call UID.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\data\Server-SDKs\NET\Weemo.Api.HttpWebRequest\Weemo.Api.HttpWebRequest.csproj">
-      <Project>{9ec95da2-c356-4f23-8727-fe4d7318303b}</Project>
-      <Name>Weemo.Api.HttpWebRequest</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\data\Server-SDKs\NET\Weemo.Api\Weemo.Api.csproj">
-      <Project>{ad870687-0fbd-482b-9a06-9418a93ae7c0}</Project>
-      <Name>Weemo.Api</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Migrations\201506130518355_Add Vidyo Account Id and Remove Sight Call UID.resx">
+      <DependentUpon>201506130518355_Add Vidyo Account Id and Remove Sight Call UID.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

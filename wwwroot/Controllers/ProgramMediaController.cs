@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
@@ -38,6 +39,16 @@ namespace ewide.web.Controllers
                     i.CoachingProgram.Coachee.Id == currentUser.Id);
         }
 
+        private static string GetRootFolder(CoachingProgram program)
+        {
+            var path = String.Format("{0}/{1}/",
+                HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["Program Media Folder"]),
+                program.Id
+                );
+            Directory.CreateDirectory(path);
+            return path;
+        }
+
         public IHttpActionResult GetProgramMedias(Int64 programId, MediaType mediaType)
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
@@ -47,7 +58,7 @@ namespace ewide.web.Controllers
             {
                 return NotFound();
             }
-            string root = HttpContext.Current.Server.MapPath("~/App_Data/ProgramMedia/");
+            var root = GetRootFolder(program);
             var list = GetProgramMediaList(currentUser)
                 .Where(i => i.MediaType == mediaType);
             return Ok(list);
@@ -133,8 +144,7 @@ namespace ewide.web.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
-            string root = HttpContext.Current.Server.MapPath("~/App_Data/ProgramMedia/");
-            Directory.CreateDirectory(root);
+            string root = GetRootFolder(program);
             var provider = new MultipartFormDataStreamProvider(root);
             try
             {
@@ -169,7 +179,7 @@ namespace ewide.web.Controllers
 
         // DELETE: api/Assignments/5
         [ResponseType(typeof(ProgramMedia))]
-        public IHttpActionResult DeleteAssignment(int id)
+        public IHttpActionResult DeleteProgramMedia(int id)
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             var programMedia = GetProgramMediaListFull(currentUser)
@@ -193,8 +203,8 @@ namespace ewide.web.Controllers
                         break;
                 }
             }
+            string ProgramMediaDirectory = GetRootFolder(programMedia.CoachingProgram);
             AppDb.ProgramMedia.Remove(programMedia);
-            string ProgramMediaDirectory = HttpContext.Current.Server.MapPath("~/App_Data/ProgramMedia/");
             var fileName = String.Format("{0}{1}", ProgramMediaDirectory, programMedia.FileName);
             if (File.Exists(fileName))
             {
