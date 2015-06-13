@@ -9,6 +9,9 @@
             <h2 class="content-sub-heading pull-left">
                 <a ui-sref="program({programId: vm.programId})"><span class="icon icon-chevron-left"></span>&nbsp;Back to Program</a>
             </h2>
+            <p class="pull-right">
+                <a class="btn btn-blue waves-button waves-effect waves-light" href="#"><span class="icon icon-my-library-add"></span>&nbsp;Create new item</a>
+            </p>
         </div>
         <div class="card-wrap">
             <div class="row">
@@ -58,7 +61,10 @@
                                 <div class="card-action">
                                     <ul class="nav nav-list pull-right">
                                         <li>
-                                            <a ng-click="vm.deleteRecord(p.Id, $event)" ng-show="vm.authData.isCoach"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
+                                            <a href="#"><span class="icon icon-insert-drive-file"></span>&nbsp;View File</a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="vm.deleteRecord(p.Id, $event)" ng-show="vm.authData.isCoach"><span class="icon icon-delete"></span>&nbsp;Delete</a>
                                         </li>
                                         <li>
                                             <a ui-sref="resourceRead({programId: p.CoachingProgramId, resourceId: p.Id})">Read More&nbsp;<span class="icon icon-chevron-right"></span></a>

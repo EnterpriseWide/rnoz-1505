@@ -13,6 +13,28 @@
                 <a class="btn btn-blue waves-button waves-effect waves-light" ui-sref="resourceUpdate({programId: vm.programId, resourceId: vm.data.Id})"><span class="icon icon-my-library-add"></span>&nbsp;Update Resource</a>
             </p>
         </div>
+
+
+        <div class="card-wrap">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <div class="col-sm-12 margin-top margin-bottom clearfix">
+                                    
+        <h2 class="card-heading">Resource Title Here</h2>
+        <p>URL - <a href="https://www.youtube.com/watch?v=dVDk7PXNXB8" target="_blank">https://www.youtube.com/watch?v=dVDk7PXNXB8 <span class="icon icon-chevron-right"></span></a></p>
+        <p>File - <a href="/path/to/file/filename.pdf" target="_blank">filename.pdf <span class="icon icon-chevron-right"></span></a></p>
+        <p>Notes - (bodytext)</p>
         <div ng-bind-html="vm.data.BodyText"></div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
