@@ -4,9 +4,9 @@
     angular
         .module('app.upload')
         .controller('UploadListController', UploadListController);
-    UploadListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', '$mdDialog', '$state', 'Upload'];
+    UploadListController.$inject = ['logger', 'authservice', '$stateParams', '$q', 'dataservice', 'ngDialog', '$state', 'Upload'];
 
-    function UploadListController(logger, authservice, $stateParams, $q, dataservice, $mdDialog, $state, Upload) {
+    function UploadListController(logger, authservice, $stateParams, $q, dataservice, ngDialog, $state, Upload) {
         var vm = this;
         vm.title = 'Uploads';
         vm.MediaType = 1;
@@ -53,14 +53,15 @@
         }
 
         function deleteRecord(id, ev) {
-            var confirm = $mdDialog.confirm()
-                .parent(angular.element(document.body))
-                .title('Would you like to Delete the Upload?')
-                .ariaLabel('Delete Upload')
-                .ok('OK')
-                .cancel('Cancel')
-                .targetEvent(ev);
-            $mdDialog.show(confirm).then(function() {
+            ngDialog.openConfirm({
+                template:'\
+                    <p>Would you like to Delete the Upload?</p>\
+                    <div class="ngdialog-buttons">\
+                        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>\
+                        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>\
+                    </div>',
+                plain: true
+            }).then(function() {
                 dataservice.deleteProgramMedia(id).then(function(data) {
                     logger.success('Deleted Upload ' + data.Id);
                     getUploads(vm.programId, vm.MediaType);

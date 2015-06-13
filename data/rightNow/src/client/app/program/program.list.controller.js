@@ -17,7 +17,6 @@
         function activate() {
             var promises = [listPrograms(), listSessions()];
             return $q.all(promises).then(function() {
-                logger.info('Activated ' + vm.title + ' View');
             });
         }
 
