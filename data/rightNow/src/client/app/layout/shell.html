@@ -87,8 +87,20 @@
         <div ngplus-overlay
              ngplus-overlay-delay-in="50"
              ngplus-overlay-delay-out="700"
-             ngplus-overlay-animation="dissolve-animation">
-            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+             ngplus-overlay-animation="dissolve-animation" class="loading-indicator">
+            <div class="progress-circular progress-circular-alt progress-circular-center">
+                <div class="progress-circular-wrapper">
+                    <div class="progress-circular-inner">
+                        <div class="progress-circular-left">
+                            <div class="progress-circular-spinner"></div>
+                        </div>
+                        <div class="progress-circular-gap"></div>
+                        <div class="progress-circular-right">
+                            <div class="progress-circular-spinner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!--<div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>-->
         </div>
