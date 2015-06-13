@@ -24,7 +24,6 @@
                 </ul>
                 <ul style="clear:both" ng-show="vm.files.length > 0" class="response">
                     <li class="sel-file" ng-repeat="f in vm.files">
-                        <img ng-show="f.type.indexOf('image') > -1" ngf-src="f" class="thumb" ngf-accept="'image/*'">
                         <span class="progress" ng-show="f.progress >= 0">                       
                             <div style="width:{{f.progress}}%">{{f.progress}}%</div>
                         </span>             

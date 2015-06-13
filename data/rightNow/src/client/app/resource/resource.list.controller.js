@@ -47,7 +47,7 @@
                         file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                     }).success(function (data, status, headers, config) {
                         vm.resources.push(data[0]);
-                        logger.success('file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data));
+                        logger.success('file ' + config.file.name + 'uploaded.');
                     });
                 }
             }
