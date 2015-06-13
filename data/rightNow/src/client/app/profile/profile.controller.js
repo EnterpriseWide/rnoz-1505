@@ -21,13 +21,11 @@
 
         function activate() {
             angular.extend(vm.data, authservice.authData);
-            logger.info('Activated ' + vm.title + ' View');
         }
 
         function save() {
             // Update UserInfo on Server
             dataservice.updateUserInfo(vm.data).then(function (data) {
-                authservice.authData.userRetrieved = false;
                 authservice.fillData();
                 logger.success('Profile Updated');
             });

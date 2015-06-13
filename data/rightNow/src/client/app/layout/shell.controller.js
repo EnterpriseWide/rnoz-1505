@@ -23,7 +23,6 @@
 
         function activate() {
             vm.isMenuOpen = $rootScope.isMenuOpen;
-            logger.success(config.appTitle + ' loaded!', null);
             authservice.fillData();
             vm.authData = authservice.authData;
             if (!vm.authData.isAuthenticated) {
