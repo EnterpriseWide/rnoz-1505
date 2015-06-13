@@ -1,16 +1,35 @@
-<div ng-controller="ShellController as vm" flex layout="column">
-    <md-toolbar layout="row" layout-align="space-around center" ng-show="vm.authData.isAuthenticated">
-        <div>
-            <md-button><i class="fa fa-bars"></i></md-button>
-            <a ui-sref="programs"><img src="{{vm.navline.logo}}" /></a>
+<div ng-controller="ShellController as vm">
+    <header class="header" ng-show="vm.authData.isAuthenticated">
+        <ul class="nav nav-list pull-left">
+            <li>
+                <a class="menu-toggle" href="#menu">
+                    <span class="access-hide">Menu</span>
+                    <span class="icon icon-menu icon-lg"></span>
+                    <span class="header-close icon icon-close icon-lg"></span>
+                </a>
+            </li>
+        </ul>
+        <a class="header-logo" ui-sref="programs"><img src="{{vm.navline.logo}}" /></a>
+        <a class="pull-right" ui-sref="admin" ng-show="vm.authData.isAdmin">Admin</a>
+        <a class="pull-right" ng-click="vm.logoutUser()">Temporary Logout button</a>
+    </header>
+    <div class="content">
+        <div ng-include="'app/layout/sidebar.html'"></div>
+
+        <div ui-view class="shuffle-animation"></div>
+
+        <div ngplus-overlay
+             ngplus-overlay-delay-in="50"
+             ngplus-overlay-delay-out="700"
+             ngplus-overlay-animation="dissolve-animation">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+
+            <!--<div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>-->
         </div>
-        <a ui-sref="admin" ng-show="vm.authData.isAdmin">Admin &nbsp;|&nbsp;</a>
-        <a ng-click="vm.logoutUser()" href="">Temporary Logout button</a>
-    </md-toolbar>
-    <div flex ui-view></div>
-    <md-toolbar ng-show="vm.authData.isAuthenticated">
+    </div>
+    <footer class="footer" ng-show="vm.authData.isAuthenticated">
         <div class="container">
             <p class="pull-right"><a href="http://www.oztrain.com.au" target="_blank">Right.Now. developed by <img class="logo" src="/images/oztrain-logo.png" /></a></p>
         </div>
-    </md-toolbar>
+    </footer>
 </div>
