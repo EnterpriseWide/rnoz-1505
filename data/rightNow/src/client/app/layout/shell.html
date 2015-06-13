@@ -2,7 +2,7 @@
     <header class="header" ng-show="vm.authData.isAuthenticated">
         <ul class="nav nav-list pull-left">
             <li>
-                <a class="menu-toggle" href="#menu">
+                <a class="menu-toggle" href="" ng-click="vm.toggleMenu()">
                     <span class="access-hide">Menu</span>
                     <span class="icon icon-menu icon-lg"></span>
                     <span class="header-close icon icon-close icon-lg"></span>
@@ -13,9 +13,56 @@
         <a class="pull-right" ui-sref="admin" ng-show="vm.authData.isAdmin">Admin</a>
         <a class="pull-right" ng-click="vm.logoutUser()">Temporary Logout button</a>
     </header>
-    <div class="content">
-        <div ng-include="'app/layout/sidebar.html'"></div>
+    <nav class="menu" ng-class="{open: vm.isMenuOpen}" id="menu">
+        <div class="menu-scroll">
+            <div class="menu-wrap">
+                <div class="menu-content">
+                    <ul class="nav">
+                        <li>
+                            <a href="/"><span class="icon icon-dashboard"></span>&nbsp;Dashboard</a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <ul class="nav">
+                        <li>
+                            <a href="/your-coach.html"><span class="icon icon-person"></span>&nbsp;Your coach</a>
+                        </li>
+                        <li>
+                            <a href="/learning-plan.html"><span class="icon icon-layers"></span>&nbsp;Learning plan</a>
+                        </li>
+                        <li>
+                            <a href="/assignments.html"><span class="icon icon-content-copy"></span>&nbsp;Assignments</a>
+                        </li>
+                        <li>
+                            <a href="/resources.html"><span class="icon icon-insert-drive-file"></span>&nbsp;Resources</a>
+                        </li>
+                        <li>
+                            <a href="/uploads.html"><span class="icon icon-file-upload"></span>&nbsp;Uploads</a>
+                        </li>
+                        <li>
+                            <a href="/surveys.html"><span class="icon icon-comment"></span>&nbsp;Surveys</a>
+                        </li>
 
+                    </ul>
+                    <hr>
+                    <ul class="nav">
+                        <li>
+                            <a href="/help.html"><span class="icon icon-help"></span>&nbsp;Help</a>
+                        </li>
+
+                    </ul>
+                    <hr>
+                    <ul class="nav">
+                        <li>
+                            <a href="#"><span class="icon icon-cancel"></span>&nbsp;Logout</a>
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="content">
         <div ui-view class="shuffle-animation"></div>
 
         <div ngplus-overlay

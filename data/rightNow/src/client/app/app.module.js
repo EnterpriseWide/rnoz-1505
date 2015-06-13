@@ -30,6 +30,14 @@
                     break;
             }
         });
+        $rootScope.isMenuOpen = false;
+        $rootScope.$watch('isMenuOpen', function() {
+            if ($rootScope.isMenuOpen) {
+                $rootScope.menuOpenClass = "menu-open";
+            } else {
+                $rootScope.menuOpenClass = "";
+            }
+        });
     }
 
 })();

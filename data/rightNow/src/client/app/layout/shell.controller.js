@@ -17,10 +17,12 @@
             tagline: config.tagLine,
         };
         vm.logoutUser = logoutUser;
+        vm.toggleMenu = toggleMenu;
 
         activate();
 
         function activate() {
+            vm.isMenuOpen = $rootScope.isMenuOpen;
             logger.success(config.appTitle + ' loaded!', null);
             authservice.fillData();
             vm.authData = authservice.authData;
@@ -32,6 +34,11 @@
                 $state.go('programs');
             }
             hideSplash();
+        }
+
+        function toggleMenu() {
+            $rootScope.isMenuOpen = !$rootScope.isMenuOpen;
+            vm.isMenuOpen = $rootScope.isMenuOpen;
         }
 
         function hideSplash() {
