@@ -75,18 +75,14 @@
         function fillData() {
             var data = localStorageService.get('authorizationData');
             if (data) {
-                authData.userRetrieved = false;
                 authData.isAuthenticated = true;
                 authData.token = data.token;
                 authData.userName = data.userName;
-                if (!authData.userRetrieved) {
-                    return dataservice.readUserInfo().then(function(result) {
-                        authData.userRetrieved = true;
-                        angular.extend(authData, result.data);
-                        authData.isAdmin = authData.Roles.indexOf('Admin') >= 0;
-                        authData.isCoach = authData.Roles.indexOf('Coach') >= 0;
-                    });
-                }
+                return dataservice.readUserInfo().then(function(result) {
+                    angular.extend(authData, result.data);
+                    authData.isAdmin = authData.Roles.indexOf('Admin') >= 0;
+                    authData.isCoach = authData.Roles.indexOf('Coach') >= 0;
+                });
             }
             return $q.when(true);
         }
