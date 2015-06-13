@@ -15,6 +15,13 @@ hr { border-top: 1px solid #e0e0e0; }
 .header { background-color: #444; }
 .header.fixed, .header.open, .menu-open .header { background-color: #555; }
 .header .nav > li > a .header-close:after { background-color: #7a7979; }
+.menu-open .icon-menu { opacity: 0; }
+.menu-open .header .nav > li > a .header-close { opacity: 1; transform: rotate(0deg); }
+.menu-open .header .nav > li > a .header-close:after { transform: scale(1);}
+.heading-right { position: absolute; right: 16px; bottom: 0; }
+.heading-right .btn { color: rgba(255,255,255,0.8); }
+.heading-right .btn:hover { background-color: rgba(255,255,255,0.2); color: #fff; }
+.content-heading .container { position: relative; }
 .grey-bg { background-color: #777; }
 .card-title { border-radius: 2px 2px 0 0; }
 .card-title .card-heading { margin-top: 0px; margin-bottom: 0px; padding-top: 24px; padding-bottom: 24px; color: #fff; }
@@ -38,7 +45,9 @@ hr { border-top: 1px solid #e0e0e0; }
 .LoginController { height: 100%; background-color: #fff; }
 .LoginController body { height: 100%; margin-bottom: 0 !important; display: table; width: 100%; }
 .LoginController .outer { display: table-cell; vertical-align: middle; }
+.LoginController nav.menu { display: none; }
 .login-logo img { max-width: 150px; }
+
 
 .session-list-item { padding-top: 24px;  padding-bottom: 24px; border-top: 1px solid #e0e0e0; }
 .session-list-item:first-of-type { border-top: none; }
@@ -100,6 +109,7 @@ hr { border-top: 1px solid #e0e0e0; }
 
 /* bootstrap overrides */
 .container { width: 100%; }
+a.menu-toggle:hover, .nav > li > a:hover, a.menu-toggle:focus, .nav > li > a:focus, a.menu-toggle:active, .nav > li > a:active { background: none; }
 .modal-footer .btn + .btn { margin-right: 0; }
 .modal-dialog { margin: 48px auto; }
 .table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {

@@ -1,19 +1,19 @@
 <div class="content-heading grey-bg">
     <div class="container">
         <h1 class="heading"><span class="icon icon-dashboard"></span>&nbsp;{{vm.title}}</h1>
+        <div class="heading-right margin-bottom" ng-show="vm.authData.isCoach">
+            <a class="btn btn-flat waves-button waves-effect waves-light" ng-click="vm.sendInvoice($event)"><span class="icon icon-email"></span>&nbsp;Send Invoice</a>
+            <a class="btn btn-flat waves-button waves-effect waves-light" ng-click="vm.closeProgram($event)"><span class="icon icon-close"></span>&nbsp;Close Program</a>
+        </div>
     </div>
 </div>
 <div class="content-inner">
     <div class="container">
         <div class="clearfix sub-header" ng-show="vm.authData.isCoach">
-            <h2 class="content-sub-heading pull-left">
+            <p class="content-sub-heading pull-left">
                 <a ui-sref="programs">
                     <span class="icon icon-chevron-left"></span>&nbsp;Back to Program List
                 </a>
-            </h2>
-            <p class="pull-right">
-                <a class="btn btn-blue waves-button waves-effect waves-light margin-right" ng-click="vm.sendInvoice($event)"><span class="icon icon-email"></span>&nbsp;Send Invoice</a>
-                <a class="btn btn-blue waves-button waves-effect waves-light" ng-click="vm.closeProgram($event)"><span class="icon icon-close"></span>&nbsp;Close Program</a>
             </p>
         </div>
         <div class="card-wrap">
@@ -87,7 +87,8 @@
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner card-title sessions-bg">
-                                <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Sessions</p>
+                                <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Sessions <a class="pull-right btn btn-blue waves-button waves-effect waves-light" href="#"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a></p>
+                               
                             </div>
                             <div class="card-inner">
                                 <p class="smallText">Manage your upcoming coaching sessions with your coach. To begin a coaching session, click 'begin session', then Right.Now. will attempt to connect you to your coach.</p>

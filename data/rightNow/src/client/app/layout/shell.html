@@ -10,51 +10,70 @@
             </li>
         </ul>
         <a class="header-logo" ui-sref="programs"><img src="{{vm.navline.logo}}" /></a>
-        <a class="pull-right" ui-sref="admin" ng-show="vm.authData.isAdmin">Admin</a>
-        <a class="pull-right" ng-click="vm.logoutUser()">Temporary Logout button</a>
     </header>
     <nav class="menu" ng-class="{open: vm.isMenuOpen}" id="menu">
         <div class="menu-scroll">
             <div class="menu-wrap">
                 <div class="menu-content">
-                    <ul class="nav">
-                        <li>
-                            <a href="/"><span class="icon icon-dashboard"></span>&nbsp;Dashboard</a>
-                        </li>
-                    </ul>
-                    <hr>
-                    <ul class="nav">
-                        <li>
-                            <a href="/your-coach.html"><span class="icon icon-person"></span>&nbsp;Your coach</a>
-                        </li>
-                        <li>
-                            <a href="/learning-plan.html"><span class="icon icon-layers"></span>&nbsp;Learning plan</a>
-                        </li>
-                        <li>
-                            <a href="/assignments.html"><span class="icon icon-content-copy"></span>&nbsp;Assignments</a>
-                        </li>
-                        <li>
-                            <a href="/resources.html"><span class="icon icon-insert-drive-file"></span>&nbsp;Resources</a>
-                        </li>
-                        <li>
-                            <a href="/uploads.html"><span class="icon icon-file-upload"></span>&nbsp;Uploads</a>
-                        </li>
-                        <li>
-                            <a href="/surveys.html"><span class="icon icon-comment"></span>&nbsp;Surveys</a>
-                        </li>
+                    <div ng-show="vm.authData.isAdmin">
+                        <ul class="nav">
+                            <li>
+                                <a href="/"><span class="icon icon-dashboard"></span>&nbsp;Admin Dashboard</a>
+                            </li>
+                        </ul>
+                        <hr>
+                    </div>
+                    <div ng-show="vm.authData.isCoach">
+                        <ul class="nav">
+                            <li>
+                                <a ui-sref="programs"><span class="icon icon-people"></span>&nbsp;Program List</a>
+                            </li>
+                        </ul>
+                        <hr>
+                    </div>
+                    <div ng-show="!vm.authData.isCoach && !vm.authData.isAdmin">
+                        <ul class="nav">
+                            <li>
+                                <a href="/"><span class="icon icon-dashboard"></span>&nbsp;Dashboard</a>
+                            </li>
+                        </ul>
+                        <hr>
+                        <ul class="nav">
+                            <li>
+                                <a href="/your-coach.html"><span class="icon icon-person"></span>&nbsp;Your coach</a>
+                            </li>
+                            <li>
+                                <a href="/learning-plan.html"><span class="icon icon-layers"></span>&nbsp;Learning plan</a>
+                            </li>
+                            <li>
+                                <a href="/assignments.html"><span class="icon icon-content-copy"></span>&nbsp;Assignments</a>
+                            </li>
+                            <li>
+                                <a href="/resources.html"><span class="icon icon-insert-drive-file"></span>&nbsp;Resources</a>
+                            </li>
+                            <li>
+                                <a href="/uploads.html"><span class="icon icon-file-upload"></span>&nbsp;Uploads</a>
+                            </li>
+                            <li>
+                                <a href="/surveys.html"><span class="icon icon-comment"></span>&nbsp;Surveys</a>
+                            </li>
 
-                    </ul>
-                    <hr>
-                    <ul class="nav">
-                        <li>
-                            <a href="/help.html"><span class="icon icon-help"></span>&nbsp;Help</a>
-                        </li>
+                        </ul>
+                        <hr>
+                        <ul class="nav">
+                            <li>
+                                <a href="/help.html"><span class="icon icon-help"></span>&nbsp;Help</a>
+                            </li>
 
-                    </ul>
-                    <hr>
+                        </ul>
+                        <hr>
+                    </div>
                     <ul class="nav">
                         <li>
-                            <a href="#"><span class="icon icon-cancel"></span>&nbsp;Logout</a>
+                            <a href="#"><span class="icon icon-account-box"></span>&nbsp;Your profile</a>
+                        </li>
+                        <li>
+                            <a ng-click="vm.logoutUser()"><span class="icon icon-cancel"></span>&nbsp;Logout</a>
                         </li>
                     </ul>
                     <hr>
