@@ -22,10 +22,10 @@
                     resolve: {
                         dataservice: 'dataservice',
                         program: function(dataservice, $stateParams, $state) {
-                            // if (!$stateParams.programId)
-                            // {
-                            //     $state.go('programs');
-                            // }
+                            if (!$stateParams.programId)
+                            {
+                                $state.go('programs');
+                            }
                             return dataservice.readProgram($stateParams.programId);
                         }
                     }
