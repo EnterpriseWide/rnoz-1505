@@ -6,8 +6,6 @@
         .config(appConfig);
 
     authInterceptor.$inject = ['$q', '$location', 'localStorageService'];
-    appConfig.$inject = ['$httpProvider'];
-
     function authInterceptor($q, $location, localStorageService) {
 
         var service = {
@@ -42,6 +40,7 @@
         }
     }
 
+    appConfig.$inject = ['$httpProvider'];
     function appConfig($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     }
