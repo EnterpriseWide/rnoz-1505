@@ -68,7 +68,19 @@
         }
 
         function readUserInfo() {
-            return $http.get(service.apiurl + '/api/account/userinfo');
+            var deferred = $q.defer();
+            $http.get(service.apiurl + '/api/account/userinfo')
+                .then(success)
+                .catch(fail);
+            return deferred.promise;
+            function success(response) {
+                deferred.resolve(response);
+            }
+            function fail(error) {
+                var msg = 'query for userinfo failed. ' + error.data.description;
+                logger.error(msg);
+                deferred.reject(msg);
+            }
         }
 
         function updateUserInfo(data) {
@@ -79,7 +91,6 @@
             }).error(function (error, status) {
                 deferred.reject(error);
             });
-
             return deferred.promise;
         }
 
@@ -87,11 +98,9 @@
             return $http.get(service.apiurl + '/api/programs')
                 .then(success)
                 .catch(fail);
-
             function success(response) {
                 return response.data;
             }
-
             function fail(error) {
                 var msg = 'query for programs failed. ' + error.data.description;
                 logger.error(msg);
@@ -155,7 +164,9 @@
             $http.put(url, data).success(function (response) {
                 deferred.resolve(response);
             }).error(function (error, status) {
-                deferred.reject(error);
+                var msg = 'delete for assignment ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                deferred.reject(msg);
             });
 
             return deferred.promise;
