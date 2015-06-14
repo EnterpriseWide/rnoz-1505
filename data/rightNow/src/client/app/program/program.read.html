@@ -101,20 +101,30 @@
                                
                             </div>
                             <div class="card-inner">
-                                <p class="smallText">Manage your upcoming coaching sessions with your coach. To begin a coaching session, click 'begin session', then Right.Now. will attempt to connect you to your coach.</p>
+                                <p class="smallText" ng-show="!vm.authData.isCoach && !vm.authData.isAdmin">To begin a coaching session, click 'begin session', and then Right.Now. will attempt to connect you to your coach. <a href="#">Read More<span class="icon icon-chevron-right"></span></a></p>
                             </div>
-                            <hr />
-                            <div class="card-inner">
-                                <p>
-                                    Session stuff here
-                                </p>
+                            <div ng-show="!vm.data.CoachingSessions">
+                                <hr />
+                                <div class="card-inner">
+                                    <p>
+                                        There is currently no sessions to list
+                                    </p>
+                                </div>
                             </div>
-                            <hr />
-                            <div class="card-inner">
-                                <p>
-                                    Session stuff here
-                                </p>
+                            <div class="session-list-item">
+                                <div class="card-inner">
+                                   <i class="fa fa-calendar-o"></i> <strong>{{p.StartedAt | date:'EEE dd MMM yyyy HH:mm'}} - {Finish Time}</strong>
+                                   <div>
+                                        <span class="btnGroup">
+                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Cancel <i class="fa fa-angle-right"></i></a>
+                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Reschedule <i class="fa fa-angle-right"></i></a>
+                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Set as Complete <i class="fa fa-angle-right"></i></a>
+                                        </span>
+                                   </div>
+                                    
+                                </div>
                             </div>
+
                             <div class="text-info" ng-bind-html="vm.screenconfig.bodyTextSessions"></div>
                             <hr />
                             <ul>
