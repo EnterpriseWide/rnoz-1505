@@ -13,27 +13,13 @@
         <div class="card-wrap">
             <div class="row">
 
-                <div class="col-sm-12">
+
+                <div class="col-sm-5">
                     <div class="card">
                         <div class="card-main">
-                            <div class="card-inner">
-
-                       <!--         <div class="col-sm-6 margin-top margin-bottom clearfix">
-
-                        <div class="pull-left tile-side">
-                            <div class="avatar avatar-blue avatar-sm">
-                                <span class="icon icon-alarm"></span>
-                            </div>
-                        </div>
-                        <div class="tile-inner">
-                            <span>lorem ipsum dolor sit amet</span>
-                        </div>
-                   
-</div>-->
-
-
-                                <div class="col-sm-6 margin-top margin-bottom clearfix">
-                                    <div>
+                            <div class="user-list-item">
+                                
+                                    <div class="clearfix">
                                         <div class="pull-left tile-side">
                                             <div class="avatar avatar-blue avatar-sm">
                                                 <span class="icon icon-person"></span>
@@ -43,8 +29,11 @@
                                             <span>{{ vm.data.Coach.FirstName }} {{ vm.data.Coach.LastName }}</span>
                                         </div>
                                     </div>
-                                    <hr class="small-margin"/>
-                                    <div>
+                                
+                            </div>
+                            <div class="user-list-item">
+                                
+                                    <div class="clearfix">
                                         <div class="pull-left tile-side">
                                             <div class="avatar avatar-blue avatar-sm">
                                                 <span class="icon icon-phone"></span>
@@ -54,8 +43,11 @@
                                             <span>{{ vm.data.Coach.Phone }}</span>
                                         </div>
                                     </div>
-                                    <hr class="small-margin"/>
-                                    <div>
+                               
+                            </div>
+                            <div class="user-list-item">
+                                
+                                    <div class="clearfix">
                                         <div class="pull-left tile-side">
                                             <div class="avatar avatar-blue avatar-sm">
                                                 <span class="icon icon-email"></span>
@@ -65,8 +57,39 @@
                                             <span><a href="mailto:{{ vm.data.Coach.Email }}">{{ vm.data.Coach.Email }}</a></span>
                                         </div>
                                     </div>
-                                    <hr class="small-margin"/>
-                                    <div>
+                               
+                            </div>
+                            <div class="user-list-item" ng-show="vm.authData.isCoach">
+                                
+                                    <div class="clearfix">
+                                        <div class="pull-left tile-side">
+                                            <div class="avatar avatar-blue avatar-sm">
+                                                <span class="icon icon-quick-contacts-mail"></span>
+                                            </div>
+                                        </div>
+                                        <div class="tile-inner">
+                                            <span>Position: {position here} </span>
+                                        </div>
+                                    </div>
+                               
+                            </div>
+                            <div class="user-list-item" ng-show="vm.authData.isCoach">
+                                
+                                    <div class="clearfix">
+                                        <div class="pull-left tile-side">
+                                            <div class="avatar avatar-blue avatar-sm">
+                                                <span class="icon icon-home"></span>
+                                            </div>
+                                        </div>
+                                        <div class="tile-inner">
+                                            <span>Company: {company here} </span>
+                                        </div>
+                                    </div>
+                               
+                            </div>
+                            <div class="user-list-item">
+                                
+                                    <div class="clearfix">
                                         <div class="pull-left tile-side">
                                             <div class="avatar avatar-blue avatar-sm">
                                                 <span class="icon icon-dvr"></span>
@@ -76,26 +99,53 @@
                                             <span><a href="#" class="" target="_blank">LinkedIn profile<span class="icon icon-chevron-right"></span></a></span>
                                         </div>
                                     </div>
-                                    <hr class="small-margin"/>
-                                   <h3>Coaching Experience</h3>
-                                    <p ng-bind-html="vm.data.Coach.CoachingExperience"></p>
-                                    <hr/>
-                                   <h3>Coaching Experience</h3>
-                                    <p ng-bind-html="vm.data.Coach.WorkExperience"></p>
-                                </div>
-                                <div class="col-sm-6 margin-top margin-bottom clearfix">
-                                    <h3>Send an email to your coach</h3>
-                                    <form class="form-horizontal" role="form">
-                                        <text-angular ng-model="vm.email"></text-angular>
-                                    </form>
-                                    <div class="pull-right">
-                                        <button data-ng-click="vm.sendEmail()" class="btn btn-green waves-button waves-effect waves-light"><span class="icon icon-email"></span>&nbsp;Send</button>
+                               
+                            </div>
+                            <div class="user-list-item">
+                                
+                                    <div class="clearfix">
+                                        <div class="pull-left tile-side">
+                                            <div class="avatar avatar-blue avatar-sm">
+                                                <span class="icon icon-message"></span>
+                                            </div>
+                                        </div>
+                                        <div class="tile-inner">
+                                            <span>Send an email to your coach</span>
+                                            <form class="form-horizontal" role="form">
+                                                <textarea class="form-control margin-top" ng-model="vm.email"></textarea>
+                                            </form>
+                                            <div class="pull-right margin-top">
+                                                <button data-ng-click="vm.sendEmail()" class="btn btn-blue waves-button waves-effect waves-light">Send<span class="icon icon-chevron-right"></span></button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                             </div>
+                               
+                            </div>
+
                         </div>
                     </div>
                 </div>
+
+                <div class="col-sm-7">
+                    <div class="card" ng-show="!vm.authData.isCoach">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <h3 class="content-section-heading">Coaching Experience</h3>
+                                    <div class="content-text-area" ng-bind-html="vm.data.Coach.CoachingExperience"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                   <h3 class="content-section-heading">Work Experience</h3>
+                                    <div class="content-text-area" ng-bind-html="vm.data.Coach.WorkExperience"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
