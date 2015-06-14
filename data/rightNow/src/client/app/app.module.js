@@ -18,8 +18,8 @@
             'app.yourcoach'
         ])
         .run(appRun);
-    appRun.$inject = ['$rootScope', 'logger'];
-    function appRun($rootScope, logger) {
+    appRun.$inject = ['$rootScope', 'logger', 'menuservice'];
+    function appRun($rootScope, logger, menuservice) {
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             switch (toState.controller) {
                 case 'LoginController':

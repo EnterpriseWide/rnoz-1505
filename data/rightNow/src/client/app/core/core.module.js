@@ -14,6 +14,7 @@
             'LocalStorageModule',
             'textAngular',
             'ngFileUpload',
-            'ngDialog'
+            'ngDialog',
+            'ngResource'
         ]);
 })();
