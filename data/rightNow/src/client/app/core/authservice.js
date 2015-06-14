@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('authservice', authservice);
 
-    authservice.$inject = ['$q', 'dataservice', 'localStorageService', 'logger'];
+    authservice.$inject = ['$q', 'dataservice', 'localStorageService', 'logger', '$state'];
 
-    function authservice($q, dataservice, localStorageService, logger) {
+    function authservice($q, dataservice, localStorageService, logger, $state) {
 
         var authData = {
             token: '',
@@ -15,7 +15,6 @@
             isAdmin: false,
             isCoach: false,
             userName: '',
-            userRetrieved: false,
             FirstName: '',
             LastName: '',
             Email: '',
@@ -32,33 +31,37 @@
         return service;
 
         function login(loginData) {
-            return dataservice.login(loginData)
+            var deferred = $q.defer();
+            dataservice.login(loginData)
                 .then(function (result) {
                     localStorageService.set('authorizationData',
                     // jscs:disable
                     {token: result.access_token, userName: loginData.userName}); // jshint ignore:line
                     // jscs:enable
-                    fillData();
-                    return result;
+                    fillData()
+                        .then(function() {
+                            deferred.resolve();
+                        });
                 }, function (error) {
-                    return $q.reject(error);
+                    return deferred.reject(error);
                 });
+            return deferred.promise;
         }
 
         function logout() {
-            $q.all(dataservice.logout())
-            .then(function() {
+            var deferred = $q.defer();
+            dataservice.logout()
+            .finally(function() {
                 clearAuthStorage();
-            }, function() {
-                clearAuthStorage();
+                deferred.resolve();
             });
+            return deferred.promise;
         }
 
         function clearAuthStorage() {
             localStorageService.remove('authorizationData');
             authData.isAuthenticated = false;
             authData.userName = '';
-            authData.userRetrieved = false;
             authData.FirstName = '';
             authData.LastName = '';
             authData.Email = '';
@@ -73,18 +76,23 @@
         }
 
         function fillData() {
+            var deferred = $q.defer();
             var data = localStorageService.get('authorizationData');
             if (data) {
                 authData.isAuthenticated = true;
                 authData.token = data.token;
                 authData.userName = data.userName;
-                return dataservice.readUserInfo().then(function(result) {
-                    angular.extend(authData, result.data);
-                    authData.isAdmin = authData.Roles.indexOf('Admin') >= 0;
-                    authData.isCoach = authData.Roles.indexOf('Coach') >= 0;
-                });
+                dataservice.readUserInfo()
+                    .then(function(result) {
+                        angular.extend(authData, result.data);
+                        authData.isAdmin = authData.Roles.indexOf('Admin') >= 0;
+                        authData.isCoach = authData.Roles.indexOf('Coach') >= 0;
+                        deferred.resolve(authData);
+                    });
+            } else {
+                $state.go('login');
             }
-            return $q.when(true);
+            return deferred.promise;
         }
     }
 })();
