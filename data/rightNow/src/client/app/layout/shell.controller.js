@@ -44,10 +44,13 @@
         }
 
         function logoutUser() {
-            $q.all(authservice.logout())
+            var d = $q.defer();
+            authservice.logout()
             .then(function () {
+                d.resolve();
                 $state.go('login');
             });
+            return d.promise;
         }
     }
 })();
