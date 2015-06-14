@@ -15,7 +15,8 @@
             'app.resource',
             'app.upload',
             'app.widgets',
-            'app.yourcoach'
+            'app.yourcoach',
+            'app.yourcoachee'
         ])
         .run(appRun);
     appRun.$inject = ['$rootScope', 'logger', 'menuservice'];

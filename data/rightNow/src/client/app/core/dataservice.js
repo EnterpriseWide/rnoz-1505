@@ -164,7 +164,7 @@
             $http.put(url, data).success(function (response) {
                 deferred.resolve(response);
             }).error(function (error, status) {
-                var msg = 'delete for assignment ' + id + ' failed. ' + error.data.description;
+                var msg = 'update for assignment ' + id + ' failed. ' + error.data.description;
                 logger.error(msg);
                 deferred.reject(msg);
             });

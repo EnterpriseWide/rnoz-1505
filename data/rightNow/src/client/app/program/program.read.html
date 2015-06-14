@@ -19,7 +19,17 @@
         <div class="card-wrap">
             <div class="row">
                 <div class="col-sm-6">
-                    <a ui-sref="yourcoach({programId: vm.data.Id})" class="card-button">
+                    <a ui-sref="yourcoachee({programId: vm.data.Id})" class="card-button" ng-show="vm.authData.isCoach">
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner card-title yourcoach-bg">
+                                    <p class="card-heading"><span class="icon icon-person"></span>&nbsp;Your coachee - <span class="small">{{ vm.data.Coachee.FirstName }} {{ vm.data.Coachee.LastName }}</span><span class="icon icon-chevron-right pull-right"></span></p>
+                                </div>
+                                <div class="card-inner" ng-bind-html="vm.screenconfig.bodyTextYourCoach"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a ui-sref="yourcoach({programId: vm.data.Id})" class="card-button" ng-show="!vm.authData.isCoach">
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner card-title yourcoach-bg">
