@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="app" class="{{ bodyClass }} {{ menuOpenClass }}">
 <head>
     <style>
         /* This helps the ng-show/ng-hide animations start at the right place. */
@@ -12,14 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     <base href="/">
 
-    <link rel="stylesheet" href="styles/lib-7ff10a76.css">
+    <link rel="stylesheet" href="styles/lib-b0e4caf2.css">
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" href="styles/app-ccbe078c.css">
+    <link rel="stylesheet" href="styles/app-005e1aa4.css">
 </head>
-<body class="{{ bodyClass }}">
-        <div ng-include="'app/layout/shell.html'"></div>
+<body>
+        <div ng-include="'app/layout/shell.html'" class="outer"></div>
+        
         <div id="splash-page" ng-show="showSplash">
             <div class="page-splash">
                 <div class="page-splash-message">
@@ -31,8 +32,8 @@
             </div>
         </div>
 
-    <script src="js/lib-6546fd07.js"></script>
+    <script src="js/lib-7a901569.js"></script>
 
-    <script src="js/app-3b93ec0b.js"></script>
+    <script src="js/app-9424625b.js"></script>
 </body>
 </html>
