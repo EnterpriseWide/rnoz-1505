@@ -1,22 +1,66 @@
-<section class="mainbar">
-    <section class="matter">
-        <div class="container">
+<div class="content-heading help-bg">
+    <div class="container">
+        <h1 class="heading"><span class="icon icon-help"></span>&nbsp;{{vm.title}}</h1>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+        <div class="clearfix sub-header">
+            <h2 class="content-sub-heading pull-left">
+                <a ui-sref="program({programId: vm.programId})"><span class="icon icon-chevron-left"></span>&nbsp;Back to Dashboard</a>
+            </h2>
+        </div>
+        <div class="card-wrap">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="widget wred">
-                        <div ht-widget-header title="{{vm.title}}" icon="fa-question"></div>
-                        <div class="widget-content text-center text-info" ng-bind-html="vm.bodyText"></div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="widget wred">
-                        <div ht-widget-header title="FAQs" icon="fa-info"></div>
-                        <div class="widget-content text-center text-info">
-                            
+                <div class="col-sm-6">
+
+                    <div class="card">
+                        <aside class="card-side">
+                            <span class="card-heading icon icon-messenger"></span>
+                        </aside>
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <p class="card-heading">Contact</p>
+                                <p>
+                                    Lorem ipsum dolor sit amet.<br>
+                                    Consectetur adipiscing elit.
+                                </p>
+                            </div>
                         </div>
+                    </div>
+                    <div class="card">
+                        <aside class="card-side">
+                            <span class="card-heading icon icon-insert-drive-file"></span>
+                        </aside>
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <p class="card-heading">User Guide</p>
+                                <p>
+                                    <a class="btn btn-blue" href="#"><span class="icon icon-file-download"></span>&nbsp;Download the user guide</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+
+                        <aside class="card-side">
+                            <span class="card-heading icon icon-live-help"></span>
+                        </aside>
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <p class="card-heading">FAQ's</p>
+                                <div ng-bind-html="vm.bodyText"></div>
+                            </div>
+                        </div>
+
+                        
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</section>
+    </div>
+</div>

@@ -17,22 +17,80 @@
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner">
-                                <div class="col-sm-12 margin-top margin-bottom clearfix">
-                                    <p>Name: {{ vm.data.Coach.FirstName }} {{ vm.data.Coach.LastName }}</p>
-                                    <p>Phone: {{ vm.data.Coach.PhoneNumber }}</p>
-                                    <p ng-bind-html="vm.data.Coach.CoachingExperience"></p>
-                                    <p ng-bind-html="vm.data.Coach.WorkExperience"></p>
-                                    <p>Phone: {{ vm.data.Coach.Phone }}</p>
-                                </div>
-                                <div class="col-sm-12 margin-top margin-bottom clearfix">
-                                    <div class="pull-right">
-                                        <button data-ng-click="vm.sendEmail()" class="btn btn-green waves-button waves-effect waves-light"><span class="icon icon-check"></span>&nbsp;Send Email</button>
+
+                       <!--         <div class="col-sm-6 margin-top margin-bottom clearfix">
+
+                        <div class="pull-left tile-side">
+                            <div class="avatar avatar-blue avatar-sm">
+                                <span class="icon icon-alarm"></span>
+                            </div>
+                        </div>
+                        <div class="tile-inner">
+                            <span>lorem ipsum dolor sit amet</span>
+                        </div>
+                   
+</div>-->
+
+
+                                <div class="col-sm-6 margin-top margin-bottom clearfix">
+                                    <div>
+                                        <div class="pull-left tile-side">
+                                            <div class="avatar avatar-blue avatar-sm">
+                                                <span class="icon icon-person"></span>
+                                            </div>
+                                        </div>
+                                        <div class="tile-inner">
+                                            <span>{{ vm.data.Coach.FirstName }} {{ vm.data.Coach.LastName }}</span>
+                                        </div>
                                     </div>
+                                    <hr class="small-margin"/>
+                                    <div>
+                                        <div class="pull-left tile-side">
+                                            <div class="avatar avatar-blue avatar-sm">
+                                                <span class="icon icon-phone"></span>
+                                            </div>
+                                        </div>
+                                        <div class="tile-inner">
+                                            <span>{{ vm.data.Coach.Phone }}</span>
+                                        </div>
+                                    </div>
+                                    <hr class="small-margin"/>
+                                    <div>
+                                        <div class="pull-left tile-side">
+                                            <div class="avatar avatar-blue avatar-sm">
+                                                <span class="icon icon-email"></span>
+                                            </div>
+                                        </div>
+                                        <div class="tile-inner">
+                                            <span><a href="mailto:{{ vm.data.Coach.Email }}">{{ vm.data.Coach.Email }}</a></span>
+                                        </div>
+                                    </div>
+                                    <hr class="small-margin"/>
+                                    <div>
+                                        <div class="pull-left tile-side">
+                                            <div class="avatar avatar-blue avatar-sm">
+                                                <span class="icon icon-dvr"></span>
+                                            </div>
+                                        </div>
+                                        <div class="tile-inner">
+                                            <span><a href="#" class="" target="_blank">LinkedIn profile<span class="icon icon-chevron-right"></span></a></span>
+                                        </div>
+                                    </div>
+                                    <hr class="small-margin"/>
+                                   <h3>Coaching Experience</h3>
+                                    <p ng-bind-html="vm.data.Coach.CoachingExperience"></p>
+                                    <hr/>
+                                   <h3>Coaching Experience</h3>
+                                    <p ng-bind-html="vm.data.Coach.WorkExperience"></p>
                                 </div>
-                                <div class="col-sm-12 margin-bottom">
+                                <div class="col-sm-6 margin-top margin-bottom clearfix">
+                                    <h3>Send an email to your coach</h3>
                                     <form class="form-horizontal" role="form">
                                         <text-angular ng-model="vm.email"></text-angular>
                                     </form>
+                                    <div class="pull-right">
+                                        <button data-ng-click="vm.sendEmail()" class="btn btn-green waves-button waves-effect waves-light"><span class="icon icon-email"></span>&nbsp;Send</button>
+                                    </div>
                                 </div>
                              </div>
                         </div>
