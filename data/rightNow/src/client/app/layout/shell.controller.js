@@ -23,16 +23,12 @@
 
         function activate() {
             vm.isMenuOpen = $rootScope.isMenuOpen;
-            authservice.fillData();
-            vm.authData = authservice.authData;
-            if (!vm.authData.isAuthenticated) {
-                $state.go('login');
-            } else if (vm.authData.isAdmin) {
-                $state.go('admin');
-            } else if (vm.authData.isCoach) {
-                $state.go('programs');
-            }
-            hideSplash();
+            return $q.all(authservice.fillData())
+                .then(function() {
+                    vm.authData = authservice.authData;
+                    logger.success(config.appTitle + ' loaded!', null);
+                    hideSplash();
+                });
         }
 
         function toggleMenu() {

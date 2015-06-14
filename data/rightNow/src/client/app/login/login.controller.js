@@ -5,9 +5,9 @@
         .module('app.login')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['authservice', '$location', 'logger', '$state'];
+    LoginController.$inject = ['authservice', '$location', 'logger', '$state', 'dataservice'];
 
-    function LoginController(authservice, $location, logger, $state) {
+    function LoginController(authservice, $location, logger, $state, dataservice) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'Login';
@@ -33,12 +33,29 @@
             }
         }
 
+        function redirect() {
+            var authData = authservice.authData;
+
+            if (!authData.isAuthenticated) {
+                $state.go('login');
+            } else if (authData.isAdmin) {
+                $state.go('admin');
+            } else if (authData.isCoach) {
+                $state.go('programs');
+            } else {
+                dataservice.listPrograms().then(function (data) {
+                    var program = data[0];
+                    $state.go('program', {programId:program.Id});
+                });
+            }
+
+        }
+
         function loginUser() {
             vm.message = '';
             authservice.login(vm.loginData)
                 .then(function (response) {
-                    logger.success('Welcome to our world ' + authservice.authData.userName, true);
-                    $location.path('/');
+                    redirect();
                 }, function (error) {
                     logger.info(error);
                     // jscs:disable

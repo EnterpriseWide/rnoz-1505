@@ -32,7 +32,6 @@
         function getResources(id, mediaType) {
             return dataservice.listProgramMedias(id, mediaType).then(function (data) {
                 vm.resources = data;
-                console.log(vm.resources);
             });
         }
 
