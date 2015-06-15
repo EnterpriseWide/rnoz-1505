@@ -31,6 +31,7 @@
                     break;
             }
             menuservice.options.isOpen = false;
+            $rootScope.menuOpenClass = '';
             if (toParams.programId) {
                 menuservice.options.programId = toParams.programId;
             } else {
