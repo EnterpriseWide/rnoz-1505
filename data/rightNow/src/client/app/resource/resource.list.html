@@ -9,7 +9,7 @@
             <h2 class="content-sub-heading pull-left">
                 <a ui-sref="program({programId: vm.programId})"><span class="icon icon-chevron-left"></span>&nbsp;Back to Dashboard</a>
             </h2>
-            <p class="pull-right">
+            <p class="pull-right" ng-show="vm.authData.isCoach">
                 <a class="btn btn-blue waves-button waves-effect waves-light" href="#"><span class="icon icon-my-library-add"></span>&nbsp;Create new item</a>
             </p>
         </div>
