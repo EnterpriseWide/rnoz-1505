@@ -4,9 +4,9 @@
     angular
         .module('app.learningplan')
         .controller('LearningPlanController', LearningPlanController);
-    LearningPlanController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice'];
+    LearningPlanController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice', 'config'];
 
-    function LearningPlanController(logger, $stateParams, $q, dataservice, authservice) {
+    function LearningPlanController(logger, $stateParams, $q, dataservice, authservice, config) {
         var vm = this;
         vm.title = 'Learning Plan';
         vm.data = [];
@@ -23,7 +23,6 @@
             vm.programId = $stateParams.programId;
             var promises = [getLearningPlan(vm.programId)];
             return $q.all(promises).then(function() {
-                logger.info('Activated ' + vm.title + ' View');
             });
         }
 

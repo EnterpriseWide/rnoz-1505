@@ -24,14 +24,36 @@
 
     core.config(configure);
 
-    configure.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider'];
+    configure.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider', '$provide'];
 
-    function configure($logProvider, routerHelperProvider, exceptionHandlerProvider) {
+    function configure($logProvider, routerHelperProvider, exceptionHandlerProvider, $provide) {
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);
         }
         exceptionHandlerProvider.configure(config.appErrorPrefix);
         routerHelperProvider.configure({docTitle: config.appTitle + ': '});
+
+        $provide.decorator('taOptions', ['$delegate', function(taOptions){
+            // $delegate is the taOptions we are decorating
+            // here we override the default toolbars and classes specified in taOptions.
+            taOptions.toolbar = [
+                ['h1', 'h2', 'h3', 'p', 'pre', 'quote'],
+                ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+                ['justifyLeft','justifyCenter','justifyRight','indent','outdent'],
+                ['html', 'insertLink']
+            ];
+            taOptions.classes = {
+                focussed: 'focussed',
+                toolbar: 'btn-toolbar',
+                toolbarGroup: 'btn-group',
+                toolbarButton: 'btn btn-default',
+                toolbarButtonActive: 'active',
+                disabled: 'disabled',
+                textEditor: 'form-control',
+                htmlEditor: 'form-control'
+            };
+            return taOptions; // whatever you return will be the taOptions
+        }]);
     }
 
 })();
