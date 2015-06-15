@@ -27,7 +27,7 @@
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner card-title sessions-bg">
-                                <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Sessions</p>
+                                <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Coaching Sessions</p>
                             </div>
                             <div ng-repeat="p in vm.sessions" class="session-list-item">
                                 <div class="card-inner">
@@ -38,7 +38,7 @@
                                                 <span class="icon icon-event icon-large"></span>
                                             </div>
                                             <div>
-                                                <h3>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}, {{p.StartedAt | date:'EEE dd MMM yyyy HH:mm'}} - {Finish Time}</h3>
+                                                <h3>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}&nbsp;&nbsp;<span class="icon icon-schedule"></span>&nbsp;{{p.StartedAt | date:'EEE dd MMM yyyy HH:mm'}} - {Finish Time}</h3>
                                             </div>
 
                                         </div>
