@@ -4,11 +4,8 @@
     angular
         .module('app.profile')
         .controller('ProfileController', ProfileController);
-
-    ProfileController.$inject = ['logger', 'authservice', 'dataservice'];
-
-    /* @ngInject */
-    function ProfileController(logger, authservice, dataservice) {
+    ProfileController.$inject = ['logger', 'authservice', 'dataservice', 'config'];
+    function ProfileController(logger, authservice, dataservice, config) {
         var vm = this;
         vm.title = 'Profile';
         vm.screenconfig = {
@@ -21,7 +18,9 @@
         activate();
 
         function activate() {
-            angular.extend(vm.data, authservice.authData);
+            authservice.fillData().then(function () {
+                angular.extend(vm.data, authservice.authData);
+            });
             if (!(vm.authData.isCoach || vm.authData.isAdmin)) {
                 dataservice.listPrograms().then(function (data) {
                     var program = data[0];
