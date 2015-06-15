@@ -78,6 +78,10 @@ gulp.task('styles', ['clean-styles'], function() {
 gulp.task('fonts', ['clean-fonts'], function() {
     log('Copying fonts');
 
+    gulp
+        .src(config.fontsdir)
+        .pipe(gulp.dest(config.build + 'fonts'));
+
     return gulp
         .src(config.fonts)
         .pipe(gulp.dest(config.build + 'fonts'));
@@ -94,6 +98,18 @@ gulp.task('images', ['clean-images'], function() {
         .src(config.images)
         .pipe($.imagemin({optimizationLevel: 4}))
         .pipe(gulp.dest(config.build + 'images'));
+});
+
+/**
+ * Compress images
+ * @return {Stream}
+ */
+gulp.task('icons', ['clean-icons'], function() {
+    log('copying icons');
+
+    return gulp
+        .src(config.icons)
+        .pipe(gulp.dest(config.build + 'icons'));
 });
 
 gulp.task('less-watcher', function() {
@@ -191,7 +207,7 @@ gulp.task('build-specs', ['templatecache'], function(done) {
  * This is separate so we can run tests on
  * optimize before handling image or fonts
  */
-gulp.task('build', ['optimize', 'images', 'fonts'], function() {
+gulp.task('build', ['optimize', 'images', 'fonts', 'icons'], function() {
     log('Building everything');
 
     var msg = {
@@ -288,6 +304,14 @@ gulp.task('clean-fonts', function(done) {
  */
 gulp.task('clean-images', function(done) {
     clean(config.build + 'images/**/*.*', done);
+});
+
+/**
+ * Remove all images from the build folder
+ * @param  {Function} done - callback when complete
+ */
+gulp.task('clean-icons', function(done) {
+    clean(config.build + 'icons/**/*.*', done);
 });
 
 /**

@@ -29,9 +29,11 @@ module.exports = function() {
         css: temp + '*.css',
         deploy: './../../wwwroot/',
         fonts: bower.directory + 'font-awesome/fonts/**/*.*',
+        fontsdir: client + 'fonts/**/*.*',
         html: client + '**/*.html',
         htmltemplates: clientApp + '**/*.html',
         images: client + 'images/**/*.*',
+        icons: client + 'icons/**/*.*',
         index: client + 'index.html',
         tester: client + 'api_tester.html',
         // app js, with no specs
