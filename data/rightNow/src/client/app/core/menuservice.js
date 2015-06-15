@@ -12,10 +12,9 @@
         var options = {
             programId: 0,
             isProgramAware: false,
-            isOpen: false,
-            programId: 0
+            isOpen: false
         };
-        
+
         var service = {
             options: options
         };

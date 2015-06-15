@@ -34,9 +34,9 @@
         function toggleMenu() {
             vm.menu.isOpen = !vm.menu.isOpen;
             if (vm.menu.isOpen) {
-                $rootScope.menuOpenClass = "menu-open";
+                $rootScope.menuOpenClass = 'menu-open';
             } else {
-                $rootScope.menuOpenClass = "";
+                $rootScope.menuOpenClass = '';
             }
         }
 
