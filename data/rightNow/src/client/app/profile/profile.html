@@ -7,26 +7,21 @@
     <div class="container">
         <div class="clearfix sub-header">
             <h2 class="content-sub-heading pull-left">
-                <a ui-sref="programs"><span class="icon icon-chevron-left"></span>&nbsp;Back to Dashboard</a>
+                <a ui-sref="programs" ng-show="vm.authData.isCoach || vm.authData.isAdmin"><span class="icon icon-chevron-left"></span>&nbsp;Back to Dashboard</a>
+                <a ui-sref="program({programId: vm.programId})" ng-hide="vm.authData.isCoach || vm.authData.isAdmin"><span class="icon icon-chevron-left"></span>&nbsp;Back to Dashboard</a>
             </h2>
         </div>
-
         <div class="card-wrap">
             <div class="row">
-
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner">
-                                <!--<div class="col-sm-2">
-                                    <p>content</p>
-                                </div>-->
                                 <div class="col-sm-12 margin-top margin-bottom">
                                     <form class="form-horizontal hide-placeholders" role="form">
                                         <div ng-include="'app/profile/_form.html'"></div>
                                     </form>
                                 </div>
-
                                 <div class="col-sm-12 margin-bottom clearfix">
                                     <div class="pull-right">
                                         <button data-ng-click="vm.save()" class="btn btn-green waves-button waves-effect waves-light"><span class="icon icon-check"></span>&nbsp;Save</button>
@@ -38,7 +33,5 @@
                 </div>
             </div>
         </div>
-
-        
     </div>
 </div>
