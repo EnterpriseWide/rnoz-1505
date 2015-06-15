@@ -33,6 +33,11 @@
 
         function toggleMenu() {
             vm.menu.isOpen = !vm.menu.isOpen;
+            if (vm.menu.isOpen) {
+                $rootScope.menuOpenClass = "menu-open";
+            } else {
+                $rootScope.menuOpenClass = "";
+            }
         }
 
         function hideSplash() {
