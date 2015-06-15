@@ -19,8 +19,8 @@
             'app.yourcoachee'
         ])
         .run(appRun);
-    appRun.$inject = ['$rootScope', 'logger', 'menuservice'];
-    function appRun($rootScope, logger, menuservice) {
+    appRun.$inject = ['$rootScope', 'logger', 'menuservice', 'authservice'];
+    function appRun($rootScope, logger, menuservice, authservice) {
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             switch (toState.controller) {
                 case 'LoginController':
@@ -30,10 +30,14 @@
                     $rootScope.bodyClass = '';
                     break;
             }
+            menuservice.options.isOpen = false;
             if (toParams.programId) {
                 menuservice.options.programId = toParams.programId;
             } else {
-                menuservice.options.programId = 0;
+                var authData = authservice.authData;
+                if (authData.isAuthenticated && (authData.isCoach || authData.isAdmin)) {
+                    menuservice.options.programId = 0;
+                }
             }
         });
     }
