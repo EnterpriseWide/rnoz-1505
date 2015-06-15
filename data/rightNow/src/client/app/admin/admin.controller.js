@@ -19,7 +19,6 @@
             if (!vm.authData.isAdmin) {
                 $location.path('/404');
             }
-            logger.info('Activated Admin View');
         }
     }
 })();

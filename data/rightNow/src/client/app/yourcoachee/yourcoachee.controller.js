@@ -4,12 +4,11 @@
     angular
         .module('app.yourcoachee')
         .controller('YourCoacheeController', YourCoacheeController);
-    YourCoacheeController.$inject = ['program', 'logger', '$stateParams', '$q', 'dataservice', 'authservice'];
-
-    function YourCoacheeController(program, logger, $stateParams, $q, dataservice, authservice) {
+    YourCoacheeController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice'];
+    function YourCoacheeController(logger, $stateParams, $q, dataservice, authservice) {
         var vm = this;
         vm.title = 'Your Coachee';
-        vm.data = program;
+        vm.data = {};
         vm.email = '';
         vm.authData = authservice.authData;
         vm.sendEmail = sendEmail;
@@ -20,6 +19,17 @@
         activate();
 
         function activate() {
+            vm.programId = $stateParams.programId;
+            var promises = [getProgram(vm.programId)];
+            return $q.all(promises).then(function() {
+            });
+        }
+
+        function getProgram(id) {
+            return dataservice.readProgram(id).then(function (data) {
+                vm.data = data;
+                return vm.data;
+            });
         }
 
         function sendEmail() {

@@ -18,17 +18,7 @@
                     templateUrl: 'app/yourcoachee/yourcoachee.html',
                     controller: 'YourCoacheeController',
                     controllerAs: 'vm',
-                    title: 'Your Coachee',
-                    resolve: {
-                        dataservice: 'dataservice',
-                        program: function(dataservice, $stateParams, $state) {
-                            if (!$stateParams.programId)
-                            {
-                                $state.go('programs');
-                            }
-                            return dataservice.readProgram($stateParams.programId);
-                        }
-                    }
+                    title: 'Your Coachee'
                 }
             }
         ];
