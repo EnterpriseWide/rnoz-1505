@@ -25,7 +25,6 @@
             vm.programId = $stateParams.programId;
             var promises = [getResources(vm.programId, vm.mediaType)];
             return $q.all(promises).then(function() {
-                logger.info('Activated ' + vm.title + ' View');
             });
         }
 
@@ -45,8 +44,10 @@
                     }).progress(function (evt) {
                         file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                     }).success(function (data, status, headers, config) {
-                        vm.resources.push(data[0]);
+                        var i = vm.files.indexOf(file);
+                        vm.files.splice(i, 1);
                         logger.success('file ' + config.file.name + 'uploaded.');
+                        vm.resources.push(data[0]);
                     });
                 }
             }

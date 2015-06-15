@@ -33,13 +33,13 @@
         exceptionHandlerProvider.configure(config.appErrorPrefix);
         routerHelperProvider.configure({docTitle: config.appTitle + ': '});
 
-        $provide.decorator('taOptions', ['$delegate', function(taOptions){
+        $provide.decorator('taOptions', ['$delegate', function(taOptions) {
             // $delegate is the taOptions we are decorating
             // here we override the default toolbars and classes specified in taOptions.
             taOptions.toolbar = [
                 ['h1', 'h2', 'h3', 'p', 'pre', 'quote'],
                 ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
-                ['justifyLeft','justifyCenter','justifyRight','indent','outdent'],
+                ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
                 ['html', 'insertLink']
             ];
             taOptions.classes = {

@@ -44,8 +44,10 @@
                     }).progress(function (evt) {
                         file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                     }).success(function (data, status, headers, config) {
+                        var i = vm.files.indexOf(file);
+                        vm.files.splice(i, 1);
+                        logger.success('file ' + config.file.name + 'uploaded.');
                         vm.resources.push(data[0]);
-                        logger.success('file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data));
                     });
                 }
             }
