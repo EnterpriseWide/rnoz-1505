@@ -46,3 +46,7 @@ update-database
 
 To create a new db migration
 add-migration '{description of migration goes here}'
+
+Dev Notes
+Sample text-angular with all the default options
+<text-angular ng-model="vm.data.LearningPlan" ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'],['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],['justifyLeft','justifyCenter','justifyRight','indent','outdent'],['html', 'insertImage', 'insertLink', 'insertVideo', 'wordcount', 'charcount']]"></text-angular>
