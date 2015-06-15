@@ -9,8 +9,15 @@
 
     function menuservice($q) {
 
+        var options = {
+            programId: 0,
+            isProgramAware: false,
+            isOpen: false,
+            programId: 0
+        };
+        
         var service = {
-            isProgramAware: false
+            options: options
         };
 
         return service;

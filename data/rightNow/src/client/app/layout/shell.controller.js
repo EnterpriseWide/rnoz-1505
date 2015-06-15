@@ -4,8 +4,8 @@
     angular
         .module('app.layout')
         .controller('ShellController', ShellController);
-    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice', '$location', '$stateParams', '$state', '$q'];
-    function ShellController($rootScope, $timeout, config, logger, authservice, $location, $stateParams, $state, $q) {
+    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice', '$location', '$stateParams', '$state', '$q', 'menuservice'];
+    function ShellController($rootScope, $timeout, config, logger, authservice, $location, $stateParams, $state, $q, menuservice) {
         var vm = this;
         vm.authData = {};
         vm.busyMessage = 'Please wait ...';
@@ -18,11 +18,11 @@
         };
         vm.logoutUser = logoutUser;
         vm.toggleMenu = toggleMenu;
+        vm.menu = menuservice.options;
 
         activate();
 
         function activate() {
-            vm.isMenuOpen = $rootScope.isMenuOpen;
             return $q.all(authservice.fillData())
                 .then(function() {
                     vm.authData = authservice.authData;
@@ -32,8 +32,7 @@
         }
 
         function toggleMenu() {
-            $rootScope.isMenuOpen = !$rootScope.isMenuOpen;
-            vm.isMenuOpen = $rootScope.isMenuOpen;
+            vm.menu.isOpen = !vm.menu.isOpen;
         }
 
         function hideSplash() {

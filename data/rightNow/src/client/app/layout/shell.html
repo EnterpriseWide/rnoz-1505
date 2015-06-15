@@ -12,7 +12,7 @@
         <!--<a class="header-logo" ui-sref="programs"><img src="{{vm.navline.logo}}" /></a>-->
         <span class="header-logo"><img src="{{vm.navline.logo}}" /></span>
     </header>
-    <nav class="menu" ng-class="{open: vm.isMenuOpen}" id="menu">
+    <nav class="menu" ng-class="{open: vm.menu.isOpen}" id="menu">
         <div class="menu-scroll">
             <div class="menu-wrap">
                 <div class="menu-content">
@@ -32,33 +32,35 @@
                         </ul>
                         <hr>
                     </div>
-                    <div ng-show="!vm.authData.isCoach && !vm.authData.isAdmin">
+                    <div ng-hide="vm.menu.programId <= 0">
                         <ul class="nav">
                             <li>
-                                <a ui-sref="program({programId: vm.programId})"><span class="icon icon-dashboard"></span>&nbsp;Program Dashboard</a>
+                                <a ui-sref="program({programId: vm.menu.programId})"><span class="icon icon-dashboard"></span>&nbsp;Program Dashboard</a>
                             </li>
                         </ul>
                         <hr>
                         <ul class="nav">
-                            <li>
-                                <a ui-sref="yourcoach({programId: vm.data.Id})"><span class="icon icon-person"></span>&nbsp;Your coach</a>
+                            <li ng-hide="vm.authData.isCoach">
+                                <a ui-sref="yourcoach({programId: vm.menu.programId})"><span class="icon icon-person"></span>&nbsp;Your coach</a>
+                            </li>
+                            <li ng-show="vm.authData.isCoach">
+                                <a ui-sref="yourcoachee({programId: vm.menu.programId})"><span class="icon icon-person"></span>&nbsp;Your coachee</a>
                             </li>
                             <li>
-                                <a ui-sref="learningplan({programId: vm.data.Id})"><span class="icon icon-layers"></span>&nbsp;Learning plan</a>
+                                <a ui-sref="learningplan({programId: vm.menu.programId})"><span class="icon icon-layers"></span>&nbsp;Learning plan</a>
                             </li>
                             <li>
-                                <a ui-sref="assignments({programId: vm.data.Id})"><span class="icon icon-content-copy"></span>&nbsp;Assignments</a>
+                                <a ui-sref="assignments({programId: vm.menu.programId})"><span class="icon icon-content-copy"></span>&nbsp;Assignments</a>
                             </li>
                             <li>
-                                <a ui-sref="resources({programId: vm.data.Id})"><span class="icon icon-insert-drive-file"></span>&nbsp;Resources</a>
+                                <a ui-sref="resources({programId: vm.menu.programId})"><span class="icon icon-insert-drive-file"></span>&nbsp;Resources</a>
                             </li>
                             <li>
-                                <a  ui-sref="uploads({programId: vm.data.Id})"><span class="icon icon-file-upload"></span>&nbsp;Uploads</a>
+                                <a  ui-sref="uploads({programId: vm.menu.programId})"><span class="icon icon-file-upload"></span>&nbsp;Uploads</a>
                             </li>
                             <li>
-                                <a ui-sref="surveys({programId: vm.data.Id})"><span class="icon icon-comment"></span>&nbsp;Surveys</a>
+                                <a ui-sref="surveys({programId: vm.menu.programId})"><span class="icon icon-comment"></span>&nbsp;Surveys</a>
                             </li>
-
                         </ul>
                         <hr>
                         <ul class="nav">

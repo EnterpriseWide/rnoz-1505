@@ -30,13 +30,10 @@
                     $rootScope.bodyClass = '';
                     break;
             }
-        });
-        $rootScope.isMenuOpen = false;
-        $rootScope.$watch('isMenuOpen', function() {
-            if ($rootScope.isMenuOpen) {
-                $rootScope.menuOpenClass = 'menu-open';
+            if (toParams.programId) {
+                menuservice.options.programId = toParams.programId;
             } else {
-                $rootScope.menuOpenClass = '';
+                menuservice.options.programId = 0;
             }
         });
     }

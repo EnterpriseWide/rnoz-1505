@@ -29,7 +29,7 @@
 
         function activate() {
             if (vm.authData.isAuthenticated) {
-                $state.go('programs');
+                redirect();
             }
         }
 
