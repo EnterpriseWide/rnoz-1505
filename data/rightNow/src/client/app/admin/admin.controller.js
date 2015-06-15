@@ -10,7 +10,7 @@
     /* @ngInject */
     function AdminController(logger, authservice, $location) {
         var vm = this;
-        vm.title = 'Admin';
+        vm.title = 'Admin Dashboard';
         vm.authData = authservice.authData;
 
         activate();

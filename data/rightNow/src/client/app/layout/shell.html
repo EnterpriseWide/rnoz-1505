@@ -9,7 +9,8 @@
                 </a>
             </li>
         </ul>
-        <a class="header-logo" ui-sref="programs"><img src="{{vm.navline.logo}}" /></a>
+        <!--<a class="header-logo" ui-sref="programs"><img src="{{vm.navline.logo}}" /></a>-->
+        <span class="header-logo"><img src="{{vm.navline.logo}}" /></span>
     </header>
     <nav class="menu" ng-class="{open: vm.isMenuOpen}" id="menu">
         <div class="menu-scroll">
@@ -34,28 +35,28 @@
                     <div ng-show="!vm.authData.isCoach && !vm.authData.isAdmin">
                         <ul class="nav">
                             <li>
-                                <a href="/"><span class="icon icon-dashboard"></span>&nbsp;Dashboard</a>
+                                <a ui-sref="program({programId: vm.programId})"><span class="icon icon-dashboard"></span>&nbsp;Program Dashboard</a>
                             </li>
                         </ul>
                         <hr>
                         <ul class="nav">
                             <li>
-                                <a href="/your-coach.html"><span class="icon icon-person"></span>&nbsp;Your coach</a>
+                                <a ui-sref="yourcoach({programId: vm.data.Id})"><span class="icon icon-person"></span>&nbsp;Your coach</a>
                             </li>
                             <li>
-                                <a href="/learning-plan.html"><span class="icon icon-layers"></span>&nbsp;Learning plan</a>
+                                <a ui-sref="learningplan({programId: vm.data.Id})"><span class="icon icon-layers"></span>&nbsp;Learning plan</a>
                             </li>
                             <li>
-                                <a href="/assignments.html"><span class="icon icon-content-copy"></span>&nbsp;Assignments</a>
+                                <a ui-sref="assignments({programId: vm.data.Id})"><span class="icon icon-content-copy"></span>&nbsp;Assignments</a>
                             </li>
                             <li>
-                                <a href="/resources.html"><span class="icon icon-insert-drive-file"></span>&nbsp;Resources</a>
+                                <a ui-sref="resources({programId: vm.data.Id})"><span class="icon icon-insert-drive-file"></span>&nbsp;Resources</a>
                             </li>
                             <li>
-                                <a href="/uploads.html"><span class="icon icon-file-upload"></span>&nbsp;Uploads</a>
+                                <a  ui-sref="uploads({programId: vm.data.Id})"><span class="icon icon-file-upload"></span>&nbsp;Uploads</a>
                             </li>
                             <li>
-                                <a href="/surveys.html"><span class="icon icon-comment"></span>&nbsp;Surveys</a>
+                                <a ui-sref="surveys({programId: vm.data.Id})"><span class="icon icon-comment"></span>&nbsp;Surveys</a>
                             </li>
 
                         </ul>
@@ -105,9 +106,9 @@
             <!--<div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>-->
         </div>
     </div>
-    <footer class="footer" ng-show="vm.authData.isAuthenticated">
-        <div class="container">
-            <p class="pull-right"><a href="http://www.oztrain.com.au" target="_blank">Right.Now. developed by <img class="logo" src="/images/oztrain-logo.png" /></a></p>
-        </div>
+    <footer class="footer padding-right" ng-show="vm.authData.isAuthenticated">
+        <!--<div class="container">-->
+            <p class="pull-right padding-right"><a href="http://www.oztrain.com.au" target="_blank">Right.Now. developed by <img class="logo" src="/images/oztrain-logo.png" /></a></p>
+        <!--</div>-->
     </footer>
 </div>

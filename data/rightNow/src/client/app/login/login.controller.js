@@ -20,9 +20,9 @@
         vm.loginAUser = loginAUser;
         vm.authData = authservice.authData;
         vm.screenconfig = {
-            oztrainUrl: 'http://oztrain.com.au',
-            blurb: '<p>Right.Now. is an online coaching app... more descriptive text here ' +
-            '<a href="http://oztrain.com.au/" target="_blank">Read More about Oztrain here</a></p>'
+            oztrainUrl: 'http://www.oztrain.com.au',
+            blurb: 'Right.Now. is an online coaching app... more descriptive text here, lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus ' +
+            '<a href="http://www.oztrain.com.au" target="_blank">Read More <span class="icon icon-chevron-right"></span></a>'
         };
 
         activate();

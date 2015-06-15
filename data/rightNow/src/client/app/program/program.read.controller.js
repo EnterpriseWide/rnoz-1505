@@ -7,12 +7,15 @@
     ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog'];
     function ProgramReadController(logger, $stateParams, $q, dataservice, authservice, ngDialog) {
         var vm = this;
-        vm.title = 'Program';
+        vm.title = 'Program Dashboard';
         vm.data = {};
         vm.sendInvoice = sendInvoice;
         vm.closeProgram = closeProgram;
+        vm.sessionInfoReadMore = sessionInfoReadMore;
         vm.screenconfig = {
             bodyTextYourCoach: '<p>Read more information about your coach, or send them a ' +
+                'message</p>',
+            bodyTextYourCoachee: '<p>Read more information about your coachee, or send them a ' +
                 'message</p>',
             bodyTextLearningPlan: '<p>This document is created over teh course of your coaching ' +
                 'program - both you and your coach can edit it, export it or email a copy.</p>',
@@ -44,8 +47,8 @@
             ngDialog.openConfirm({
                 template: '<p>Are you sure?</p>' +
                     '<div class="ngdialog-buttons">' +
-                        '<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>' +
-                        '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>' +
+                        '<button type="button" class="btn btn-blue" ng-click="closeThisDialog(0)">No</button>' +
+                        '<button type="button" class="btn btn-blue" ng-click="confirm(1)">Yes</button>' +
                     '</div>',
                 plain: true
             }).then(function() {
@@ -55,12 +58,22 @@
             });
         }
 
+        function sessionInfoReadMore(ev) {
+            ngDialog.open({
+                template: '<div class="content-text-area"><h1>Coaching Sessions</h1><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p><p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p><p>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p></div>' +
+                    '<div class="ngdialog-buttons">' +
+                        '<button type="button" class="btn btn-blue" ng-click="closeThisDialog(0)">Close</button>' +
+                    '</div>',
+                plain: true
+            });
+        }
+
         function closeProgram(ev) {
             ngDialog.openConfirm({
                 template: '<p>Are you sure?</p>' +
                     '<div class="ngdialog-buttons">' +
-                        '<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>' +
-                        '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>' +
+                        '<button type="button" class="btn btn-blue" ng-click="closeThisDialog(0)">No</button>' +
+                        '<button type="button" class="btn btn-blue" ng-click="confirm(1)">Yes</button>' +
                     '</div>',
                 plain: true
             }).then(function() {

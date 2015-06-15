@@ -10,7 +10,7 @@
         var vm = this;
         vm.programs = [];
         vm.sessions = [];
-        vm.title = 'Programs';
+        vm.title = 'Coaching Programs';
 
         activate();
 

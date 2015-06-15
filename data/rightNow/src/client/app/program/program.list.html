@@ -1,6 +1,6 @@
 <div class="content-heading grey-bg">
     <div class="container">
-        <h1 class="heading"><span class="icon icon-people"></span>&nbsp;Programs</h1>
+        <h1 class="heading"><span class="icon icon-people"></span>&nbsp;{{vm.title}}</h1>
     </div>
 </div>
 <div class="content-inner">
@@ -31,17 +31,30 @@
                             </div>
                             <div ng-repeat="p in vm.sessions" class="session-list-item">
                                 <div class="card-inner">
-                                   <i class="fa fa-calendar-o"></i> <strong>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}</strong>, <strong>{{p.StartedAt | date:'EEE dd MMM yyyy HH:mm'}} - {Finish Time}</strong>
-                                   <div>
-                                        <span class="btnGroup">
-                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Cancel <i class="fa fa-angle-right"></i></a>
-                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Reschedule <i class="fa fa-angle-right"></i></a>
-                                            <a href="javascrip:void(0)" class="linkBtn greyBtn">Set as Complete <i class="fa fa-angle-right"></i></a>
-                                        </span>
-                                   </div>
-                                    <a href="javascrip:void(0)" class="pull-right btn btn-flat btn-green waves-button waves-effect">Begin Session<span class="icon icon-chevron-right"></span></a>
+                                   
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="pull-left padding-right">
+                                                <span class="icon icon-event icon-large"></span>
+                                            </div>
+                                            <div>
+                                                <h3>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}, {{p.StartedAt | date:'EEE dd MMM yyyy HH:mm'}} - {Finish Time}</h3>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <span class="btnGroup pull-right">
+                                                <a href="javascrip:void(0)" class="btn btn-blue btn-small"><span class="icon icon-close"></span>&nbsp;Cancel</a>
+                                                <a href="javascrip:void(0)" class="btn btn-blue btn-small"><span class="icon icon-repeat"></span>&nbsp;Reschedule</a>
+                                                <a href="javascrip:void(0)" class="btn btn-blue btn-small"><span class="icon icon-check"></span>&nbsp;Set as Complete</a>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
+
+                           
                             
                         </div>
                     </div>
