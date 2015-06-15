@@ -4,10 +4,8 @@
     angular
         .module('app.login')
         .controller('LoginController', LoginController);
-
-    LoginController.$inject = ['authservice', '$location', 'logger', '$state', 'dataservice'];
-
-    function LoginController(authservice, $location, logger, $state, dataservice) {
+    LoginController.$inject = ['authservice', '$location', 'logger', '$state', 'dataservice', 'menuservice'];
+    function LoginController(authservice, $location, logger, $state, dataservice, menuservice) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'Login';
@@ -24,6 +22,7 @@
             blurb: 'Right.Now. is an online coaching app... more descriptive text here, lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus ' +
             '<a href="http://www.oztrain.com.au" target="_blank">Read More <span class="icon icon-chevron-right"></span></a>'
         };
+        vm.menu = menuservice.options;
 
         activate();
 
@@ -53,6 +52,7 @@
 
         function loginUser() {
             vm.message = '';
+            vm.menu.programId = 0;
             authservice.login(vm.loginData)
                 .then(function (response) {
                     redirect();
@@ -65,6 +65,7 @@
         }
 
         function loginAUser(auser) {
+            vm.menu.programId = 0;
             vm.loginData.userName = auser + '@ewide.biz';
             vm.loginData.password = 'Abcd!234';
             vm.loginUser();
