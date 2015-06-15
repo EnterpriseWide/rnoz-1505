@@ -9,7 +9,7 @@
     function LearningPlanController(logger, $stateParams, $q, dataservice, authservice, config) {
         var vm = this;
         vm.title = 'Learning Plan';
-        vm.data = [];
+        vm.data = {};
         vm.authData = authservice.authData;
         vm.save = save;
         vm.apiurl = dataservice.apiurl;
@@ -23,6 +23,7 @@
             vm.programId = $stateParams.programId;
             var promises = [getLearningPlan(vm.programId)];
             return $q.all(promises).then(function() {
+                vm.UpdatedAt = Date.parse(vm.data.UpdatedAt);
             });
         }
 
@@ -35,6 +36,7 @@
 
         function save() {
             dataservice.updateLearningPlan(vm.data.Id, vm.data).then(function (data) {
+                vm.UpdatedAt = new Date();
                 logger.info('Learning Plan Saved');
             });
         }
