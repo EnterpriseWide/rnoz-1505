@@ -90,6 +90,7 @@
                         deferred.resolve(authData);
                     });
             } else {
+                deferred.resolve();
                 $state.go('login');
             }
             return deferred.promise;
