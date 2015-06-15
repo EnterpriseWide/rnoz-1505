@@ -16,11 +16,18 @@
         };
         vm.save = save;
         vm.data = {};
+        vm.authData = authservice.authData;
 
         activate();
 
         function activate() {
             angular.extend(vm.data, authservice.authData);
+            if (!(vm.authData.isCoach || vm.authData.isAdmin)) {
+                dataservice.listPrograms().then(function (data) {
+                    var program = data[0];
+                    vm.programId = program.Id;
+                });
+            }
         }
 
         function save() {
