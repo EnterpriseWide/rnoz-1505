@@ -284,7 +284,7 @@
     <Compile Include="Controllers\ProgramMediaController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controllers\SendEmailToCoachController.cs" />
+    <Compile Include="Controllers\SendEmailController.cs" />
     <Compile Include="Controllers\SessionsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
     <Compile Include="MediaTypeFormatters\LearningPlanPDFMediaTypeFormatter.cs" />

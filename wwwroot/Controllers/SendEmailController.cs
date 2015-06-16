@@ -12,13 +12,15 @@ using System.Web.Http.Description;
 
 namespace ewide.web.Controllers
 {
-    public class SendEmailToCoachController : BaseApiController
+    [Authorize]
+    [RoutePrefix("api/SendEmail")]
+    public class SendEmailController : BaseApiController
     {
 
-        // PUT: api/Assignments/5
         [ResponseType(typeof(void))]
         [Authorize(Roles = "Coach")]
-        public IHttpActionResult PostEmail(EmailDTO emailDTO)
+        [Route("ToTheCoachee")]
+        public IHttpActionResult PostToTheCoachee(EmailDTO emailDTO)
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
             var program = GetCoachingPrograms(currentUser)
@@ -29,7 +31,24 @@ namespace ewide.web.Controllers
             }
 
             SendEmail(currentUser.Email, String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName),
-                program.Coach.Email, "Email from Coachee", emailDTO.EmailBodyText, true);
+                program.Coachee.Email, "Email to the Coachee", emailDTO.EmailBodyText, true);
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [ResponseType(typeof(void))]
+        [Route("ToTheCoach")]
+        public IHttpActionResult PostToTheCoach(EmailDTO emailDTO)
+        {
+            var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
+            var program = GetCoachingPrograms(currentUser)
+                .FirstOrDefault(i => i.Id == emailDTO.Id);
+            if (program == null)
+            {
+                return BadRequest("Program Not Found");
+            }
+
+            SendEmail(currentUser.Email, String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName),
+                program.Coach.Email, "Email to the Coach", emailDTO.EmailBodyText, true);
             return StatusCode(HttpStatusCode.NoContent);
         }
 
