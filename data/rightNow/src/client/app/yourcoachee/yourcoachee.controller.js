@@ -33,7 +33,7 @@
         }
 
         function sendEmail() {
-            dataservice.sendEmailToCoachee({Id: vm.data.Id, EmailBodyText: vm.email}).then(function (data) {
+            dataservice.sendEmailToTheCoachee({Id: vm.data.Id, EmailBodyText: vm.email}).then(function (data) {
                 vm.email = '';
                 logger.success('Email Sent');
             });

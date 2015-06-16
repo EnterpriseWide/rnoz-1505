@@ -5,7 +5,6 @@
         .module('app.yourcoach')
         .controller('YourCoachController', YourCoachController);
     YourCoachController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice'];
-
     function YourCoachController(logger, $stateParams, $q, dataservice, authservice) {
         var vm = this;
         vm.title = 'Your Coach';
@@ -34,7 +33,7 @@
         }
 
         function sendEmail() {
-            dataservice.sendEmailToCoach({Id: vm.data.Id, EmailBodyText: vm.email}).then(function (data) {
+            dataservice.sendEmailToTheCoach({Id: vm.data.Id, EmailBodyText: vm.email}).then(function (data) {
                 vm.email = '';
                 logger.success('Email Sent');
             });

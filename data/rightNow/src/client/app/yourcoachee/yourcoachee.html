@@ -26,7 +26,7 @@
                                             </div>
                                         </div>
                                         <div class="tile-inner">
-                                            <span>{{ vm.data.Coach.FirstName }} {{ vm.data.Coach.LastName }}</span>
+                                            <span>{{ vm.data.Coachee.FirstName }} {{ vm.data.Coachee.LastName }}</span>
                                         </div>
                                     </div>
                                 
@@ -40,7 +40,7 @@
                                             </div>
                                         </div>
                                         <div class="tile-inner">
-                                            <span>{{ vm.data.Coach.Phone }}</span>
+                                            <span>{{ vm.data.Coachee.Phone }}</span>
                                         </div>
                                     </div>
                                
@@ -54,7 +54,7 @@
                                             </div>
                                         </div>
                                         <div class="tile-inner">
-                                            <span><a href="mailto:{{ vm.data.Coach.Email }}">{{ vm.data.Coach.Email }}</a></span>
+                                            <span><a href="mailto:{{ vm.data.Coachee.Email }}">{{ vm.data.Coachee.Email }}</a></span>
                                         </div>
                                     </div>
                                
@@ -127,24 +127,15 @@
                 </div>
 
                 <div class="col-sm-7">
-                    <div class="card" ng-show="!vm.authData.isCoach">
-                        <div class="card-main">
-                            <div class="card-inner">
-                                <h3 class="content-section-heading">Coaching Experience</h3>
-                                    <div class="content-text-area" ng-bind-html="vm.data.Coach.CoachingExperience"></div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner">
                                    <h3 class="content-section-heading">Work Experience</h3>
-                                    <div class="content-text-area" ng-bind-html="vm.data.Coach.WorkExperience"></div>
+                                    <div class="content-text-area" ng-bind-html="vm.data.Coachee.WorkExperience"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
 
             </div>
         </div>

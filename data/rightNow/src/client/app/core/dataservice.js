@@ -35,7 +35,8 @@
             deleteProgramMedia: deleteProgramMedia,
             listProgramMedias: listProgramMedias,
 
-            sendEmailToCoach: sendEmailToCoach
+            sendEmailToTheCoach: sendEmailToTheCoach,
+            sendEmailToTheCoachee: sendEmailToTheCoachee
         };
 
         return service;
@@ -312,8 +313,24 @@
             }
         }
 
-        function sendEmailToCoach(data) {
-            return $http.post(service.apiurl + '/api/SendEmailToCoach/', data)
+        function sendEmailToTheCoach(data) {
+            return $http.post(service.apiurl + '/api/SendEmail/ToTheCoach/', data)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'creation of a new email for program ' + data.Id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function sendEmailToTheCoachee(data) {
+            return $http.post(service.apiurl + '/api/SendEmail/ToTheCoachee/', data)
                 .then(success)
                 .catch(fail);
 
