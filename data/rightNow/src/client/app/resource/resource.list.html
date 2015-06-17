@@ -15,11 +15,10 @@
         </div>
         <div class="card-wrap">
             <div class="row">
-                <div class=" col-sm-12">
+                <div class=" col-sm-12" ng-show="vm.authData.isCoach || vm.authData.isAdmin">
                 <div ngf-drop="" ngf-select="" ng-model="vm.files" ng-model-rejected="vm.rejFiles" ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box" ngf-multiple="true" ngf-max-size='10000000' ngf-allow-dir="true" ngf-accept="'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/pdf,image/png,image/jpep,image/jpg,image/gif'" ngf-drop-available="dropAvailable" ngf-change="vm.upload()">
                     <div ng-hide="dropAvailable">File Drop not available</div>
-                    <div ng-show="dropAvailable"><span class="icon icon-file-upload"></span>&nbsp;Drop files to upload, or click to select files</div>
-                </div>
+                    <div ng-show="dropAvailable"><span class="icon icon-file-upload"></span>&nbsp;Drag &amp; drop files to upload, or click to select files</div>
                 </div>
                 <ul style="clear:both" ng-show="vm.rejFiles.length > 0" class="response">
                     <li class="sel-file" ng-repeat="f in rejFiles">
@@ -50,12 +49,13 @@
                         </div>
                     </li>
                 </ul>
+                </div>
                 <div class="list-items">
                     <div class="col-md-4 col-sm-6 list-item" ng-repeat="p in vm.resources">
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
-                                    <p class="card-heading">{{p.Name}}</p>
+                                    <p class="large">{{p.Name}}</p>
                                     <p>{{p.Description}}</p>
                                 </div>
                                 <div class="card-action">

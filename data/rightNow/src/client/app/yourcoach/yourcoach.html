@@ -85,6 +85,20 @@
                                     </div>
                                
                             </div>
+                            <div class="user-list-item" ng-show="!vm.authData.isCoach">
+                                
+                                    <div class="clearfix">
+                                        <div class="pull-left tile-side">
+                                            <div class="avatar avatar-blue avatar-sm">
+                                                <span class="icon icon-receipt"></span>
+                                            </div>
+                                        </div>
+                                        <div class="tile-inner">
+                                            <span><a href="#" class="" target="_blank">Download CV<span class="icon icon-chevron-right"></span></a></span>
+                                        </div>
+                                    </div>
+                               
+                            </div>
                             <div class="user-list-item">
                                 
                                     <div class="clearfix">
@@ -108,7 +122,7 @@
                                             </div>
                                         </div>
                                         <div class="tile-inner">
-                                            <span>Send an email to your coach</span>
+                                            <span>Send an email message to your coach</span>
                                             <form class="form-horizontal" role="form">
                                                 <textarea class="form-control margin-top" ng-model="vm.email"></textarea>
                                             </form>
