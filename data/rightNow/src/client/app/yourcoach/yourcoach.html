@@ -142,16 +142,8 @@
                     <div class="card" ng-show="!vm.authData.isCoach">
                         <div class="card-main">
                             <div class="card-inner">
-                                <h3 class="content-section-heading">Coaching Experience</h3>
+                                <h3 class="content-section-heading">About {{ vm.data.Coach.FirstName }}</h3>
                                     <div class="content-text-area" ng-bind-html="vm.data.Coach.CoachingExperience"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-main">
-                            <div class="card-inner">
-                                   <h3 class="content-section-heading">Work Experience</h3>
-                                    <div class="content-text-area" ng-bind-html="vm.data.Coach.WorkExperience"></div>
                             </div>
                         </div>
                     </div>
