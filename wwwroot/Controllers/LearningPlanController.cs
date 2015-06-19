@@ -13,6 +13,7 @@ using System.Web.Http.Description;
 using ewide.web.Models;
 using System.IO;
 using System.Net.Http.Headers;
+using System.Net.Mail;
 
 namespace ewide.web.Controllers
 {
@@ -97,8 +98,59 @@ namespace ewide.web.Controllers
                     throw;
                 }
             }
-
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PostSendEmailWithPDF(int id, PostSendEmailWithPDFRequest request)
+        {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var program = GetCoachingPrograms(currentUser)
+                .FirstOrDefault(i => i.Id == id);
+            var lp = new LearningPlanDTO
+                {
+                    Id = program.Id,
+                    LearningPlan = program.LearningPlan,
+                    UpdatedAt = program.UpdatedAt,
+                };
+            using (var fileStream = new MemoryStream())
+            {
+                var coacheeName = String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName);
+                var subject = String.Format("Learning Plan for {0}", coacheeName);
+
+                var converter = new SelectPdf.HtmlToPdf();
+                var html = String.Format("<html><body>{0}</body></html>", lp.LearningPlan);
+                var doc = converter.ConvertHtmlString(html);
+                doc.Save(fileStream);
+                fileStream.Position = 0;
+                var attachment = new Attachment(fileStream, subject, "application/pdf");
+
+                SendEmail(currentUser.Email, coacheeName, request.recipients, subject,
+                    String.Format("Find attached the Learning Plan for {0}", coacheeName), true,
+                    attachment);
+            }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        private static void SendEmail(string from, string from_name, string to, string subject, string body, bool isHtml, Attachment attachment)
+        {
+            var message = new MailMessage();
+            if (!string.IsNullOrEmpty(from_name))
+            {
+                message.From = new MailAddress(from, from_name);
+            }
+            else
+            {
+                message.From = new MailAddress(from);
+            }
+            message.To.Add(new MailAddress(to));
+            message.Subject = subject;
+            message.Body = body;
+            message.IsBodyHtml = isHtml;
+            message.Attachments.Add(attachment);
+
+            var mailClient = new SmtpClient();
+            mailClient.Send(message);
         }
 
         private bool CoachingProgramExists(int id, ApplicationUser currentUser)
@@ -106,5 +158,9 @@ namespace ewide.web.Controllers
             return GetCoachingPrograms(currentUser).Count(e => e.Id == id) > 0;
         }
 
+        public class PostSendEmailWithPDFRequest
+        {
+            public string recipients { get; set; }
+        }
     }
 }
