@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="pull-right">
                                         <a href="{{vm.apiurl}}/api/learningplan/DownloadPdf?id={{vm.programId}}&access_token={{vm.authData.token}}" class="btn btn-blue waves-button waves-effect waves-light margin-right-small"><span class="icon icon-insert-drive-file"></span>&nbsp;Export as PDF</a>
-                                        <a class="btn btn-blue waves-button waves-effect waves-light margin-right-small"><span class="icon icon-email"></span>&nbsp;Send as Email</a>
+                                        <button data-ng-click="vm.sendEmail()" class="btn btn-blue waves-button waves-effect waves-light margin-right-small"><span class="icon icon-email"></span>&nbsp;Send as Email</button>
                                         <button data-ng-click="vm.save()" class="btn btn-green waves-button waves-effect waves-light"><span class="icon icon-check"></span>&nbsp;Save</button>
                                     </div>
                                 </div>
