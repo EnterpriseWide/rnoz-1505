@@ -27,6 +27,7 @@
 
             readLearningPlan: readLearningPlan,
             updateLearningPlan: updateLearningPlan,
+            createLearningPlanEmail: createLearningPlanEmail,
 
             listSessions: listSessions,
 
@@ -249,6 +250,22 @@
             });
 
             return deferred.promise;
+        }
+
+        function createLearningPlanEmail(id, data) {
+            return $http.post(service.apiurl + '/api/learningplan/' + id, data)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'creation of learning plan email for ' + data.recipients + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
         }
 
         function readProgramMedia(id, mediaType) {
