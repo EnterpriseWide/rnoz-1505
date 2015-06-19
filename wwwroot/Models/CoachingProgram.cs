@@ -19,5 +19,6 @@ namespace ewide.web.Models
         public virtual ApplicationUser Coachee { get; set; }
         public String LearningPlan { get; set; }
         public ICollection<CoachingSession> CoachingSessions { get; set; }
+        public bool IsClosed { get; set; }
     }
 }

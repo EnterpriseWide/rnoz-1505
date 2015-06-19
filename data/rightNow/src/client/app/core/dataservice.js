@@ -16,6 +16,7 @@
             readUserInfo: readUserInfo,
             updateUserInfo: updateUserInfo,
 
+            closeProgram: closeProgram,
             readProgram: readProgram,
             listPrograms: listPrograms,
 
@@ -108,6 +109,17 @@
                 logger.error(msg);
                 return $q.reject(msg);
             }
+        }
+
+        function closeProgram(id) {
+            var url = service.apiurl + '/api/programs/close?id=' + id;
+            var deferred = $q.defer();
+            $http.put(url).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
         }
 
         function readProgram(id) {

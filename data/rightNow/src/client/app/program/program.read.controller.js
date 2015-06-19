@@ -4,8 +4,8 @@
     angular
         .module('app.program')
         .controller('ProgramReadController', ProgramReadController);
-    ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog'];
-    function ProgramReadController(logger, $stateParams, $q, dataservice, authservice, ngDialog) {
+    ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state'];
+    function ProgramReadController(logger, $stateParams, $q, dataservice, authservice, ngDialog, $state) {
         var vm = this;
         vm.title = 'Program Dashboard';
         vm.data = {};
@@ -77,9 +77,10 @@
                     '</div>',
                 plain: true
             }).then(function() {
-                logger.error('Close Program Not Implemented Yet ' + vm.data.Id);
-            }, function() {
-                // Do Nothing
+                dataservice.closeProgram(vm.data.Id).then(function() {
+                    logger.success('Program Closed');
+                    $state.go('programs');
+                })
             });
         }
     }
