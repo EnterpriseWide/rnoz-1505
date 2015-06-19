@@ -12,6 +12,7 @@
             'app.login',
             'app.profile',
             'app.program',
+            'app.survey',
             'app.resource',
             'app.upload',
             'app.widgets',
