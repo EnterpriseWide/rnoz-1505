@@ -32,6 +32,7 @@
 
             listSessions: listSessions,
 
+            createProgramMediaLink: createProgramMediaLink,
             readProgramMedia: readProgramMedia,
             updateProgramMedia: updateProgramMedia,
             deleteProgramMedia: deleteProgramMedia,
@@ -280,6 +281,22 @@
             }
         }
 
+        function createProgramMediaLink(mediaType, data) {
+            return $http.post(service.apiurl + '/api/ProgramMedia/AddLink?mediaType=' + mediaType, data)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'Adding Link for ' + data.Link + ' failed. ' + error.Message;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
         function readProgramMedia(id, mediaType) {
             return $http.get(service.apiurl + '/api/ProgramMedia/' + id + '?mediaType=' + mediaType)
                 .then(success)
@@ -301,11 +318,13 @@
 
             var deferred = $q.defer();
 
-            $http.put(url, data).success(function (response) {
-                deferred.resolve(response);
-            }).error(function (error, status) {
-                deferred.reject(error);
-            });
+            $http.put(url, data)
+                .success(function (response) {
+                    deferred.resolve(response);
+                }).error(function (error, status) {
+                    logger.error(error.Message);
+                    deferred.reject(error);
+                });
 
             return deferred.promise;
         }

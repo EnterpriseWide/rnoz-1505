@@ -20,6 +20,7 @@ using System.Web.Http.Description;
 namespace ewide.web.Controllers
 {
     [Authorize]
+    [RoutePrefix("api/ProgramMedia")]
     public class ProgramMediaController : BaseApiController
     {
         private IEnumerable<ProgramMedia> GetProgramMediaList(ApplicationUser currentUser)
@@ -102,10 +103,21 @@ namespace ewide.web.Controllers
                 return BadRequest("Only Coaches can upload Resources");
             }
 
+            var isLink = !String.IsNullOrEmpty(programMedia.Link);
+            if (isLink && String.IsNullOrEmpty(item.Link))
+            {
+                return BadRequest("Links cannot be empty");
+            }
+            if (!isLink && String.IsNullOrEmpty(item.Link))
+            {
+                return BadRequest("Non Links do not have a Link Property");
+            }
+
             AppDb.Entry(programMedia).State = EntityState.Modified;
 
             programMedia.Name = item.Name;
             programMedia.BodyText = item.BodyText;
+            programMedia.Link = item.Link;
             programMedia.UpdatedAt = DateTime.Now;
 
             try
@@ -177,7 +189,47 @@ namespace ewide.web.Controllers
             }
         }
 
-        // DELETE: api/Assignments/5
+        [ResponseType(typeof(ProgramMedia))]
+        [Route("AddLink")]
+        public IHttpActionResult PostAddLink(MediaType mediaType, ProgramMediaDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            if (mediaType == MediaType.Resource && !(AppUserManager.IsInRole(currentUser.Id, "Coach") || AppUserManager.IsInRole(currentUser.Id, "Admin")))
+            {
+                return BadRequest("Only Coaches can upload Resources");
+            }
+            var coachingProgram = GetCoachingPrograms(currentUser)
+                .FirstOrDefault(i => i.Id == dto.CoachingProgramId);
+            if (coachingProgram == null)
+            {
+                if (coachingProgram == null)
+                {
+                    ModelState.AddModelError("CoachingProgramId", "Coaching Program Is Required");
+                    return BadRequest(ModelState);
+                }
+            }
+
+            var programMedia = new ProgramMedia
+            {
+                BodyText = String.Empty,
+                CoachingProgram = coachingProgram,
+                CreatedAt = DateTime.Now,
+                Link = dto.Link,
+                Name = dto.Link,
+                MediaType = mediaType,
+                UpdatedAt = DateTime.Now,
+            };
+            AppDb.ProgramMedia.Add(programMedia); 
+
+            AppDb.SaveChanges();
+            return CreatedAtRoute("DefaultApi", new { id = programMedia.Id }, programMedia);
+        
+        }
+
         [ResponseType(typeof(ProgramMedia))]
         public IHttpActionResult DeleteProgramMedia(int id)
         {
@@ -218,5 +270,11 @@ namespace ewide.web.Controllers
         {
             return GetProgramMediaList(currentUser).Count(e => e.Id == id) > 0;
         }
+    }
+
+    public class ProgramMediaDTO
+    {
+        public String Link { get; set; }
+        public int CoachingProgramId { get; set; }
     }
 }

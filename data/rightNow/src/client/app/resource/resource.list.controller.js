@@ -18,6 +18,7 @@
         vm.files = [];
         vm.apiurl = dataservice.apiurl;
         vm.deleteRecord = deleteRecord;
+        vm.saveNewLink = saveNewLink;
 
         activate();
 
@@ -69,6 +70,27 @@
             }, function() {
                 // Do Nothing
             });
+        }
+
+        var options = {
+            template: 'app/resource/resource.createLink.html'
+        };
+
+        function saveNewLink(link) {
+            if (link) {
+                dataservice.createProgramMediaLink(vm.mediaType, {CoachingProgramId: vm.programId, Link: link}).then(function (data) {
+                    logger.success('Link Added Successfully! Refreshing Resources ...');
+                    getResources(vm.programId, vm.mediaType);
+                });
+            } else {
+                ngDialog.openConfirm(options)
+                    .then(saveNewLink);
+            }
+        };
+
+        function addLink(id, ev) {
+            ngDialog.openConfirm(options)
+                .then(saveNewLink);
         }
 
     }
