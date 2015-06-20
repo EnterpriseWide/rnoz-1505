@@ -28,5 +28,6 @@ namespace ewide.web.Models
         public String BodyText { get; set; }
         [Required]
         public MediaType MediaType { get; set; }
+        public String Link { get; set; }
     }
 }
