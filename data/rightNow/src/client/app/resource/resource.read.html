@@ -24,10 +24,9 @@
                             <div class="card-inner">
                                 <div class="col-sm-12 margin-top margin-bottom clearfix">
                                     
-        <h2 class="card-heading">Resource Title Here</h2>
-        <p>URL - <a href="https://www.youtube.com/watch?v=dVDk7PXNXB8" target="_blank">https://www.youtube.com/watch?v=dVDk7PXNXB8 <span class="icon icon-chevron-right"></span></a></p>
-        <p>File - <a href="/path/to/file/filename.pdf" target="_blank">filename.pdf <span class="icon icon-chevron-right"></span></a></p>
-        <p>Notes - (bodytext)</p>
+        <h2 class="card-heading">{{ vm.data.Name }}</h2>
+        <p ng-show="vm.data.Link">URL - <a href="https://www.youtube.com/watch?v=dVDk7PXNXB8" target="_blank">https://www.youtube.com/watch?v=dVDk7PXNXB8 <span class="icon icon-chevron-right"></span></a></p>
+        <p ng-hide="vm.data.Link"><a href="/path/to/file/filename.pdf" target="_blank">Download <span class="icon icon-chevron-right"></span></a></p>
         <div ng-bind-html="vm.data.BodyText"></div>
                                 </div>
                              </div>
