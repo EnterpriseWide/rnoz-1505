@@ -1,4 +1,5 @@
 ﻿using ewide.web.Models;
+using ewide.web.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,7 +30,7 @@ namespace ewide.web.MediaTypeFormatters
                     throw new InvalidOperationException("Cannot serialize type");
                 }
                 var converter = new SelectPdf.HtmlToPdf();
-                var html = String.Format("<html><body>{0}</body></html>", lp.LearningPlan);
+                var html = ViewRenderer.RenderView("~/Views/LearningPlanPDF.cshtml", lp);
                 var doc = converter.ConvertHtmlString(html);
                 doc.Save(writeStream);
             }

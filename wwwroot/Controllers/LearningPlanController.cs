@@ -14,6 +14,7 @@ using ewide.web.Models;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Net.Mail;
+using ewide.web.Utils;
 
 namespace ewide.web.Controllers
 {
@@ -118,8 +119,8 @@ namespace ewide.web.Controllers
                 var coacheeName = String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName);
                 var subject = String.Format("Learning Plan for {0}", coacheeName);
 
+                var html = ViewRenderer.RenderView("~/Views/LearningPlanPDF.cshtml", lp);
                 var converter = new SelectPdf.HtmlToPdf();
-                var html = String.Format("<html><body>{0}</body></html>", lp.LearningPlan);
                 var doc = converter.ConvertHtmlString(html);
                 doc.Save(fileStream);
                 fileStream.Position = 0;
