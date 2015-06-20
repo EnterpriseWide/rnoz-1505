@@ -9,12 +9,25 @@
             <h2 class="content-sub-heading pull-left">
                 <a ui-sref="assignments({assignmentId: vm.data.Id, programId: vm.programId})"><span class="icon icon-chevron-left"></span>&nbsp;Back to Assignments</a>
             </h2>
-            <p class="pull-right">
-                <button data-ng-click="vm.save()" class="btn btn-blue waves-button waves-effect waves-light" ui-sref="assignmentUpdate({programId: vm.programId, assignmentId: vm.data.Id})"><span class="icon icon-my-library-add"></span>&nbsp;Save Assignment</button>
-            </p>
         </div>
-        <form class="form-horizontal" role="form" ng-submit="add()">
-            <div ng-include="'app/assignment/assignment.form.html'"></div>
-        </form>
+        <div class="card-wrap">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <div class="col-sm-12 margin-top margin-bottom clearfix">
+                                     <form class="form-horizontal" role="form" ng-submit="add()">
+                                        <div ng-include="'app/assignment/assignment.form.html'"></div>
+                                    </form>
+                                     <button class="pull-right btn btn-blue waves-button waves-effect waves-light" data-ng-click="vm.save()" ui-sref="assignmentUpdate({programId: vm.programId, assignmentId: vm.data.Id})"><span class="icon icon-check"></span>&nbsp;Save</button>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>
