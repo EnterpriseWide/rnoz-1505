@@ -64,7 +64,7 @@
                                 <div class="card-action">
                                     <ul class="nav nav-list pull-right">
                                         <li ng-show="vm.authData.isCoach">
-                                            <a href="#" target="_blank"><span class="icon icon-insert-drive-file"></span>&nbsp;Update</a>
+                                            <a ui-sref="resourceUpdate({programId: vm.programId, resourceId: p.Id})"><span class="icon icon-insert-drive-file"></span>&nbsp;Update</a>
                                         </li>
                                         <li ng-show="p.Link">
                                             <a href="{{p.Link}}" target="_blank"><span class="icon icon-insert-drive-file"></span>&nbsp;Open Url</a>
