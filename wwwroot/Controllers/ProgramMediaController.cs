@@ -108,7 +108,7 @@ namespace ewide.web.Controllers
             {
                 return BadRequest("Links cannot be empty");
             }
-            if (!isLink && String.IsNullOrEmpty(item.Link))
+            if (!isLink && !String.IsNullOrEmpty(item.Link))
             {
                 return BadRequest("Non Links do not have a Link Property");
             }
