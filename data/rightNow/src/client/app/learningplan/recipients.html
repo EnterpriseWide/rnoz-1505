@@ -1,12 +1,13 @@
 <form name="form" class="css-form" novalidate>
     <div>
-        Recipients:
-        <input type="email" ng-model="recipients" name="myEmail" required="" />
-        <span ng-show="form.myEmail.$error.email">This email format is invalid!</span>
+        Email your learning plan to:
+    </div>
+    <div class="margin-bottom">
+        <input type="email" class="form-control" ng-model="recipients" name="myEmail" required="" />
+        <div class="half-margin-top form-error-message" ng-show="form.myEmail.$error.email">This email format is invalid</div>
     </div>
     <div class="ngdialog-buttons">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">No</button>
-        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(recipients)"
-        ng-disabled="!form.myEmail.$valid">Send Email<span ng-show="form.myEmail.$valid"> to {{ recipients }}</span></button>
+        <button type="button" class="btn btn-blue" ng-click="confirm(recipients)"
+        ng-disabled="!form.myEmail.$valid">Send Email</button>
     </div>
 </form>
