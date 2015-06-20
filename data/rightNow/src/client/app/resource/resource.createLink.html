@@ -1,0 +1,11 @@
+<form name="form" class="css-form" novalidate>
+    <div>
+        Link:
+        <input type="link" ng-model="link" name="myLink" required="" value="http://www.ewide.com.au" />
+    </div>
+    <div class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">No</button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(link)"
+        ng-disabled="!form.myLink.$valid">Create Link</button>
+    </div>
+</form>

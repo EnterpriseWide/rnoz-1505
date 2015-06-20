@@ -18,6 +18,7 @@
 
         function activate() {
             vm.programId = $stateParams.programId;
+            vm.isLink = false;
             var id = $stateParams.resourceId;
             var promises = [getResource(id, vm.mediaType)];
             return $q.all(promises).then(function() {
@@ -27,6 +28,7 @@
         function getResource(id, mediaType) {
             return dataservice.readProgramMedia(id, mediaType).then(function (data) {
                 vm.data = data;
+                vm.isLink = data.Link;
             });
         }
 
