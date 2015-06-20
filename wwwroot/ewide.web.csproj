@@ -316,6 +316,18 @@
     <Compile Include="Migrations\201506130518355_Add Vidyo Account Id and Remove Sight Call UID.Designer.cs">
       <DependentUpon>201506130518355_Add Vidyo Account Id and Remove Sight Call UID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506190854037_Add isActive to CoachingProgram.cs" />
+    <Compile Include="Migrations\201506190854037_Add isActive to CoachingProgram.Designer.cs">
+      <DependentUpon>201506190854037_Add isActive to CoachingProgram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506190907120_Add isClosed and remove isActive to CoachingProgram.cs" />
+    <Compile Include="Migrations\201506190907120_Add isClosed and remove isActive to CoachingProgram.Designer.cs">
+      <DependentUpon>201506190907120_Add isClosed and remove isActive to CoachingProgram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506200359133_Add Link property to ProgramMedia.cs" />
+    <Compile Include="Migrations\201506200359133_Add Link property to ProgramMedia.Designer.cs">
+      <DependentUpon>201506200359133_Add Link property to ProgramMedia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\EmailDTO.cs" />
@@ -505,6 +517,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506130518355_Add Vidyo Account Id and Remove Sight Call UID.resx">
       <DependentUpon>201506130518355_Add Vidyo Account Id and Remove Sight Call UID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506190854037_Add isActive to CoachingProgram.resx">
+      <DependentUpon>201506190854037_Add isActive to CoachingProgram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506190907120_Add isClosed and remove isActive to CoachingProgram.resx">
+      <DependentUpon>201506190907120_Add isClosed and remove isActive to CoachingProgram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506200359133_Add Link property to ProgramMedia.resx">
+      <DependentUpon>201506200359133_Add Link property to ProgramMedia.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
