@@ -26,7 +26,7 @@
                             <div class="card-action">
                                 <ul class="nav nav-list pull-left" ng-show="vm.authData.isCoach">
                                     <li>
-                                        <a class="thin-side-padding" title="Update"><span class="icon icon-edit"></span></a>
+                                        <a class="thin-side-padding" title="Update" ui-sref="assignmentUpdate({programId: p.CoachingProgramId, assignmentId: p.Id})"><span class="icon icon-edit"></span></a>
                                     </li>
                                     <li>
                                         <a title="Delete" ng-click="vm.deleteRecord(p.Id, $event)"><span class="icon icon-delete"></span></a>

@@ -20,7 +20,6 @@
             vm.data.Id = $stateParams.assignmentId;
             var promises = [getAssignment(vm.data.Id)];
             return $q.all(promises).then(function() {
-                logger.info('Activated ' + vm.title + ' View');
             });
         }
 
