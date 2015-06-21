@@ -7,7 +7,7 @@
     <div class="container">
         <div class="clearfix sub-header">
             <h2 class="content-sub-heading pull-left">
-                <a ui-sref="program({programId: vm.programId})"><span class="icon icon-chevron-left"></span>Back to Dashboard</a>
+                <a ui-sref="program({programId: vm.programId})"><span class="icon icon-chevron-left"></span>Back to Program Dashboard</a>
             </h2>
             <p class="pull-right lighter">Last updated {{vm.UpdatedAt | date:'hh:mm a dd/MM/yyyy'}}</p>
         </div>
@@ -18,9 +18,9 @@
                         <div class="card-main">
                             <div class="card-inner">
                                 <div class="col-sm-12 margin-top margin-bottom clearfix">
-                                    <div class="pull-left">
+                                    <!--<div class="pull-left">
                                         <a href="javascript:void(0)" data-toggle="modal" class="btn btn-flat btn-blue waves-button waves-effect"><span class="icon icon-help"></span>&nbsp;Help</a>
-                                    </div>
+                                    </div>-->
                                     <div class="pull-right">
                                         <a href="{{vm.apiurl}}/api/learningplan/DownloadPdf?id={{vm.programId}}&access_token={{vm.authData.token}}" target="_blank" class="btn btn-blue waves-button waves-effect waves-light margin-right-small"><span class="icon icon-insert-drive-file"></span>&nbsp;Export as PDF</a>
                                         <button data-ng-click="vm.sendEmail()" class="btn btn-blue waves-button waves-effect waves-light margin-right-small"><span class="icon icon-email"></span>&nbsp;Send as Email</button>

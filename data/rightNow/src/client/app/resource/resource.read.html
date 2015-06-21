@@ -7,10 +7,10 @@
     <div class="container">
         <div class="clearfix sub-header">
             <h2 class="content-sub-heading pull-left">
-                <a ui-sref="resources({programId: vm.programId})"><span class="icon icon-chevron-left"></span>&nbsp;Back to Resources</a>
+                <a ui-sref="resources({programId: vm.programId})"><span class="icon icon-chevron-left"></span>Back to Resources</a>
             </h2>
-            <p class="pull-right">
-                <a class="btn btn-blue waves-button waves-effect waves-light" ui-sref="resourceUpdate({programId: vm.programId, resourceId: vm.data.Id})"><span class="icon icon-my-library-add"></span>&nbsp;Update Resource</a>
+            <p class="pull-right" ng-show="vm.authData.isCoach || vm.authData.isAdmin">
+                <a class="btn btn-blue waves-button waves-effect waves-light" ui-sref="resourceUpdate({programId: vm.programId, resourceId: vm.data.Id})"><span class="icon icon-edit"></span>&nbsp;Update Resource</a>
             </p>
         </div>
 
@@ -24,10 +24,12 @@
                             <div class="card-inner">
                                 <div class="col-sm-12 margin-top margin-bottom clearfix">
                                     
-        <h2 class="card-heading">{{ vm.data.Name }}</h2>
-        <p ng-show="vm.data.Link">URL - <a href="https://www.youtube.com/watch?v=dVDk7PXNXB8" target="_blank">https://www.youtube.com/watch?v=dVDk7PXNXB8 <span class="icon icon-chevron-right"></span></a></p>
-        <p ng-hide="vm.data.Link"><a href="/path/to/file/filename.pdf" target="_blank">Download <span class="icon icon-chevron-right"></span></a></p>
-        <div ng-bind-html="vm.data.BodyText"></div>
+                                    <h2 class="card-heading">{{ vm.data.Name }}</h2>
+                                    <h3 ng-show="vm.data.Link">Link URL - <a href="{{vm.data.Link}}" target="_blank"class="font-weight-normal">{{vm.data.Link}}<span class="icon icon-chevron-right"></span></a></h3>
+                                    <h3 ng-hide="vm.data.Link"><a href="/path/to/file/filename.pdf" target="_blank" class="font-weight-normal"><span class="icon icon-description"></span>&nbsp;View File<span class="icon icon-chevron-right"></span></a></h3>
+                                    <hr />
+                                    <h3><span class="icon icon-info"></span>&nbsp;Notes/Comments</h3>
+                                    <div class="panel" ng-bind-html="vm.data.BodyText"></div>
                                 </div>
                              </div>
                         </div>

@@ -7,7 +7,7 @@
     ProfileController.$inject = ['logger', 'authservice', 'dataservice', 'config'];
     function ProfileController(logger, authservice, dataservice, config) {
         var vm = this;
-        vm.title = 'Profile';
+        vm.title = 'Your Profile';
         vm.screenconfig = {
             BodyText: '<p>Some instructions for the profile page go here</p>'
         };
