@@ -21,7 +21,6 @@
             var resourceId = $stateParams.resourceId;
             var promises = [getResource(resourceId, vm.mediaType)];
             return $q.all(promises).then(function() {
-                logger.info('Activated ' + vm.title + ' View');
             });
         }
 

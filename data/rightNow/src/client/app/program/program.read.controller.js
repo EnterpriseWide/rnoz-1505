@@ -31,9 +31,15 @@
 
         function activate() {
             var id = $stateParams.programId;
+            if (!id) {
+                $state.go('programs');
+            }
             var promises = [readProgram(id)];
             vm.authData = authservice.authData;
             return $q.all(promises).then(function() {
+                if (!vm.data) {
+                    $state.go('programs');
+                }
             });
         }
 
