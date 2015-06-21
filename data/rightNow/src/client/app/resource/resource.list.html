@@ -74,7 +74,7 @@
                                             <a href="{{p.Link}}" target="_blank"><span class="icon icon-link"></span>&nbsp;Open Url</a>
                                         </li>
                                         <li ng-show="!p.Link">
-                                            <a href="#"><span class="icon icon-description"></span>&nbsp;View File</a>
+                                            <a href="{{vm.apiurl}}/api/ProgramMedia/ViewFile?id={{p.Id}}&access_token={{vm.authData.token}}" target="_blank"><span class="icon icon-description"></span>&nbsp;View File</a>
                                         </li>
                                         <li class="sm-no-float" ng-show="p.BodyText">
                                             <a ui-sref="resourceRead({programId: p.CoachingProgramId, resourceId: p.Id})">Read More<span class="icon icon-chevron-right"></span></a>
