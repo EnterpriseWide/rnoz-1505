@@ -34,7 +34,7 @@
                                 </ul>
                                 <ul class="nav nav-list pull-right">
                                     <li>
-                                        <a ui-sref="assignmentRead({programId: p.CoachingProgramId, assignmentId: p.Id})">Read More<span class="icon icon-chevron-right"></span></a>
+                                        <a ui-sref="assignmentRead({programId: p.CoachingProgramId, assignmentId: p.Id})" ng-show="p.BodyText">Read More<span class="icon icon-chevron-right"></span></a>
                                     </li>
                                 </ul>
                             </div>
