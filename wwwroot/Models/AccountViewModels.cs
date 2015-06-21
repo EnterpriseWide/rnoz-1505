@@ -30,6 +30,7 @@ namespace ewide.web.Models
         public string WorkExperience { get; set; }
         public List<string> Roles { get; set; }
         public string Phone { get; set; }
+        public string LinkedInProfile { get; set; }
         public string Company { get; set; }
         public string Avatar { get; set; }
         public string AvatarFileUrl { get; set; }

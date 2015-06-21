@@ -50,6 +50,7 @@ namespace ewide.web.Controllers
                 Phone = currentUser.Phone,
                 Company = currentUser.Company,
                 Position = currentUser.Position,
+                LinkedInProfile = currentUser.LinkedInProfile,
                 CoachingExperience = currentUser.CoachingExperience,
                 WorkExperience = currentUser.WorkExperience,
             };
@@ -78,6 +79,7 @@ namespace ewide.web.Controllers
             currentUser.Phone = item.Phone;
             currentUser.Company = item.Company;
             currentUser.Position = item.Position;
+            currentUser.LinkedInProfile = item.LinkedInProfile;
             currentUser.CoachingExperience = item.CoachingExperience;
             currentUser.WorkExperience = item.WorkExperience;
 
