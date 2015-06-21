@@ -3,16 +3,15 @@
         Title:
     </div>
     <div class="margin-bottom">
-       <input type="text" class="form-control" name="title" required="" />
+       <input type="text" class="form-control" ng-model="data.title" name="myTitle" required="" />
     </div>
     <div>
         Link URL (include http://):
     </div>
     <div class="margin-bottom">
-       <input type="link" class="form-control" ng-model="link" name="myLink" required="" />
+       <input type="text" class="form-control" ng-model="data.link" name="myLink" required="" />
     </div>
     <div class="ngdialog-buttons">
-        <button type="button" class="btn btn-blue" ng-click="confirm(link)"
-        ng-disabled="!form.myLink.$valid">Add Link</button>
+        <button type="button" class="btn btn-blue" ng-click="confirm(data)" ng-disabled="!form.myLink.$valid">Add Link</button>
     </div>
 </form>

@@ -18,7 +18,7 @@
         vm.files = [];
         vm.apiurl = dataservice.apiurl;
         vm.deleteRecord = deleteRecord;
-        vm.saveNewLink = saveNewLink;
+        vm.addLink = addLink;
 
         activate();
 
@@ -76,9 +76,9 @@
             template: 'app/resource/resource.createLink.html'
         };
 
-        function saveNewLink(link) {
-            if (link) {
-                dataservice.createProgramMediaLink(vm.mediaType, {CoachingProgramId: vm.programId, Link: link}).then(function (data) {
+        function saveNewLink(data) {
+            if (data.link) {
+                dataservice.createProgramMediaLink(vm.mediaType, {CoachingProgramId: vm.programId, Name: data.title, Link: data.link}).then(function (data) {
                     logger.success('Link Added Successfully! Refreshing Resources ...');
                     getResources(vm.programId, vm.mediaType);
                 });
@@ -88,7 +88,7 @@
             }
         };
 
-        function addLink(id, ev) {
+        function addLink() {
             ngDialog.openConfirm(options)
                 .then(saveNewLink);
         }

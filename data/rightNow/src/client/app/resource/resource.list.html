@@ -10,7 +10,7 @@
                 <a ui-sref="program({programId: vm.programId})"><span class="icon icon-chevron-left"></span>Back to Dashboard</a>
             </h2>
             <p class="pull-right" ng-show="vm.authData.isCoach || vm.authData.isAdmin">
-                <button class="btn btn-blue waves-button waves-effect waves-light" ng-click="vm.saveNewLink()"><span class="icon icon-link"></span>&nbsp;Add link</button>
+                <button class="btn btn-blue waves-button waves-effect waves-light" ng-click="vm.addLink()"><span class="icon icon-link"></span>&nbsp;Add link</button>
             </p>
             <div class="pull-right margin-right-small margin-top" ng-show="vm.authData.isCoach || vm.authData.isAdmin">
 
