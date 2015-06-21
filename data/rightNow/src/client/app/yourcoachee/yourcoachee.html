@@ -68,7 +68,7 @@
                                             </div>
                                         </div>
                                         <div class="tile-inner">
-                                            <span>Position: {position here} </span>
+                                            <span>Position: {{ vm.data.Coachee.Position }} </span>
                                         </div>
                                     </div>
                                
@@ -82,7 +82,7 @@
                                             </div>
                                         </div>
                                         <div class="tile-inner">
-                                            <span>Company: {company here} </span>
+                                            <span>Company: {{ vm.data.Coachee.Company }} </span>
                                         </div>
                                     </div>
                                
@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
                                         <div class="tile-inner">
-                                            <span><a href="#" class="" target="_blank">LinkedIn profile<span class="icon icon-chevron-right"></span></a></span>
+                                            <span><a href="https://au.linkedin.com/in/{{vm.data.Coachee.LinkedInProfile}}" class="" target="_blank" ng-show="vm.data.Coachee.LinkedInProfile">LinkedIn profile<span class="icon icon-chevron-right"></span></a></span>
                                         </div>
                                     </div>
                                
