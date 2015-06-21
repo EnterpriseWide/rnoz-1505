@@ -86,7 +86,7 @@
                 dataservice.closeProgram(vm.data.Id).then(function() {
                     logger.success('Program Closed');
                     $state.go('programs');
-                })
+                });
             });
         }
     }

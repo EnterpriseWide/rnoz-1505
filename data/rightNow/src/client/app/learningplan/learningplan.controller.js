@@ -55,7 +55,7 @@
                 ngDialog.openConfirm(options)
                     .then(sendAsEmail);
             }
-        };
+        }
 
         function sendEmail(id, ev) {
             ngDialog.openConfirm(options)

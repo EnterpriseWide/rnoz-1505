@@ -86,7 +86,7 @@
                 ngDialog.openConfirm(options)
                     .then(saveNewLink);
             }
-        };
+        }
 
         function addLink() {
             ngDialog.openConfirm(options)
