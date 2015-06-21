@@ -13,8 +13,6 @@
                 <a class="btn btn-blue waves-button waves-effect waves-light" ui-sref="resourceUpdate({programId: vm.programId, resourceId: vm.data.Id})"><span class="icon icon-edit"></span>&nbsp;Update Resource</a>
             </p>
         </div>
-
-
         <div class="card-wrap">
             <div class="row">
 
@@ -26,7 +24,7 @@
                                     
                                     <h2 class="card-heading">{{ vm.data.Name }}</h2>
                                     <h3 ng-show="vm.data.Link">Link URL - <a href="{{vm.data.Link}}" target="_blank"class="font-weight-normal">{{vm.data.Link}}<span class="icon icon-chevron-right"></span></a></h3>
-                                    <h3 ng-hide="vm.data.Link"><a href="/path/to/file/filename.pdf" target="_blank" class="font-weight-normal"><span class="icon icon-description"></span>&nbsp;View File<span class="icon icon-chevron-right"></span></a></h3>
+                                    <h3 ng-hide="vm.data.Link"><a href="{{vm.apiurl}}/api/ProgramMedia/ViewFile?id={{vm.data.Id}}&access_token={{vm.authData.token}}" target="_blank"><span class="icon icon-description"></span>&nbsp;View File</a></h3>
                                     <hr />
                                     <h3><span class="icon icon-info"></span>&nbsp;Notes/Comments</h3>
                                     <div class="panel" ng-bind-html="vm.data.BodyText"></div>

@@ -13,6 +13,7 @@
         vm.data = {};
         vm.screenconfig = {};
         vm.authData = authservice.authData;
+        vm.apiurl = dataservice.apiurl;
 
         activate();
 
