@@ -1,4 +1,6 @@
-﻿using ewide.web.Models;
+﻿using ewide.web.MediaTypeFormatters;
+using ewide.web.Models;
+using ewide.web.Results;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -78,6 +80,30 @@ namespace ewide.web.Controllers
                 return NotFound();
             }
             return Ok(item);
+        }
+
+        [Route("ViewFile")]
+        [HttpGet]
+        public IHttpActionResult GetViewFile(int id)
+        {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var item = GetProgramMediaListFull(currentUser)
+                .FirstOrDefault(i => i.Id == id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            var fileName = String.Format("{0}{1}", GetRootFolder(item.CoachingProgram), item.FileName);
+            if (!File.Exists(fileName))
+            {
+                return NotFound();
+            }
+
+            HttpContext.Current.Response.Buffer = true; 
+            var fileInfo = new FileInfo(fileName);
+            return !fileInfo.Exists
+                ? (IHttpActionResult)NotFound()
+                : new FileResult(fileInfo.FullName, item.OriginalFileName, null);
         }
 
         [ResponseType(typeof(void))]
@@ -278,5 +304,11 @@ namespace ewide.web.Controllers
         [Required]
         public String Link { get; set; }
         public int CoachingProgramId { get; set; }
+    }
+
+    public class GetViewFileResponse
+    {
+        public String Filename { get; set; }
+        public String FilePath { get; set; }
     }
 }
