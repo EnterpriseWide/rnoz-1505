@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -219,15 +220,14 @@ namespace ewide.web.Controllers
                 CoachingProgram = coachingProgram,
                 CreatedAt = DateTime.Now,
                 Link = dto.Link,
-                Name = dto.Link,
+                Name = String.IsNullOrEmpty(dto.Name) ? dto.Link : dto.Name,
                 MediaType = mediaType,
                 UpdatedAt = DateTime.Now,
             };
-            AppDb.ProgramMedia.Add(programMedia); 
+            AppDb.ProgramMedia.Add(programMedia);
 
             AppDb.SaveChanges();
-            return CreatedAtRoute("DefaultApi", new { id = programMedia.Id }, programMedia);
-        
+            return Ok(programMedia);
         }
 
         [ResponseType(typeof(ProgramMedia))]
@@ -274,6 +274,8 @@ namespace ewide.web.Controllers
 
     public class ProgramMediaDTO
     {
+        public String Name { get; set; }
+        [Required]
         public String Link { get; set; }
         public int CoachingProgramId { get; set; }
     }
