@@ -23,6 +23,7 @@ namespace ewide.web.Models
         public string AvatarFileUrl { get; set; }
         public string Position { get; set; }
         public string CoachingExperience { get; set; }
+        public string LinkedInProfile { get; set; }
         public string WorkExperience { get; set; }
 
         public string VidyoAccountId { get; set; }

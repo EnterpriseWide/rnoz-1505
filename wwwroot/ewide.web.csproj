@@ -328,6 +328,10 @@
     <Compile Include="Migrations\201506200359133_Add Link property to ProgramMedia.Designer.cs">
       <DependentUpon>201506200359133_Add Link property to ProgramMedia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506211005208_Add Linked In Profile Field on Profile.cs" />
+    <Compile Include="Migrations\201506211005208_Add Linked In Profile Field on Profile.Designer.cs">
+      <DependentUpon>201506211005208_Add Linked In Profile Field on Profile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\EmailDTO.cs" />
@@ -529,6 +533,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506200359133_Add Link property to ProgramMedia.resx">
       <DependentUpon>201506200359133_Add Link property to ProgramMedia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506211005208_Add Linked In Profile Field on Profile.resx">
+      <DependentUpon>201506211005208_Add Linked In Profile Field on Profile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
