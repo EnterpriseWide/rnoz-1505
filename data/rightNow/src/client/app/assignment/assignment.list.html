@@ -24,12 +24,17 @@
                                 <p>{{p.Description}}</p>
                             </div>
                             <div class="card-action">
-                                <ul class="nav nav-list pull-right">
+                                <ul class="nav nav-list pull-left" ng-show="vm.authData.isCoach">
                                     <li>
-                                        <a title="Delete" ng-click="vm.deleteRecord(p.Id, $event)" ng-show="vm.authData.isCoach"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
+                                        <a class="thin-side-padding" title="Update"><span class="icon icon-edit"></span></a>
                                     </li>
                                     <li>
-                                        <a ui-sref="assignmentRead({programId: p.CoachingProgramId, assignmentId: p.Id})">Read More&nbsp;<span class="icon icon-chevron-right"></span></a>
+                                        <a title="Delete" ng-click="vm.deleteRecord(p.Id, $event)"><span class="icon icon-delete"></span></a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-list pull-right">
+                                    <li>
+                                        <a ui-sref="assignmentRead({programId: p.CoachingProgramId, assignmentId: p.Id})">Read More<span class="icon icon-chevron-right"></span></a>
                                     </li>
                                 </ul>
                             </div>
