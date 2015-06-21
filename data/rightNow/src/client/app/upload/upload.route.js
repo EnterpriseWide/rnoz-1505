@@ -24,7 +24,7 @@
             {
                 state: 'uploadRead',
                 config: {
-                    url: '/program/:programId/upload/:uploadId/',
+                    url: '/program/:programId/upload/:resourceId/',
                     templateUrl: 'app/upload/upload.read.html',
                     controller: 'UploadReadController',
                     controllerAs: 'vm',
@@ -34,7 +34,7 @@
             {
                 state: 'uploadUpdate',
                 config: {
-                    url: '/program/:programId/upload/:uploadId/update/',
+                    url: '/program/:programId/upload/:resourceId/update/',
                     templateUrl: 'app/upload/upload.update.html',
                     controller: 'UploadUpdateController',
                     controllerAs: 'vm',

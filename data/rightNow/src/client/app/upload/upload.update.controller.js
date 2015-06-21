@@ -13,21 +13,23 @@
         vm.authData = authservice.authData;
         vm.save = save;
         vm.data = {};
+        vm.apiurl = dataservice.apiurl;
 
         activate();
 
         function activate() {
             vm.programId = $stateParams.programId;
-            var id = $stateParams.uploadId;
-            var promises = [getUpload(id, vm.mediaType)];
+            vm.isLink = false;
+            var id = $stateParams.resourceId;
+            var promises = [getResource(id, vm.mediaType)];
             return $q.all(promises).then(function() {
-                logger.info('Activated ' + vm.title + ' View');
             });
         }
 
-        function getUpload(id, mediaType) {
+        function getResource(id, mediaType) {
             return dataservice.readProgramMedia(id, mediaType).then(function (data) {
                 vm.data = data;
+                vm.isLink = data.Link;
             });
         }
 

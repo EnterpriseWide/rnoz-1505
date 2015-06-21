@@ -1,79 +1,82 @@
 <div class="content-heading uploads-bg">
     <div class="container">
-        <h1 class="heading"><span class="icon icon-file-upload" />&nbsp;{{vm.title}}</h1>
+        <h1 class="heading"><span class="icon icon-file-upload"></span>&nbsp;{{vm.title}}</h1>
     </div>
 </div>
 <div class="content-inner">
     <div class="container">
         <div class="clearfix sub-header">
             <h2 class="content-sub-heading pull-left">
-                <a ui-sref="program({programId: vm.programId})"><span class="icon icon-chevron-left"></span>Back to Program Dashboard</a>
+                <a ui-sref="program({programId: vm.programId})"><span class="icon icon-chevron-left"></span>Back to Dashboard</a>
             </h2>
-
-            <p class="pull-right" ng-show="!vm.authData.isCoach">
-                <a class="btn btn-blue waves-button waves-effect waves-light" href="#"><span class="icon icon-link"></span>&nbsp;Add link</a>
+            <p class="pull-right" ng-hide="vm.authData.isCoach">
+                <button class="btn btn-blue waves-button waves-effect waves-light" ng-click="vm.addLink()"><span class="icon icon-link"></span>&nbsp;Add link</button>
             </p>
-            <div class="pull-right margin-right-small margin-top" ng-show="!vm.authData.isCoach || vm.authData.isAdmin">
-                <div ngf-drop="" ngf-select="" ng-model="vm.files" ng-model-rejected="vm.rejFiles" ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="upload-area btn btn-blue" ngf-multiple="true" ngf-max-size='10000000' ngf-allow-dir="true" ngf-accept="'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/pdf,image/png,image/jpep,image/jpg,image/gif'" ngf-drop-available="dropAvailable" ngf-change="vm.upload()">
-                    <div ng-hide="dropAvailable">File Drop not available</div>
-                    <div ng-show="dropAvailable"><span class="icon icon-file-upload"></span><span class="icon icon-add-circle hidden"></span>&nbsp;Drag &amp; drop files to upload, or click to select files</div>
-                </div>
+            <div class="pull-right margin-right-small margin-top" ng-hide="vm.authData.isCoach">
+                <div ngf-drop="" ngf-select="" ng-model="vm.files" ng-model-rejected="vm.rejFiles" ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="upload-area btn btn-blue" ngf-multiple="true" ngf-max-size='10000000' ngf-allow-dir="true" ngf-accept="'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/pdf,image/*'" ngf-drop-available="dropAvailable" ngf-change="vm.upload()">
+                        <div ng-hide="dropAvailable">File Drop not available</div>
+                        <div ng-show="dropAvailable"><span class="icon icon-file-upload"></span><span class="icon icon-add-circle hidden"></span>&nbsp;Drag &amp; drop files to upload, or click to select files</div>
+                    </div>
             </div>
         </div>
         <div class="card-wrap">
             <div class="row">
-                <div class=" col-sm-12" ng-show="!vm.authData.isCoach">
-                    
-                        <!--<div ngf-drop="" ngf-select="" ng-model="vm.files" ng-model-rejected="vm.rejFiles" ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box col-sm-12" ngf-multiple="true" ngf-max-size='10000000' ngf-allow-dir="true" ngf-accept="'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/pdf,image/png,image/jpep,image/jpg,image/gif'" ngf-drop-available="dropAvailable" ngf-change="vm.upload()">
-                            <div ng-hide="dropAvailable">File Drop not available</div>
-                            <div ng-show="dropAvailable">Drag &amp; drop files to upload, or click to select files</div>
-                        </div>-->
-                        <ul style="clear:both" ng-show="vm.rejFiles.length > 0" class="response">
-                            <li class="sel-file" ng-repeat="f in rejFiles">
-                                <p style="color: red">Rejected file: {{f.name}} - size: {{f.size}}B - type: {{f.type}}</p>
-                            </li>
-                        </ul>
-                        <ul style="clear:both" ng-show="vm.files.length > 0" class="response">
-                            <li class="sel-file" ng-repeat="f in vm.files">
-                                <img ng-show="f.type.indexOf('image') > -1" ngf-src="f" class="thumb" ngf-accept="'image/*'">
-                                <span class="progress" ng-show="f.progress >= 0">                       
-                                    <div style="width:{{f.progress}}%">{{f.progress}}%</div>
-                                </span>             
-                                <button class="button" ng-click="f.upload.abort();f.upload.aborted=true" 
-                                        ng-show="f.upload != null && f.progress < 100 && !f.upload.aborted">Abort</button>
-                                {{f.name}} - size: {{f.size}}B - type: {{f.type}}
-                                <a ng-show="f.result" href="javascript:void(0)" ng-click="f.showDetail = !f.showDetail">details</a>
-                                <div ng-show="f.showDetail">
-                                    <br/>
-                                    <div data-ng-show="f.result.result == null">{{f.result}}</div>
-                                    <ul>
-                                        <li ng-repeat="item in f.result.result">
-                                            <div data-ng-show="item.name">file name: {{item.Name}}</div>
-                                            <div data-ng-show="item.fieldName">name: {{item.fieldName}}</div>
-                                            <div data-ng-show="item.size">size on the server: {{item.size}}</div>
-                                            <div data-ng-show="item.value">value: {{item.value}}</div>
-                                        </li>
-                                    </ul>
-                                    <div data-ng-show="f.result.requestHeaders" class="reqh">request headers: {{f.result.requestHeaders}}</div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                <div class=" col-sm-12" ng-hide="vm.authData.isCoach">
+                    <ul style="clear:both" ng-show="vm.rejFiles.length > 0" class="response">
+                        <li class="sel-file" ng-repeat="f in rejFiles">
+                            <p style="color: red">Rejected file: {{f.name}} - size: {{f.size}}B - type: {{f.type}}</p>
+                        </li>
+                    </ul>
+                    <ul style="clear:both" ng-show="vm.files.length > 0" class="response">
+                        <li class="sel-file" ng-repeat="f in vm.files">
+                            <span class="progress" ng-show="f.progress >= 0">
+                                <div style="width:{{f.progress}}%">{{f.progress}}%</div>
+                            </span>             
+                            <button class="button" ng-click="f.upload.abort();f.upload.aborted=true" 
+                                    ng-show="f.upload != null && f.progress < 100 && !f.upload.aborted">Abort</button>
+                            {{f.name}} - size: {{f.size}}B - type: {{f.type}}
+                            <a ng-show="f.result" href="javascript:void(0)" ng-click="f.showDetail = !f.showDetail">details</a>
+                            <div ng-show="f.showDetail">
+                                <br/>
+                                <div data-ng-show="f.result.result == null">{{f.result}}</div>
+                                <ul>
+                                    <li ng-repeat="item in f.result.result">
+                                        <div data-ng-show="item.name">file name: {{item.Name}}</div>
+                                        <div data-ng-show="item.fieldName">name: {{item.fieldName}}</div>
+                                        <div data-ng-show="item.size">size on the server: {{item.size}}</div>
+                                        <div data-ng-show="item.value">value: {{item.value}}</div>
+                                    </li>
+                                </ul>
+                                <div data-ng-show="f.result.requestHeaders" class="reqh">request headers: {{f.result.requestHeaders}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <div class="list-items">
-                    <div class="col-md-4 col-sm-6 list-item" ng-repeat="p in vm.uploads">
+                    <div class="col-md-4 col-sm-6 list-item" ng-repeat="p in vm.resources">
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
                                     <p class="large">{{p.Name}}</p>
-                                    <p>{{p.Description}}</p>
                                 </div>
                                 <div class="card-action">
-                                    <ul class="nav nav-list pull-right">
+                                    <ul class="nav nav-list pull-left" ng-hide="vm.authData.isCoach">
                                         <li>
-                                            <a ng-click="vm.deleteRecord(p.Id, $event)" ng-show="!vm.authData.isCoach"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
+                                            <a class="thin-side-padding" ui-sref="uploadUpdate({programId: vm.programId, resourceId: p.Id})" title="Update"><span class="icon icon-edit"></span></a>
                                         </li>
                                         <li>
-                                            <a ui-sref="uploadRead({programId: p.CoachingProgramId, uploadId: p.Id})">Read More&nbsp;<span class="icon icon-chevron-right" /></a>
+                                            <a class="thin-side-padding" ng-click="vm.deleteRecord(p.Id, $event)" title="Delete"><span class="icon icon-delete"></span></a>
+                                        </li>
+                                    </ul>
+                                    <ul class="nav nav-list pull-right">
+                                        <li ng-show="p.Link">
+                                            <a href="{{p.Link}}" target="_blank"><span class="icon icon-link"></span>&nbsp;Open Url</a>
+                                        </li>
+                                        <li ng-show="!p.Link">
+                                            <a href="{{vm.apiurl}}/api/ProgramMedia/ViewFile?id={{p.Id}}&access_token={{vm.authData.token}}" target="_blank"><span class="icon icon-description"></span>&nbsp;View File</a>
+                                        </li>
+                                        <li class="sm-no-float" ng-show="p.BodyText">
+                                            <a ui-sref="uploadRead({programId: p.CoachingProgramId, resourceId: p.Id})">Read More<span class="icon icon-chevron-right"></span></a>
                                         </li>
                                     </ul>
                                 </div>
