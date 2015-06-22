@@ -25,6 +25,10 @@
         }
 
         function responseError(error) {
+            if (error.status === 0) {
+                window.location = '/noresponse.html';
+                return;
+            }
             var loggedIn = false;
             var authData = localStorageService.get('authorizationData');
             if (authData) {
