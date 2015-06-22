@@ -74,6 +74,17 @@ namespace ewide.web.Controllers
                 return NotFound();
             }
 
+            if (currentUser.Email != item.Email)
+            {
+                var existingEmail = AppUserManager.FindByEmail(item.Email);
+                if (existingEmail != null)
+                {
+                    return BadRequest("Email is already in use");
+                }
+                currentUser.UserName = item.Email;
+                currentUser.Email = item.Email;
+            }
+
             currentUser.FirstName = item.FirstName;
             currentUser.LastName = item.LastName;
             currentUser.Phone = item.Phone;
