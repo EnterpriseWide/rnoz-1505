@@ -8,8 +8,24 @@
         <div class="card-wrap">
             <div class="row">
                 <div class="col-sm-6">
+                    <h3>Open Programs</h3>
                     <div ng-repeat="p in vm.programs">
-                        <a ui-sref="program({programId: p.Id})" class="card-button" >
+                        <a ui-sref="program({programId: p.Id})" class="card-button" ng-hide="p.IsClosed">
+                            <div class="card">
+                                <div class="card-main">
+                                    <div class="card-inner card-title border-radius yourcoach-bg clearfix">
+                                        <div class="pull-left">
+                                        <p class="card-heading"><span class="icon icon-person"></span>&nbsp;{{p.Coachee.FirstName}} {{p.Coachee.LastName}}</p>
+                                        </div>
+                                        <p class="card-heading pull-right"><span class="icon icon-chevron-right"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <h3>Closed Programs</h3>
+                    <div ng-repeat="p in vm.programs">
+                        <a ui-sref="program({programId: p.Id})" class="card-button" ng-show="p.IsClosed">
                             <div class="card">
                                 <div class="card-main">
                                     <div class="card-inner card-title border-radius yourcoach-bg clearfix">
