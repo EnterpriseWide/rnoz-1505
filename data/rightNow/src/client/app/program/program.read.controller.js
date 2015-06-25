@@ -4,8 +4,8 @@
     angular
         .module('app.program')
         .controller('ProgramReadController', ProgramReadController);
-    ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state'];
-    function ProgramReadController(logger, $stateParams, $q, dataservice, authservice, ngDialog, $state) {
+    ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state', '$window'];
+    function ProgramReadController(logger, $stateParams, $q, dataservice, authservice, ngDialog, $state, $window) {
         var vm = this;
         vm.title = 'Program Dashboard';
         vm.data = {};
@@ -26,6 +26,7 @@
             bodyTextSessions: '<p>Read more information about Sessionshere</p>',
             bodyTextSurveys: '<p>More text explaining surveys to go here.</p>'
         };
+        vm.beginSession = beginSession;
 
         activate();
 
@@ -41,6 +42,11 @@
                     $state.go('404');
                 }
             });
+        }
+
+        function beginSession() {
+            logger.info('Opening ' + dataservice.apiurl + '/vidyo/ ...');
+            $window.open(dataservice.apiurl + '/vidyo/', '_blank', 'location=no,height=500,width=580,scrollbars=yes,status=yes');
         }
 
         function readProgram(id) {
