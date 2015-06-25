@@ -55,7 +55,8 @@
             /* SOAP configuration */
             /* soapProxyURL: "http://vidyoweb.apps.vidyo.com/sp/soap_proxy.php",
             */
-            soapProxyURL: "/api/SoapProxy",
+            soapProxyURL: "/api/SoapProxy/Proxy",
+
             soapUserServicePath: "/services/v1_1/VidyoPortalUserService?wsdl",
             /* Generic classes */
             btnOnClass: "btn-success",
