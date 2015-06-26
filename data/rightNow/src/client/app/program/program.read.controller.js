@@ -46,7 +46,7 @@
 
         function beginSession() {
             logger.info('Opening ' + dataservice.apiurl + '/vidyo/ ...');
-            $window.open(dataservice.apiurl + '/vidyo/', '_blank', 'location=no,height=500,width=580,scrollbars=yes,status=yes');
+            $window.open(dataservice.apiurl + '/vidyo/?access_token=' + authservice.authData.token, '_blank', 'location=no,height=500,width=580,scrollbars=yes,status=yes');
         }
 
         function readProgram(id) {
