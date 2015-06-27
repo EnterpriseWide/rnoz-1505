@@ -18,6 +18,13 @@
                     templateUrl: 'app/program/program.read.html',
                     controller: 'ProgramReadController',
                     controllerAs: 'vm',
+                    resolve: {
+                        program: function ($stateParams, dataservice) {
+                            return dataservice.readProgram($stateParams.programId).then(function (data) {
+                                return data;
+                            });
+                        }
+                    },
                     title: 'Program View'
                 }
             }, {

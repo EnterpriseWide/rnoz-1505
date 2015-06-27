@@ -4,8 +4,8 @@
     angular
         .module('app.program')
         .controller('ProgramReadController', ProgramReadController);
-    ProgramReadController.$inject = ['logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state', '$window'];
-    function ProgramReadController(logger, $stateParams, $q, dataservice, authservice, ngDialog, $state, $window) {
+    ProgramReadController.$inject = ['program', 'logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state', '$window'];
+    function ProgramReadController(program, logger, $stateParams, $q, dataservice, authservice, ngDialog, $state, $window) {
         var vm = this;
         vm.title = 'Program Dashboard';
         vm.data = {};
@@ -31,28 +31,17 @@
         activate();
 
         function activate() {
-            var id = $stateParams.programId;
-            if (!id) {
+            if (!program) {
                 $state.go('404');
+            } else {
+                vm.data = program;
             }
-            var promises = [readProgram(id)];
             vm.authData = authservice.authData;
-            return $q.all(promises).then(function() {
-                if (!vm.data) {
-                    $state.go('404');
-                }
-            });
         }
 
         function beginSession() {
             logger.info('Opening ' + dataservice.apiurl + '/vidyo/ ...');
             $window.open(dataservice.apiurl + '/vidyo/?access_token=' + authservice.authData.token, '_blank', 'location=no,height=500,width=580,scrollbars=yes,status=yes');
-        }
-
-        function readProgram(id) {
-            return dataservice.readProgram(id).then(function (data) {
-                vm.data = data;
-            });
         }
 
         function sendInvoice(ev) {
