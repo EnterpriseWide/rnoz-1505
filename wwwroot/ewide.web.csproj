@@ -470,6 +470,8 @@
     <Content Include="vidyo\img\loader-bar.gif" />
     <Content Include="vidyo\img\logo-big.jpg" />
     <Content Include="vidyo\index.html" />
+    <Content Include="vidyo\proxy\index.php" />
+    <Content Include="vidyo\proxy\soap_proxy.php" />
     <Content Include="vidyo\scripts\libs\bootstrap-notify.1.0.js" />
     <Content Include="vidyo\scripts\libs\bootstrap.min.2.3.2.js" />
     <Content Include="vidyo\scripts\libs\domReady.2.0.1.js" />

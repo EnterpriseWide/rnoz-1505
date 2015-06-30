@@ -53,10 +53,10 @@
             /* Conference control */
             defaultRecorderTypes: ['"HD-RECORDER"', '"HIGH-QUALITY"'],
             /* SOAP configuration */
-            /* soapProxyURL: "http://vidyoweb.apps.vidyo.com/sp/soap_proxy.php",
+            /* 
+            soapProxyURL: "http://vidyoweb.apps.vidyo.com/sp/soap_proxy.php",
             */
-            soapProxyURL: "/api/SoapProxy/Proxy",
-
+            soapProxyURL: "/vidyo/proxy/soap_proxy.php",
             soapUserServicePath: "/services/v1_1/VidyoPortalUserService?wsdl",
             /* Generic classes */
             btnOnClass: "btn-success",
