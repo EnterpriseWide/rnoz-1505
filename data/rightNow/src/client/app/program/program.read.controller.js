@@ -52,6 +52,7 @@
             if (invoiceAmount) {
                 dataservice.createProgramInvoice(vm.data.Id, invoiceAmount).then(function (data) {
                     logger.success('Invoice Sent for ' + invoiceAmount);
+                    vm.data.InvoiceAmount = invoiceAmount;
                 });
             } else {
                 ngDialog.openConfirm(sendInvoiceOptions)
