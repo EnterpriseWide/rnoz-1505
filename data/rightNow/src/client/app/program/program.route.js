@@ -19,11 +19,12 @@
                     controller: 'ProgramReadController',
                     controllerAs: 'vm',
                     resolve: {
-                        program: function ($stateParams, dataservice) {
+                        program: ['$stateParams', 'dataservice', function ($stateParams, dataservice) {
+                            console.log('resolve program');
                             return dataservice.readProgram($stateParams.programId).then(function (data) {
                                 return data;
                             });
-                        }
+                        }]
                     },
                     title: 'Program View'
                 }
