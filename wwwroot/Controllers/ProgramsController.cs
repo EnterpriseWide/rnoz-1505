@@ -83,7 +83,7 @@ namespace ewide.web.Controllers
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             var coachingProgram = GetCoachingPrograms(currentUser)
                 .FirstOrDefault(i => i.Id == id);
-            if (coachingProgram == null || coachingProgram.IsClosed)
+            if (coachingProgram == null || coachingProgram.IsClosed || coachingProgram.InvoiceAmount > 0)
             {
                 return BadRequest("Program Not Found");
             }
