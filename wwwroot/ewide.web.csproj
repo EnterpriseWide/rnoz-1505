@@ -472,7 +472,7 @@
     <Content Include="vidyo\font\Elusive-Icons.svg" />
     <Content Include="vidyo\img\loader-bar.gif" />
     <Content Include="vidyo\img\logo-big.jpg" />
-    <Content Include="vidyo\index.html" />
+    <None Include="vidyo\Default.cshtml" />
     <Content Include="vidyo\proxy\index.php" />
     <Content Include="vidyo\proxy\soap_proxy.php" />
     <Content Include="vidyo\scripts\libs\bootstrap-notify.1.0.js" />
@@ -541,7 +541,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505050718245_Initial Create.resx">

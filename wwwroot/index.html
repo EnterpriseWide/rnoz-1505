@@ -6,6 +6,14 @@
         /* Since Angular has this but needs to load, this gives us the class early. */
         .ng-hide { display: none!important; }
     </style>
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng-cloak] {
+            display: none;
+        }
+    </style>
     <title ng-bind="title">rightNow</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
@@ -40,7 +48,7 @@
     <meta name="msapplication-config" content="/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 </head>
-<body>
+<body ng-cloak>
         <div ng-include="'app/layout/shell.html'" class="outer"></div>
         
         <div id="splash-page" ng-show="showSplash">
@@ -54,8 +62,8 @@
             </div>
         </div>
 
-    <script src="js/lib-7a901569.js"></script>
+    <script src="js/lib-71fc7d9f.js"></script>
 
-    <script src="js/app-1758d2c8.js"></script>
+    <script src="js/app-a6936817.js"></script>
 </body>
 </html>
