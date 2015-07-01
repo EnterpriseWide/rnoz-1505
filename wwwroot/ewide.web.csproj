@@ -287,7 +287,6 @@
     <Compile Include="Controllers\SendEmailController.cs" />
     <Compile Include="Controllers\SessionsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
-    <Compile Include="Controllers\SoapProxyController.cs" />
     <Compile Include="MediaTypeFormatters\LearningPlanPDFMediaTypeFormatter.cs" />
     <Compile Include="Migrations\201505241140407_Add Assignment Tables.cs" />
     <Compile Include="Migrations\201505241140407_Add Assignment Tables.Designer.cs">
@@ -332,6 +331,10 @@
     <Compile Include="Migrations\201506211005208_Add Linked In Profile Field on Profile.cs" />
     <Compile Include="Migrations\201506211005208_Add Linked In Profile Field on Profile.Designer.cs">
       <DependentUpon>201506211005208_Add Linked In Profile Field on Profile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507010826124_Add Invoice Amount Field to Coaching Program.cs" />
+    <Compile Include="Migrations\201507010826124_Add Invoice Amount Field to Coaching Program.Designer.cs">
+      <DependentUpon>201507010826124_Add Invoice Amount Field to Coaching Program.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
@@ -518,7 +521,6 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -531,6 +533,7 @@
     <Content Include="vidyo\font\Elusive-Icons.ttf" />
     <Content Include="vidyo\font\Elusive-Icons.woff" />
     <Content Include="vidyo\scripts\.DS_Store" />
+    <Content Include="Views\Send Invoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -579,6 +582,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506211005208_Add Linked In Profile Field on Profile.resx">
       <DependentUpon>201506211005208_Add Linked In Profile Field on Profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507010826124_Add Invoice Amount Field to Coaching Program.resx">
+      <DependentUpon>201507010826124_Add Invoice Amount Field to Coaching Program.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -20,6 +20,8 @@
             readProgram: readProgram,
             listPrograms: listPrograms,
 
+            createProgramInvoice: createProgramInvoice,
+
             createAssignment: createAssignment,
             readAssignment: readAssignment,
             updateAssignment: updateAssignment,
@@ -109,6 +111,22 @@
             }
             function fail(error) {
                 var msg = 'query for programs failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function createProgramInvoice(id, amount) {
+            return $http.put(service.apiurl + '/api/programs/SendInvoice?id=' + id + '&amount=' + amount)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'creation of program invoice for ' + amount + ' failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }

@@ -9,7 +9,7 @@
         var vm = this;
         vm.title = 'Program Dashboard';
         vm.data = {};
-        vm.sendInvoice = sendInvoice;
+        vm.openSendInvoice = openSendInvoice;
         vm.closeProgram = closeProgram;
         vm.sessionInfoReadMore = sessionInfoReadMore;
         vm.screenconfig = {
@@ -44,19 +44,24 @@
             $window.open(dataservice.apiurl + '/vidyo/?access_token=' + authservice.authData.token, '_blank', 'location=no,height=500,width=580,scrollbars=yes,status=yes');
         }
 
-        function sendInvoice(ev) {
-            ngDialog.openConfirm({
-                template: '<p>Are you sure?</p>' +
-                    '<div class="ngdialog-buttons">' +
-                        '<button type="button" class="btn btn-blue" ng-click="closeThisDialog(0)">No</button>' +
-                        '<button type="button" class="btn btn-blue" ng-click="confirm(1)">Yes</button>' +
-                    '</div>',
-                plain: true
-            }).then(function() {
-                logger.error('Send Invoice Not Implemented Yet ' + vm.data.Id);
-            }, function() {
-                // Do Nothing
-            });
+        var sendInvoiceOptions = {
+            template: 'app/program/sendInvoice.html'
+        };
+
+        function sendInvoice(invoiceAmount) {
+            if (invoiceAmount) {
+                dataservice.createProgramInvoice(vm.data.Id, invoiceAmount).then(function (data) {
+                    logger.success('Invoice Sent for ' + invoiceAmount);
+                });
+            } else {
+                ngDialog.openConfirm(sendInvoiceOptions)
+                    .then(openSendInvoice);
+            }
+        }
+
+        function openSendInvoice(ev) {
+            ngDialog.openConfirm(sendInvoiceOptions)
+                .then(sendInvoice);
         }
 
         function sessionInfoReadMore(ev) {

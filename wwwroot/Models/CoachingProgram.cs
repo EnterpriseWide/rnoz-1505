@@ -20,5 +20,6 @@ namespace ewide.web.Models
         public String LearningPlan { get; set; }
         public ICollection<CoachingSession> CoachingSessions { get; set; }
         public bool IsClosed { get; set; }
+        public Decimal InvoiceAmount { get; set; }
     }
 }
