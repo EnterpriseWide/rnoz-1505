@@ -15,6 +15,7 @@
             'textAngular',
             'ngFileUpload',
             'ngDialog',
-            'ngResource'
+            'ngResource',
+            'fcsa-number'
         ]);
 })();

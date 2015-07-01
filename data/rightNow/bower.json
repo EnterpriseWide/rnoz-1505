@@ -35,6 +35,7 @@
     "svg-morpheus": "~0.1.8",
     "angular-bootstrap": "~0.13.0",
     "ngDialog": "~0.4.0",
-    "angular-resource": "~1.4.0"
+    "angular-resource": "~1.4.0",
+    "angular-fcsa-number": "~1.5.3"
   }
 }

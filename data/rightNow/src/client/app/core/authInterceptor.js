@@ -26,7 +26,7 @@
 
         function responseError(error) {
             if (error.status === 0) {
-                window.location = '/noresponse.html';
+                window.location = '/index-noresponse.html';
                 return;
             }
             var loggedIn = false;
