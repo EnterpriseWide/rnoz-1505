@@ -1,3 +1,10 @@
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.Owin
+@using ewide.web
+@{
+    var currentUser = Request.GetOwinContext().GetUserManager<ApplicationUserManager>()
+        .FindById(User.Identity.GetUserId());
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +48,7 @@
         <!-- End Error view -->
         <!-- Main Menu -->
         <div class="hero-unit hide text-center" id="mainMenu">
-            <h2>VidyoWeb API sample</h2>
+            <h2>VidyoWeb API sample - @currentUser.FirstName</h2>
             <!-- <h3>Choose the type of interaction</h3> -->
             <p>
                 <a href="#userLoginPopup" class="btn btn-primary" role="button" data-toggle="modal">
@@ -187,7 +194,7 @@
         <!-- End Login as guest modal window -->
         <!-- Pre-call container -->
         <div id="preCallContainer" class="container well well-large hide">
-            <h5 id="preCallUserInfo" class="muted"><span id="preCallUserDisplayName" class="text-info"></span>, you are @ <span id="preCallPortalName" class="text-info"></span></h5>
+            <h5 id="preCallUserInfo" class="muted"><span id="preCallUserDisplayName" class="text-info"></span>, you are @@ <span id="preCallPortalName" class="text-info"></span></h5>
             <div class="navbar">
                 <div class="navbar-inner">
                     <!-- <form class="navbar-search pull-left"> -->
