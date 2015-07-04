@@ -36,6 +36,8 @@
 
             listSessions: listSessions,
 
+            listSurveys: listSurveys,
+
             createProgramMediaLink: createProgramMediaLink,
             readProgramMedia: readProgramMedia,
             updateProgramMedia: updateProgramMedia,
@@ -236,6 +238,22 @@
 
             function fail(error) {
                 var msg = 'query for assignments for program id ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function listSurveys(id) {
+            return $http.get(service.apiurl + '/api/surveys?programid=' + id)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for surveys for program id ' + id + ' failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }
