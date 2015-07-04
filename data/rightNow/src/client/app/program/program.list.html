@@ -75,7 +75,7 @@
                                     <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Upcoming Coaching Sessions</p>
                                 </div>
                                 <div ng-repeat="p in vm.sessions" class="session-list-item">
-                                    <a href="#" class="dark">
+                                    <a ui-sref="program({programId: p.CoachingProgram.Id})" class="dark">
                                         <div class="card-inner">
                                            
                                             <div class="row">
