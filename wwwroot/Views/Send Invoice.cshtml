@@ -1,6 +1,7 @@
 ﻿@model System.Web.Mvc.ViewDataDictionary
 @{
     Layout = null;
+    var program = (ewide.web.Models.CoachingProgram)Model["Program"];
 }
 
 <!DOCTYPE html>
@@ -73,9 +74,8 @@
     <div class="logo">
         <img src="http://rightnow.muchmedia.com.au/images/logo-vertical.png" />
     </div>
-    <h1 class="page-heading">Send Invoice</h1>
+    <h1 class="page-heading">Invoice</h1>
     <hr />
-    Invoice Send Requested:
-    Please send the invoice for Program Id @Model["Program Id"] in the amount of @Model["Invoice Amount"].
+    Invoice for Program Id @program.Id in the amount of @program.InvoiceAmount for Coach @program.Coach.FirstName
 </body>
 </html>

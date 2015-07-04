@@ -93,7 +93,10 @@ namespace ewide.web.Controllers
             coachingProgram.UpdatedAt = DateTime.Now;
             AppDb.Entry(coachingProgram).Property(i => i.UpdatedAt).IsModified = true;
 
-            var html = ViewRenderer.RenderView("~/Views/Send Invoice.cshtml", new System.Web.Mvc.ViewDataDictionary { { "Program Id", coachingProgram.Id }, { "Invoice Amount", amount } });
+            var html = ViewRenderer.RenderView("~/Views/Send Invoice.cshtml",
+                new System.Web.Mvc.ViewDataDictionary { 
+                { "Program", coachingProgram },
+                });
 
             try
             {
