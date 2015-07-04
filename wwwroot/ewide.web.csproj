@@ -278,6 +278,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="Controllers\AssignmentsController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\LearningPlanController.cs" />
@@ -336,8 +337,14 @@
     <Compile Include="Migrations\201507010826124_Add Invoice Amount Field to Coaching Program.Designer.cs">
       <DependentUpon>201507010826124_Add Invoice Amount Field to Coaching Program.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507040105415_Adding Survey and Coaching Program Survey Links.cs" />
+    <Compile Include="Migrations\201507040105415_Adding Survey and Coaching Program Survey Links.Designer.cs">
+      <DependentUpon>201507040105415_Adding Survey and Coaching Program Survey Links.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
+    <Compile Include="Models\CoachingProgramSurvey.cs" />
+    <Compile Include="Models\Survey.cs" />
     <Compile Include="Models\EmailDTO.cs" />
     <Compile Include="Models\ProgramMedia.cs" />
     <Compile Include="Models\CoachingProgramDTO.cs" />
@@ -534,6 +541,7 @@
     <Content Include="vidyo\font\Elusive-Icons.woff" />
     <Content Include="vidyo\scripts\.DS_Store" />
     <Content Include="Views\Send Invoice.cshtml" />
+    <Content Include="vidyo\scripts\oztrain.custom.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -584,6 +592,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507010826124_Add Invoice Amount Field to Coaching Program.resx">
       <DependentUpon>201507010826124_Add Invoice Amount Field to Coaching Program.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507040105415_Adding Survey and Coaching Program Survey Links.resx">
+      <DependentUpon>201507040105415_Adding Survey and Coaching Program Survey Links.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
