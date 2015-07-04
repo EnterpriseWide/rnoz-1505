@@ -19,80 +19,16 @@
         <div class="card-wrap">
             <div class="row">
                 <div class="list-items">
-                    <div class="col-md-4 col-sm-6 list-item">
+                    <div class="col-md-4 col-sm-6 list-item" ng-repeat="p in vm.data">
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
-                                    <p class="large">Lorem ipsum dolor sit amet</p>
+                                    <p class="large">{{ p.Name }}</p>
                                 </div>
                                 <div class="card-action">
                                     <ul class="nav nav-list pull-right">
                                         <li>
-                                            <a href="javascript:void(0);" target="_blank"><span class="icon icon-filter-none"></span>&nbsp;Launch Survey<span class="icon icon-chevron-right"></span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 list-item">
-                        <div class="card">
-                            <div class="card-main">
-                                <div class="card-inner">
-                                    <p class="large">Nullam dictum felis eu pede mollis pretium</p>
-                                </div>
-                                <div class="card-action">
-                                    <ul class="nav nav-list pull-right">
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank"><span class="icon icon-filter-none"></span>&nbsp;Launch Survey<span class="icon icon-chevron-right"></span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 list-item">
-                        <div class="card">
-                            <div class="card-main">
-                                <div class="card-inner">
-                                    <p class="large"> Maecenas tempus, tellus eget</p>
-                                </div>
-                                <div class="card-action">
-                                    <ul class="nav nav-list pull-right">
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank"><span class="icon icon-filter-none"></span>&nbsp;Launch Survey<span class="icon icon-chevron-right"></span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 list-item">
-                        <div class="card">
-                            <div class="card-main">
-                                <div class="card-inner">
-                                    <p class="large">Maecenas nec odio et ante tincidunt tempus</p>
-                                </div>
-                                <div class="card-action">
-                                    <ul class="nav nav-list pull-right">
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank"><span class="icon icon-filter-none"></span>&nbsp;Launch Survey<span class="icon icon-chevron-right"></span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 list-item">
-                        <div class="card">
-                            <div class="card-main">
-                                <div class="card-inner">
-                                    <p class="large">Sed consequat, leo eget bibendum sodales, augue</p>
-                                </div>
-                                <div class="card-action">
-                                    <ul class="nav nav-list pull-right">
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank"><span class="icon icon-filter-none"></span>&nbsp;Launch Survey<span class="icon icon-chevron-right"></span></a>
+                                            <a href="{{ p.Link }}" target="_blank"><span class="icon icon-filter-none"></span>&nbsp;Launch Survey<span class="icon icon-chevron-right"></span></a>
                                         </li>
                                     </ul>
                                 </div>
