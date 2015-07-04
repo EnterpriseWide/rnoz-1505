@@ -8,72 +8,93 @@
         <div class="card-wrap">
             <div class="row">
                 <div class="col-sm-6">
-                    <h3>Open Programs</h3>
-                    <div ng-repeat="p in vm.programs">
-                        <a ui-sref="program({programId: p.Id})" class="card-button" ng-hide="p.IsClosed">
-                            <div class="card">
-                                <div class="card-main">
-                                    <div class="card-inner card-title border-radius yourcoach-bg clearfix">
-                                        <div class="pull-left">
-                                        <p class="card-heading"><span class="icon icon-person"></span>&nbsp;{{p.Coachee.FirstName}} {{p.Coachee.LastName}}</p>
-                                        </div>
-                                        <p class="card-heading pull-right"><span class="icon icon-chevron-right"></span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <h3>Closed Programs</h3>
-                    <div ng-repeat="p in vm.programs">
-                        <a ui-sref="program({programId: p.Id})" class="card-button" ng-show="p.IsClosed">
-                            <div class="card">
-                                <div class="card-main">
-                                    <div class="card-inner card-title border-radius yourcoach-bg clearfix">
-                                        <div class="pull-left">
-                                        <p class="card-heading"><span class="icon icon-person"></span>&nbsp;{{p.Coachee.FirstName}} {{p.Coachee.LastName}}</p>
-                                        </div>
-                                        <p class="card-heading pull-right"><span class="icon icon-chevron-right"></span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-6">
+
                     <div class="card">
                         <div class="card-main">
-                            <div class="card-inner card-title sessions-bg">
-                                <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Upcoming Coaching Sessions</p>
+                            <div class="card-inner  border-radius clearfix">
+                                <div class="clearfix sub-header margin-bottom">
+                                    <p class="content-sub-heading ">
+                                        Open Programs
+                                    </p>
+                                </div>
+                                <div class="card-wrap">
+                                    <div ng-repeat="p in vm.programs">
+                                        <a ui-sref="program({programId: p.Id})" class="card-button" ng-hide="p.IsClosed">
+                                            <div class="card">
+                                                <div class="card-main">
+                                                    <div class="card-inner card-title border-radius yourcoach-bg clearfix">
+                                                        <div class="pull-left">
+                                                        <p class="card-heading"><span class="icon icon-person"></span>&nbsp;{{p.Coachee.FirstName}} {{p.Coachee.LastName}}</p>
+                                                        </div>
+                                                        <p class="card-heading pull-right"><span class="icon icon-chevron-right"></span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div ng-repeat="p in vm.sessions" class="session-list-item">
-                                <div class="card-inner">
-                                   
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="pull-left padding-right">
-                                                <span class="icon icon-event icon-large"></span>
-                                            </div>
-                                            <div>
-                                                <h3>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}&nbsp;&nbsp;<span class="icon icon-schedule"></span>&nbsp;{{p.StartedAt | date:'EEE dd MMM yyyy HH:mm'}} - {Finish Time}</h3>
-                                            </div>
+                        </div>
+                    </div>   
+                    
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner  border-radius clearfix">
 
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <span class="btnGroup pull-right">
-                                                <a href="javascrip:void(0)" class="btn btn-blue btn-small"><span class="icon icon-close"></span>&nbsp;Cancel</a>
-                                                <a href="javascrip:void(0)" class="btn btn-blue btn-small"><span class="icon icon-repeat"></span>&nbsp;Reschedule</a>
-                                                <a href="javascrip:void(0)" class="btn btn-blue btn-small"><span class="icon icon-check"></span>&nbsp;Set as Complete</a>
-                                            </span>
-                                        </div>
+                                <div class="clearfix sub-header margin-bottom">
+                                    <p class="content-sub-heading ">
+                                        Closed Programs
+                                    </p>
+                                </div>
+                                <div class="card-wrap">
+                                    <div ng-repeat="p in vm.programs">
+                                        <a ui-sref="program({programId: p.Id})" class="card-button" ng-show="p.IsClosed">
+                                            <div class="card">
+                                                <div class="card-main">
+                                                    <div class="card-inner card-title border-radius yourcoach-bg clearfix">
+                                                        <div class="pull-left">
+                                                        <p class="card-heading"><span class="icon icon-person"></span>&nbsp;{{p.Coachee.FirstName}} {{p.Coachee.LastName}}</p>
+                                                        </div>
+                                                        <p class="card-heading pull-right"><span class="icon icon-chevron-right"></span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
 
                             </div>
-
-                           
-                            
                         </div>
-                    </div>
+                    </div>  
+                </div>
+                <div class="col-sm-6">
+                  
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner card-title sessions-bg">
+                                    <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Upcoming Coaching Sessions</p>
+                                </div>
+                                <div ng-repeat="p in vm.sessions" class="session-list-item">
+                                    <a href="#" class="dark">
+                                        <div class="card-inner">
+                                           
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="pull-left padding-right">
+                                                        <span class="icon icon-event icon-large"></span>
+                                                    </div>
+                                                    <div>
+                                                        <h3>{{p.CoachingProgram.Coachee.FirstName}} {{p.CoachingProgram.Coachee.LastName}}&nbsp;&nbsp;<span class="icon icon-schedule"></span>&nbsp;{{p.StartedAt | date:'EEE dd MMM yyyy HH:mm'}} - {Finish Time} <span class="icon icon-chevron-right"></span></h3>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    
                 </div>
             </div>
         </div>
