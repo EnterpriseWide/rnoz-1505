@@ -2019,7 +2019,7 @@ uiSetMicMuted, uiSetSpeakerMuted, uiSetVideoMuted, uiShareSelect, uiSharesUpdate
                                 /* Start progress bar update */
                                 uiUpdateGuestLoginProgress(self.config.progressStepInPercents + "%", true);
                             }
-/*p2 added
+                            /*p2 added
 							self.cache.$inCallButtonMuteVideo.click(); */
                         });
 

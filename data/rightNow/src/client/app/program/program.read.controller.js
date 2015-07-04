@@ -36,6 +36,7 @@
             } else {
                 vm.data = program;
             }
+            vm.apiurl = dataservice.apiurl;
             vm.authData = authservice.authData;
         }
 

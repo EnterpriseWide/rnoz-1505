@@ -115,7 +115,7 @@
                                             <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Coaching Sessions</p>
                                         </div>
                                         <div class="col-xs-6 heading-col">
-                                            <p class="card-heading"><a ng-click="vm.beginSession()" class="pull-right btn btn-darkblue waves-button waves-effect waves-light" href="#"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a></p>
+                                            <p class="card-heading"><a class="pull-right btn btn-darkblue waves-button waves-effect waves-light" href="{{ vm.apiurl }}/vidyo/?access_token={{ vm.authData.token }}" target="_blank"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a></p>
                                         </div>
                                     </div>
                                

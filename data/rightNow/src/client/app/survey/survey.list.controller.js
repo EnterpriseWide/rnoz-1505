@@ -23,9 +23,9 @@
         }
 
         function getSurveys(id) {
-            // return dataservice.listSurveys(id).then(function (data) {
-            //     vm.surveys = data;
-            // });
+            return dataservice.listSurveys(id).then(function (data) {
+                vm.data = data;
+            });
         }
 
     }

@@ -4,6 +4,7 @@
 @{
     var currentUser = Request.GetOwinContext().GetUserManager<ApplicationUserManager>()
         .FindById(User.Identity.GetUserId());
+    var guestRoomUrl = "https://trial.natr.com.au/flex.html?roomdirect.html&key=2AiCPbG2xke4Xldm5HA1W51X54";
 }
 <!DOCTYPE html>
 <html>
@@ -50,10 +51,19 @@
         <div class="hero-unit hide text-center" id="mainMenu">
             <h2>VidyoWeb API sample - @currentUser.FirstName</h2>
             <!-- <h3>Choose the type of interaction</h3> -->
+            @*<form class="form-inline">
+                <input value="@guestRoomUrl" class="input-xxlarge guestLoginInput" id="guestURL" type="hidden" placeholder="http://PORTAL_ADDRESS/flex.html?roomdirect.html&amp;key=U2AnrCjEaMBx" tabindex="1">
+                <input value="@currentUser.FirstName" id="guestName" type="hidden" placeholder="Your Name" class="guestLoginInput" tabindex="2">
+                <input id="guestPIN" type="hidden" placeholder="PIN" tabindex="3">
+                <button class="btn btn-primary" id="guestLoginButton" tabindex="4">Join room</button>
+            </form>
+            <div id="guestLoginProgressBarContainer" class="progress progress-info progress-striped active hide">
+                <div id="guestLoginProgressBar" class="bar" style="width: 0%;"></div>
+            </div>*@
             <p>
-                <a href="#userLoginPopup" class="btn btn-primary" role="button" data-toggle="modal">
+                @*<a href="#userLoginPopup" class="btn btn-primary" role="button" data-toggle="modal">
                   Login as <i>Registered</i> User
-                </a>
+                </a>*@
                 <a href="#guestLoginPopup" class="btn btn-primary" role="button" data-toggle="modal">
                   Join room as a <i>Guest</i>
                 </a>
@@ -164,7 +174,7 @@
                                 <label>Guest link</label>
 
                                 <div class="input-xxlarge">
-                                    <input class="input-xxlarge guestLoginInput" id="guestURL" type="url" placeholder="http://PORTAL_ADDRESS/flex.html?roomdirect.html&amp;key=U2AnrCjEaMBx" tabindex="1">
+                                    <input value="@guestRoomUrl" class="input-xxlarge guestLoginInput" id="guestURL" type="url" placeholder="http://PORTAL_ADDRESS/flex.html?roomdirect.html&amp;key=U2AnrCjEaMBx" tabindex="1">
                                 </div>
                             </div>
                             <div class="clearfix">
@@ -358,5 +368,6 @@
     </script>
     <!-- Main application script -->
     <script data-main="scripts/main" src="scripts/libs/require.min.2.1.10.js"></script>
+    <script src="~/vidyo/scripts/oztrain.custom.js"></script>
 </body>
 </html>
