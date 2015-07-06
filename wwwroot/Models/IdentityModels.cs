@@ -64,6 +64,7 @@ namespace ewide.web.Models
         public DbSet<ProgramMedia> ProgramMedia { get; set; }
         public DbSet<Survey> Survey { get; set; }
         public DbSet<CoachingProgramSurvey> CoachingProgramSurvey { get; set; }
+        public DbSet<Room> Room { get; set; }
 
         public static ApplicationDbContext Create()
         {

@@ -14,6 +14,7 @@ namespace ewide.web.Models
         [Required]
         public DateTime UpdatedAt { get; set; }
         [Required]
+        public int CoachingProgramId { get; set; }
         public virtual CoachingProgram CoachingProgram { get; set; }
         [Required]
         public DateTime StartedAt { get; set; }
@@ -21,5 +22,8 @@ namespace ewide.web.Models
         public int Duration { get; set; }
         public bool IsCoachApproved { get; set; }
         public bool IsCoacheeApproved { get; set; }
+        [Required]
+        public int RoomId { get; set; }
+        public virtual Room Room { get; set; }
     }
 }

@@ -341,9 +341,14 @@
     <Compile Include="Migrations\201507040105415_Adding Survey and Coaching Program Survey Links.Designer.cs">
       <DependentUpon>201507040105415_Adding Survey and Coaching Program Survey Links.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507040416052_Add Rooms.cs" />
+    <Compile Include="Migrations\201507040416052_Add Rooms.Designer.cs">
+      <DependentUpon>201507040416052_Add Rooms.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\CoachingProgramSurvey.cs" />
+    <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Survey.cs" />
     <Compile Include="Models\EmailDTO.cs" />
     <Compile Include="Models\ProgramMedia.cs" />
@@ -595,6 +600,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507040105415_Adding Survey and Coaching Program Survey Links.resx">
       <DependentUpon>201507040105415_Adding Survey and Coaching Program Survey Links.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507040416052_Add Rooms.resx">
+      <DependentUpon>201507040416052_Add Rooms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
