@@ -16,6 +16,8 @@
             'ngFileUpload',
             'ngDialog',
             'ngResource',
-            'fcsa-number'
+            'fcsa-number',
+            'ui.grid',
+            'ui.grid.pagination'
         ]);
 })();

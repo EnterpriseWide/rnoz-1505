@@ -36,6 +36,7 @@
     "angular-bootstrap": "~0.13.0",
     "ngDialog": "~0.4.0",
     "angular-resource": "~1.4.0",
-    "angular-fcsa-number": "~1.5.3"
+    "angular-fcsa-number": "~1.5.3",
+    "angular-ui-grid": "~3.0.0-rc.22"
   }
 }

@@ -18,11 +18,12 @@
                     templateUrl: 'app/admin/admin.html',
                     controller: 'AdminController',
                     controllerAs: 'vm',
-                    title: 'Admin',
-                    settings: {
-                        nav: 2,
-                        content: '<i class="fa fa-lock"></i> Admin'
-                    }
+                    resolve: {
+                        authData: ['authservice', function (authservice) {
+                            return authservice.fillData();
+                        }]
+                    },
+                    title: 'Admin'
                 }
             }
         ];

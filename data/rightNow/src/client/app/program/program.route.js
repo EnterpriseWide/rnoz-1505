@@ -20,7 +20,6 @@
                     controllerAs: 'vm',
                     resolve: {
                         program: ['$stateParams', 'dataservice', function ($stateParams, dataservice) {
-                            console.log('resolve program');
                             return dataservice.readProgram($stateParams.programId).then(function (data) {
                                 return data;
                             });
@@ -35,12 +34,7 @@
                     templateUrl: 'app/program/program.list.html',
                     controller: 'ProgramListController',
                     controllerAs: 'vm',
-                    title: 'Programs',
-                    settings: {
-                        nav: 1,
-                        content: '<i class="fa fa-programs"></i> Programs',
-                        showOnNav: true
-                    }
+                    title: 'Programs'
                 }
             }
         ];
