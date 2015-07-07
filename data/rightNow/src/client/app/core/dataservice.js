@@ -21,6 +21,7 @@
             closeProgram: closeProgram,
             readProgram: readProgram,
             listPrograms: listPrograms,
+            listProgramsForAdmin: listProgramsForAdmin,
 
             createProgramInvoice: createProgramInvoice,
 
@@ -115,6 +116,20 @@
             }
             function fail(error) {
                 var msg = 'query for programs failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function listProgramsForAdmin(data) {
+            return $http.get(service.apiurl + '/api/programs/ForAdmin?pageNumber=' + data.pageNumber + '&pageSize=' + data.pageSize + '&sort=' + data.sort)
+                .then(success)
+                .catch(fail);
+            function success(response) {
+                return response.data;
+            }
+            function fail(error) {
+                var msg = 'query for programs for Admin failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }

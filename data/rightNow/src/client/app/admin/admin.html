@@ -16,7 +16,8 @@
                         <div class="card-main">
                             <div class="card-inner">
                                 <div class="col-sm-12 margin-bottom clearfix">
-                                    <div ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
+                                    <div>{{ vm.paginationOptions }}</div>
+                                    <div ui-grid="vm.programGridOptions" ui-grid-pagination class="grid"></div>
                                 </div>
                              </div>
                         </div>

@@ -30,6 +30,32 @@ namespace ewide.web.Controllers
             return programs;
         }
 
+        [ResponseType(typeof(GetCoachingProgramForAdminResponse))]
+        [Authorize(Roles = "Admin")]
+        [Route("ForAdmin")]
+        public IHttpActionResult GetCoachingProgramForAdmin(int pageNumber = 1, int pageSize = 25, String sort = "")
+        {
+            var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
+            var programs = GetCoachingPrograms(currentUser);
+            if (String.IsNullOrEmpty(sort) || sort == "null")
+            {
+                programs = programs.OrderByDescending(i => i.CreatedAt);
+            }
+            else
+            {
+                programs = programs.OrderBy(sort);
+            }
+            var count = programs.Count();
+            programs = programs
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+            return Ok(new GetCoachingProgramForAdminResponse
+            {
+                TotalItems = count,
+                Items = programs.ToList(),
+            });
+        }
+
         [ResponseType(typeof(CoachingProgram))]
         public IHttpActionResult GetCoachingProgram(int id)
         {
@@ -143,5 +169,11 @@ namespace ewide.web.Controllers
             mailClient.Send(message);
         }
 
+    }
+
+    public class GetCoachingProgramForAdminResponse
+    {
+        public int TotalItems { get; set; }
+        public List<CoachingProgram> Items { get; set; }
     }
 }
