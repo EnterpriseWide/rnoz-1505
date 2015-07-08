@@ -1,20 +1,15 @@
 ﻿using ewide.web.Models;
 using ewide.web.Utils;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.IO;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Net.Mail;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using System.Web.Http.Description;
 
 namespace ewide.web.Controllers
@@ -33,7 +28,7 @@ namespace ewide.web.Controllers
         [ResponseType(typeof(GetCoachingProgramForAdminResponse))]
         [Authorize(Roles = "Admin")]
         [Route("ForAdmin")]
-        public IHttpActionResult GetCoachingProgramForAdmin(int pageNumber = 1, int pageSize = 25, String sort = "")
+        public IHttpActionResult GetCoachingProgramForAdmin(int pageNumber = 1, int pageSize = 25, String sort = "CreatedAt desc")
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
             var programs = GetCoachingPrograms(currentUser);
@@ -43,6 +38,10 @@ namespace ewide.web.Controllers
             }
             else
             {
+                if (sort.EndsWith(","))
+                {
+                    sort = sort.TrimEnd(',');
+                }
                 programs = programs.OrderBy(sort);
             }
             var count = programs.Count();

@@ -605,6 +605,12 @@
       <DependentUpon>201507040416052_Add Rooms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\data\ewide.dynamic\ewide.dynamic.csproj">
+      <Project>{f285ceb0-4108-440c-ad94-1c1a7c159d7c}</Project>
+      <Name>ewide.dynamic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
