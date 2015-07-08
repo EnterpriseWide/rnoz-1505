@@ -122,7 +122,9 @@
         }
 
         function listProgramsForAdmin(data) {
-            return $http.get(service.apiurl + '/api/programs/ForAdmin?pageNumber=' + data.pageNumber + '&pageSize=' + data.pageSize + '&sort=' + data.sort)
+            return $http.get(service.apiurl + '/api/programs/ForAdmin?pageNumber=' + data.pageNumber +
+                '&pageSize=' + data.pageSize +
+                '&sort=' + data.sort)
                 .then(success)
                 .catch(fail);
             function success(response) {
