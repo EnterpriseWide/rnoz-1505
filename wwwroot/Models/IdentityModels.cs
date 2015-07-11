@@ -22,11 +22,9 @@ namespace ewide.web.Models
         public string Avatar { get; set; }
         public string AvatarFileUrl { get; set; }
         public string Position { get; set; }
-        public string CoachingExperience { get; set; }
         public string LinkedInProfile { get; set; }
         public string WorkExperience { get; set; }
 
-        public string VidyoAccountId { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

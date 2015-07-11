@@ -45,6 +45,8 @@
             deleteProgramMedia: deleteProgramMedia,
             listProgramMedias: listProgramMedias,
 
+            listUsers: listUsers,
+
             sendEmailToTheCoach: sendEmailToTheCoach,
             sendEmailToTheCoachee: sendEmailToTheCoachee
         };
@@ -413,6 +415,22 @@
 
             function fail(error) {
                 var msg = 'query for resources for program id ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function listUsers() {
+            return $http.get(service.apiurl + '/api/users')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for users failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }

@@ -25,6 +25,21 @@
                     },
                     title: 'Admin'
                 }
+            },
+            {
+                state: 'adminProgramCreate',
+                config: {
+                    url: '/admin/create-program',
+                    templateUrl: 'app/admin/admin.program.create.html',
+                    controller: 'AdminProgramCreateController',
+                    controllerAs: 'vm',
+                    resolve: {
+                        authData: ['authservice', function (authservice) {
+                            return authservice.fillData();
+                        }]
+                    },
+                    title: 'Admin'
+                }
             }
         ];
     }

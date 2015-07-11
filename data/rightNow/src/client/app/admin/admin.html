@@ -6,7 +6,7 @@
 <div class="content-inner">
     <div class="container">
         <div class="clearfix sub-header">
-            <p class="pull-right"><a class="btn btn-blue waves-button waves-effect waves-light" ><span class="icon icon-my-library-add"></span>&nbsp;Create new program</a></p>
+            <p class="pull-right"><a ui-sref="adminProgramCreate" class="btn btn-blue waves-button waves-effect waves-light" ><span class="icon icon-my-library-add"></span>&nbsp;Create new program</a></p>
         </div>
         <div class="card-wrap">
             <div class="row">
@@ -16,7 +16,7 @@
                         <div class="card-main">
                             <div class="card-inner">
                                 <div class="col-sm-12 margin-bottom clearfix">
-                                    <div>{{ vm.paginationOptions }}</div>
+                                    <div>Sort: {{ vm.paginationOptions.sort }}</div>
                                     <div ui-grid="vm.programGridOptions" ui-grid-pagination class="grid"></div>
                                 </div>
                              </div>
