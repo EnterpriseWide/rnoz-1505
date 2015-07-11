@@ -68,7 +68,6 @@
             authData.Phone = '';
             authData.Company = '';
             authData.Position = '';
-            authData.CoachingExperience = '';
             authData.WorkExperience = '';
             authData.Roles.slice(0, authData.Roles.length);
             authData.isAdmin = false;

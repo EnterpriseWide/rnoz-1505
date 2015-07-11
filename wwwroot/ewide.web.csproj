@@ -345,6 +345,10 @@
     <Compile Include="Migrations\201507040416052_Add Rooms.Designer.cs">
       <DependentUpon>201507040416052_Add Rooms.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507110235589_Removed VidyoId and Coaching Experience fields from user.cs" />
+    <Compile Include="Migrations\201507110235589_Removed VidyoId and Coaching Experience fields from user.Designer.cs">
+      <DependentUpon>201507110235589_Removed VidyoId and Coaching Experience fields from user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\CoachingProgramSurvey.cs" />
@@ -603,6 +607,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507040416052_Add Rooms.resx">
       <DependentUpon>201507040416052_Add Rooms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507110235589_Removed VidyoId and Coaching Experience fields from user.resx">
+      <DependentUpon>201507110235589_Removed VidyoId and Coaching Experience fields from user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

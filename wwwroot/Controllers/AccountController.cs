@@ -51,7 +51,6 @@ namespace ewide.web.Controllers
                 Company = currentUser.Company,
                 Position = currentUser.Position,
                 LinkedInProfile = currentUser.LinkedInProfile,
-                CoachingExperience = currentUser.CoachingExperience,
                 WorkExperience = currentUser.WorkExperience,
             };
             return Ok(user);
@@ -91,7 +90,6 @@ namespace ewide.web.Controllers
             currentUser.Company = item.Company;
             currentUser.Position = item.Position;
             currentUser.LinkedInProfile = item.LinkedInProfile;
-            currentUser.CoachingExperience = item.CoachingExperience;
             currentUser.WorkExperience = item.WorkExperience;
 
             AppUserManager.Update(currentUser);
