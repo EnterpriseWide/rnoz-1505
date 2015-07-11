@@ -96,7 +96,8 @@
             configurationContainerClass: "#configurationWrap",
             configurationLogLevelsAndCategoriesInput: "#logLevelsAndCategories",
             configurationTemplate: '\
-    <h3 class="text-center">Configuration</h3>\
+    <h3>Configuration</h3>\
+    <p>You can leave the default configuration values as they are unless you have specific need to configure your device.</p>\
     <ul class="nav nav-tabs">\
         <li class="active"><a href="#configurationTabApplication" data-toggle="tab">Basic</a></li>\
         <li><a href="#configurationTabAdvanced" data-toggle="tab">Advanced</a></li>\

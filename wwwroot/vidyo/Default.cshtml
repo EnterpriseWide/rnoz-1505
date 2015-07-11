@@ -18,23 +18,46 @@
     <meta http-equiv="pragma" content="no-cache" />
     <!-- Tell Windows 8 to run a desktop version of IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge;requiresActiveX=true"/>
+    <link rel="shortcut icon" href="favicon.ico">
     <!-- Title -->
-    <title>VidyoWeb API sample</title>
+    <title>right.now.: Video Session</title>
     <!-- Bootstrap css -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/elusive-webfont.css" rel="stylesheet">
     <link href="css/bootstrap-notify.css" rel="stylesheet">
+
+    @*<link rel="stylesheet" href="http://localhost:3000/.tmp/base.dm.css">
+    <link rel="stylesheet" href="http://localhost:3000/.tmp/styles.css">*@
     <!--[if lte IE 7]><script src="scripts/libs/lte-ie7.js"></script><![endif]-->
     <!-- Custom css -->
     <link rel="stylesheet" href="css/vidyo-app.css">
+    <link rel="stylesheet" href="css/rightnow.css">
 </head>
 <body>
     <div id="withjs" class="hide">
         <!-- Splash screen -->
         <div class="splash" id="splash">
-            <div><img src="img/logo-big.jpg" alt="Vidyo Logo"/></div>
-            <div id="splashText" style="margin-top: 15px;"><h4>Preparing Vidyo experience</h4></div>
-            <div><img src="img/loader-bar.gif" alt="Loading"/></div>
+            <div><img src="/images/logo-vertical.png" alt="right.now. Logo" /></div>
+            <div id="splashText" style="margin-top: 15px;"><p>Preparing video configuration</p></div>
+            
+
+            <div class="loading-indicator border-box">
+                <div class="progress-circular progress-circular-alt progress-circular-center">
+                    <div class="progress-circular-wrapper">
+                        <div class="progress-circular-inner">
+                            <div class="progress-circular-left">
+                                <div class="progress-circular-spinner"></div>
+                            </div>
+                            <div class="progress-circular-gap"></div>
+                            <div class="progress-circular-right">
+                                <div class="progress-circular-spinner"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
         <!-- End Splash screen -->
         <!-- Error view -->
@@ -48,10 +71,10 @@
         </div>
         <!-- End Error view -->
         <!-- Main Menu -->
-        <div class="hero-unit hide text-center" id="mainMenu">
-            <h2>VidyoWeb API sample - @currentUser.FirstName</h2>
+        <div class="hide text-center login-container" id="mainMenu">
+            @*<h2>VidyoWeb API sample - @currentUser.FirstName</h2>
             <!-- <h3>Choose the type of interaction</h3> -->
-            @*<form class="form-inline">
+            <form class="form-inline">
                 <input value="@guestRoomUrl" class="input-xxlarge guestLoginInput" id="guestURL" type="hidden" placeholder="http://PORTAL_ADDRESS/flex.html?roomdirect.html&amp;key=U2AnrCjEaMBx" tabindex="1">
                 <input value="@currentUser.FirstName" id="guestName" type="hidden" placeholder="Your Name" class="guestLoginInput" tabindex="2">
                 <input id="guestPIN" type="hidden" placeholder="PIN" tabindex="3">
@@ -59,15 +82,66 @@
             </form>
             <div id="guestLoginProgressBarContainer" class="progress progress-info progress-striped active hide">
                 <div id="guestLoginProgressBar" class="bar" style="width: 0%;"></div>
-            </div>*@
+            </div>
             <p>
-                @*<a href="#userLoginPopup" class="btn btn-primary" role="button" data-toggle="modal">
+                <a href="#userLoginPopup" class="btn btn-primary" role="button" data-toggle="modal">
                   Login as <i>Registered</i> User
-                </a>*@
+                </a>
                 <a href="#guestLoginPopup" class="btn btn-primary" role="button" data-toggle="modal">
                   Join room as a <i>Guest</i>
                 </a>
-            </p>
+            </p>*@
+
+            <div id="guestLoginPopup" class="clearfix" tabindex="-1" role="dialog" aria-labelledby="guestLoginLabel" aria-hidden="true">
+                @*<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 id="guestLoginLabel">Credentials</h3>
+                </div>*@
+                <div class="login-left"><img src="/images/logo-vertical.png" alt="right.now. Logo" /></div>
+
+                <div class="login-right">
+                    <p><i>right.now.</i> video coaching sessions are conducted in an online virtual meeting room. To join the meeting room please click the button below.</p>
+
+                    <div class="">
+                        <div id="guestLoginErrorWrapper" class="alert alert-error hide">
+                            <p id="guestLoginError"></p>
+                        </div>
+                        <form class="form-inline">
+                            <fieldset class="hide">
+                                <em>
+                                    <div class="clearfix">
+                                        <label>Guest link</label>
+
+                                        <div class="input-xxlarge">
+                                            <input value="@guestRoomUrl" class="input-xxlarge guestLoginInput" id="guestURL" type="url" placeholder="http://PORTAL_ADDRESS/flex.html?roomdirect.html&amp;key=U2AnrCjEaMBx" tabindex="1">
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                        <label>Your name</label>
+
+                                        <div class="input-medium">
+                                            <input id="guestName" type="text" value="@currentUser.FirstName @currentUser.LastName" class="guestLoginInput" tabindex="2">
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                        <label>PIN code if provided</label>
+                                        <div class="input-medium">
+                                            <input id="guestPIN" type="password" placeholder="PIN" tabindex="3">
+                                        </div>
+                                    </div>
+                                </em>
+                            </fieldset>
+                        </form>
+                        <div id="guestLoginProgressBarContainer" class="progress progress-info progress-striped active hide">
+                            <div id="guestLoginProgressBar" class="bar" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="hide-btn-on-disabled">
+                        <button class="btn btnMaterial btn-blue" id="guestLoginButton" tabindex="4">Join room</button>
+                    </div>
+
+                </div>
+            </div>
         </div>
         <!-- End Main Menu -->
 
@@ -158,49 +232,7 @@
         </div>
         <!-- Join enter PIN dialog end -->
         <!-- Login as guest modal window -->
-        <div id="guestLoginPopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="guestLoginLabel" aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 id="guestLoginLabel">Credentials</h3>
-            </div>
-            <div class="modal-body">
-                <div id="guestLoginErrorWrapper" class="alert alert-error hide">
-                    <p id="guestLoginError"></p>
-                </div>
-                <form class="form-inline">
-                    <fieldset>
-                        <em>
-                            <div class="clearfix">
-                                <label>Guest link</label>
-
-                                <div class="input-xxlarge">
-                                    <input value="@guestRoomUrl" class="input-xxlarge guestLoginInput" id="guestURL" type="url" placeholder="http://PORTAL_ADDRESS/flex.html?roomdirect.html&amp;key=U2AnrCjEaMBx" tabindex="1">
-                                </div>
-                            </div>
-                            <div class="clearfix">
-                                <label>Your name</label>
-
-                                <div class="input-medium">
-                                    <input id="guestName" type="text" placeholder="Your Name" class="guestLoginInput" tabindex="2">
-                                </div>
-                            </div>
-                            <div class="clearfix">
-                                <label>PIN code if provided</label>
-                                <div class="input-medium">
-                                    <input id="guestPIN" type="password" placeholder="PIN" tabindex="3">
-                                </div>
-                            </div>
-                        </em>
-                    </fieldset>
-                </form>
-                <div id="guestLoginProgressBarContainer" class="progress progress-info progress-striped active hide">
-                    <div id="guestLoginProgressBar" class="bar" style="width: 0%;"></div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" id="guestLoginButton" tabindex="4">Join room</button>
-            </div>
-        </div>
+        
         <!-- End Login as guest modal window -->
         <!-- Pre-call container -->
         <div id="preCallContainer" class="container well well-large hide">
@@ -246,13 +278,13 @@
                     </div>
                     <div class="btn-group btn-group-vertical btn-vertical btn-block">
                         <div class="dropdown">
-                            <a class="btn btn-inverse" role="button" data-toggle="dropdown" href="#" id="inCallButtonLocalShare" title="Share"><i class="icon-share"></i>&nbsp;<b class="caret"></b></a>
+                            <a class="btn btn-inverse btn-no-bottom-radius" role="button" data-toggle="dropdown" href="#" id="inCallButtonLocalShare" title="Share"><i class="icon-share"></i>&nbsp;<b class="caret"></b></a>
                             <ul class="dropdown-menu pull-right" role="menu" id="inCallLocalShareList" aria-labelledby="inCallButtonLocalShare">
                                 <!-- Look at the inCallLocalSharesTemplate in main.config.js  -->
                             </ul>
                         </div>
                         <div class="dropdown">
-                            <a class="btn btn-inverse disabled" role="button" data-toggle="dropdown" href="#" id="inCallButtonShare" title="Remote Shares"><i class="icon-screen"></i><span class="badge badge-important hide superscript overlap-to-left" id="inCallButtonShareBadge">1</span>&nbsp;<b class="caret"></b></a>
+                            <a class="btn btn-inverse disabled btn-no-top-radius" role="button" data-toggle="dropdown" href="#" id="inCallButtonShare" title="Remote Shares"><i class="icon-screen"></i><span class="badge badge-important hide superscript overlap-to-left" id="inCallButtonShareBadge">1</span>&nbsp;<b class="caret"></b></a>
                             <ul class="dropdown-menu pull-right" role="menu" id="inCallShareList" aria-labelledby="inCallButtonShare">
                                 <!-- Look at the inCallSharesTemplate in main.config.js  -->
                             </ul>
@@ -264,7 +296,7 @@
 <!--                     <div class="btn-toolbar btn-vertical btn-block">
                         <a class="btn btn-inverse btn-block" href="#" title="Configuration"><i class="icon-cogs" id="inCallButtonToggleConfig"></i></a>
                     </div> -->
-                    <div class="btn-toolbar btn-group btn-vertical btn-block">
+                    <div class="btn-toolbar btn-group btn-vertical btn-block btn-group-single-button">
                         <a class="btn btn-inverse btn-block" href="#" data-toggle="dropdown" title="Change Preview"><i class="icon-user"></i>&nbsp;<b class="caret"></b></a>
                         <ul class="dropdown-menu pull-right" role="menu" id="inCallButtonTogglePreview">
                             <li><a href="#" data-mode="None">None</a></li>
@@ -300,7 +332,7 @@
                         <div>
                             <form class="form-inline" id="inCallChatForm" autocomplete="off">
                               <input type="text" class="input-xxlarge" placeholder="Type a message" id="inCallChatTextField" autocomplete="off">
-                              <button type="submit" class="btn" id="inCallChatTextSend">Send</button>
+                              <button type="submit" class="btn btn-grey" id="inCallChatTextSend">Send</button>
                             </form>
                         </div>
                     </div>
@@ -323,7 +355,7 @@
     <!-- Will stay if JavaScript is not enabled -->
     <div id="withoutjs" class="hero-unit ">
         <h1>JavaScript is not enabled!</h1>
-        <p>JavaScript is not enabled in your browser. For VidyoWeb Sample to work your browser should have JavaScript enabled.</p>
+        <p>JavaScript is not enabled in your browser. To participate in video coaching sessions your browser should have JavaScript enabled.</p>
     </div>
     <div id="notificationContainer" class='notifications top-left'></div>
     <!-- Quickly check for JavaScript -->
@@ -368,6 +400,13 @@
     </script>
     <!-- Main application script -->
     <script data-main="scripts/main" src="scripts/libs/require.min.2.1.10.js"></script>
-    <script src="~/vidyo/scripts/oztrain.custom.js"></script>
+    @*<script src="~/vidyo/scripts/libs/jquery.1.11.0.min.js"></script>
+    <script src="~/vidyo/scripts/oztrain.custom.js"></script>*@
+
+    @*<script type="text/javascript">
+        $(function () {
+            //alert('here');
+        })
+    </script>*@
 </body>
 </html>

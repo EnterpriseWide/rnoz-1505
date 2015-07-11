@@ -1270,6 +1270,9 @@ uiSetMicMuted, uiSetSpeakerMuted, uiSetVideoMuted, uiShareSelect, uiSharesUpdate
                                     if (self.isGuestLogin) {
                                         uiUpdateGuestLoginProgress("0px", false);
                                         self.cache.$mainMenu.hide();
+                                        /* begin custom code */
+                                        self.cache.$guestLoginButton.removeClass('disabled');
+                                        /* end custom code */
                                     } else {
                                         uiUpdateJoinProgress("0px", false);
                                         uiPrecallMenuShow(false);
