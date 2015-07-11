@@ -78,11 +78,11 @@
             var deferred = $q.defer();
             var data = localStorageService.get('authorizationData');
             if (data) {
-                authData.isAuthenticated = true;
                 authData.token = data.token;
                 authData.userName = data.userName;
                 dataservice.readUserInfo()
                     .then(function(result) {
+                        authData.isAuthenticated = true;
                         angular.extend(authData, result.data);
                         authData.isAdmin = authData.Roles.indexOf('Admin') >= 0;
                         authData.isCoach = authData.Roles.indexOf('Coach') >= 0;

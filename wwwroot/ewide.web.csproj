@@ -278,6 +278,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="Controllers\AssignmentsController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
