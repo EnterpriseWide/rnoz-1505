@@ -8,8 +8,6 @@
             'blocks.exception',
             'blocks.logger',
             'blocks.router',
-            'ui.bootstrap',
-            'ui.router',
             'ngplus',
             'LocalStorageModule',
             'textAngular',
@@ -17,7 +15,9 @@
             'ngDialog',
             'ngResource',
             'fcsa-number',
+            'ui.bootstrap',
             'ui.grid',
-            'ui.grid.pagination'
+            'ui.grid.pagination',
+            'ui.router'
         ]);
 })();

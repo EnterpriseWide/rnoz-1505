@@ -23,7 +23,7 @@
         }
 
         function getSurveys(id) {
-            return dataservice.listSurveys(id).then(function (data) {
+            return dataservice.listSurveysByProgram(id).then(function (data) {
                 vm.data = data;
             });
         }

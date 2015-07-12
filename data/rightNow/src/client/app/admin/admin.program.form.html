@@ -1,28 +1,32 @@
 <div class="form-group">
+  {{vm.data}}
+</div>
+<div class="form-group">
   <label for="name" class="col-sm-2 control-label">Coach</label>
   <div class="col-sm-10">
-    <div class="btn-group" dropdown dropdown-append-to-body>
-      <select selectpicker ng-model="model" ng-options="c as c for c in vm.users" toggle-dropdown>
-          <option value="">Select one</option>
-      </select>
-    </div>
+    <select class="form-control" ng-model="vm.data.Coach" ng-options="vm.UserLabel(f) for f in vm.users"><option value="">-- choose Coach --</option></select>
   </div>
 </div>
 <div class="form-group">
   <label for="description" class="col-sm-2 control-label">Coachee</label>
   <div class="col-sm-10">
-    <textarea ng-model="vm.data.Description" class="form-control" id="description"></textarea>
+    <select class="form-control" ng-model="vm.data.Coachee" ng-options="vm.UserLabel(f) for f in vm.users"><option value="">-- choose Coachee --</option></select>
   </div>
 </div>
 <div class="form-group">
-  <label for="bodyText" class="col-sm-2 control-label">Status</label>
+  <label for="surveys" class="col-sm-2 control-label">Surveys</label>
   <div class="col-sm-10">
-    <text-angular ng-model="vm.data.BodyText"></text-angular>
-  </div>
-</div>
-<div class="form-group">
-  <label for="bodyText" class="col-sm-2 control-label">Surveys</label>
-  <div class="col-sm-10">
-    <text-angular ng-model="vm.data.BodyText"></text-angular>
+    <ul id="surveys">
+      <li ng-repeat="survey in vm.data.surveys">
+        <label>{{vm.data.surveys[$index].Name}}</label>
+        <button ng-click="vm.data.surveys.splice($index, 1)" aria-label="Remove">X</button>
+      </li>
+      <li>
+        <select ng-model="vm.selectedSurvey" ng-options="s.Name for s in vm.surveys">
+          <option value="" disabled>-- choose survey --</option>
+        </select>
+        <button ng-click="vm.addSurvey()" ng-disabled="!vm.selectedSurvey">add</button>
+      </li>
+    </ul>
   </div>
 </div>
