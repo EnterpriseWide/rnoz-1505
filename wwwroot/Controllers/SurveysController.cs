@@ -27,12 +27,12 @@ namespace ewide.web.Controllers
             return surveys;
         }
 
+        [ResponseType(typeof(List<Survey>))]
         [Authorize(Roles = "Admin")]
-        public IQueryable<Survey> GetSurveys()
+        public IHttpActionResult GetSurveys()
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
-            return GetCoachingProgramSurveys(currentUser)
-                .Select(i => i.Survey);
+            return Ok(AppDb.Survey.ToList());
         }
 
         public IQueryable<Survey> GetSurveys(int programId)
