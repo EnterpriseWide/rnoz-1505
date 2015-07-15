@@ -21,5 +21,6 @@ namespace ewide.web.Models
         public ICollection<CoachingSession> CoachingSessions { get; set; }
         public bool IsClosed { get; set; }
         public Decimal InvoiceAmount { get; set; }
+        public ICollection<CoachingProgramSurvey> CoachingProgramSurveys { get; set; }
     }
 }

@@ -17,5 +17,6 @@ namespace ewide.web.Models
         public String Name { get; set; }
         [Required]
         public String Link { get; set; }
+        public ICollection<CoachingProgramSurvey> CoachingProgramSurveys { get; set; }
     }
 }

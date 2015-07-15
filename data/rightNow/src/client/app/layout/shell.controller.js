@@ -23,7 +23,8 @@
         activate();
 
         function activate() {
-            return $q.all(authservice.fillData())
+            var promises = [authservice.fillData()]
+            return $q.all(promises)
                 .then(function() {
                     vm.authData = authservice.authData;
                     logger.success(config.appTitle + ' loaded!', null);

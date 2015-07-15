@@ -64,6 +64,50 @@ namespace ewide.web.Controllers
             return Ok(program);
         }
 
+        // POST: api/Assignments
+        [ResponseType(typeof(CoachingProgram))]
+        [Authorize(Roles = "Admin")]
+        public IHttpActionResult PostProgram(CoachingProgramDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var isCoach = AppUserManager.FindById(dto.Coach.Id)
+                .GetRoles(AppRoleManager)
+                .Any(i => i == "Coach");
+            if (!isCoach)
+            {
+                ModelState.AddModelError("Coach", "A User that has the Role of Coach Is Required");
+                return BadRequest(ModelState);
+            }
+
+            var row = new CoachingProgram
+            {
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Coach = AppUserManager.FindById(dto.Coach.Id),
+                Coachee = AppUserManager.FindById(dto.Coachee.Id),
+            };
+            foreach (var surveyId in dto.SurveyIds)
+            {
+                var cps = new CoachingProgramSurvey
+                {
+                    SurveyId = Convert.ToInt32(surveyId),
+                    CoachingProgram = row,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                };
+                AppDb.CoachingProgramSurvey.Add(cps);
+            }
+
+            AppDb.CoachingPrograms.Add(row);
+            AppDb.SaveChanges();
+            return CreatedAtRoute("DefaultApi", new { id = row.Id }, row);
+        }
+
         [ResponseType(typeof(void))]
         [Authorize(Roles = "Coach")]
         [Route("Close")]

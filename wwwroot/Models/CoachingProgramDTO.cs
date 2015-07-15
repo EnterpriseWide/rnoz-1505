@@ -10,12 +10,9 @@ namespace ewide.web.Models
     {
         public int Id { get; set; }
         [Required]
-        public DateTime UpdatedAt { get; set; }
-        [Required]
         public virtual ApplicationUser Coach { get; set; }
         [Required]
         public virtual ApplicationUser Coachee { get; set; }
-        public ICollection<CoachingSession> CoachingSessions { get; set; }
-        public int AssignmentCount { get; set; }
+        public List<int> SurveyIds { get; set; }
     }
 }

@@ -17,12 +17,28 @@ namespace ewide.web.Controllers
     [Authorize(Roles = "Admin")]
     public class UsersController : BaseApiController
     {
-        public IQueryable<ApplicationUser> GetCoaches()
+        public IEnumerable<UserHttpResponse> GetUsers()
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
-            var users = AppUserManager.Users;
+            var coachRole = AppRoleManager.FindByName("Coach");
+            var users = AppUserManager.Users
+                .Select(i => new UserHttpResponse
+                {
+                    Id = i.Id,
+                    FirstName = i.FirstName,
+                    LastName = i.LastName,
+                    IsCoach = i.Roles.Any(j => j.RoleId == coachRole.Id),
+                })
+                .ToList();
             return users;
         }
+    }
 
+    public class UserHttpResponse
+    {
+        public string Id { get; set; }
+        public bool IsCoach { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

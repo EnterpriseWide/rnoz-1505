@@ -18,6 +18,7 @@
             readUserInfo: readUserInfo,
             updateUserInfo: updateUserInfo,
 
+            createProgram: createProgram,
             closeProgram: closeProgram,
             readProgram: readProgram,
             listPrograms: listPrograms,
@@ -151,6 +152,22 @@
 
             function fail(error) {
                 var msg = 'creation of program invoice for ' + amount + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function createProgram(data) {
+            return $http.post(service.apiurl + '/api/programs', data)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'creation of a new program failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }

@@ -350,6 +350,14 @@
     <Compile Include="Migrations\201507110235589_Removed VidyoId and Coaching Experience fields from user.Designer.cs">
       <DependentUpon>201507110235589_Removed VidyoId and Coaching Experience fields from user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507152234371_Add CoachingSurvey.cs" />
+    <Compile Include="Migrations\201507152234371_Add CoachingSurvey.Designer.cs">
+      <DependentUpon>201507152234371_Add CoachingSurvey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507152236550_Remove CoachingSurvey.cs" />
+    <Compile Include="Migrations\201507152236550_Remove CoachingSurvey.Designer.cs">
+      <DependentUpon>201507152236550_Remove CoachingSurvey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\CoachingProgramSurvey.cs" />
@@ -611,6 +619,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507110235589_Removed VidyoId and Coaching Experience fields from user.resx">
       <DependentUpon>201507110235589_Removed VidyoId and Coaching Experience fields from user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507152234371_Add CoachingSurvey.resx">
+      <DependentUpon>201507152234371_Add CoachingSurvey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507152236550_Remove CoachingSurvey.resx">
+      <DependentUpon>201507152236550_Remove CoachingSurvey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
