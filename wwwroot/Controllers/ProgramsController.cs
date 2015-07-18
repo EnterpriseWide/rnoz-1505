@@ -68,7 +68,6 @@ namespace ewide.web.Controllers
             return Ok(program);
         }
 
-        // POST: api/Assignments
         [ResponseType(typeof(CoachingProgram))]
         [Authorize(Roles = "Admin")]
         public IHttpActionResult PostProgram(CoachingProgramDTO dto)
@@ -79,7 +78,7 @@ namespace ewide.web.Controllers
             }
 
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
-            var isCoach = AppUserManager.FindById(dto.Coach.Id)
+            var isCoach = AppUserManager.FindById(dto.CoachId)
                 .GetRoles(AppRoleManager)
                 .Any(i => i == "Coach");
             if (!isCoach)
@@ -92,8 +91,8 @@ namespace ewide.web.Controllers
             {
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
-                Coach = AppUserManager.FindById(dto.Coach.Id),
-                Coachee = AppUserManager.FindById(dto.Coachee.Id),
+                Coach = AppUserManager.FindById(dto.CoachId),
+                Coachee = AppUserManager.FindById(dto.CoacheeId),
             };
             foreach (var surveyId in dto.SurveyIds)
             {
@@ -110,6 +109,80 @@ namespace ewide.web.Controllers
             AppDb.CoachingPrograms.Add(row);
             AppDb.SaveChanges();
             return CreatedAtRoute("DefaultApi", new { id = row.Id }, row);
+        }
+
+        [ResponseType(typeof(CoachingProgram))]
+        [Authorize(Roles = "Admin")]
+        public IHttpActionResult PutProgram(int id, CoachingProgramDTO dto)
+        {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var isCoach = AppUserManager.FindById(dto.CoachId)
+                .GetRoles(AppRoleManager)
+                .Any(i => i == "Coach");
+            if (!isCoach)
+            {
+                ModelState.AddModelError("Coach", "A User that has the Role of Coach Is Required");
+                return BadRequest(ModelState);
+            }
+
+            var coachingProgram = GetCoachingPrograms(currentUser)
+                .FirstOrDefault(i => i.Id == id);
+            if (coachingProgram == null)
+            {
+                return BadRequest("Program Not Found");
+            }
+
+            coachingProgram.InvoiceAmount = dto.InvoiceAmount;
+            coachingProgram.IsClosed = dto.IsClosed;
+            coachingProgram.CoachId = dto.CoachId;
+            coachingProgram.CoacheeId = dto.CoacheeId;
+            coachingProgram.UpdatedAt = DateTime.Now;
+
+            foreach (var survey in coachingProgram.CoachingProgramSurveys.ToList())
+            {
+                if (!dto.SurveyIds.Any(i => i == survey.SurveyId))
+                {
+                    AppDb.CoachingProgramSurvey.Remove(survey);
+                }
+            }
+
+            foreach (var surveyId in dto.SurveyIds)
+            {
+                if (!coachingProgram.CoachingProgramSurveys.Any(i => i.SurveyId == surveyId))
+                {
+                    var cps = new CoachingProgramSurvey
+                    {
+                        SurveyId = Convert.ToInt32(surveyId),
+                        CoachingProgram = coachingProgram,
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now,
+                    };
+                    AppDb.CoachingProgramSurvey.Add(cps);
+                }
+            }
+
+            try
+            {
+                AppDb.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CoachingProgramExists(id, currentUser))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         [ResponseType(typeof(void))]

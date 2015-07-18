@@ -10,14 +10,32 @@
         </div>
         <div class="card-wrap">
             <div class="row">
-
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner">
                                 <div class="col-sm-12 margin-bottom margin-top clearfix">
-                                    <div>Sort: {{ vm.paginationOptions.sort }}</div>
+                                    <div>Sort: {{ vm.programPaginationOptions.sort }}</div>
                                     <div ui-grid="vm.programGridOptions" ui-grid-pagination class="grid"></div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix sub-header">
+            <p class="pull-right"><a ui-sref="adminRoomCreate" class="btn btn-blue waves-button waves-effect waves-light" ><span class="icon icon-my-library-add"></span>&nbsp;Create new room</a></p>
+        </div>
+        <div class="card-wrap">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <div class="col-sm-12 margin-bottom margin-top clearfix">
+                                    <div>Sort: {{ vm.roomPaginationOptions.sort }}</div>
+                                    <div ui-grid="vm.roomGridOptions" ui-grid-pagination class="grid"></div>
                                 </div>
                              </div>
                         </div>

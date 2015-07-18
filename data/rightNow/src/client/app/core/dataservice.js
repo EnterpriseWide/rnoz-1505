@@ -51,7 +51,10 @@
             listUsers: listUsers,
 
             sendEmailToTheCoach: sendEmailToTheCoach,
-            sendEmailToTheCoachee: sendEmailToTheCoachee
+            sendEmailToTheCoachee: sendEmailToTheCoachee,
+
+            listRoomsForAdmin: listRoomsForAdmin
+
         };
 
         return service;
@@ -514,6 +517,22 @@
 
             function fail(error) {
                 var msg = 'creation of a new email for program ' + data.Id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function listRoomsForAdmin(data) {
+            return $http.get(service.apiurl + '/api/rooms/ForAdmin?pageNumber=' + data.pageNumber +
+                '&pageSize=' + data.pageSize +
+                '&sort=' + data.sort)
+                .then(success)
+                .catch(fail);
+            function success(response) {
+                return response.data;
+            }
+            function fail(error) {
+                var msg = 'query for rooms for Admin failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }

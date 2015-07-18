@@ -10,9 +10,13 @@ namespace ewide.web.Models
     {
         public int Id { get; set; }
         [Required]
+        public String CoachId { get; set; }
         public virtual ApplicationUser Coach { get; set; }
         [Required]
+        public String CoacheeId { get; set; }
         public virtual ApplicationUser Coachee { get; set; }
         public List<int> SurveyIds { get; set; }
+        public int InvoiceAmount { get; set; }
+        public bool IsClosed { get; set; }
     }
 }

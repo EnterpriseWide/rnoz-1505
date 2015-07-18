@@ -20,6 +20,7 @@
                                      <form class="form-horizontal" role="form" ng-submit="addProgram()" name="form">
                                         <div ng-include="'app/admin/admin.program.update.form.html'"></div>
                                         <button class="pull-right btn btn-blue waves-button waves-effect waves-light" data-ng-click="vm.save()" ng-disabled="!form.$valid"><span class="icon icon-check"></span>&nbsp;Save</button>
+                                        &nbsp;<a ui-sref="program({programId: vm.programId})" class="pull-right btn btn-blue waves-button waves-effect waves-light"><span class="icon icon-check"></span>&nbsp;Open Client View</a>
                                      </form>
                                 </div>
                              </div>

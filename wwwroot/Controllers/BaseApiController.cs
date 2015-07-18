@@ -1,15 +1,10 @@
 ﻿using ewide.web.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 
 namespace ewide.web.Controllers
