@@ -23,7 +23,7 @@
         activate();
 
         function activate() {
-            var promises = [authservice.fillData()]
+            var promises = [authservice.fillData()];
             return $q.all(promises)
                 .then(function() {
                     vm.authData = authservice.authData;
