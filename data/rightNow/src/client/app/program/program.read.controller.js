@@ -78,7 +78,7 @@
 
         function closeProgram(ev) {
             ngDialog.openConfirm({
-                template: '<p>Are you sure?</p>' +
+                template: '<p>Are you sure that you want to close the program?</p>' +
                     '<div class="ngdialog-buttons">' +
                         '<button type="button" class="btn btn-blue" ng-click="closeThisDialog(0)">No</button>' +
                         '<button type="button" class="btn btn-blue" ng-click="confirm(1)">Yes</button>' +

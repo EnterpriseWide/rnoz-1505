@@ -97,7 +97,7 @@
             configurationLogLevelsAndCategoriesInput: "#logLevelsAndCategories",
             configurationTemplate: '\
     <h3>Configuration</h3>\
-    <p>You can leave the default configuration values as they are unless you have specific need to configure your device.</p>\
+    <p>Only edit the information below if you have a specific need to configure your device.</p>\
     <ul class="nav nav-tabs">\
         <li class="active"><a href="#configurationTabApplication" data-toggle="tab">Basic</a></li>\
         <li><a href="#configurationTabAdvanced" data-toggle="tab">Advanced</a></li>\

@@ -31,7 +31,7 @@
                 {displayName: 'Date Created', field: 'CreatedAt', cellFilter: 'date', type: 'date'},
                 {field: 'IsClosed', type: 'boolean'},
                 {field: 'InvoiceAmount', cellFilter: 'currency', type: 'number'},
-                {displayName: '', field: 'Id', enableColumnMenu: false, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="adminProgramUpdate({programId: {{COL_FIELD}}})" class="btn btn-small btn-flat btn-blue waves-button waves-effect"><span class="icon icon-edit"></span>&nbsp;Edit</a><a class="btn btn-small btn-flat btn-red waves-button waves-effect"><span class="icon icon-delete"></span>&nbsp;Delete</a></div>', type: 'number'}
+                {displayName: '', field: 'Id', enableColumnMenu: false, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a ui-sref="adminProgramUpdate({programId: {{COL_FIELD}}})" class="grid-link"><span class="icon icon-edit"></span>&nbsp;Edit</a></div>', type: 'number'}
             ],
             onRegisterApi: function(gridApi) {
                 $scope.gridApi = gridApi;
