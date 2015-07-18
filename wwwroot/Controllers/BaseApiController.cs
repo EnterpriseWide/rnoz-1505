@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
@@ -65,6 +66,7 @@ namespace ewide.web.Controllers
             var programs = AppDb.CoachingPrograms
                 .Include(i => i.Coach)
                 .Include(i => i.Coachee)
+                .Include(i => i.CoachingProgramSurveys)
                 .Where(i =>
                     i.Coach.Id == currentUser.Id ||
                     i.Coachee.Id == currentUser.Id ||

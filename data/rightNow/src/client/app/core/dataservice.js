@@ -21,6 +21,7 @@
             createProgram: createProgram,
             closeProgram: closeProgram,
             readProgram: readProgram,
+            updateProgram: updateProgram,
             listPrograms: listPrograms,
             listProgramsForAdmin: listProgramsForAdmin,
 
@@ -198,6 +199,22 @@
                 logger.error(msg);
                 return $q.reject(msg);
             }
+        }
+
+        function updateProgram(id, data) {
+            var url = service.apiurl + '/api/programs/' + id;
+
+            var deferred = $q.defer();
+
+            $http.put(url, data).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                var msg = 'update for program ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                deferred.reject(msg);
+            });
+
+            return deferred.promise;
         }
 
         function createAssignment(data) {
