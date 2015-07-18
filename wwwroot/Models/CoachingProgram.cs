@@ -14,13 +14,16 @@ namespace ewide.web.Models
         [Required]
         public DateTime UpdatedAt { get; set; }
         [Required]
+        public String CoachId { get; set; }
         public virtual ApplicationUser Coach { get; set; }
         [Required]
+        public String CoacheeId { get; set; }
         public virtual ApplicationUser Coachee { get; set; }
         public String LearningPlan { get; set; }
         public ICollection<CoachingSession> CoachingSessions { get; set; }
         public bool IsClosed { get; set; }
         public Decimal InvoiceAmount { get; set; }
         public ICollection<CoachingProgramSurvey> CoachingProgramSurveys { get; set; }
+        public virtual List<Int32> SurveyIds { get; set; }
     }
 }

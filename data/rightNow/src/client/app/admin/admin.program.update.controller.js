@@ -28,11 +28,7 @@
             }
             vm.programId = $stateParams.programId;
             var promises = [getProgram(vm.programId), getUsers(), getSurveys()];
-            return $q.all(promises).then(function () {
-                angular.foreach(vm.data.CoachingProgramSurveys, function(row) {
-                    var selectedItems = $filter('filter')(vm.surveys, {Id: row.SurveyId}, true);
-                });
-            });
+            return $q.all(promises);
         }
 
         function getUsers() {
@@ -60,7 +56,6 @@
         }
 
         function save() {
-
             dataservice.updateProgram(vm.data.Id, vm.data).then(function (data) {
                 logger.info('Program Updated');
                 $state.go('admin');

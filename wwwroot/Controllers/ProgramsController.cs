@@ -61,6 +61,10 @@ namespace ewide.web.Controllers
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
             var program = GetCoachingPrograms(currentUser)
                 .SingleOrDefault(i => i.Id == id);
+            if (program.CoachingProgramSurveys.Count > 0)
+            {
+                program.SurveyIds = program.CoachingProgramSurveys.Select(i => i.SurveyId).ToList();
+            }
             return Ok(program);
         }
 
