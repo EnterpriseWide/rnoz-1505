@@ -22,6 +22,7 @@
             closeProgram: closeProgram,
             readProgram: readProgram,
             updateProgram: updateProgram,
+            deleteProgram: deleteProgram,
             listPrograms: listPrograms,
             listProgramsForAdmin: listProgramsForAdmin,
 
@@ -39,6 +40,8 @@
 
             listSessions: listSessions,
 
+            listSurveysForAdmin: listSurveysForAdmin,
+            listUsersForAdmin: listUsersForAdmin,
             listSurveys: listSurveys,
             listSurveysByProgram: listSurveysByProgram,
 
@@ -113,6 +116,22 @@
                 deferred.reject(error.Message);
             });
             return deferred.promise;
+        }
+
+        function deleteProgram(id) {
+            return $http.delete(service.apiurl + '/api/programs/' + id + '/')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'delete for program ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
         }
 
         function listPrograms() {
@@ -327,6 +346,38 @@
 
             function fail(error) {
                 var msg = 'query for surveys for program id ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function listSurveysForAdmin(data) {
+            return $http.get(service.apiurl + '/api/surveys/ForAdmin?pageNumber=' + data.pageNumber +
+                '&pageSize=' + data.pageSize +
+                '&sort=' + data.sort)
+                .then(success)
+                .catch(fail);
+            function success(response) {
+                return response.data;
+            }
+            function fail(error) {
+                var msg = 'query for surveys for Admin failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function listUsersForAdmin(data) {
+            return $http.get(service.apiurl + '/api/users/ForAdmin?pageNumber=' + data.pageNumber +
+                '&pageSize=' + data.pageSize +
+                '&sort=' + data.sort)
+                .then(success)
+                .catch(fail);
+            function success(response) {
+                return response.data;
+            }
+            function fail(error) {
+                var msg = 'query for users for Admin failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }
