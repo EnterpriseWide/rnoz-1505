@@ -4,7 +4,9 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Net;
@@ -261,6 +263,45 @@ namespace ewide.web.Controllers
                     throw;
                 }
             }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [ResponseType(typeof(void))]
+        [Authorize(Roles = "Admin")]
+        public IHttpActionResult DeleteCoachingProgram(int id)
+        {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var coachingProgram = AppDb.CoachingPrograms
+                .Include(i => i.CoachingProgramSurveys)
+                .Include(i => i.Assignments)
+                .Include(i => i.CoachingSessions)
+                .Include(i => i.ProgramMedias)
+                .FirstOrDefault(i => i.Id == id);
+            if (coachingProgram == null)
+            {
+                return BadRequest("Program Not Found");
+            }
+
+            var programMediaFolder = coachingProgram.GetRootFolder();
+            using (var dbContextTransaction = AppDb.Database.BeginTransaction())
+            {
+                try
+                {
+                    AppDb.Assignment.RemoveRange(coachingProgram.Assignments);
+                    AppDb.ProgramMedia.RemoveRange(coachingProgram.ProgramMedias);
+                    AppDb.CoachingProgramSurvey.RemoveRange(coachingProgram.CoachingProgramSurveys);
+                    AppDb.CoachingSessions.RemoveRange(coachingProgram.CoachingSessions);
+                    AppDb.CoachingPrograms.Remove(coachingProgram);
+                    AppDb.SaveChanges();
+                    Directory.Delete(programMediaFolder, true);
+                    dbContextTransaction.Commit();
+                }
+                catch (Exception)
+                {
+                    dbContextTransaction.Rollback();
+                }
+            }
+
             return StatusCode(HttpStatusCode.NoContent);
         }
 
