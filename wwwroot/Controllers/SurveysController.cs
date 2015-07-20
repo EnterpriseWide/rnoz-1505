@@ -1,21 +1,16 @@
-﻿using AutoMapper;
-using ewide.web.Models;
+﻿using ewide.web.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using System.Linq.Dynamic;
 using System.Web.Http;
 using System.Web.Http.Description;
 
 namespace ewide.web.Controllers
 {
     [Authorize]
+    [RoutePrefix("api/surveys")]
     public class SurveysController : BaseApiController
     {
         private IQueryable<CoachingProgramSurvey> GetCoachingProgramSurveys(ApplicationUser currentUser)
@@ -42,6 +37,41 @@ namespace ewide.web.Controllers
                 .Where(i => i.CoachingProgram.Id == programId)
                 .Select(i => i.Survey)
                 .Distinct();
+        }
+
+        [ResponseType(typeof(GetSurveysForAdminResponse))]
+        [Route("ForAdmin")]
+        public IHttpActionResult GetSurveysForAdmin(int pageNumber = 1, int pageSize = 25, String sort = "CreatedAt desc")
+        {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            var surveys = (IQueryable<Survey>)AppDb.Survey;
+            if (String.IsNullOrEmpty(sort) || sort == "null")
+            {
+                surveys = surveys.OrderBy(i => i.CreatedAt);
+            }
+            else
+            {
+                if (sort.EndsWith(","))
+                {
+                    sort = sort.TrimEnd(',');
+                }
+                surveys = surveys.OrderBy(sort);
+            }
+            var count = surveys.Count();
+            surveys = surveys
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+            return Ok(new GetSurveysForAdminResponse
+            {
+                TotalItems = count,
+                Items = surveys.ToList(),
+            });
+        }
+
+        public class GetSurveysForAdminResponse
+        {
+            public int TotalItems { get; set; }
+            public List<Survey> Items { get; set; }
         }
 
     }
