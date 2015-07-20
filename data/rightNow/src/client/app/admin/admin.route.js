@@ -25,36 +25,6 @@
                     },
                     title: 'Admin'
                 }
-            },
-            {
-                state: 'adminProgramCreate',
-                config: {
-                    url: '/admin/program/create',
-                    templateUrl: 'app/admin/admin.program.create.html',
-                    controller: 'AdminProgramCreateController',
-                    controllerAs: 'vm',
-                    resolve: {
-                        authData: ['authservice', function (authservice) {
-                            return authservice.fillData();
-                        }]
-                    },
-                    title: 'Admin'
-                }
-            },
-            {
-                state: 'adminProgramUpdate',
-                config: {
-                    url: '/admin/program/:programId/update',
-                    templateUrl: 'app/admin/admin.program.update.html',
-                    controller: 'AdminProgramUpdateController',
-                    controllerAs: 'vm',
-                    resolve: {
-                        authData: ['authservice', function (authservice) {
-                            return authservice.fillData();
-                        }]
-                    },
-                    title: 'Admin'
-                }
             }
         ];
     }

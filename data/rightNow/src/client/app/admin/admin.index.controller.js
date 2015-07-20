@@ -10,12 +10,15 @@
         var vm = this;
         vm.title = 'Admin Dashboard';
         vm.authData = authData;
-        vm.programGridOptions = {};
-        vm.roomGridOptions = {};
         vm.programs = [];
         vm.rooms = [];
+        vm.surveys = [];
+        vm.users = [];
         vm.programPaginationOptions = {pageNumber: 1, pageSize: 25, sort: null};
         vm.roomPaginationOptions = {pageNumber: 1, pageSize: 25, sort: null};
+        vm.surveyPaginationOptions = {pageNumber: 1, pageSize: 25, sort: null};
+        vm.userPaginationOptions = {pageNumber: 1, pageSize: 25, sort: null};
+
         vm.programGridOptions = {
             enableSorting: true,
             paginationPageSizes: [25, 50, 75],
@@ -67,7 +70,7 @@
                 {field: 'UserName', type: 'string'},
                 {field: 'Password', type: 'string'},
                 {field: 'Link', type: 'string'},
-                {displayName: '', field: 'Id', enableColumnMenu: false, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a ui-sref="adminRoomUpdate({programId: {{COL_FIELD}}})" class="grid-link"><span class="icon icon-edit"></span>&nbsp;Edit</a></div>', type: 'number'}
+                {displayName: '', field: 'Id', enableColumnMenu: false, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a ui-sref="adminRoomUpdate({roomId: {{COL_FIELD}}})" class="grid-link"><span class="icon icon-edit"></span>&nbsp;Edit</a></div>', type: 'number'}
             ],
             onRegisterApi: function(gridApi) {
                 $scope.roomGridApi = gridApi;
@@ -93,6 +96,76 @@
             }
         };
 
+        vm.surveyGridOptions = {
+            enableSorting: true,
+            paginationPageSizes: [25, 50, 75],
+            paginationPageSize: vm.surveyPaginationOptions.pageSize,
+            useExternalPagination: true,
+            useExternalSorting: true,
+            columnDefs: [
+                {field: 'Name', type: 'string'},
+                {field: 'Link', type: 'string'},
+                {displayName: '', field: 'Id', enableColumnMenu: false, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a ui-sref="adminSurveyUpdate({surveyId: {{COL_FIELD}}})" class="grid-link"><span class="icon icon-edit"></span>&nbsp;Edit</a></div>', type: 'number'}
+            ],
+            onRegisterApi: function(gridApi) {
+                $scope.surveyGridApi = gridApi;
+                $scope.surveyGridApi.core.on.sortChanged($scope, function(grid, sortColumns) {
+                    if (sortColumns.length === 0) {
+                        vm.surveyPaginationOptions.sort = null;
+                    } else {
+                        vm.surveyPaginationOptions.sort = '';
+                        angular.forEach(sortColumns, function (row) {
+                            vm.surveyPaginationOptions.sort += row.field;
+                            vm.surveyPaginationOptions.sort += ' ';
+                            vm.surveyPaginationOptions.sort += row.sort.direction;
+                            vm.surveyPaginationOptions.sort += ',';
+                        });
+                    }
+                    getPageSurveys();
+                });
+                gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
+                    vm.surveyPaginationOptions.pageNumber = newPage;
+                    vm.surveyPaginationOptions.pageSize = pageSize;
+                    getPageSurveys();
+                });
+            }
+        };
+
+        vm.userGridOptions = {
+            enableSorting: true,
+            paginationPageSizes: [25, 50, 75],
+            paginationPageSize: vm.userPaginationOptions.pageSize,
+            useExternalPagination: true,
+            useExternalSorting: true,
+            columnDefs: [
+                {field: 'FirstName', type: 'string'},
+                {field: 'LastName', type: 'string'},
+                {displayName: '', field: 'Id', enableColumnMenu: false, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a ui-sref="adminUserUpdate({userId: "{{COL_FIELD}}"})" class="grid-link"><span class="icon icon-edit"></span>&nbsp;Edit</a></div>', type: 'string'}
+            ],
+            onRegisterApi: function(gridApi) {
+                $scope.userGridApi = gridApi;
+                $scope.userGridApi.core.on.sortChanged($scope, function(grid, sortColumns) {
+                    if (sortColumns.length === 0) {
+                        vm.userPaginationOptions.sort = null;
+                    } else {
+                        vm.userPaginationOptions.sort = '';
+                        angular.forEach(sortColumns, function (row) {
+                            vm.userPaginationOptions.sort += row.field;
+                            vm.userPaginationOptions.sort += ' ';
+                            vm.userPaginationOptions.sort += row.sort.direction;
+                            vm.userPaginationOptions.sort += ',';
+                        });
+                    }
+                    getPageUsers();
+                });
+                gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
+                    vm.userPaginationOptions.pageNumber = newPage;
+                    vm.userPaginationOptions.pageSize = pageSize;
+                    getPageUsers();
+                });
+            }
+        };
+
         activate();
 
         function activate() {
@@ -101,6 +174,8 @@
             }
             getPagePrograms();
             getPageRooms();
+            getPageSurveys();
+            getPageUsers();
         }
 
         function getPagePrograms() {
@@ -116,6 +191,22 @@
                 .then(function (data) {
                     vm.roomGridOptions.totalItems = data.TotalItems;
                     vm.roomGridOptions.data = data.Items;
+                });
+        }
+
+        function getPageSurveys() {
+            return dataservice.listSurveysForAdmin(vm.surveyPaginationOptions)
+                .then(function (data) {
+                    vm.surveyGridOptions.totalItems = data.TotalItems;
+                    vm.surveyGridOptions.data = data.Items;
+                });
+        }
+
+        function getPageUsers() {
+            return dataservice.listUsersForAdmin(vm.userPaginationOptions)
+                .then(function (data) {
+                    vm.userGridOptions.totalItems = data.TotalItems;
+                    vm.userGridOptions.data = data.Items;
                 });
         }
 
