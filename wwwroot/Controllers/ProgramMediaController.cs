@@ -43,16 +43,6 @@ namespace ewide.web.Controllers
                     i.CoachingProgram.Coachee.Id == currentUser.Id);
         }
 
-        private static string GetRootFolder(CoachingProgram program)
-        {
-            var path = String.Format("{0}/{1}/",
-                HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["Program Media Folder"]),
-                program.Id
-                );
-            Directory.CreateDirectory(path);
-            return path;
-        }
-
         public IHttpActionResult GetProgramMedias(Int64 programId, MediaType mediaType)
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
@@ -62,7 +52,7 @@ namespace ewide.web.Controllers
             {
                 return NotFound();
             }
-            var root = GetRootFolder(program);
+            var root = program.GetRootFolder();
             var list = GetProgramMediaList(currentUser)
                 .Where(i => i.MediaType == mediaType);
             return Ok(list);
@@ -93,7 +83,7 @@ namespace ewide.web.Controllers
             {
                 return NotFound();
             }
-            var fileName = String.Format("{0}{1}", GetRootFolder(item.CoachingProgram), item.FileName);
+            var fileName = String.Format("{0}{1}", item.CoachingProgram.GetRootFolder(), item.FileName);
             if (!File.Exists(fileName))
             {
                 return NotFound();
@@ -183,7 +173,7 @@ namespace ewide.web.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
-            string root = GetRootFolder(program);
+            string root = program.GetRootFolder();
             var provider = new MultipartFormDataStreamProvider(root);
             try
             {
@@ -281,7 +271,7 @@ namespace ewide.web.Controllers
                         break;
                 }
             }
-            string ProgramMediaDirectory = GetRootFolder(programMedia.CoachingProgram);
+            string ProgramMediaDirectory = programMedia.CoachingProgram.GetRootFolder();
             AppDb.ProgramMedia.Remove(programMedia);
             var fileName = String.Format("{0}{1}", ProgramMediaDirectory, programMedia.FileName);
             if (File.Exists(fileName))
