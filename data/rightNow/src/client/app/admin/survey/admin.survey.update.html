@@ -1,0 +1,37 @@
+<div class="content-heading admin-bg">
+    <div class="container">
+        <h1 class="heading"><span class="icon icon-content-copy"></span>&nbsp;{{vm.title}}</h1>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+        <div class="clearfix sub-header">
+            <h2 class="content-sub-heading pull-left">
+                <a ui-sref="admin"><span class="icon icon-chevron-left"></span>&nbsp;Back to Admin Dashboard</a>
+            </h2>
+        </div>
+        <div class="card-wrap">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <div ng-show="vm.isUsed" class="col-sm-12 margin-top margin-bottom clearfix">
+                                     <span class="pull-right half-margin-top form-error-message">Survey is in Use</span>
+                                </div>
+                                <div class="col-sm-12 margin-top margin-bottom clearfix">
+                                     <form class="form-horizontal" role="form" name="form">
+                                        <div ng-include="'app/admin/survey/admin.survey.form.html'"></div>
+                                        <button class="pull-right btn btn-blue waves-button waves-effect waves-light" data-ng-click="vm.save()" ng-disabled="!form.$valid"><span class="icon icon-check"></span>&nbsp;Save</button>
+                                        &nbsp;
+                                        <a ng-disabled="vm.isUsed" class="pull-right btn btn-blue waves-button waves-effect waves-light" ng-click="vm.deleteRecord()"><span class="icon icon-delete"></span>&nbsp;Delete</a>
+                                     </form>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

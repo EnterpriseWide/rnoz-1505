@@ -68,5 +68,15 @@ namespace ewide.web.Controllers
                     isAdmin);
             return programs;
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                AppDb.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
     }
 }

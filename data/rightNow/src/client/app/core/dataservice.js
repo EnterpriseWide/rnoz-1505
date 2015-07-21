@@ -40,10 +40,15 @@
 
             listSessions: listSessions,
 
+            createSurvey: createSurvey,
+            readSurvey: readSurvey,
+            updateSurvey: updateSurvey,
+            deleteSurvey: deleteSurvey,
             listSurveysForAdmin: listSurveysForAdmin,
-            listUsersForAdmin: listUsersForAdmin,
             listSurveys: listSurveys,
             listSurveysByProgram: listSurveysByProgram,
+
+            listUsersForAdmin: listUsersForAdmin,
 
             createProgramMediaLink: createProgramMediaLink,
             readProgramMedia: readProgramMedia,
@@ -56,6 +61,10 @@
             sendEmailToTheCoach: sendEmailToTheCoach,
             sendEmailToTheCoachee: sendEmailToTheCoachee,
 
+            createRoom: createRoom,
+            readRoom: readRoom,
+            updateRoom: updateRoom,
+            deleteRoom: deleteRoom,
             listRoomsForAdmin: listRoomsForAdmin
 
         };
@@ -217,7 +226,7 @@
             }
 
             function fail(error) {
-                var msg = 'query for assignment ' + id + ' failed. ' + error.data.description;
+                var msg = 'query for program ' + id + ' failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }
@@ -314,6 +323,70 @@
 
             function fail(error) {
                 var msg = 'query for assignments for program id ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function createSurvey(data) {
+            return $http.post(service.apiurl + '/api/surveys', data)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'creation of a new survey failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function readSurvey(id) {
+            return $http.get(service.apiurl + '/api/surveys/' + id)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for survey ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function updateSurvey(id, data) {
+            var url = service.apiurl + '/api/surveys/' + id;
+
+            var deferred = $q.defer();
+
+            $http.put(url, data).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                var msg = 'update for survey ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                deferred.reject(msg);
+            });
+
+            return deferred.promise;
+        }
+
+        function deleteSurvey(id) {
+            return $http.delete(service.apiurl + '/api/surveys/' + id)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'delete for survey ' + id + ' failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }
@@ -568,6 +641,70 @@
 
             function fail(error) {
                 var msg = 'creation of a new email for program ' + data.Id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function createRoom(data) {
+            return $http.post(service.apiurl + '/api/rooms', data)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'creation of a new room failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function readRoom(id) {
+            return $http.get(service.apiurl + '/api/rooms/' + id)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for room ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function updateRoom(id, data) {
+            var url = service.apiurl + '/api/rooms/' + id;
+
+            var deferred = $q.defer();
+
+            $http.put(url, data).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                var msg = 'update for room ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                deferred.reject(msg);
+            });
+
+            return deferred.promise;
+        }
+
+        function deleteRoom(id) {
+            return $http.delete(service.apiurl + '/api/rooms/' + id + '/')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'delete for room ' + id + ' failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }
