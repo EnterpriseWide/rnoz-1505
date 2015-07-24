@@ -9,11 +9,14 @@
     function AdminUserUpdateController(authData, logger, authservice, $state, $stateParams, $q, dataservice, ngDialog) {
         var vm = this;
         vm.title = 'Update User';
-        vm.data = {};
+        vm.data = {
+            roleIds: []
+        };
         vm.authData = authservice.authData;
         vm.save = save;
         vm.deleteRecord = deleteRecord;
         vm.getUser = getUser;
+        vm.roles = [];
 
         activate();
 
@@ -22,7 +25,7 @@
                 $state.go('404');
             }
             vm.userId = $stateParams.userId;
-            var promises = [getUser(vm.userId)];
+            var promises = [getUser(vm.userId), getRoles()];
             return $q.all(promises);
         }
 
@@ -31,6 +34,13 @@
                 vm.data = data.Item;
                 vm.isUsed = data.UsageCount > 0;
             });
+        }
+
+        function getRoles() {
+            dataservice.listRoles()
+                .then(function (data) {
+                    vm.roles = data;
+                });
         }
 
         function save() {

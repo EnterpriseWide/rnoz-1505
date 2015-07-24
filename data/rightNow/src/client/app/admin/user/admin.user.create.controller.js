@@ -9,9 +9,12 @@
     function AdminUserCreateController(authData, logger, authservice, $state, $stateParams, $q, dataservice) {
         var vm = this;
         vm.title = 'Add New User';
-        vm.data = {};
+        vm.data = {
+            roleIds: []
+        };
         vm.authData = authservice.authData;
         vm.save = save;
+        vm.roles = [];
 
         activate();
 
@@ -19,6 +22,15 @@
             if (!vm.authData.isAdmin) {
                 $state.go('404');
             }
+            var promises = [getRoles()];
+            return $q.all(promises);
+        }
+
+        function getRoles() {
+            dataservice.listRoles()
+                .then(function (data) {
+                    vm.roles = data;
+                });
         }
 
         function save() {

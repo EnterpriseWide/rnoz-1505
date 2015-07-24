@@ -140,6 +140,7 @@
             columnDefs: [
                 {field: 'FirstName', type: 'string'},
                 {field: 'LastName', type: 'string'},
+                {field: 'Email', type: 'string'},
                 {displayName: '', field: 'Id', enableColumnMenu: false, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a ui-sref="adminUserUpdate({userId: \'{{COL_FIELD}}\'})" class="grid-link"><span class="icon icon-edit"></span>&nbsp;Edit</a></div>', type: 'string'}
             ],
             onRegisterApi: function(gridApi) {

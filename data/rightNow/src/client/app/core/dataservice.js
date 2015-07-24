@@ -38,6 +38,8 @@
             updateLearningPlan: updateLearningPlan,
             createLearningPlanEmail: createLearningPlanEmail,
 
+            listRoles: listRoles,
+
             listSessions: listSessions,
 
             createSurvey: createSurvey,
@@ -48,15 +50,18 @@
             listSurveys: listSurveys,
             listSurveysByProgram: listSurveysByProgram,
 
-            listUsersForAdmin: listUsersForAdmin,
-
             createProgramMediaLink: createProgramMediaLink,
             readProgramMedia: readProgramMedia,
             updateProgramMedia: updateProgramMedia,
             deleteProgramMedia: deleteProgramMedia,
             listProgramMedias: listProgramMedias,
 
+            createUser: createUser,
+            readUser: readUser,
+            updateUser: updateUser,
+            deleteUser: deleteUser,
             listUsers: listUsers,
+            listUsersForAdmin: listUsersForAdmin,
 
             sendEmailToTheCoach: sendEmailToTheCoach,
             sendEmailToTheCoachee: sendEmailToTheCoachee,
@@ -440,6 +445,70 @@
             }
         }
 
+        function createUser(data) {
+            return $http.post(service.apiurl + '/api/users', data)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'creation of a new user failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function readUser(id) {
+            return $http.get(service.apiurl + '/api/users/' + id)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for user ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function updateUser(id, data) {
+            var url = service.apiurl + '/api/users/' + id;
+
+            var deferred = $q.defer();
+
+            $http.put(url, data).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                var msg = 'update for user ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                deferred.reject(msg);
+            });
+
+            return deferred.promise;
+        }
+
+        function deleteUser(id) {
+            return $http.delete(service.apiurl + '/api/users/' + id + '/')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'delete for user ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
         function listUsersForAdmin(data) {
             return $http.get(service.apiurl + '/api/users/ForAdmin?pageNumber=' + data.pageNumber +
                 '&pageSize=' + data.pageSize +
@@ -451,6 +520,22 @@
             }
             function fail(error) {
                 var msg = 'query for users for Admin failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function listRoles() {
+            return $http.get(service.apiurl + '/api/roles')
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for roles failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }
