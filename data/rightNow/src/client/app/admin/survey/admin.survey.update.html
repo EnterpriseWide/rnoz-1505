@@ -23,8 +23,7 @@
                                      <form class="form-horizontal" role="form" name="form">
                                         <div ng-include="'app/admin/survey/admin.survey.form.html'"></div>
                                         <button class="pull-right btn btn-blue waves-button waves-effect waves-light" data-ng-click="vm.save()" ng-disabled="!form.$valid"><span class="icon icon-check"></span>&nbsp;Save</button>
-                                        &nbsp;
-                                        <a ng-disabled="vm.isUsed" class="pull-right btn btn-blue waves-button waves-effect waves-light" ng-click="vm.deleteRecord()"><span class="icon icon-delete"></span>&nbsp;Delete</a>
+                                        <a ng-disabled="vm.isUsed" class="pull-right btn btn-blue waves-button waves-effect waves-light margin-right" ng-click="vm.deleteRecord()"><span class="icon icon-delete"></span>&nbsp;Delete</a>
                                      </form>
                                 </div>
                              </div>
