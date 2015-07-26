@@ -27,6 +27,10 @@
             bodyTextSurveys: '<p>More text explaining surveys to go here.</p>'
         };
         vm.beginSession = beginSession;
+        vm.finishTime = finishTime;
+        vm.cancelSession = cancelSession;
+        vm.rescheduleSession = rescheduleSession;
+        vm.setAsComplete = setAsComplete;
 
         activate();
 
@@ -40,8 +44,21 @@
             vm.authData = authservice.authData;
         }
 
+        function cancelSession (session) {
+        }
+
+        function rescheduleSession (session) {
+        }
+
+        function setAsComplete (session) {
+        }
+
+        function finishTime (session) {
+            var finishedAt = new moment(session.StartedAt);
+            return finishedAt.add(session.Duration, 'm').toDate();
+        }
+
         function beginSession() {
-            logger.info('Opening ' + dataservice.apiurl + '/vidyo/ ...');
             $window.open(dataservice.apiurl + '/vidyo/?access_token=' + authservice.authData.token, '_blank', 'location=no,height=500,width=580,scrollbars=yes,status=yes');
         }
 
