@@ -61,6 +61,7 @@ namespace ewide.web.Controllers
             var programs = AppDb.CoachingPrograms
                 .Include(i => i.Coach)
                 .Include(i => i.Coachee)
+                .Include(i => i.CoachingSessions)
                 .Include(i => i.CoachingProgramSurveys)
                 .Where(i =>
                     i.Coach.Id == currentUser.Id ||

@@ -40,7 +40,12 @@
 
             listRoles: listRoles,
 
+            createSession: createSession,
+            readSession: readSession,
+            updateSession: updateSession,
+            deleteSession: deleteSession,
             listSessions: listSessions,
+            listSessionsByProgram: listSessionsByProgram,
 
             createSurvey: createSurvey,
             readSurvey: readSurvey,
@@ -541,6 +546,70 @@
             }
         }
 
+        function createSession(data) {
+            return $http.post(service.apiurl + '/api/sessions', data)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'creation of a new session failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function readSession(id) {
+            return $http.get(service.apiurl + '/api/sessions/' + id)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for session ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function updateSession(id, data) {
+            var url = service.apiurl + '/api/sessions/' + id;
+
+            var deferred = $q.defer();
+
+            $http.put(url, data).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                var msg = 'update for session ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                deferred.reject(msg);
+            });
+
+            return deferred.promise;
+        }
+
+        function deleteSession(id) {
+            return $http.delete(service.apiurl + '/api/sessions/' + id)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'delete for session ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
         function listSessions() {
             return $http.get(service.apiurl + '/api/sessions')
                 .then(success)
@@ -552,6 +621,22 @@
 
             function fail(error) {
                 var msg = 'query for sessions failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function listSessionsByProgram(id) {
+            return $http.get(service.apiurl + '/api/sessions/ByProgram?id=' + id)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for sessions by program ' + id + ' failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }

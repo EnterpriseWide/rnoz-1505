@@ -27,7 +27,8 @@
                     },
                     title: 'Program View'
                 }
-            }, {
+            },
+            {
                 state: 'programs',
                 config: {
                     url: '/',
@@ -35,6 +36,16 @@
                     controller: 'ProgramListController',
                     controllerAs: 'vm',
                     title: 'Programs'
+                }
+            },
+            {
+                state: 'programSessionCreate',
+                config: {
+                    url: '/program/:programId/session/create',
+                    templateUrl: 'app/program/session.create.html',
+                    controller: 'ProgramSessionCreateController',
+                    controllerAs: 'vm',
+                    title: 'Session Create'
                 }
             }
         ];

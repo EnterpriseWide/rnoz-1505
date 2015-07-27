@@ -1,0 +1,21 @@
+<div class="form-group">
+  <label for="name" class="col-sm-2 control-label">Date</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" data-ng-model="vm.data.StartedAt" disabled="disabled" />
+    <datepicker ng-model="vm.data.StartedAt" class="well well-sm"></datepicker>
+    <timepicker ng-model="vm.data.StartedAt" minute-step="15"></timepicker>
+    <span class="half-margin-top form-error-message" ng-hide="vm.data.StartedAt || form.$pristine">A Date is required</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="name" class="col-sm-2 control-label">Duration in Minutes</label>
+  <div class="col-sm-10">
+    <div class="btn-group">
+      <label>
+        <label class="btn btn-primary" ng-model="vm.data.Duration" ng-repeat="p in vm.durations" btn-radio="p">{{ p }}</label>
+      </div>
+    </div>
+    <span class="half-margin-top form-error-message" ng-hide="vm.data.Duration || form.$pristine">A Duration is required</span>
+  </div>
+</div>
+<pre>{{vm.data}}</pre>

@@ -44,13 +44,46 @@
             vm.authData = authservice.authData;
         }
 
+        function getSessionsByProgram(id) {
+            return dataservice.listSessionsByProgram(Id).then(function (data) {
+                vm.data.CoachingSessions = data;
+            });
+        }
+
         function cancelSession (session) {
+            ngDialog.openConfirm({
+                template: '<p>Would you like to Cancel the Session?</p>' +
+                    '<div class="ngdialog-buttons">' +
+                        '<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>' +
+                        '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>' +
+                    '</div>',
+                plain: true
+            }).then(function() {
+                dataservice.deleteSession(session.Id).then(function(data) {
+                    logger.success('Canceled Session ' + session.Id);
+                    listSessionsByProgram(session.CoachingProgramId);
+                });
+            });
         }
 
         function rescheduleSession (session) {
         }
 
         function setAsComplete (session) {
+            ngDialog.openConfirm({
+                template: '<p>Would you like to set the Session as Complete?</p>' +
+                    '<div class="ngdialog-buttons">' +
+                        '<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>' +
+                        '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>' +
+                    '</div>',
+                plain: true
+            }).then(function() {
+                session.SetAsComplete = true;
+                dataservice.updateSession(session.Id, session).then(function(data) {
+                    logger.success('Session ' + data.Id + 'set to Completed');
+                    getProgram(vm.data.Id);
+                });
+            });
         }
 
         function finishTime (session) {
