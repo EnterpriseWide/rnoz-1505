@@ -4,9 +4,9 @@
     angular
         .module('app.admin.user')
         .controller('AdminUserCreateController', AdminUserCreateController);
-    AdminUserCreateController.$inject = ['authData', 'logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice'];
+    AdminUserCreateController.$inject = ['authData', 'logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'moment'];
 
-    function AdminUserCreateController(authData, logger, authservice, $state, $stateParams, $q, dataservice) {
+    function AdminUserCreateController(authData, logger, authservice, $state, $stateParams, $q, dataservice, moment) {
         var vm = this;
         vm.title = 'Add New User';
         vm.data = {

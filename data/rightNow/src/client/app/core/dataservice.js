@@ -1,3 +1,4 @@
+/*jshint -W071 */
 (function () {
     'use strict';
 

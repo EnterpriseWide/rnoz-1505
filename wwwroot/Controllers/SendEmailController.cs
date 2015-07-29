@@ -18,7 +18,7 @@ namespace ewide.web.Controllers
     {
 
         [ResponseType(typeof(void))]
-        [Authorize(Roles = "Coach")]
+        [Authorize(Roles = "Admin, Coach")]
         [Route("ToTheCoachee")]
         public IHttpActionResult PostToTheCoachee(EmailDTO emailDTO)
         {

@@ -17,17 +17,17 @@
     "bardjs": "~0.0.3"
   },
   "dependencies": {
-    "angular": "~1.4.2",
-    "angular-animate": "~1.4.2",
-    "angular-aria": "~1.4.2",
+    "angular": "~1.4.3",
+    "angular-animate": "~1.4.3",
+    "angular-aria": "~1.4.3",
     "angular-bootstrap": "~0.13.0",
     "angular-bootstrap-select": "~0.0.5",
     "angular-fcsa-number": "~1.5.3",
     "angular-file-upload": "~1.1.5",
     "angular-local-storage": "~0.1.5",
     "angular-material-icons": "~0.4.0",
-    "angular-resource": "~1.4.2",
-    "angular-sanitize": "~1.4.2",
+    "angular-resource": "~1.4.3",
+    "angular-sanitize": "~1.4.3",
     "angular-ui-grid": "~3.0.0-rc.22",
     "angular-ui-router": "~0.2.15",
     "jquery": "~2.1.0",
@@ -39,9 +39,8 @@
     "ng-file-upload": "~4.2.4",
     "svg-morpheus": "~0.1.8",
     "ngDialog": "~0.4.0",
-    "angular-pretty-checkable": "~0.1.7"
-  },
-  "resolutions": {
-    "angular": "~1.4.2"
+    "angular-pretty-checkable": "~0.1.7",
+    "angular-moment": "~0.10.2",
+    "angular-mocks": "~1.4.3"
   }
 }

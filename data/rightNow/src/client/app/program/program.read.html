@@ -117,11 +117,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-inner" ng-show="!vm.authData.isCoach && !vm.authData.isAdmin">
-                                <p class="smallText">To begin a coaching session, click 'begin session', and then Right.Now. will attempt to connect you to your coach. <a href="javascript:void(0)" ng-click="vm.sessionInfoReadMore($event)">Read More<span class="icon icon-chevron-right"></span></a></p>
-                            </div>
-                            <div class="card-inner" ng-show="vm.authData.isCoach">
-                                <p class="smallText">To begin a coaching session, click 'begin session', and then Right.Now. will attempt to connect you to your coachee.</p>
+                            <div class="card-inner">
+                                <p class="smallText">To begin a coaching session, click 'begin session', and then Right.Now. will attempt to connect you.</p>
                             </div>
                             <div class="session-list-item" ng-repeat="session in vm.data.CoachingSessions">
                                 <div class="card-inner">
@@ -131,16 +128,16 @@
                                                 <span class="icon icon-event icon-large"></span>
                                             </div>
                                             <div>
-                                                <h3>{{session.StartedAt | date:'EEEE dd MMM yyyy'}}&nbsp;&nbsp;<span class="icon icon-schedule"></span>&nbsp;{{ session.StartedAt | date:'HH:mm' }} - {{ vm.finishTime(session) | date:'HH:mm' }}<span class="pull-right" ng-show="session.IsClosed"><span class="icon icon-check-box"></span>&nbsp;Complete</span></h3>
+                                                <h3>{{session.StartedAt | date:'EEEE dd MMM yyyy' }}&nbsp;&nbsp;<span class="icon icon-schedule"></span>&nbsp;{{ session.StartedAt | date:'hh:mm a' }} - {{ vm.finishTime(session) | date:'hh:mm a' }}<span class="pull-right" ng-show="session.IsClosed"><span class="icon icon-check-box"></span>&nbsp;Complete</span></h3>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <a class="pull-right btn btn-blue waves-button waves-effect waves-light" href="{{ vm.apiurl }}/vidyo/?id={{ session.Id }}&amp;access_token={{ vm.authData.token }}" target="_blank"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a>
                                         </div>
-                                        <div class="col-sm-12 half-margin-top" ng-show="vm.authData.isCoach || vm.authData.isAdmin">
+                                        <div class="col-sm-12 half-margin-top" ng-show="(vm.authData.isCoach || vm.authData.isAdmin) && !session.IsClosed">
                                             <span class="button-group">
                                                 <a href="#" ng-click="vm.cancelSession(session)" class=""><span class="icon icon-close"></span>&nbsp;Cancel</a>
-                                                <a href="#" ng-click="vm.reschedule(session)" class=""><span class="icon icon-repeat"></span>&nbsp;Reschedule</a>
+                                                <a ui-sref="programSessionUpdate({programId: vm.data.Id, sessionId: session.Id})" class=""><span class="icon icon-repeat"></span>&nbsp;Reschedule</a>
                                                 <a href="#" ng-click="vm.setAsComplete(session)" class=""><span class="icon icon-check"></span>&nbsp;Set as Complete</a>
                                             </span>
                                         </div>

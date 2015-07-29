@@ -4,14 +4,13 @@
     angular
         .module('app.program')
         .controller('ProgramReadController', ProgramReadController);
-    ProgramReadController.$inject = ['program', 'logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state', '$window'];
-    function ProgramReadController(program, logger, $stateParams, $q, dataservice, authservice, ngDialog, $state, $window) {
+    ProgramReadController.$inject = ['program', 'logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state', '$window', 'moment'];
+    function ProgramReadController(program, logger, $stateParams, $q, dataservice, authservice, ngDialog, $state, $window, moment) {
         var vm = this;
         vm.title = 'Program Dashboard';
         vm.data = {};
         vm.openSendInvoice = openSendInvoice;
         vm.closeProgram = closeProgram;
-        vm.sessionInfoReadMore = sessionInfoReadMore;
         vm.screenconfig = {
             bodyTextYourCoach: '<p>Read more information about your coach, or send them a ' +
                 'message</p>',
@@ -29,7 +28,6 @@
         vm.beginSession = beginSession;
         vm.finishTime = finishTime;
         vm.cancelSession = cancelSession;
-        vm.rescheduleSession = rescheduleSession;
         vm.setAsComplete = setAsComplete;
 
         activate();
@@ -44,8 +42,8 @@
             vm.authData = authservice.authData;
         }
 
-        function getSessionsByProgram(id) {
-            return dataservice.listSessionsByProgram(Id).then(function (data) {
+        function listSessionsByProgram(id) {
+            return dataservice.listSessionsByProgram(id).then(function (data) {
                 vm.data.CoachingSessions = data;
             });
         }
@@ -59,14 +57,11 @@
                     '</div>',
                 plain: true
             }).then(function() {
-                dataservice.deleteSession(session.Id).then(function(data) {
+                dataservice.deleteSession(session.Id).then(function() {
                     logger.success('Canceled Session ' + session.Id);
                     listSessionsByProgram(session.CoachingProgramId);
                 });
             });
-        }
-
-        function rescheduleSession (session) {
         }
 
         function setAsComplete (session) {
@@ -78,16 +73,15 @@
                     '</div>',
                 plain: true
             }).then(function() {
-                session.SetAsComplete = true;
+                session.IsClosed = true;
                 dataservice.updateSession(session.Id, session).then(function(data) {
                     logger.success('Session ' + data.Id + 'set to Completed');
-                    getProgram(vm.data.Id);
                 });
             });
         }
 
         function finishTime (session) {
-            var finishedAt = new moment(session.StartedAt);
+            var finishedAt = moment(session.StartedAt);
             return finishedAt.add(session.Duration, 'm').toDate();
         }
 
@@ -114,16 +108,6 @@
         function openSendInvoice(ev) {
             ngDialog.openConfirm(sendInvoiceOptions)
                 .then(sendInvoice);
-        }
-
-        function sessionInfoReadMore(ev) {
-            ngDialog.open({
-                template: '<div class="content-text-area"><h1><span class="icon icon-forum"></span>&nbsp;Coaching Sessions</h1><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p><p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p><p>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p></div>' +
-                    '<div class="ngdialog-buttons">' +
-                        '<button type="button" class="btn btn-blue" ng-click="closeThisDialog(0)">Close</button>' +
-                    '</div>',
-                plain: true
-            });
         }
 
         function closeProgram(ev) {

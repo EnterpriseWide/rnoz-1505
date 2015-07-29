@@ -20,10 +20,9 @@ namespace ewide.web.Models
         public DateTime StartedAt { get; set; }
         [Required]
         public int Duration { get; set; }
-        public bool IsCoachApproved { get; set; }
-        public bool IsCoacheeApproved { get; set; }
         [Required]
         public int RoomId { get; set; }
         public virtual Room Room { get; set; }
+        public bool IsClosed { get; set; }
     }
 }

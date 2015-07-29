@@ -47,6 +47,16 @@
                     controllerAs: 'vm',
                     title: 'Session Create'
                 }
+            },
+            {
+                state: 'programSessionUpdate',
+                config: {
+                    url: '/program/:programId/session/:sessionId',
+                    templateUrl: 'app/program/session.update.html',
+                    controller: 'ProgramSessionUpdateController',
+                    controllerAs: 'vm',
+                    title: 'Session Update'
+                }
             }
         ];
     }

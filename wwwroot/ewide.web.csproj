@@ -364,6 +364,10 @@
     <Compile Include="Migrations\201507180604206_Add Id column for Coach and Coachee to Coaching Program Object.Designer.cs">
       <DependentUpon>201507180604206_Add Id column for Coach and Coachee to Coaching Program Object.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507282216080_Add IsClosed to and Remove Approvals from Session.cs" />
+    <Compile Include="Migrations\201507282216080_Add IsClosed to and Remove Approvals from Session.Designer.cs">
+      <DependentUpon>201507282216080_Add IsClosed to and Remove Approvals from Session.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\CoachingProgramSurvey.cs" />
@@ -633,6 +637,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507180604206_Add Id column for Coach and Coachee to Coaching Program Object.resx">
       <DependentUpon>201507180604206_Add Id column for Coach and Coachee to Coaching Program Object.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507282216080_Add IsClosed to and Remove Approvals from Session.resx">
+      <DependentUpon>201507282216080_Add IsClosed to and Remove Approvals from Session.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

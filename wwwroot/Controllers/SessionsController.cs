@@ -49,26 +49,41 @@ namespace ewide.web.Controllers
         public IHttpActionResult Get(int id)
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
-            return Ok(AppDb.CoachingPrograms
-                .Where(i => i.Coach.Id == currentUser.Id)
-                .FirstOrDefault(i => i.Id == id));
+            var session = AppDb
+                .CoachingSessions
+                .Include("CoachingProgram")
+                .Where(i =>
+                    i.CoachingProgram.Coach.Id == currentUser.Id ||
+                    i.CoachingProgram.Coachee.Id == currentUser.Id)
+                .FirstOrDefault(i => i.Id == id);
+            return Ok(session);
         }
 
         // PUT: api/CoachingSessions/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutCoachingSession(int id, CoachingSession coachingSession)
+        [Authorize(Roles = "Admin,Coach")]
+        public async Task<IHttpActionResult> PutCoachingSession(int id, CoachingSession dto)
         {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != coachingSession.Id)
+            var coachingSession = AppDb.CoachingSessions
+                .Where(i =>
+                    i.CoachingProgram.Coach.Id == currentUser.Id ||
+                    i.CoachingProgram.Coachee.Id == currentUser.Id)
+                .FirstOrDefault(i => i.Id == id);
+            if (coachingSession == null)
             {
-                return BadRequest();
+                return BadRequest("Session Not Found");
             }
 
-            AppDb.Entry(coachingSession).State = EntityState.Modified;
+            coachingSession.StartedAt = dto.StartedAt;
+            coachingSession.Duration = dto.Duration;
+            coachingSession.IsClosed = dto.IsClosed;
+            coachingSession.UpdatedAt = DateTime.Now;
 
             try
             {
@@ -91,8 +106,10 @@ namespace ewide.web.Controllers
 
         // POST: api/CoachingSessions
         [ResponseType(typeof(CoachingSession))]
+        [Authorize(Roles = "Admin,Coach")]
         public async Task<IHttpActionResult> PostCoachingSession(CoachingSession coachingSession)
         {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -106,8 +123,10 @@ namespace ewide.web.Controllers
 
         // DELETE: api/CoachingSessions/5
         [ResponseType(typeof(CoachingSession))]
+        [Authorize(Roles = "Admin,Coach")]
         public async Task<IHttpActionResult> DeleteCoachingSession(int id)
         {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             var coachingSession = await AppDb.CoachingSessions.FindAsync(id);
             if (coachingSession == null)
             {

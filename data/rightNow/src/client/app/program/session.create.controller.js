@@ -4,9 +4,9 @@
     angular
         .module('app.program')
         .controller('ProgramSessionCreateController', ProgramSessionCreateController);
-    ProgramSessionCreateController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice'];
+    ProgramSessionCreateController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'moment'];
 
-    function ProgramSessionCreateController(logger, authservice, $state, $stateParams, $q, dataservice) {
+    function ProgramSessionCreateController(logger, authservice, $state, $stateParams, $q, dataservice, moment) {
         var vm = this;
         vm.title = 'Create New Session';
         vm.data = {};
@@ -16,13 +16,19 @@
         vm.durations = [30, 45, 60, 90];
         vm.setStartedAt = setStartedAt;
         vm.isStartedAtHidden = true;
+        vm.finishTime = finishTime;
 
         activate();
 
         function activate() {
             vm.data.Duration = 60;
-            vm.data.StartedAt = new moment().minute(0).add(1, 'h').toDate();
+            vm.data.StartedAt = moment().minute(0).add(1, 'h').toDate();
             vm.data.CoachingProgramId = vm.programId;
+        }
+
+        function finishTime (session) {
+            var finishedAt = moment(session.StartedAt);
+            return finishedAt.add(session.Duration, 'm').toDate();
         }
 
         function save() {

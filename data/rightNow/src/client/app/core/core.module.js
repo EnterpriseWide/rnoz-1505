@@ -8,6 +8,7 @@
             'blocks.router',
             'fcsa-number',
             'LocalStorageModule',
+            'angularMoment',
             'ngAnimate',
             'ngDialog',
             'ngFileUpload',
