@@ -4,8 +4,8 @@
     angular
         .module('app.program')
         .controller('ProgramReadController', ProgramReadController);
-    ProgramReadController.$inject = ['program', 'logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state', '$window', 'moment'];
-    function ProgramReadController(program, logger, $stateParams, $q, dataservice, authservice, ngDialog, $state, $window, moment) {
+    ProgramReadController.$inject = ['program', 'logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state', '$window', 'moment', '$timeout'];
+    function ProgramReadController(program, logger, $stateParams, $q, dataservice, authservice, ngDialog, $state, $window, moment, $timeout) {
         var vm = this;
         vm.title = 'Program Dashboard';
         vm.data = {};
@@ -29,6 +29,8 @@
         vm.finishTime = finishTime;
         vm.cancelSession = cancelSession;
         vm.setAsComplete = setAsComplete;
+        vm.beginSessionOnTimeout = beginSessionOnTimeout;
+        vm.testSessionTimeout = testSessionTimeout;
 
         activate();
 
@@ -37,9 +39,21 @@
                 $state.go('404');
             } else {
                 vm.data = program;
+                vm.apiurl = dataservice.apiurl;
+                vm.authData = authservice.authData;
+                vm.beginSessionOnTimeout();
             }
-            vm.apiurl = dataservice.apiurl;
-            vm.authData = authservice.authData;
+        }
+
+        function beginSessionOnTimeout() {
+            angular.forEach(vm.data.CoachingSessions, function (row) {
+                row.isWithIn5Minutes = vm.testSessionTimeout(row);
+            });
+            vm.buttonTimeout = $timeout(vm.beginSessionOnTimeout, 2000);
+        }
+
+        function testSessionTimeout(session) {
+            return moment().isAfter(moment(session.StartedAt).subtract(5, 'm'));
         }
 
         function listSessionsByProgram(id) {
