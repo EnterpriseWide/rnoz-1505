@@ -28,10 +28,12 @@ namespace ewide.web.Controllers
     {
         private IEnumerable<ProgramMedia> GetProgramMediaList(ApplicationUser currentUser)
         {
+            var isAdmin = AppUserManager.IsInRole(currentUser.Id, "Admin");
             return AppDb.ProgramMedia
                 .Where(i =>
                     i.CoachingProgram.Coach.Id == currentUser.Id ||
-                    i.CoachingProgram.Coachee.Id == currentUser.Id);
+                    i.CoachingProgram.Coachee.Id == currentUser.Id ||
+                    isAdmin);
         }
 
         private IEnumerable<ProgramMedia> GetProgramMediaListFull(ApplicationUser currentUser)

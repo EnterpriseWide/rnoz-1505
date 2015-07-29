@@ -20,10 +20,12 @@ namespace ewide.web.Controllers
     {
         private IQueryable<Assignment> GetAssignments(ApplicationUser currentUser)
         {
+            var isAdmin = AppUserManager.IsInRole(currentUser.Id, "Admin");
             var assignments = AppDb.Assignment
                 .Where(i =>
                     i.CoachingProgram.Coach.Id == currentUser.Id ||
-                    i.CoachingProgram.Coachee.Id == currentUser.Id);
+                    i.CoachingProgram.Coachee.Id == currentUser.Id ||
+                    isAdmin);
             return assignments;
         }
 

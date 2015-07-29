@@ -55,9 +55,7 @@ namespace ewide.web.Controllers
 
         protected IQueryable<CoachingProgram> GetCoachingPrograms(ApplicationUser currentUser)
         {
-            var adminRole = AppRoleManager.FindByName("Admin");
-            var roles = currentUser.Roles.ToList();
-            var isAdmin = roles.Any(j => j.RoleId == adminRole.Id);
+            var isAdmin = AppUserManager.IsInRole(currentUser.Id, "Admin");
             var programs = AppDb.CoachingPrograms
                 .Include(i => i.Coach)
                 .Include(i => i.Coachee)

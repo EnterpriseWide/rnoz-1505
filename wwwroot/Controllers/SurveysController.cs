@@ -159,10 +159,12 @@ namespace ewide.web.Controllers
 
         private IQueryable<CoachingProgramSurvey> GetCoachingProgramSurveys(ApplicationUser currentUser)
         {
+            var isAdmin = AppUserManager.IsInRole(currentUser.Id, "Admin");
             var surveys = AppDb.CoachingProgramSurvey
                 .Where(i =>
                     i.CoachingProgram.Coach.Id == currentUser.Id ||
-                    i.CoachingProgram.Coachee.Id == currentUser.Id);
+                    i.CoachingProgram.Coachee.Id == currentUser.Id ||
+                    isAdmin);
             return surveys;
         }
 
