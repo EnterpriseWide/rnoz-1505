@@ -110,15 +110,15 @@
                             <div class="card-inner card-title sessions-bg">
                                 <div class="row">
                                     <div class="col-xs-6 heading-col">
-                                        <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Coaching Sessions</p>
+                                        <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Video Coaching Sessions</p>
                                     </div>
                                     <div class="col-xs-6 heading-col" ng-show="vm.authData.isCoach || vm.authData.isAdmin">
-                                        <p class="card-heading"><a class="pull-right btn btn-darkblue waves-button waves-effect waves-light" ui-sref="programSessionCreate({programId: vm.data.Id})"><span class="icon icon-video-collection"></span>&nbsp;Create New Session</a></p>
+                                        <p class="card-heading"><a class="pull-right btn btn-darkblue waves-button waves-effect waves-light" ui-sref="programSessionCreate({programId: vm.data.Id})"><span class="icon icon-my-library-add"></span>&nbsp;Create New Session</a></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-inner">
-                                <p class="smallText">To begin a coaching session, click 'begin session', and then Right.Now. will attempt to connect you.</p>
+                                <p class="smallText">To begin a video coaching session, click 'begin session', and then Right.Now. will attempt to connect you.</p>
                             </div>
                             <div class="session-list-item" ng-repeat="session in vm.data.CoachingSessions">
                                 <div class="card-inner">

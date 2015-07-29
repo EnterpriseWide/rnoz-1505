@@ -1,9 +1,9 @@
 <div class="form-group">
-  <label for="name" class="col-sm-2 control-label">Date</label>
-  <div class="col-sm-10">
-    <div>{{vm.data.StartedAt | date:"d MMM, yyyy"}} - {{ vm.data.StartedAt | date:"hh:mm a" }} - {{ vm.finishTime(vm.data) | date:"hh:mm a" }}</div>
-    <datepicker ng-model="vm.data.StartedAt" class="well well-sm"></datepicker>
-    <timepicker ng-model="vm.data.StartedAt" minute-step="15"></timepicker>
+  <label for="name" class="col-sm-2 control-label">Date & Time</label>
+  <div class="col-sm-10 date-picker1">
+    <div class="date-label">{{vm.data.StartedAt | date:"EEE dd MMM, yyyy"}} - {{ vm.data.StartedAt | date:"hh:mm a" }} - {{ vm.finishTime(vm.data) | date:"hh:mm a" }}</div>
+    <datepicker ng-model="vm.data.StartedAt" class="well well-sm date-picker"></datepicker>
+    <timepicker ng-model="vm.data.StartedAt" class="time-picker" minute-step="15"></timepicker>
     <span class="half-margin-top form-error-message" ng-hide="vm.data.StartedAt || form.$pristine">A Date is required</span>
   </div>
 </div>
