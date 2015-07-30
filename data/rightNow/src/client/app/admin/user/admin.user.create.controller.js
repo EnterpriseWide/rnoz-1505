@@ -15,6 +15,7 @@
         vm.authData = authservice.authData;
         vm.save = save;
         vm.roles = [];
+        vm.userError = [];
 
         activate();
 
@@ -39,6 +40,8 @@
             dataservice.createUser(vm.data).then(function (data) {
                 logger.info('User Created');
                 $state.go('admin');
+            }, function (error) {
+                vm.userError = error[""];
             });
         }
 

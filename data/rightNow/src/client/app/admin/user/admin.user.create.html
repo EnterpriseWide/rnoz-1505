@@ -16,16 +16,16 @@
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner">
-                                <div ng-show="vm.ModelState.length" class="col-sm-12 margin-top margin-bottom clearfix">
-                                    <ul class="pull-right half-margin-top form-error-message">
-                                        <li ng-repeat="error in errors"></li>
-                                    </ul>
-                                </div>
                                 <div class="col-sm-12 margin-top margin-bottom clearfix">
                                      <form class="form-horizontal" role="form" name="form">
                                         <div ng-include="'app/admin/user/admin.user.create.form.html'"></div>
                                         <button class="pull-right btn btn-blue waves-button waves-effect waves-light" data-ng-click="vm.save()" ng-disabled="!form.$valid"><span class="icon icon-check"></span>&nbsp;Save</button>
                                      </form>
+                                </div>
+                                <div ng-show="vm.userError.length > 0" class="col-sm-12 margin-top margin-bottom clearfix">
+                                    <ul class="pull-right half-margin-top form-error-message">
+                                        <li ng-repeat="error in vm.userError">{{error}}</li>
+                                    </ul>
                                 </div>
                              </div>
                         </div>

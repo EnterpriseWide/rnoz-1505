@@ -461,9 +461,9 @@
             }
 
             function fail(error) {
-                var msg = 'creation of a new user failed. ' + error.data.description;
-                logger.error(msg);
-                return $q.reject(msg);
+                var msg = 'creation of a new usmsger failed.';
+                logger.error(msg, "");
+                return $q.reject(error.data.ModelState);
             }
         }
 
