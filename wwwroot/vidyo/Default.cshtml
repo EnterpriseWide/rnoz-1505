@@ -1,10 +1,19 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using Microsoft.AspNet.Identity.EntityFramework
+@using Microsoft.AspNet.Identity
 @using Microsoft.AspNet.Identity.Owin
+@using System.Linq
+@using System.Data.Entity
 @using ewide.web
 @{
     var currentUser = Request.GetOwinContext().GetUserManager<ApplicationUserManager>()
         .FindById(User.Identity.GetUserId());
-    var guestRoomUrl = "https://trial.natr.com.au/flex.html?roomdirect.html&key=2AiCPbG2xke4Xldm5HA1W51X54";
+    var AppDb = Request.GetOwinContext().Get<ewide.web.Models.ApplicationDbContext>();
+    var sessionId = Convert.ToInt32(Request["id"]);
+    var session = AppDb.CoachingSessions
+        .Include(i => i.Room)
+        .FirstOrDefault(i => i.Id.Equals(sessionId));
+    var guestRoomUrl = session.Room.Link;
+    //var guestRoomUrl = "https://trial.natr.com.au/flex.html?roomdirect.html&key=2AiCPbG2xke4Xldm5HA1W51X54";
 }
 <!DOCTYPE html>
 <html>

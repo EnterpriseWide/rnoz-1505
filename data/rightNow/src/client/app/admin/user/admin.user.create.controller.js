@@ -30,7 +30,7 @@
                 logger.info('User Created');
                 $state.go('adminUserUpdate', {userId: data.Id});
             }, function (error) {
-                vm.userError = error[""];
+                vm.userError = error[''];
             });
         }
 

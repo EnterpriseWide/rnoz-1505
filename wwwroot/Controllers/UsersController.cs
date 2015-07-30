@@ -132,6 +132,8 @@ namespace ewide.web.Controllers
             user.Email = applicationUser.Email;
             user.UserName = applicationUser.Email;
 
+            AppUserManager.Update(user);
+
             foreach (var role in user.Roles.ToList())
             {
                 if (!applicationUser.RoleIds.Any(i => i == role.RoleId))
@@ -160,6 +162,7 @@ namespace ewide.web.Controllers
                 return BadRequest(ModelState);
             }
             applicationUser.UserName = applicationUser.Email;
+
             try
             {
                 var result = await AppUserManager.CreateAsync(applicationUser, applicationUser.PasswordHash);
@@ -216,6 +219,7 @@ namespace ewide.web.Controllers
         [Required]
         public string LastName { get; set; }
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
         public List<String> RoleIds { get; set; }
     }

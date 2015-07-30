@@ -462,7 +462,7 @@
 
             function fail(error) {
                 var msg = 'creation of a new usmsger failed.';
-                logger.error(msg, "");
+                logger.error(msg, '');
                 return $q.reject(error.data.ModelState);
             }
         }
