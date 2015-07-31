@@ -133,7 +133,7 @@
                                             <div class="pull-right" ng-show="session.IsClosed">
                                                 <h3><span class="icon icon-check-box"></span>&nbsp;Complete</h3>
                                             </div>
-                                            <div class="pull-right" ng-show="!session.IsClosed && session.isWithIn5Minutes">
+                                            <div class="pull-right" ng-show="!session.IsClosed && session.showButton">
                                                 <a class=" btn btn-blue waves-button waves-effect waves-light" href="{{ vm.apiurl }}/vidyo/?sessionId={{ session.Id }}&amp;access_token={{ vm.authData.token }}" target="_blank"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a>
                                             </div>
                                         </div>
