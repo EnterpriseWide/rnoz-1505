@@ -5,8 +5,8 @@
     angular
         .module('app.program')
         .controller('ProgramReadController', ProgramReadController);
-    ProgramReadController.$inject = ['program', 'logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state', '$window', 'moment', '$timeout'];
-    function ProgramReadController(program, logger, $stateParams, $q, dataservice, authservice, ngDialog, $state, $window, moment, $timeout) {
+    ProgramReadController.$inject = ['program', 'logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state', '$window', 'moment', '$timeout', '$scope'];
+    function ProgramReadController(program, logger, $stateParams, $q, dataservice, authservice, ngDialog, $state, $window, moment, $timeout, $scope) {
         var vm = this;
         vm.title = 'Program Dashboard';
         vm.data = {};
@@ -31,7 +31,8 @@
         vm.cancelSession = cancelSession;
         vm.setAsComplete = setAsComplete;
         vm.beginSessionOnTimeout = beginSessionOnTimeout;
-        vm.testSessionTimeout = testSessionTimeout;
+        vm.setTimeout = setTimeout;
+        vm.buttonTimeout = {};
 
         activate();
 
@@ -46,15 +47,20 @@
             }
         }
 
-        function beginSessionOnTimeout() {
-            angular.forEach(vm.data.CoachingSessions, function (row) {
-                row.isWithIn5Minutes = vm.testSessionTimeout(row);
+        function setTimeout(scope, fn, delay) {
+            var promise = $timeout(fn, delay);
+            var deregister = scope.$on('$destroy', function() {
+                $timeout.cancel(promise);
             });
-            vm.buttonTimeout = $timeout(vm.beginSessionOnTimeout, 2000);
+            promise.then(deregister);
         }
 
-        function testSessionTimeout(session) {
-            return moment().isAfter(moment(session.StartedAt).subtract(5, 'm'));
+        function beginSessionOnTimeout() {
+            console.log('running beginSessionOnTimeout');
+            angular.forEach(vm.data.CoachingSessions, function (row) {
+                row.isWithIn5Minutes = moment().isAfter(moment(row.StartedAt).subtract(5, 'm'));
+            });
+            setTimeout($scope, vm.beginSessionOnTimeout, 2000);
         }
 
         function listSessionsByProgram(id) {
