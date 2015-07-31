@@ -11,6 +11,7 @@
         vm.programs = [];
         vm.sessions = [];
         vm.title = 'Coaching Programs';
+        vm.finishTime = finishTime;
 
         activate();
 
@@ -18,6 +19,11 @@
             var promises = [listPrograms(), listSessions()];
             return $q.all(promises).then(function() {
             });
+        }
+
+        function finishTime (session) {
+            var finishedAt = moment(session.StartedAt);
+            return finishedAt.add(session.Duration, 'm').toDate();
         }
 
         function listSessions() {
