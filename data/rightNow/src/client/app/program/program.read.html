@@ -109,11 +109,13 @@
                         <div class="card-main">
                             <div class="card-inner card-title sessions-bg">
                                 <div class="row">
-                                    <div class="col-xs-6 heading-col">
-                                        <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Video Coaching Sessions</p>
-                                    </div>
-                                    <div class="col-xs-6 heading-col" ng-show="vm.authData.isCoach || vm.authData.isAdmin">
-                                        <p class="card-heading"><a class="pull-right btn btn-darkblue waves-button waves-effect waves-light" ui-sref="programSessionCreate({programId: vm.data.Id})"><span class="icon icon-my-library-add"></span>&nbsp;Create New Session</a></p>
+                                    <div class="col-sm-12">
+                                        <div class="pull-left heading-col">
+                                            <p class="card-heading"><span class="icon icon-forum"></span>&nbsp;Video Coaching Sessions</p>
+                                        </div>
+                                        <div class="pull-right heading-col" ng-show="vm.authData.isCoach || vm.authData.isAdmin">
+                                            <p class="card-heading"><a class="btn btn-darkblue waves-button waves-effect waves-light" ui-sref="programSessionCreate({programId: vm.data.Id})"><span class="icon icon-my-library-add"></span>&nbsp;Create New Session</a></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -124,15 +126,16 @@
                                 <div class="card-inner">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <div class="pull-left padding-right">
+                                            <div class="pull-left session-date">
                                                 <span class="icon icon-event icon-large"></span>
+                                                <h3>{{ session.StartedAt | date:'EEEE dd MMM yyyy' }}&nbsp;&nbsp;<span class="icon icon-schedule"></span>&nbsp;{{ session.StartedAt | date:'hh:mm a' }} - {{ vm.finishTime(session) | date:'hh:mm a' }}</h3>
                                             </div>
-                                            <div>
-                                                <h3>{{ session.StartedAt | date:'EEEE dd MMM yyyy' }}&nbsp;&nbsp;<span class="icon icon-schedule"></span>&nbsp;{{ session.StartedAt | date:'hh:mm a' }} - {{ vm.finishTime(session) | date:'hh:mm a' }}<span class="pull-right" ng-show="session.IsClosed"><span class="icon icon-check-box"></span>&nbsp;Complete</span></h3>
+                                            <div class="pull-right" ng-show="session.IsClosed">
+                                                <h3><span class="icon icon-check-box"></span>&nbsp;Complete</h3>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-4" ng-show="!session.IsClosed && session.isWithIn5Minutes">
-                                            <a class="pull-right btn btn-blue waves-button waves-effect waves-light" href="{{ vm.apiurl }}/vidyo/?sessionId={{ session.Id }}&amp;access_token={{ vm.authData.token }}" target="_blank"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a>
+                                            <div class="pull-right" ng-show="!session.IsClosed && session.isWithIn5Minutes">
+                                                <a class=" btn btn-blue waves-button waves-effect waves-light" href="{{ vm.apiurl }}/vidyo/?sessionId={{ session.Id }}&amp;access_token={{ vm.authData.token }}" target="_blank"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a>
+                                            </div>
                                         </div>
                                         <div class="col-sm-12 half-margin-top" ng-show="(vm.authData.isCoach || vm.authData.isAdmin) && !session.IsClosed">
                                             <span class="button-group">
