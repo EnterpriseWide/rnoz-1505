@@ -5,8 +5,8 @@
         .module('app.program')
         .controller('ProgramListController', ProgramListController);
 
-    ProgramListController.$inject = ['$q', 'dataservice', 'logger'];
-    function ProgramListController($q, dataservice, logger) {
+    ProgramListController.$inject = ['$q', 'dataservice', 'logger', 'moment'];
+    function ProgramListController($q, dataservice, logger, moment) {
         var vm = this;
         vm.programs = [];
         vm.sessions = [];

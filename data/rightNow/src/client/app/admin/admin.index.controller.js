@@ -31,7 +31,6 @@
                 {displayName: '', field: 'Coach.FirstName', type: 'string'},
                 {displayName: 'Coachee', field: 'Coachee.LastName', type: 'string'},
                 {displayName: '', field: 'Coachee.FirstName', type: 'string'},
-                {displayName: 'Date Created', field: 'CreatedAt', cellFilter: 'date', type: 'date'},
                 {field: 'IsClosed', type: 'boolean'},
                 {field: 'InvoiceAmount', cellFilter: 'currency', type: 'number'},
                 {displayName: '', field: 'Id', enableColumnMenu: false, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a ui-sref="adminProgramUpdate({programId: {{COL_FIELD}}})" class="grid-link"><span class="icon icon-edit"></span>&nbsp;Edit</a></div>', type: 'number'}

@@ -31,7 +31,7 @@
         vm.cancelSession = cancelSession;
         vm.setAsComplete = setAsComplete;
         vm.beginSessionOnTimeout = beginSessionOnTimeout;
-        vm.setTimeout = setTimeout;
+        vm.setTheTimeout = setTheTimeout;
         vm.buttonTimeout = {};
 
         activate();
@@ -47,7 +47,7 @@
             }
         }
 
-        function setTimeout(scope, fn, delay) {
+        function setTheTimeout (scope, fn, delay) {
             var promise = $timeout(fn, delay);
             var deregister = scope.$on('$destroy', function() {
                 $timeout.cancel(promise);
@@ -55,17 +55,12 @@
             promise.then(deregister);
         }
 
-        function beginSessionOnTimeout() {
+        function beginSessionOnTimeout () {
             angular.forEach(vm.data.CoachingSessions, function (row) {
-                row.showButton = 
-                    // is After Beginning
-                    moment().isAfter(moment(row.StartedAt).subtract(5, 'm'))
-                    &&
-                    // is Before End
-                    moment().isBefore(moment(row.StartedAt).add(row.Duration, 'm').subtract(5, 'm'))
-                    ;
+                row.showButton = moment().isAfter(moment(row.StartedAt).subtract(5, 'm')) &&
+                    moment().isBefore(moment(row.StartedAt).add(row.Duration, 'm').subtract(5, 'm'));
             });
-            setTimeout($scope, vm.beginSessionOnTimeout, 2000);
+            vm.setTheTimeout($scope, vm.beginSessionOnTimeout, 2000);
         }
 
         function cancelSession (session) {
