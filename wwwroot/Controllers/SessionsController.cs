@@ -49,12 +49,14 @@ namespace ewide.web.Controllers
         public IHttpActionResult Get(int id)
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
+            var isAdmin = AppUserManager.IsInRole(currentUser.Id, "Admin");
             var session = AppDb
                 .CoachingSessions
                 .Include("CoachingProgram")
                 .Where(i =>
                     i.CoachingProgram.Coach.Id == currentUser.Id ||
-                    i.CoachingProgram.Coachee.Id == currentUser.Id)
+                    i.CoachingProgram.Coachee.Id == currentUser.Id ||
+                    isAdmin)
                 .FirstOrDefault(i => i.Id == id);
             return Ok(session);
         }
