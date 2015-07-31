@@ -21,13 +21,16 @@ namespace ewide.web.Controllers
         public IQueryable<CoachingSession> Get()
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
+            var isAdmin = AppUserManager.IsInRole(currentUser.Id, "Admin");
             var sessions = AppDb
                 .CoachingSessions
                 .Include("CoachingProgram.Coach")
                 .Include("CoachingProgram.Coachee")
                 .Where(i =>
                     i.CoachingProgram.Coach.Id == currentUser.Id ||
-                    i.CoachingProgram.Coachee.Id == currentUser.Id);
+                    i.CoachingProgram.Coachee.Id == currentUser.Id ||
+                    isAdmin)
+                .Where(i => !i.IsClosed);
             return sessions;
         }
 
