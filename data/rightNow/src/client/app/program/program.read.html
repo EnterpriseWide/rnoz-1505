@@ -122,7 +122,7 @@
                             <div class="card-inner">
                                 <p class="smallText">To begin a video coaching session, click 'begin session', and then Right.Now. will attempt to connect you.</p>
                             </div>
-                            <div class="session-list-item" ng-repeat="session in vm.data.CoachingSessions">
+                            <div class="session-list-item" ng-repeat="session in vm.data.CoachingSessions" ng-hide="session.isDeleted">
                                 <div class="card-inner">
                                     <div class="row">
                                         <div class="col-sm-12">
@@ -139,9 +139,9 @@
                                         </div>
                                         <div class="col-sm-12 half-margin-top" ng-show="(vm.authData.isCoach || vm.authData.isAdmin) && !session.IsClosed">
                                             <span class="button-group">
-                                                <a href="#" ng-click="vm.cancelSession(session)" class=""><span class="icon icon-close"></span>&nbsp;Cancel</a>
+                                                <a ng-click="vm.cancelSession(session)" class=""><span class="icon icon-close"></span>&nbsp;Cancel</a>
                                                 <a ui-sref="programSessionUpdate({programId: vm.data.Id, sessionId: session.Id})" class=""><span class="icon icon-repeat"></span>&nbsp;Reschedule</a>
-                                                <a href="#" ng-click="vm.setAsComplete(session)" class=""><span class="icon icon-check"></span>&nbsp;Set as Complete</a>
+                                                <a ng-click="vm.setAsComplete(session)" class=""><span class="icon icon-check"></span>&nbsp;Set as Complete</a>
                                             </span>
                                         </div>
                                     </div>

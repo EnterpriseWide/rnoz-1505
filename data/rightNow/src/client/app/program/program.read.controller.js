@@ -56,17 +56,10 @@
         }
 
         function beginSessionOnTimeout() {
-            console.log('running beginSessionOnTimeout');
             angular.forEach(vm.data.CoachingSessions, function (row) {
                 row.isWithIn5Minutes = moment().isAfter(moment(row.StartedAt).subtract(5, 'm'));
             });
             setTimeout($scope, vm.beginSessionOnTimeout, 2000);
-        }
-
-        function listSessionsByProgram(id) {
-            return dataservice.listSessionsByProgram(id).then(function (data) {
-                vm.data.CoachingSessions = data;
-            });
         }
 
         function cancelSession (session) {
@@ -79,8 +72,8 @@
                 plain: true
             }).then(function() {
                 dataservice.deleteSession(session.Id).then(function() {
+                    session.isDeleted = true;
                     logger.success('Canceled Session ' + session.Id);
-                    listSessionsByProgram(session.CoachingProgramId);
                 });
             });
         }
