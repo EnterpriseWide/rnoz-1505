@@ -40,13 +40,15 @@ namespace ewide.web.Controllers
         public IQueryable<CoachingSession> GetByProgramId(int id)
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
+            var isAdmin = AppUserManager.IsInRole(currentUser.Id, "Admin");
             var sessions = AppDb
                 .CoachingSessions
                 .Include("CoachingProgram.Coach")
                 .Include("CoachingProgram.Coachee")
                 .Where(i =>
                     i.CoachingProgram.Coach.Id == currentUser.Id ||
-                    i.CoachingProgram.Coachee.Id == currentUser.Id)
+                    i.CoachingProgram.Coachee.Id == currentUser.Id ||
+                    isAdmin)
                 .Where(i => i.CoachingProgram.Id == id);
             return sessions;
         }
@@ -76,11 +78,12 @@ namespace ewide.web.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            var isAdmin = AppUserManager.IsInRole(currentUser.Id, "Admin");
             var coachingSession = AppDb.CoachingSessions
                 .Where(i =>
                     i.CoachingProgram.Coach.Id == currentUser.Id ||
-                    i.CoachingProgram.Coachee.Id == currentUser.Id)
+                    i.CoachingProgram.Coachee.Id == currentUser.Id ||
+                    isAdmin)
                 .FirstOrDefault(i => i.Id == id);
             if (coachingSession == null)
             {
