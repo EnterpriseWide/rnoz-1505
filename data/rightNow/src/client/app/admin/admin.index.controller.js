@@ -26,6 +26,7 @@
             useExternalPagination: true,
             useExternalSorting: true,
             columnDefs: [
+                {field: 'Id', type: 'number'},
                 {displayName: 'Coach', field: 'Coach.LastName', type: 'string'},
                 {displayName: '', field: 'Coach.FirstName', type: 'string'},
                 {displayName: 'Coachee', field: 'Coachee.LastName', type: 'string'},
