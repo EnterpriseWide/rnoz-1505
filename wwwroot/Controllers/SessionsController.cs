@@ -30,7 +30,9 @@ namespace ewide.web.Controllers
                     i.CoachingProgram.Coach.Id == currentUser.Id ||
                     i.CoachingProgram.Coachee.Id == currentUser.Id ||
                     isAdmin)
-                .Where(i => !i.IsClosed);
+                .Where(i => !i.IsClosed)
+                .Where(i => !i.CoachingProgram.IsClosed)
+                .OrderBy(i => i.StartedAt);
             return sessions;
         }
 
