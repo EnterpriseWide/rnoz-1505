@@ -53,7 +53,7 @@ namespace ewide.web.Controllers
 
         // PUT: api/Assignments/5
         [ResponseType(typeof(void))]
-        [Authorize(Roles = "Coach")]
+        [Authorize(Roles = "Admin,Coach")]
         public IHttpActionResult PutAssignment(int id, Assignment item)
         {
             if (!ModelState.IsValid)
@@ -100,7 +100,7 @@ namespace ewide.web.Controllers
 
         // POST: api/Assignments
         [ResponseType(typeof(Assignment))]
-        [Authorize(Roles = "Coach")]
+        [Authorize(Roles = "Admin,Coach")]
         public IHttpActionResult PostAssignment(AssignmentDTO dto)
         {
             if (!ModelState.IsValid)
@@ -125,7 +125,7 @@ namespace ewide.web.Controllers
 
         // DELETE: api/Assignments/5
         [ResponseType(typeof(Assignment))]
-        [Authorize(Roles = "Coach")]
+        [Authorize(Roles = "Admin,Coach")]
         public IHttpActionResult DeleteAssignment(int id)
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());

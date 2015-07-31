@@ -188,7 +188,7 @@ namespace ewide.web.Controllers
         }
 
         [ResponseType(typeof(void))]
-        [Authorize(Roles = "Coach")]
+        [Authorize(Roles = "Admin,Coach")]
         [Route("Close")]
         public IHttpActionResult PutCloseCoachingProgram(int id)
         {
@@ -224,7 +224,7 @@ namespace ewide.web.Controllers
         }
 
         [ResponseType(typeof(void))]
-        [Authorize(Roles = "Coach")]
+        [Authorize(Roles = "Admin,Coach")]
         [Route("SendInvoice")]
         public IHttpActionResult PutSendInvoiceForCoachingProgram(int id, Decimal amount)
         {
