@@ -58,7 +58,7 @@
         function beginSessionOnTimeout () {
             angular.forEach(vm.data.CoachingSessions, function (row) {
                 row.showButton = moment().isAfter(moment(row.StartedAt).subtract(5, 'm')) &&
-                    moment().isBefore(moment(row.StartedAt).add(row.Duration, 'm').subtract(5, 'm'));
+                    moment().isBefore(moment(row.StartedAt).add(row.Duration, 'm'));
             });
             vm.setTheTimeout($scope, vm.beginSessionOnTimeout, 2000);
         }
