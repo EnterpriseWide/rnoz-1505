@@ -31,7 +31,7 @@ namespace ewide.web
                 RequiredLength = 6,
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,
-                RequireLowercase = true,
+                RequireLowercase = false,
                 RequireUppercase = false,
             };
             var dataProtectionProvider = options.DataProtectionProvider;
