@@ -61,7 +61,7 @@
                                     <p class="large">{{p.Name}}</p>
                                 </div>
                                 <div class="card-action">
-                                    <ul class="nav nav-list pull-left" ng-show="!vm.authData.isCoachee">
+                                    <ul class="nav nav-list pull-left" ng-show="vm.authData.isCoach || vm.authData.isAdmin">
                                         <li>
                                             <a class="thin-side-padding" ui-sref="resourceUpdate({programId: vm.programId, resourceId: p.Id})" title="Update"><span class="icon icon-edit"></span></a>
                                         </li>
