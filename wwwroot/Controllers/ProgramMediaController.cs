@@ -38,11 +38,13 @@ namespace ewide.web.Controllers
 
         private IEnumerable<ProgramMedia> GetProgramMediaListFull(ApplicationUser currentUser)
         {
+            var isAdmin = AppUserManager.IsInRole(currentUser.Id, "Admin"); 
             return AppDb.ProgramMedia
                 .Include(i => i.CoachingProgram.Coach)
                 .Where(i =>
                     i.CoachingProgram.Coach.Id == currentUser.Id ||
-                    i.CoachingProgram.Coachee.Id == currentUser.Id);
+                    i.CoachingProgram.Coachee.Id == currentUser.Id ||
+                    isAdmin);
         }
 
         public IHttpActionResult GetProgramMedias(Int64 programId, MediaType mediaType)
@@ -56,7 +58,8 @@ namespace ewide.web.Controllers
             }
             var root = program.GetRootFolder();
             var list = GetProgramMediaList(currentUser)
-                .Where(i => i.MediaType == mediaType);
+                .Where(i => i.MediaType == mediaType)
+                .Where(i => i.CoachingProgramId == programId);
             return Ok(list);
         }
 
