@@ -1,4 +1,5 @@
 ﻿using ewide.web.Models;
+using ewide.web.Utils;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -30,8 +31,7 @@ namespace ewide.web.Controllers
                 return BadRequest("Program Not Found");
             }
 
-            SendEmail(currentUser.Email, String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName),
-                program.Coachee.Email, "Email to the Coachee", emailDTO.EmailBodyText, true);
+            EmailSender.SendEmail(program.Coachee.Email, "Email to the Coachee", emailDTO.EmailBodyText, null, currentUser.Email, String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName));
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -47,29 +47,8 @@ namespace ewide.web.Controllers
                 return BadRequest("Program Not Found");
             }
 
-            SendEmail(currentUser.Email, String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName),
-                program.Coach.Email, "Email to the Coach", emailDTO.EmailBodyText, true);
+            EmailSender.SendEmail(program.Coach.Email, "Email to the Coach", emailDTO.EmailBodyText, null, currentUser.Email, String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName));
             return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        private static void SendEmail(string from, string from_name, string to, string subject, string body, bool isHtml)
-        {
-            var message = new MailMessage();
-            if (!string.IsNullOrEmpty(from_name))
-            {
-                message.From = new MailAddress(from, from_name);
-            }
-            else
-            {
-                message.From = new MailAddress(from);
-            }
-            message.To.Add(new MailAddress(to));
-            message.Subject = subject;
-            message.Body = body;
-            message.IsBodyHtml = isHtml;
-
-            var mailClient = new SmtpClient();
-            mailClient.Send(message);
         }
 
     }

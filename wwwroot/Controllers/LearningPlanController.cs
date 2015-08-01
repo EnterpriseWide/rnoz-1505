@@ -126,32 +126,9 @@ namespace ewide.web.Controllers
                 fileStream.Position = 0;
                 var attachment = new Attachment(fileStream, subject, "application/pdf");
 
-                SendEmail(currentUser.Email, coacheeName, request.recipients, subject,
-                    String.Format("Find attached the Learning Plan for {0}", coacheeName), true,
-                    attachment);
+                EmailSender.SendEmail(request.recipients, subject, String.Format("Find attached the Learning Plan for {0}", coacheeName), attachment);
             }
             return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        private static void SendEmail(string from, string from_name, string to, string subject, string body, bool isHtml, Attachment attachment)
-        {
-            var message = new MailMessage();
-            if (!string.IsNullOrEmpty(from_name))
-            {
-                message.From = new MailAddress(from, from_name);
-            }
-            else
-            {
-                message.From = new MailAddress(from);
-            }
-            message.To.Add(new MailAddress(to));
-            message.Subject = subject;
-            message.Body = body;
-            message.IsBodyHtml = isHtml;
-            message.Attachments.Add(attachment);
-
-            var mailClient = new SmtpClient();
-            mailClient.Send(message);
         }
 
         private bool CoachingProgramExists(int id, ApplicationUser currentUser)

@@ -400,6 +400,7 @@
     <Compile Include="Results\FileResult.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\EmailSender.cs" />
     <Compile Include="Utils\ViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -570,6 +571,10 @@
     <Content Include="vidyo\scripts\.DS_Store" />
     <Content Include="Views\Send Invoice.cshtml" />
     <Content Include="vidyo\scripts\oztrain.custom.js" />
+    <Content Include="Views\EmailMaster.cshtml" />
+    <Content Include="Views\Session Created.cshtml" />
+    <Content Include="Views\Session Updated.cshtml" />
+    <Content Include="Views\Session Deleted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

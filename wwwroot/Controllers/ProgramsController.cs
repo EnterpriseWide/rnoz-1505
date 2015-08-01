@@ -249,8 +249,7 @@ namespace ewide.web.Controllers
             try
             {
                 AppDb.SaveChanges();
-                SendEmail(currentUser.Email, "Admin",
-                    ConfigurationManager.AppSettings["AdminEmail"], "Send Invoice", html, true);
+                EmailSender.SendEmail(ConfigurationManager.AppSettings["AdminEmail"], "Send Invoice", html);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -308,26 +307,6 @@ namespace ewide.web.Controllers
         private bool CoachingProgramExists(int id, ApplicationUser currentUser)
         {
             return GetCoachingPrograms(currentUser).Count(e => e.Id == id) > 0;
-        }
-
-        private static void SendEmail(string from, string from_name, string to, string subject, string body, bool isHtml)
-        {
-            var message = new MailMessage();
-            if (!string.IsNullOrEmpty(from_name))
-            {
-                message.From = new MailAddress(from, from_name);
-            }
-            else
-            {
-                message.From = new MailAddress(from);
-            }
-            message.To.Add(new MailAddress(to));
-            message.Subject = subject;
-            message.Body = body;
-            message.IsBodyHtml = isHtml;
-
-            var mailClient = new SmtpClient();
-            mailClient.Send(message);
         }
 
     }

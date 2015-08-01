@@ -75,7 +75,6 @@ namespace ewide.web.Utils
             RenderViewToWriterInternal(viewPath, writer, model, false);
         }
 
-
         /// <summary>
         /// Renders a partial MVC view to string. Use this method to render
         /// a partial view that doesn't merge with _Layout and doesn't fire
@@ -207,7 +206,6 @@ namespace ewide.web.Utils
             }
         }
 
-
         /// <summary>
         /// Renders a partial MVC view to string. Use this method to render
         /// a partial view that doesn't merge with _Layout and doesn't fire
@@ -246,7 +244,6 @@ namespace ewide.web.Utils
             ViewRenderer renderer = new ViewRenderer(controllerContext);
             renderer.RenderPartialView(viewPath, model, writer);
         }
-
 
         /// <summary>
         /// Internal method that handles rendering of either partial or 
@@ -324,7 +321,6 @@ namespace ewide.web.Utils
 
             return result;
         }
-
 
         /// <summary>
         /// Creates an instance of an MVC controller from scratch 

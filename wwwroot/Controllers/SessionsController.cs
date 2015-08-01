@@ -1,4 +1,5 @@
 ﻿using ewide.web.Models;
+using ewide.web.Utils;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -111,6 +112,18 @@ namespace ewide.web.Controllers
                 }
             }
 
+            var newRecord = AppDb.CoachingSessions
+                .Include(i => i.CoachingProgram.Coach)
+                .Include(i => i.CoachingProgram.Coachee)
+                .FirstOrDefault();
+            var emailContent = ViewRenderer.RenderView("~/Views/Session Updated.cshtml",
+                new System.Web.Mvc.ViewDataDictionary { 
+                { "Session", newRecord },
+                { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
+                });
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "Session Updated", emailContent);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "Session Updated", emailContent);
+
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -128,6 +141,18 @@ namespace ewide.web.Controllers
             AppDb.CoachingSessions.Add(coachingSession);
             await AppDb.SaveChangesAsync();
 
+            var newRecord = AppDb.CoachingSessions
+                .Include(i => i.CoachingProgram.Coach)
+                .Include(i => i.CoachingProgram.Coachee)
+                .FirstOrDefault();
+            var emailContent = ViewRenderer.RenderView("~/Views/Session Created.cshtml", 
+                new System.Web.Mvc.ViewDataDictionary { 
+                { "Session", newRecord },
+                { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
+                });
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "Session Created", emailContent);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "Session Created", emailContent);
+
             return CreatedAtRoute("DefaultApi", new { id = coachingSession.Id }, coachingSession);
         }
 
@@ -137,13 +162,44 @@ namespace ewide.web.Controllers
         public async Task<IHttpActionResult> DeleteCoachingSession(int id)
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
-            var coachingSession = await AppDb.CoachingSessions.FindAsync(id);
+            var coachingSession = AppDb.CoachingSessions
+                .Include(i => i.CoachingProgram.Coach)
+                .Include(i => i.CoachingProgram.Coachee)
+                .FirstOrDefault(i => i.Id == id);
             if (coachingSession == null)
             {
                 return NotFound();
             }
+
+            var newRecord = new CoachingSession
+            {
+                StartedAt = coachingSession.StartedAt,
+                Duration = coachingSession.Duration,
+                CoachingProgramId = coachingSession.CoachingProgramId,
+                CoachingProgram = new CoachingProgram
+                {
+                    Coach = new ApplicationUser
+                    {
+                        Email = coachingSession.CoachingProgram.Coach.Email
+                    },
+                    Coachee = new ApplicationUser
+                    {
+                        Email = coachingSession.CoachingProgram.Coachee.Email
+                    }
+                }
+            };
+
             AppDb.CoachingSessions.Remove(coachingSession);
             await AppDb.SaveChangesAsync();
+
+            var emailContent = ViewRenderer.RenderView("~/Views/Session Deleted.cshtml",
+                new System.Web.Mvc.ViewDataDictionary { 
+                { "Session", newRecord },
+                { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
+                });
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "Session Deleted", emailContent);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "Session Deleted", emailContent);
+            
             return Ok(coachingSession);
         }
 

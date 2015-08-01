@@ -1,0 +1,12 @@
+﻿@model System.Web.Mvc.ViewDataDictionary
+@{
+    Layout = "~/Views/EmailMaster.cshtml";
+    var data = (ewide.web.Models.CoachingSession)Model["Session"];
+    var url = (string)Model["Url"];
+}
+    <h1 class="page-heading">Session Canceled</h1>
+    <hr />
+    <p>A Session has been Updated for you with following details</p>
+    <p>@data.StartedAt</p>
+    <p>@data.Duration</p>
+    <p><a href="@url">Open Right.Now.</a></p>
