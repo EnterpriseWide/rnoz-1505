@@ -87,6 +87,9 @@
                         authData.isAdmin = authData.Roles.indexOf('Admin') >= 0;
                         authData.isCoach = authData.Roles.indexOf('Coach') >= 0;
                         deferred.resolve(authData);
+                    }, function() {
+                        deferred.resolve();
+                        $state.go('login');
                     });
             } else {
                 deferred.resolve();
