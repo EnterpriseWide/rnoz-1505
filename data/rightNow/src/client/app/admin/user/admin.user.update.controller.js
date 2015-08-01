@@ -54,8 +54,8 @@
             ngDialog.openConfirm({
                 template: '<p>Would you like to Delete the User?</p>' +
                     '<div class="ngdialog-buttons">' +
-                        '<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">No</button>' +
-                        '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>' +
+                        '<button type="button" class="btn btn-blue" ng-click="closeThisDialog(0)">No</button>' +
+                        '<button type="button" class="btn btn-blue" ng-click="confirm(1)">Yes</button>' +
                     '</div>',
                 plain: true
             }).then(function() {
