@@ -228,7 +228,7 @@ th.wide { width: 33%; }
 th.center, td.center { text-align: center; }
 table .buttons { padding: 6px !important; }
 
-.loading-indicator #ngplus-overlay-container { position: fixed; width: 100%; top: 0; z-index: 5; background: rgba(255,255,255,0.7); height: 100%; }
+.loading-indicator #ngplus-overlay-container { position: fixed; width: 100%; top: 0; z-index: 5; background: rgba(255,255,255,0.7); height: 100%; height:100vh; }
 .loading-indicator #ngplus-overlay-container .progress-circular { margin-top: 90px; }
 
 .drop-box { background: #eee; padding: 15px; margin-bottom: 24px; }
@@ -246,6 +246,7 @@ table .buttons { padding: 6px !important; }
 /*#region Splash */
 #splash-page {
     z-index: 99999 !important;
+    /*display:block !important;*/
 }
 
     #splash-page .bar {
@@ -259,8 +260,8 @@ table .buttons { padding: 6px !important; }
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #333;
-    opacity: .9;
+    background-color: #fff;
+    /*opacity: .9;*/
     pointer-events: auto;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -275,7 +276,7 @@ table .buttons { padding: 6px !important; }
 
 .page-splash-message {
     text-align: center;
-    margin: 20% auto 0 auto;
+    margin: 15% auto 0 auto;
     font-size: 400%;
     font-family: "Segoe UI", Arial, Helvetica, sans-serif;
     font-weight: normal;
