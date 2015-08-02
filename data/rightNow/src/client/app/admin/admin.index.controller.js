@@ -4,9 +4,9 @@
     angular
         .module('app.admin')
         .controller('AdminController', AdminController);
-    AdminController.$inject = ['authData', 'logger', '$location', 'dataservice', '$q', '$scope'];
+    AdminController.$inject = ['authData', 'logger', '$location', 'dataservice', '$q', '$scope', 'deviceDetector'];
 
-    function AdminController(authData, logger, $location, dataservice, $q, $scope) {
+    function AdminController(authData, logger, $location, dataservice, $q, $scope, deviceDetector) {
         var vm = this;
         vm.title = 'Admin Dashboard';
         vm.authData = authData;
@@ -14,6 +14,8 @@
         vm.rooms = [];
         vm.surveys = [];
         vm.users = [];
+        vm.showMobileLink = false;
+
         vm.programPaginationOptions = {pageNumber: 1, pageSize: 25, sort: null};
         vm.roomPaginationOptions = {pageNumber: 1, pageSize: 25, sort: null};
         vm.surveyPaginationOptions = {pageNumber: 1, pageSize: 25, sort: null};
@@ -67,7 +69,8 @@
             useExternalSorting: true,
             columnDefs: [
                 {field: 'Name', type: 'string'},
-                {displayName: '', field: 'Link', cellTemplate: '<div class="ui-grid-cell-contents align-center"><a target="_blank" href="' + dataservice.apiurl + '/vidyo/Default.cshtml?roomId={{ row.entity.Id }}&access_token=' + vm.authData.token + '" class="grid-link">Join Room</a></div>', type: 'string'},
+                {displayName: '', field: 'Link', visible: vm.showMobileLink, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a target="_blank" href="{{COL_FIELD}}" class="grid-link">Join Room</a></div>', type: 'string'},
+                {displayName: '', field: 'Link', visible: !vm.showMobileLink, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a target="_blank" href="' + dataservice.apiurl + '/vidyo/Default.cshtml?roomId={{ row.entity.Id }}&access_token=' + vm.authData.token + '" class="grid-link">Join Room</a></div>', type: 'string'},
                 {displayName: '', field: 'Id', enableColumnMenu: false, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a ui-sref="adminRoomUpdate({roomId: {{COL_FIELD}}})" class="grid-link"><span class="icon icon-edit"></span>&nbsp;Edit</a></div>', type: 'number'}
             ],
             onRegisterApi: function(gridApi) {
@@ -171,6 +174,7 @@
             if (!vm.authData.isAdmin) {
                 $location.path('/404');
             }
+            vm.showMobileLink = deviceDetector.os.ios || deviceDetector.os.android;
             getPagePrograms();
             getPageRooms();
             getPageSurveys();
