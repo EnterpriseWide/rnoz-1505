@@ -3,6 +3,6 @@
     Layout = "~/Views/EmailMaster.cshtml";
     var program = (ewide.web.Models.CoachingProgram)Model["Program"];
 }
-    <h1 class="page-heading">Invoice</h1>
-    <hr />
-    Invoice for Program Id @program.Id in the amount of @program.InvoiceAmount for Coach @program.Coach.FirstName
+<p>&nbsp;</p>
+    <p>Tax invoice for Program Id @program.Id in the amount of @string.Format("{0:C}", program.InvoiceAmount.ToString()) for Coach @program.Coach.FirstName @program.Coach.LastName
+</p>

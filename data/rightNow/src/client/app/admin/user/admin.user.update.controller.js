@@ -52,7 +52,7 @@
 
         function deleteRecord() {
             ngDialog.openConfirm({
-                template: '<p>Would you like to Delete the User?</p>' +
+                template: '<p>Would you like to delete the user?</p>' +
                     '<div class="ngdialog-buttons">' +
                         '<button type="button" class="btn btn-blue" ng-click="closeThisDialog(0)">No</button>' +
                         '<button type="button" class="btn btn-blue" ng-click="confirm(1)">Yes</button>' +

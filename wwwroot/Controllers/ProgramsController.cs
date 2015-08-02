@@ -249,7 +249,7 @@ namespace ewide.web.Controllers
             try
             {
                 AppDb.SaveChanges();
-                EmailSender.SendEmail(ConfigurationManager.AppSettings["AdminEmail"], "Send Invoice", html);
+                EmailSender.SendEmail(ConfigurationManager.AppSettings["AdminEmail"], "right.now. Coaching Invoice", html);
             }
             catch (DbUpdateConcurrencyException)
             {

@@ -121,8 +121,8 @@ namespace ewide.web.Controllers
                 { "Session", newRecord },
                 { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
                 });
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "Session Updated", emailContent);
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "Session Updated", emailContent);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Updated", emailContent);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Updated", emailContent);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -150,8 +150,8 @@ namespace ewide.web.Controllers
                 { "Session", newRecord },
                 { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
                 });
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "Session Created", emailContent);
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "Session Created", emailContent);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Created", emailContent);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Created", emailContent);
 
             return CreatedAtRoute("DefaultApi", new { id = coachingSession.Id }, coachingSession);
         }
@@ -197,8 +197,8 @@ namespace ewide.web.Controllers
                 { "Session", newRecord },
                 { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
                 });
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "Session Deleted", emailContent);
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "Session Deleted", emailContent);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Cancelled", emailContent);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Cancelled", emailContent);
             
             return Ok(coachingSession);
         }
