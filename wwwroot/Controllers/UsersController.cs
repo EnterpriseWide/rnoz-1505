@@ -131,7 +131,6 @@ namespace ewide.web.Controllers
             user.LastName = applicationUser.LastName;
             user.Email = applicationUser.Email;
             user.UserName = applicationUser.Email;
-
             AppUserManager.Update(user);
 
             foreach (var role in user.Roles.ToList())
@@ -147,6 +146,20 @@ namespace ewide.web.Controllers
                 if (!user.Roles.Any(i => i.RoleId == roleId))
                 {
                     AppUserManager.AddToRole(user.Id, AppRoleManager.FindById(roleId).Name);
+                }
+            }
+
+            if (!String.IsNullOrEmpty(applicationUser.Password))
+            {
+                var result1 = AppUserManager.RemovePassword(user.Id);
+                if (!result1.Succeeded)
+                {
+                    return GetErrorResult(result1);
+                }
+                var result2 = AppUserManager.AddPassword(user.Id, applicationUser.Password);
+                if (!result2.Succeeded)
+                {
+                    return GetErrorResult(result2);
                 }
             }
 

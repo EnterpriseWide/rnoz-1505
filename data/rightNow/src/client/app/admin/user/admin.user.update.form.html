@@ -1,5 +1,12 @@
 <div ng-include="'app/admin/user/admin.user.form.html'"></div>
 <div class="form-group">
+  <label for="name" class="col-sm-2 control-label">Password</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="vm.data.Password" class="form-control" name="password" />
+    <span class="half-margin-top form-error-message" ng-hide="form.password.$valid || form.password.$pristine">A Password is required</span>
+  </div>
+</div>
+<div class="form-group">
   <label for="roles" class="col-sm-2 control-label">Roles</label>
   <div class="col-sm-10">
       <div ng-repeat="role in vm.roles">

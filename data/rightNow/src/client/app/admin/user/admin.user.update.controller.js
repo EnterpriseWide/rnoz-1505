@@ -17,6 +17,7 @@
         vm.deleteRecord = deleteRecord;
         vm.getUser = getUser;
         vm.roles = [];
+        vm.userError = [];
 
         activate();
 
@@ -47,6 +48,8 @@
             dataservice.updateUser(vm.data.Id, vm.data).then(function (data) {
                 logger.info('User Updated');
                 $state.go('admin');
+            }, function (error) {
+                vm.userError = error[''];
             });
         }
 

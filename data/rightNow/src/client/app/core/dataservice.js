@@ -461,7 +461,7 @@
             }
 
             function fail(error) {
-                var msg = 'creation of a new usmsger failed.';
+                var msg = 'creation of a new user failed.';
                 logger.error(msg, '');
                 return $q.reject(error.data.ModelState);
             }
@@ -491,11 +491,10 @@
             $http.put(url, data).success(function (response) {
                 deferred.resolve(response);
             }).error(function (error, status) {
-                var msg = 'update for user ' + id + ' failed. ' + error.data.description;
+                var msg = 'update for user ' + id + ' failed. ' + error.Message;
                 logger.error(msg);
-                deferred.reject(msg);
+                return deferred.reject(error.ModelState);
             });
-
             return deferred.promise;
         }
 

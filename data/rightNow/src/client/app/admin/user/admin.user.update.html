@@ -26,6 +26,11 @@
                                         <a ng-disabled="vm.isUsed" class="pull-right btn btn-blue waves-button waves-effect waves-light  margin-right" ng-click="vm.deleteRecord()"><span class="icon icon-delete"></span>&nbsp;Delete</a>
                                      </form>
                                 </div>
+                                <div ng-show="vm.userError.length > 0" class="col-sm-12 margin-top margin-bottom clearfix">
+                                    <ul class="pull-right half-margin-top form-error-message">
+                                        <li ng-repeat="error in vm.userError">{{error}}</li>
+                                    </ul>
+                                </div>
                              </div>
                         </div>
                     </div>
