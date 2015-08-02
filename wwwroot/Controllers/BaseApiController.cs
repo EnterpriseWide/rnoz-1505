@@ -60,6 +60,7 @@ namespace ewide.web.Controllers
                 .Include(i => i.Coach)
                 .Include(i => i.Coachee)
                 .Include(i => i.CoachingSessions)
+                .Include("CoachingSessions.Room")
                 .Include(i => i.CoachingProgramSurveys)
                 .Where(i =>
                     i.Coach.Id == currentUser.Id ||

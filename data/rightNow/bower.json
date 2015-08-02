@@ -12,7 +12,7 @@
     "tests"
   ],
   "devDependencies": {
-    "angular-mocks": "~1.4.2",
+    "angular-mocks": "~1.4.3",
     "sinon": "http://sinonjs.org/releases/sinon-1.12.1.js",
     "bardjs": "~0.0.3"
   },
@@ -41,6 +41,6 @@
     "ngDialog": "~0.4.0",
     "angular-pretty-checkable": "~0.1.7",
     "angular-moment": "~0.10.2",
-    "angular-mocks": "~1.4.3"
+    "ng-device-detector": "~1.1.7"
   }
 }

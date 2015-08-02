@@ -9,6 +9,7 @@
             'fcsa-number',
             'LocalStorageModule',
             'angularMoment',
+            'ng.deviceDetector',
             'ngAnimate',
             'ngDialog',
             'ngFileUpload',

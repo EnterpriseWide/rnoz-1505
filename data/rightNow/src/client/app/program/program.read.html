@@ -133,7 +133,8 @@
                                                 <h3><span class="icon icon-check-box"></span>&nbsp;Complete</h3>
                                             </div>
                                             <div class="pull-right" ng-show="!session.IsClosed && session.showButton">
-                                                <a class=" btn btn-blue waves-button waves-effect waves-light" href="{{ vm.apiurl }}/vidyo/?sessionId={{ session.Id }}&amp;access_token={{ vm.authData.token }}" target="_blank"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a>
+                                                <a ng-show="vm.showMobileLink" class="btn btn-blue waves-button waves-effect waves-light" href="{{ session.Room.Link }}" target="_blank"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a>
+                                                <a ng-hide="vm.showMobileLink" class="btn btn-blue waves-button waves-effect waves-light" href="{{ vm.apiurl }}/vidyo/?sessionId={{ session.Id }}&amp;access_token={{ vm.authData.token }}" target="_blank"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a>
                                             </div>
                                         </div>
                                          <div class="col-sm-12 half-margin-top" ng-show="(vm.authData.isCoach || vm.authData.isAdmin) &&session.IsClosed">

@@ -5,8 +5,8 @@
     angular
         .module('app.program')
         .controller('ProgramReadController', ProgramReadController);
-    ProgramReadController.$inject = ['program', 'logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state', '$window', 'moment', '$timeout', '$scope'];
-    function ProgramReadController(program, logger, $stateParams, $q, dataservice, authservice, ngDialog, $state, $window, moment, $timeout, $scope) {
+    ProgramReadController.$inject = ['program', 'logger', '$stateParams', '$q', 'dataservice', 'authservice', 'ngDialog', '$state', '$window', 'moment', '$timeout', '$scope', 'deviceDetector'];
+    function ProgramReadController(program, logger, $stateParams, $q, dataservice, authservice, ngDialog, $state, $window, moment, $timeout, $scope, deviceDetector) {
         var vm = this;
         vm.title = 'Program Dashboard';
         vm.data = {};
@@ -35,6 +35,7 @@
         vm.beginSessionOnTimeout = beginSessionOnTimeout;
         vm.setTheTimeout = setTheTimeout;
         vm.buttonTimeout = {};
+        vm.showNativeLink = false;
 
         activate();
 
@@ -46,6 +47,7 @@
                 vm.apiurl = dataservice.apiurl;
                 vm.authData = authservice.authData;
                 vm.beginSessionOnTimeout();
+                vm.showMobileLink = deviceDetector.os.ios || deviceDetector.os.android;
             }
         }
 
