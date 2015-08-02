@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="heading"><span class="icon icon-dashboard"></span>&nbsp;{{vm.title}}<span ng-show="vm.data.IsClosed"> - (Closed)</span></h1>
         <div class="heading-right margin-bottom" ng-show="vm.authData.isCoach || vm.authData.isAdmin">
-            <a class="btn btn-flat waves-button waves-effect waves-light" ng-click="vm.openSendInvoice($event)" ng-show="(vm.authData.isCoach || vm.authData.isAdmin) && !vm.data.InvoiceAmount"><span class="icon icon-email"></span>&nbsp;Send Invoice</a>
+            <a class="btn btn-flat waves-button waves-effect waves-light" ng-click="vm.openSendInvoice($event)" ng-show="vm.authData.isCoach && !vm.data.InvoiceAmount"><span class="icon icon-email"></span>&nbsp;Send Invoice</a>
             <a class="btn btn-flat waves-button waves-effect waves-light" ng-click="vm.closeProgram($event)" ng-show="(vm.authData.isCoach || vm.authData.isAdmin) && !vm.data.IsClosed"><span class="icon icon-close"></span>&nbsp;Close Program</a>
         </div>
     </div>

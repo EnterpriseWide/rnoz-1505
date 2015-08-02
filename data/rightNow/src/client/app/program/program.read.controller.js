@@ -76,7 +76,7 @@
             }).then(function() {
                 dataservice.deleteSession(session.Id).then(function() {
                     session.isDeleted = true;
-                    logger.success('Canceled Session ' + session.Id);
+                    logger.success('Session Cancelled');
                 });
             });
         }
@@ -92,7 +92,7 @@
             }).then(function() {
                 session.IsClosed = true;
                 dataservice.updateSession(session.Id, session).then(function(data) {
-                    logger.success('Session ' + data.Id + 'set to Completed');
+                    logger.success('Session set to Completed');
                 });
             });
         }
