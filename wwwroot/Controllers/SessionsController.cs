@@ -116,7 +116,7 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == coachingSession.Id);
-            var emailContent = ViewRenderer.RenderView("~/Views/Session Updated.cshtml",
+            var emailContent = ViewRenderer.RenderView("~/Views/Email/Session Updated.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Session", newRecord },
                 { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
@@ -145,7 +145,7 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == coachingSession.Id);
-            var emailContent = ViewRenderer.RenderView("~/Views/Session Created.cshtml", 
+            var emailContent = ViewRenderer.RenderView("~/Views/Email/Session Created.cshtml", 
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Session", newRecord },
                 { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
@@ -192,7 +192,7 @@ namespace ewide.web.Controllers
             AppDb.CoachingSessions.Remove(coachingSession);
             await AppDb.SaveChangesAsync();
 
-            var emailContent = ViewRenderer.RenderView("~/Views/Session Deleted.cshtml",
+            var emailContent = ViewRenderer.RenderView("~/Views/Email/Session Deleted.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Session", newRecord },
                 { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },

@@ -1,11 +1,11 @@
 ﻿@model System.Web.Mvc.ViewDataDictionary
 @{
-    Layout = "~/Views/EmailMaster.cshtml";
+    Layout = "~/Views/Email/EmailMaster.cshtml";
     var data = (ewide.web.Models.CoachingSession)Model["Session"];
     var url = (string)Model["Url"];
 }
     <p>&nbsp;</p>
-    <p>A video coaching session has been created for with following details:</p>
+    <p>A video coaching session has been updated for you with following details</p>
     <p>Date and time: @data.StartedAt</p>
     <p>Duration: @data.Duration minutes</p>
     <p><a href="https://rightnow.oztrain.com.au">Open <em>right.<strong>now.</strong></em></a></p>

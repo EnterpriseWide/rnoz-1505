@@ -241,7 +241,7 @@ namespace ewide.web.Controllers
             coachingProgram.UpdatedAt = DateTime.Now;
             AppDb.Entry(coachingProgram).Property(i => i.UpdatedAt).IsModified = true;
 
-            var html = ViewRenderer.RenderView("~/Views/Send Invoice.cshtml",
+            var html = ViewRenderer.RenderView("~/Views/Email/Send Invoice.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Program", coachingProgram },
                 });

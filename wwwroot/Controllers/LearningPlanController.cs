@@ -114,6 +114,12 @@ namespace ewide.web.Controllers
                     LearningPlan = program.LearningPlan,
                     UpdatedAt = program.UpdatedAt,
                 };
+
+            var emailHtml = ViewRenderer.RenderView("~/Views/Email/Send Learning Plan as PDF.cshtml",
+                new System.Web.Mvc.ViewDataDictionary { 
+                { "Program", program },
+                });
+
             using (var fileStream = new MemoryStream())
             {
                 var coacheeName = String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName);
@@ -126,7 +132,7 @@ namespace ewide.web.Controllers
                 fileStream.Position = 0;
                 var attachment = new Attachment(fileStream, subject, "application/pdf");
 
-                EmailSender.SendEmail(request.recipients, subject, String.Format("Find attached the Learning Plan for {0}", coacheeName), attachment);
+                EmailSender.SendEmail(request.recipients, subject, emailHtml, attachment);
             }
             return StatusCode(HttpStatusCode.NoContent);
         }

@@ -546,6 +546,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\WebApiTestClient.js" />
+    <Content Include="Views\Email\Session Created.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -569,12 +572,12 @@
     <Content Include="vidyo\font\Elusive-Icons.ttf" />
     <Content Include="vidyo\font\Elusive-Icons.woff" />
     <Content Include="vidyo\scripts\.DS_Store" />
-    <Content Include="Views\Send Invoice.cshtml" />
+    <Content Include="Views\Email\Send Invoice.cshtml" />
     <Content Include="vidyo\scripts\oztrain.custom.js" />
-    <Content Include="Views\EmailMaster.cshtml" />
-    <Content Include="Views\Session Created.cshtml" />
-    <Content Include="Views\Session Updated.cshtml" />
-    <Content Include="Views\Session Deleted.cshtml" />
+    <Content Include="Views\Email\EmailMaster.cshtml" />
+    <Content Include="Views\Email\Session Updated.cshtml" />
+    <Content Include="Views\Email\Session Deleted.cshtml" />
+    <Content Include="Views\Email\Send Learning Plan as PDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
