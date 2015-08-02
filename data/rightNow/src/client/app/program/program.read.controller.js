@@ -23,8 +23,10 @@
                 'updated over the course of your coaching program.</p>',
             bodyTextResources: '<p>Resources are files and links that have been added by your coach.</p>',
             bodyTextUploads: '<p>Uploads are files and links that are added by you for your coach to view.</p>',
-            bodyTextSessions: '<p>Read more information about Sessionshere</p>',
-            bodyTextSurveys: '<p>More text explaining surveys to go here.</p>'
+            bodyTextSessions: '<p>Read more information about Sessions here</p>',
+            bodyTextSurveys: '<p>More text explaining surveys to go here.</p>',
+            bodyTextSessionIntroCoachee: '<p>This is a list of video coaching sessions that your coach has scheduled. When a session is due to start, a \'begin session\' button will appear next to the session in the list. Click this button to begin the session, and then <em>right.<strong>now.</strong></em> will connect you to the virtual meeting room to begin your coaching session.</p><p class="hide show-for-ios">Please install the <a href="https://itunes.apple.com/au/app/vidyomobile/id444062464" target="_blank">VidyoMobile iOS app</a> to participate in video coaching sessions on your mobile device.</p><p class="hide show-for-android">Please install the <a href="https://play.google.com/store/apps/details?id=com.vidyo.VidyoClient" target="_blank">VidyoMobile Android app</a> to participate in video coaching sessions on your mobile device.</p>',
+            bodyTextSessionIntroCoach: '<p>This is a list of video coaching sessions that you have scheduled with your coachee. When a session is due to start, a \'begin session\' button will appear next to the session in the list. Click this button to begin the session, and then <em>right.<strong>now.</strong></em> will connect you to the virtual meeting room to begin your coaching session.</p><p class="hide show-for-ios">Please install the <a href="https://itunes.apple.com/au/app/vidyomobile/id444062464" target="_blank">VidyoMobile iOS app</a> to participate in video coaching sessions on your mobile device.</p><p class="hide show-for-android">Please install the <a href="https://play.google.com/store/apps/details?id=com.vidyo.VidyoClient" target="_blank">VidyoMobile Android app</a> to participate in video coaching sessions on your mobile device.</p>'
         };
         vm.beginSession = beginSession;
         vm.finishTime = finishTime;
@@ -74,7 +76,7 @@
             }).then(function() {
                 dataservice.deleteSession(session.Id).then(function() {
                     session.isDeleted = true;
-                    logger.success('Canceled Session ' + session.Id);
+                    logger.success('Session Cancelled');
                 });
             });
         }
@@ -90,7 +92,7 @@
             }).then(function() {
                 session.IsClosed = true;
                 dataservice.updateSession(session.Id, session).then(function(data) {
-                    logger.success('Session ' + data.Id + 'set to Completed');
+                    logger.success('Session set to Completed');
                 });
             });
         }

@@ -31,7 +31,7 @@ namespace ewide.web.Controllers
                 return BadRequest("Program Not Found");
             }
 
-            EmailSender.SendEmail(program.Coachee.Email, "Email to the Coachee", emailDTO.EmailBodyText, null, currentUser.Email, String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName));
+            EmailSender.SendEmail(program.Coachee.Email, "right.now. - Message from your coach", emailDTO.EmailBodyText, null, currentUser.Email, String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName));
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -47,7 +47,7 @@ namespace ewide.web.Controllers
                 return BadRequest("Program Not Found");
             }
 
-            EmailSender.SendEmail(program.Coach.Email, "Email to the Coach", emailDTO.EmailBodyText, null, currentUser.Email, String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName));
+            EmailSender.SendEmail(program.Coach.Email, "right.now. - Message from your coachee", emailDTO.EmailBodyText, null, currentUser.Email, String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName));
             return StatusCode(HttpStatusCode.NoContent);
         }
 
