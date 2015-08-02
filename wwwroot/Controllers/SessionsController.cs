@@ -115,7 +115,7 @@ namespace ewide.web.Controllers
             var newRecord = AppDb.CoachingSessions
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
-                .FirstOrDefault();
+                .FirstOrDefault(i => i.Id == coachingSession.Id);
             var emailContent = ViewRenderer.RenderView("~/Views/Session Updated.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Session", newRecord },
@@ -144,7 +144,7 @@ namespace ewide.web.Controllers
             var newRecord = AppDb.CoachingSessions
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
-                .FirstOrDefault();
+                .FirstOrDefault(i => i.Id == coachingSession.Id);
             var emailContent = ViewRenderer.RenderView("~/Views/Session Created.cshtml", 
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Session", newRecord },
