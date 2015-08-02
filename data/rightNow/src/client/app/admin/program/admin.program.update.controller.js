@@ -39,7 +39,7 @@
                 plain: true
             }).then(function() {
                 dataservice.deleteProgram(vm.programId).then(function(data) {
-                    logger.success('Deleted Program ' + data.Id);
+                    logger.success('Program Deleted');
                     $state.go('admin');
                 });
             });
