@@ -67,9 +67,7 @@
             useExternalSorting: true,
             columnDefs: [
                 {field: 'Name', type: 'string'},
-                {field: 'UserName', type: 'string'},
-                {field: 'Password', type: 'string'},
-                {field: 'Link', type: 'string'},
+                {displayName: '', field: 'Link', cellTemplate: '<div class="ui-grid-cell-contents align-center"><a target="_blank" href="' + dataservice.apiurl + '/vidyo/Default.cshtml?roomId={{ row.entity.Id }}&access_token=' + vm.authData.token + '" class="grid-link">Join Room</a></div>', type: 'string'},
                 {displayName: '', field: 'Id', enableColumnMenu: false, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a ui-sref="adminRoomUpdate({roomId: {{COL_FIELD}}})" class="grid-link"><span class="icon icon-edit"></span>&nbsp;Edit</a></div>', type: 'number'}
             ],
             onRegisterApi: function(gridApi) {
