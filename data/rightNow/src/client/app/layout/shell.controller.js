@@ -27,7 +27,6 @@
             return $q.all(promises)
                 .then(function() {
                     vm.authData = authservice.authData;
-                    logger.success(config.appTitle + ' loaded!', null);
                     hideSplash();
                 }, function() {
                     hideSplash();
