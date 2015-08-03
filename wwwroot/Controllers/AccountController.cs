@@ -94,6 +94,30 @@ namespace ewide.web.Controllers
 
             AppUserManager.Update(currentUser);
 
+            if (!String.IsNullOrEmpty(item.Password))
+            {
+                using (var db = AppDb.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var result1 = AppUserManager.RemovePassword(currentUser.Id);
+                        if (!result1.Succeeded)
+                        {
+                            return GetErrorResult(result1);
+                        }
+                        var result2 = AppUserManager.AddPassword(currentUser.Id, item.Password);
+                        if (!result2.Succeeded)
+                        {
+                            return GetErrorResult(result2);
+                        }
+                        db.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        db.Rollback();
+                    }
+                }
+            }
             return StatusCode(HttpStatusCode.NoContent);
         }
 

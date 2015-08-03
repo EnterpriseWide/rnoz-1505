@@ -149,20 +149,30 @@ namespace ewide.web.Controllers
                 }
             }
 
-            if (!String.IsNullOrEmpty(applicationUser.Password))
+            using (var db = AppDb.Database.BeginTransaction())
             {
-                var result1 = AppUserManager.RemovePassword(user.Id);
-                if (!result1.Succeeded)
+                try
                 {
-                    return GetErrorResult(result1);
+                    if (!String.IsNullOrEmpty(applicationUser.Password))
+                    {
+                        var result1 = AppUserManager.RemovePassword(user.Id);
+                        if (!result1.Succeeded)
+                        {
+                            return GetErrorResult(result1);
+                        }
+                        var result2 = AppUserManager.AddPassword(user.Id, applicationUser.Password);
+                        if (!result2.Succeeded)
+                        {
+                            return GetErrorResult(result2);
+                        }
+                    }
+                    db.Commit();
                 }
-                var result2 = AppUserManager.AddPassword(user.Id, applicationUser.Password);
-                if (!result2.Succeeded)
+                catch (Exception)
                 {
-                    return GetErrorResult(result2);
+                    db.Rollback();
                 }
             }
-
             return StatusCode(HttpStatusCode.NoContent);
         }
 
