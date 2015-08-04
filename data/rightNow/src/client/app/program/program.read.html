@@ -126,13 +126,12 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="pull-left session-date">
-                                                <span class="icon icon-event icon-large"></span>
-                                                <h3>{{ session.StartedAt | date:'EEEE dd MMM yyyy' }}&nbsp;&nbsp;<span class="icon icon-schedule"></span>&nbsp;{{ session.StartedAt | date:'hh:mm a' }} - {{ vm.finishTime(session) | date:'hh:mm a' }}</h3>
+                                                <h3><span class="inline-block"><span class="icon icon-event"></span>&nbsp;{{ session.StartedAt | date:'EEEE dd MMM yyyy' }}&nbsp;&nbsp;</span><span class="inline-block"><span class="icon icon-schedule"></span>&nbsp;{{ session.StartedAt | date:'hh:mm a' }} - {{ vm.finishTime(session) | date:'hh:mm a' }}</span></h3>
                                             </div>
                                             <div class="pull-right" ng-show="session.IsClosed">
                                                 <h3><span class="icon icon-check-box"></span>&nbsp;Complete</h3>
                                             </div>
-                                            <div class="pull-right" ng-show="!session.IsClosed && session.showButton">
+                                            <div class="pull-right begin-session-button" ng-show="!session.IsClosed && session.showButton">
                                                 <a ng-show="vm.showMobileLink" class="btn btn-blue waves-button waves-effect waves-light" href="{{ session.Room.Link }}" target="_blank"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a>
                                                 <a ng-hide="vm.showMobileLink" class="btn btn-blue waves-button waves-effect waves-light" href="{{ vm.apiurl }}/vidyo/?sessionId={{ session.Id }}&amp;access_token={{ vm.authData.token }}" target="_blank"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a>
                                             </div>
@@ -144,9 +143,9 @@
                                          </div>
                                         <div class="col-sm-12 half-margin-top" ng-show="(vm.authData.isCoach || vm.authData.isAdmin) && !session.IsClosed">
                                             <span class="button-group">
-                                                <a ng-click="vm.cancelSession(session)" class=""><span class="icon icon-close"></span>&nbsp;Cancel</a>
-                                                <a ui-sref="programSessionUpdate({programId: vm.data.Id, sessionId: session.Id})" class=""><span class="icon icon-repeat"></span>&nbsp;Reschedule</a>
-                                                <a ng-click="vm.setAsComplete(session)" class=""><span class="icon icon-check"></span>&nbsp;Set as Complete</a>
+                                                <a ng-click="vm.cancelSession(session)" class="inline-block"><span class="icon icon-close"></span>&nbsp;Cancel</a>
+                                                <a ui-sref="programSessionUpdate({programId: vm.data.Id, sessionId: session.Id})" class="inline-block"><span class="icon icon-repeat"></span>&nbsp;Reschedule</a>
+                                                <a ng-click="vm.setAsComplete(session)" class="inline-block"><span class="icon icon-check"></span>&nbsp;Set as Complete</a>
                                             </span>
                                         </div>
                                     </div>
