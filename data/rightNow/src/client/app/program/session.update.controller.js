@@ -16,6 +16,8 @@
         vm.sessionId = $stateParams.sessionId;
         vm.durations = [30, 45, 60, 90];
         vm.finishTime = finishTime;
+        vm.sessions = [];
+        vm.selectDate = selectDate;
 
         activate();
 
@@ -27,6 +29,19 @@
         function getSession(id) {
             return dataservice.readSession(id).then(function (data) {
                 vm.data = data;
+                getSessions(data.StartedAt);
+            });
+        }
+
+        function selectDate() {
+            return dataservice.listSessionsByDate(vm.data.StartedAt.toISOString()).then(function (data) {
+                vm.sessions = data;
+            });
+        }
+
+        function getSessions(date) {
+            return dataservice.listSessionsByDate(date).then(function (data) {
+                vm.sessions.push.apply(vm.sessions, data);
             });
         }
 

@@ -17,6 +17,8 @@
         vm.setStartedAt = setStartedAt;
         vm.isStartedAtHidden = true;
         vm.finishTime = finishTime;
+        vm.sessions = [];
+        vm.selectDate = selectDate;
 
         activate();
 
@@ -24,6 +26,19 @@
             vm.data.Duration = 60;
             vm.data.StartedAt = moment().minute(0).add(1, 'h').toDate();
             vm.data.CoachingProgramId = vm.programId;
+            getSessions(vm.data.StartedAt.toISOString());
+        }
+
+        function selectDate() {
+            return dataservice.listSessionsByDate(vm.data.StartedAt.toISOString()).then(function (data) {
+                vm.sessions = data;
+            });
+        }
+
+        function getSessions(date) {
+            return dataservice.listSessionsByDate(date).then(function (data) {
+                vm.sessions.push.apply(vm.sessions, data);
+            });
         }
 
         function finishTime (session) {

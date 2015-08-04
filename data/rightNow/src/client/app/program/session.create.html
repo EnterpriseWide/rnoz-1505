@@ -16,11 +16,18 @@
                     <div class="card">
                         <div class="card-main">
                             <div class="card-inner">
-                                <div class="col-sm-12 margin-top margin-bottom clearfix">
+                                <div class="col-sm-12 col-md-6 margin-top margin-bottom clearfix">
                                      <form class="form-horizontal" role="form" name="form">
                                         <div ng-include="'app/program/session.form.html'"></div>
                                         <button class="pull-right btn btn-blue waves-button waves-effect waves-light" data-ng-click="vm.save()" ng-disabled="!form.$valid"><span class="icon icon-check"></span>&nbsp;Save</button>
                                      </form>
+                                </div>
+                                <div class="col-sm-12 col-md-6 margin-top margin-bottom clearfix">
+                                    <ul>
+                                        <li ng-repeat="session in vm.sessions">
+                                            {{ session.Room.Name }} - {{ session.StartedAt | date:'hh:mm a'}} - {{ vm.finishTime(session) | date:'hh:mm a' }} - {{ session.Duration }}
+                                        </li>
+                                    </ul>
                                 </div>
                              </div>
                         </div>

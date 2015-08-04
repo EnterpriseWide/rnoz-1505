@@ -137,7 +137,7 @@
                                                 <a ng-hide="vm.showMobileLink" class="btn btn-blue waves-button waves-effect waves-light" href="{{ vm.apiurl }}/vidyo/?sessionId={{ session.Id }}&amp;access_token={{ vm.authData.token }}" target="_blank"><span class="icon icon-video-collection"></span>&nbsp;Begin Session</a>
                                             </div>
                                         </div>
-                                         <div class="col-sm-12 half-margin-top" ng-show="(vm.authData.isCoach || vm.authData.isAdmin) &&session.IsClosed">
+                                        <div class="col-sm-12 half-margin-top" ng-show="(vm.authData.isCoach || vm.authData.isAdmin) &&session.IsClosed">
                                               <span class="button-group">
                                                 <a ui-sref="programSessionUpdate({programId: vm.data.Id, sessionId: session.Id})" class=""><span class="icon icon-edit"></span>&nbsp;Edit</a>
                                             </span>

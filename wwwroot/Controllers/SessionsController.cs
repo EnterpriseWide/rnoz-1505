@@ -19,6 +19,7 @@ namespace ewide.web.Controllers
     [RoutePrefix("api/sessions")]
     public class SessionsController : BaseApiController
     {
+        
         public IQueryable<CoachingSession> Get()
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
@@ -34,6 +35,18 @@ namespace ewide.web.Controllers
                 .Where(i => !i.IsClosed)
                 .Where(i => !i.CoachingProgram.IsClosed)
                 .OrderBy(i => i.StartedAt);
+            return sessions;
+        }
+
+        public IQueryable<CoachingSession> GetByDate(DateTime date)
+        {
+            var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
+            var start = date.Date;
+            var end = date.Date.AddDays(1);
+            var sessions = AppDb.CoachingSessions
+                .Include(i => i.Room)
+                .Where(i => i.StartedAt >= start)
+                .Where(i => i.StartedAt < end);
             return sessions;
         }
 
@@ -208,4 +221,5 @@ namespace ewide.web.Controllers
             return AppDb.CoachingSessions.Count(e => e.Id == id) > 0;
         }
     }
+
 }

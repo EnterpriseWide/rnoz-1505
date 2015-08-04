@@ -47,6 +47,7 @@
             deleteSession: deleteSession,
             listSessions: listSessions,
             listSessionsByProgram: listSessionsByProgram,
+            listSessionsByDate: listSessionsByDate,
 
             createSurvey: createSurvey,
             readSurvey: readSurvey,
@@ -642,6 +643,22 @@
             }
         }
 
+        function listSessionsByDate(date) {
+            return $http.get(service.apiurl + '/api/sessions/?date=' + date)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'query for sessions by date ' + date + ' failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
         function readLearningPlan(id) {
             return $http.get(service.apiurl + '/api/learningplan/' + id)
                 .then(success)
@@ -884,6 +901,20 @@
             return $http.get(service.apiurl + '/api/rooms/ForAdmin?pageNumber=' + data.pageNumber +
                 '&pageSize=' + data.pageSize +
                 '&sort=' + data.sort)
+                .then(success)
+                .catch(fail);
+            function success(response) {
+                return response.data;
+            }
+            function fail(error) {
+                var msg = 'query for rooms for Admin failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function listRoomsByDay(date) {
+            return $http.get(service.apiurl + '/api/rooms/?date=' + date)
                 .then(success)
                 .catch(fail);
             function success(response) {
