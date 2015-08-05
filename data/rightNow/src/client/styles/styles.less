@@ -112,6 +112,8 @@ h3 { font-size: 17px; margin-top: 28px; }
 /*.session-list-item .session-date { padding-left: 30px; position: relative; }
 .session-list-item .session-date .icon-event { position: absolute; top: 0; left: 0; }*/
 .inline-block { display: inline-block; }
+.edit-session { clear: both;}
+
 
 
 ::-webkit-input-placeholder {
@@ -170,7 +172,8 @@ label.wide { width: 100%; }
 .heading-col:nth-of-type(2) .card-heading { padding-top: 0;}
 .sm-no-float { float:none !important; clear: both; }
 .header-logo { float: right; }
-.begin-session-button { float:none !important; }
+.begin-session-button, .session-date { float:none !important; }
+.begin-session-button { margin-top: 7px; }
 }
 
 /* medium & above */
@@ -192,6 +195,8 @@ label.wide { width: 100%; }
 
 	.yourcoach-bg .card-heading .small { display: inline-block;  padding-left: 0px;  }
 	.container { padding: 0 32px; }
+
+  .session-date { width: 50%; }
 }
 
 
@@ -204,12 +209,17 @@ label.wide { width: 100%; }
 /* large & above */
 @media only screen and (min-width: 992px) {
 .LoginController body { background: url(/images/login-bg.jpg) no-repeat #fff; background-size: 70% auto; background-position:  bottom right; }
-	.container {
-		max-width: 1700px;
-	}
+  .container {
+    max-width: 1700px;
+  }
 
-	.list-items > .list-item:nth-of-type(2n+1) {  clear: none; }
-	.list-items > .list-item:nth-of-type(3n+1) {  clear: both; }
+  .list-items > .list-item:nth-of-type(2n+1) {  clear: none; }
+  .list-items > .list-item:nth-of-type(3n+1) {  clear: both; }
+}
+
+/* xlarge & above */
+@media only screen and (min-width: 1200px) {
+  .session-date { width: auto; }
 }
 
 /* bootstrap overrides */
