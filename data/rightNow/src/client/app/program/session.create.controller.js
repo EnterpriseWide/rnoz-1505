@@ -23,21 +23,23 @@
         activate();
 
         function activate() {
+            var date = moment().utc().add(1, 'h').startOf('hour');
+            vm.data.StartedAt = date.toISOString();
             vm.data.Duration = 60;
-            vm.data.StartedAt = moment().minute(0).add(1, 'h').toDate();
             vm.data.CoachingProgramId = vm.programId;
-            getSessions(vm.data.StartedAt.toISOString());
+            getSessions(date.toISOString());
         }
 
         function selectDate() {
-            return dataservice.listSessionsByDate(vm.data.StartedAt.toISOString()).then(function (data) {
+            var mydate = moment(vm.data.StartedAt);
+            return dataservice.listSessionsByDate(mydate.toISOString()).then(function (data) {
                 vm.sessions = data;
             });
         }
 
         function getSessions(date) {
             return dataservice.listSessionsByDate(date).then(function (data) {
-                vm.sessions.push.apply(vm.sessions, data);
+                vm.sessions = data;
             });
         }
 
@@ -47,9 +49,10 @@
         }
 
         function save() {
-            vm.data.CreatedAt = moment().toISOString();
-            vm.data.UpdatedAt = moment().toISOString();
+            vm.data.CreatedAt = moment().utc().toISOString();
+            vm.data.UpdatedAt = moment().utc().toISOString();
             vm.data.RoomId = 1;
+            vm.data.FinishedAt = moment().utc().add(vm.data.Duration, "minute").toISOString();
             dataservice.createSession(vm.data).then(function (data) {
                 logger.info('Session Created');
                 $state.go('program', {programId: vm.programId});

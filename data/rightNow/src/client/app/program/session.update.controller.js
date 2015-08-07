@@ -34,14 +34,15 @@
         }
 
         function selectDate() {
-            return dataservice.listSessionsByDate(vm.data.StartedAt.toISOString()).then(function (data) {
+            var mydate = moment(vm.data.StartedAt);
+            return dataservice.listSessionsByDate(mydate.toISOString()).then(function (data) {
                 vm.sessions = data;
             });
         }
 
         function getSessions(date) {
             return dataservice.listSessionsByDate(date).then(function (data) {
-                vm.sessions.push.apply(vm.sessions, data);
+                vm.sessions = data;
             });
         }
 
@@ -52,7 +53,7 @@
 
         function save() {
             dataservice.updateSession(vm.sessionId, vm.data).then(function (data) {
-                logger.info('Session ' + vm.sessionId + ' Updated`');
+                logger.info('Session Updated`');
                 $state.go('program', {programId: vm.programId});
             });
         }
