@@ -19,8 +19,7 @@
         vm.authData = authservice.authData;
         vm.screenconfig = {
             oztrainUrl: 'http://www.oztrain.com.au',
-            blurb: 'Right.Now. is an online coaching app... more descriptive text here, lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus ' +
-            '<a href="http://www.oztrain.com.au" target="_blank">Read More <span class="icon icon-chevron-right"></span></a>'
+            blurb: 'Welcome to <em>right.<strong>now</strong></em>, <em><strong>oz</strong>train’s</em> online coaching service. Please log in here if you are already registered with our coaching service. If you have a query about what <em>right.<strong>now</strong></em> can do for you, please <a href="http://www.oztrain.com.au/contact/" target="_blank">contact us on the <em><strong>oz</strong>train</em> website to make an enquiry <span class="icon icon-chevron-right"></span></a>'
         };
         vm.menu = menuservice.options;
 
