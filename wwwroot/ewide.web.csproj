@@ -291,6 +291,7 @@
     <Compile Include="Controllers\SendEmailController.cs" />
     <Compile Include="Controllers\SessionsController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
+    <Compile Include="Extensions\Filters.cs" />
     <Compile Include="MediaTypeFormatters\LearningPlanPDFMediaTypeFormatter.cs" />
     <Compile Include="Migrations\201505241140407_Add Assignment Tables.cs" />
     <Compile Include="Migrations\201505241140407_Add Assignment Tables.Designer.cs">
@@ -367,6 +368,10 @@
     <Compile Include="Migrations\201507282216080_Add IsClosed to and Remove Approvals from Session.cs" />
     <Compile Include="Migrations\201507282216080_Add IsClosed to and Remove Approvals from Session.Designer.cs">
       <DependentUpon>201507282216080_Add IsClosed to and Remove Approvals from Session.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508052143573_Replace Duration with FinishedAt on Session.cs" />
+    <Compile Include="Migrations\201508052143573_Replace Duration with FinishedAt on Session.Designer.cs">
+      <DependentUpon>201508052143573_Replace Duration with FinishedAt on Session.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
@@ -648,6 +653,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507282216080_Add IsClosed to and Remove Approvals from Session.resx">
       <DependentUpon>201507282216080_Add IsClosed to and Remove Approvals from Session.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508052143573_Replace Duration with FinishedAt on Session.resx">
+      <DependentUpon>201508052143573_Replace Duration with FinishedAt on Session.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

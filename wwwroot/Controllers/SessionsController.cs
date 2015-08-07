@@ -1,11 +1,14 @@
-﻿using ewide.web.Models;
+﻿using ewide.web.Extensions;
+using ewide.web.Models;
 using ewide.web.Utils;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,7 +22,7 @@ namespace ewide.web.Controllers
     [RoutePrefix("api/sessions")]
     public class SessionsController : BaseApiController
     {
-        
+
         public IQueryable<CoachingSession> Get()
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
@@ -38,15 +41,13 @@ namespace ewide.web.Controllers
             return sessions;
         }
 
-        public IQueryable<CoachingSession> GetByDate(DateTime date)
+        public IEnumerable<CoachingSession> GetByDate(DateTime date)
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
-            var start = date.Date;
-            var end = date.Date.AddDays(1);
             var sessions = AppDb.CoachingSessions
                 .Include(i => i.Room)
-                .Where(i => i.StartedAt >= start)
-                .Where(i => i.StartedAt < end);
+                .OnDay(date)
+                .ToList();
             return sessions;
         }
 
@@ -105,7 +106,7 @@ namespace ewide.web.Controllers
             }
 
             coachingSession.StartedAt = dto.StartedAt;
-            coachingSession.Duration = dto.Duration;
+            coachingSession.FinishedAt = dto.FinishedAt;
             coachingSession.IsClosed = dto.IsClosed;
             coachingSession.UpdatedAt = DateTime.Now;
 
@@ -158,7 +159,7 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == coachingSession.Id);
-            var emailContent = ViewRenderer.RenderView("~/Views/Email/Session Created.cshtml", 
+            var emailContent = ViewRenderer.RenderView("~/Views/Email/Session Created.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Session", newRecord },
                 { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
@@ -187,7 +188,7 @@ namespace ewide.web.Controllers
             var newRecord = new CoachingSession
             {
                 StartedAt = coachingSession.StartedAt,
-                Duration = coachingSession.Duration,
+                FinishedAt = coachingSession.FinishedAt,
                 CoachingProgramId = coachingSession.CoachingProgramId,
                 CoachingProgram = new CoachingProgram
                 {
@@ -212,7 +213,7 @@ namespace ewide.web.Controllers
                 });
             EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Cancelled", emailContent);
             EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Cancelled", emailContent);
-            
+
             return Ok(coachingSession);
         }
 
