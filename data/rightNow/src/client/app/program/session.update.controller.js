@@ -15,29 +15,62 @@
         vm.programId = $stateParams.programId;
         vm.sessionId = $stateParams.sessionId;
         vm.durations = [30, 45, 60, 90];
-        vm.finishTime = finishTime;
         vm.sessions = [];
-        vm.selectDate = selectDate;
+        vm.rooms = [];
+        vm.onDateChanged = onDateChanged;
+        vm.onTimeChanged = onTimeChanged;
+        vm.onDurationChanged = onDurationChanged;
 
         activate();
 
         function activate() {
-            var promises = [getSession(vm.sessionId)];
+            var promises = [getSession(vm.sessionId), getRooms()];
             return $q.all(promises);
+        }
+
+        function getRooms(date) {
+            return dataservice.listRooms().then(function (data) {
+                vm.rooms = data;
+                vm.data.RoomId = data[0].Id;
+            });
         }
 
         function getSession(id) {
             return dataservice.readSession(id).then(function (data) {
                 vm.data = data;
+                var diff = moment(vm.data.FinishedAt).diff(vm.data.StartedAt, 'minute');
+                if (vm.durations.indexOf(diff))
+                {
+                    vm.data.Duration = diff;
+                }
                 getSessions(data.StartedAt);
             });
         }
 
-        function selectDate() {
-            var mydate = moment(vm.data.StartedAt);
-            return dataservice.listSessionsByDate(mydate.toISOString()).then(function (data) {
+        function save() {
+            dataservice.updateSession(vm.sessionId, vm.data).then(function (data) {
+                logger.info('Session Updated`');
+                $state.go('program', {programId: vm.programId});
+            });
+        }
+
+        function onDateChanged() {
+            updateFinishedAt(vm.data.Duration);
+            return dataservice.listSessionsByDate(moment(vm.data.StartedAt).toISOString()).then(function (data) {
                 vm.sessions = data;
             });
+        }
+
+        function onTimeChanged() {
+            updateFinishedAt(vm.data.Duration);
+        }
+
+        function onDurationChanged(newDuration) {
+            updateFinishedAt(newDuration);
+        }
+
+        function updateFinishedAt(newDuration) {
+            vm.data.FinishedAt = moment(vm.data.StartedAt).add(newDuration, 'minute').toISOString();
         }
 
         function getSessions(date) {
@@ -46,15 +79,10 @@
             });
         }
 
-        function finishTime (session) {
-            var finishedAt = moment(session.StartedAt);
-            return finishedAt.add(session.Duration, 'm').toDate();
-        }
-
-        function save() {
-            dataservice.updateSession(vm.sessionId, vm.data).then(function (data) {
-                logger.info('Session Updated`');
-                $state.go('program', {programId: vm.programId});
+        function getRooms(date) {
+            return dataservice.listRooms().then(function (data) {
+                vm.rooms = data;
+                vm.data.RoomId = data[0].Id;
             });
         }
 

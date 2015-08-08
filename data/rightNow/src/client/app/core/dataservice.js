@@ -77,6 +77,7 @@
             readRoom: readRoom,
             updateRoom: updateRoom,
             deleteRoom: deleteRoom,
+            listRooms: listRooms,
             listRoomsForAdmin: listRoomsForAdmin
 
         };
@@ -913,15 +914,15 @@
             }
         }
 
-        function listRoomsByDay(date) {
-            return $http.get(service.apiurl + '/api/rooms/?date=' + date)
+        function listRooms() {
+            return $http.get(service.apiurl + '/api/rooms')
                 .then(success)
                 .catch(fail);
             function success(response) {
                 return response.data;
             }
             function fail(error) {
-                var msg = 'query for rooms for Admin failed. ' + error.data.description;
+                var msg = 'query for rooms failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }

@@ -28,7 +28,7 @@
                                              <p>The virtual meeting room is <strong>unavailable</strong> at the following times:</p>
                                             <ul>
                                                 <li ng-repeat="session in vm.sessions">
-                                                    {{ session.Room.Name }} - {{ session.StartedAt | date:'hh:mm a'}} - {{ vm.finishTime(session) | date:'hh:mm a' }}<!-- - {{ session.Duration }}-->
+                                                    {{ session.Room.Name }} - {{ session.StartedAt | date:'hh:mm a'}} - {{ session.FinishedAt | date:'hh:mm a' }}
                                                 </li>
                                             </ul>
                                         </div>
