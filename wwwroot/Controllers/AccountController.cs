@@ -52,6 +52,8 @@ namespace ewide.web.Controllers
                 Position = currentUser.Position,
                 LinkedInProfile = currentUser.LinkedInProfile,
                 WorkExperience = currentUser.WorkExperience,
+                ABN = currentUser.ABN,
+                Address = currentUser.Address,
             };
             return Ok(user);
         }
@@ -91,6 +93,8 @@ namespace ewide.web.Controllers
             currentUser.Position = item.Position;
             currentUser.LinkedInProfile = item.LinkedInProfile;
             currentUser.WorkExperience = item.WorkExperience;
+            currentUser.ABN = item.ABN;
+            currentUser.Address = item.Address;
 
             AppUserManager.Update(currentUser);
 
