@@ -74,6 +74,12 @@
     </div>
     <h1 class="page-heading">Learning Plan</h1>
     <hr />
+    <p>Coach: @String.Format("{0} {1}", Model.CoachingProgram.Coach.FirstName, Model.CoachingProgram.Coach.LastName)</p>
+    <p>Coachee: @String.Format("{0} {1}", Model.CoachingProgram.Coachee.FirstName, Model.CoachingProgram.Coachee.LastName)</p>
+    <p>Created At: @Model.CoachingProgram.CreatedAt</p>
     @Html.Raw(Model.LearningPlan)
+    <p>
+        <img width="100" src="http://rightnow.muchmedia.com.au/images/logo-vertical.png" />
+    </p>
 </body>
 </html>

@@ -12,6 +12,7 @@ namespace ewide.web.Models
         public int Id { get; set; }
         public DateTime UpdatedAt { get; set; }
         public String LearningPlan { get; set; }
+        public CoachingProgram CoachingProgram { get; set; }
         public CoachingProgram GetCoachingProgram()
         {
             return new CoachingProgram

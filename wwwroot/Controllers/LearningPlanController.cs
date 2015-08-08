@@ -45,7 +45,7 @@ namespace ewide.web.Controllers
         public HttpResponseMessage DownloadPDF(int id)
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
-            var program = AppDb.CoachingPrograms
+            var program = GetCoachingPrograms(currentUser)
                 .FirstOrDefault(i => i.Id == id);
             Request.Headers.Accept.Clear();
             Request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
@@ -55,6 +55,7 @@ namespace ewide.web.Controllers
                     Id = program.Id,
                     LearningPlan = program.LearningPlan,
                     UpdatedAt = program.UpdatedAt,
+                    CoachingProgram = program,
                 });
         }
 
@@ -109,11 +110,12 @@ namespace ewide.web.Controllers
             var program = GetCoachingPrograms(currentUser)
                 .FirstOrDefault(i => i.Id == id);
             var lp = new LearningPlanDTO
-                {
-                    Id = program.Id,
-                    LearningPlan = program.LearningPlan,
-                    UpdatedAt = program.UpdatedAt,
-                };
+            {
+                Id = program.Id,
+                LearningPlan = program.LearningPlan,
+                UpdatedAt = program.UpdatedAt,
+                CoachingProgram = program,
+            };
 
             var emailHtml = ViewRenderer.RenderView("~/Views/Email/Send Learning Plan as PDF.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
