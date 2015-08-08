@@ -13,17 +13,21 @@ using System.Web.Http.Description;
 
 namespace ewide.web.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [RoutePrefix("api/rooms")]
     public class RoomsController : BaseApiController
     {
-        // GET: api/Room
-        public IQueryable<Room> GetRooms()
+        public IEnumerable<RoomDto> GetRooms()
         {
-            return AppDb.Room;
+            return AppDb.Room
+                .Select(i => new RoomDto
+                {
+                    Id = i.Id,
+                    Name = i.Name,
+                });
         }
 
-        // GET: api/Room/5
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(GetRoomResponse))]
         public async Task<IHttpActionResult> GetRoom(int id)
         {
@@ -41,7 +45,7 @@ namespace ewide.web.Controllers
             return Ok(response);
         }
 
-        // PUT: api/Room/5
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutRoom(int id, Room room)
         {
@@ -76,7 +80,7 @@ namespace ewide.web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Room
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(Room))]
         public async Task<IHttpActionResult> PostRoom(Room room)
         {
@@ -91,7 +95,7 @@ namespace ewide.web.Controllers
             return CreatedAtRoute("DefaultApi", new { id = room.Id }, room);
         }
 
-        // DELETE: api/Room/5
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(Room))]
         public async Task<IHttpActionResult> DeleteRoom(int id)
         {
@@ -112,6 +116,7 @@ namespace ewide.web.Controllers
             return AppDb.Room.Count(e => e.Id == id) > 0;
         }
 
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(GetRoomsForAdminResponse))]
         [Route("ForAdmin")]
         public IHttpActionResult GetRoomsForAdmin(int pageNumber = 1, int pageSize = 25, String sort = "CreatedAt desc")
@@ -140,7 +145,13 @@ namespace ewide.web.Controllers
                 Items = rooms.ToList(),
             });
         }
-    
+
+    }
+
+    public class RoomDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 
     public class GetRoomResponse

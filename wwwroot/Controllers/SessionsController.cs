@@ -152,8 +152,49 @@ namespace ewide.web.Controllers
                 return BadRequest(ModelState);
             }
 
-            AppDb.CoachingSessions.Add(coachingSession);
-            await AppDb.SaveChangesAsync();
+            using (var db = AppDb.Database.BeginTransaction())
+            {
+                try
+                {
+                    var start = coachingSession.StartedAt;
+                    var end = coachingSession.FinishedAt;
+                    // check if the coach is double booked
+                    //var dbCoach = AppDb.CoachingSessions
+                    //    .Where(i => i.CoachingProgram.Coach.Id == coachingSession.CoachingProgram.CoachId)
+                    //    .Where(i => (i.StartedAt >= start && i.StartedAt < end) || (i.FinishedAt > start && i.FinishedAt <= end))
+                    //    .ToList();
+                    //if (dbCoach.Count() > 0)
+                    //{
+                    //    throw new Exception("Coach cannot be double booked");
+                    //}
+
+                    // check if the coachee is double booked
+                    //var dbCoachee = AppDb.CoachingSessions
+                    //    .Where(i => i.CoachingProgram.Coachee.Id == coachingSession.CoachingProgram.CoacheeId)
+                    //    .OnAtSameTime(coachingSession.StartedAt, coachingSession.FinishedAt);
+                    //if (dbCoach.Count() > 0)
+                    //{
+                    //    throw new Exception("Coachee cannot be double booked");
+                    //}
+
+                    //// check if the room is double booked
+                    //var dbRoom = AppDb.CoachingSessions
+                    //    .Where(i => i.Room.Id == coachingSession.RoomId)
+                    //    .OnAtSameTime(coachingSession.StartedAt, coachingSession.FinishedAt);
+                    //if (dbCoach.Count() > 0)
+                    //{
+                    //    throw new Exception("Room cannot be double booked");
+                    //}
+
+                    AppDb.CoachingSessions.Add(coachingSession);
+                    await AppDb.SaveChangesAsync();
+                    db.Commit();
+                }
+                catch (Exception)
+                {
+                    db.Rollback();
+                }
+            }
 
             var newRecord = AppDb.CoachingSessions
                 .Include(i => i.CoachingProgram.Coach)
@@ -184,35 +225,19 @@ namespace ewide.web.Controllers
             {
                 return NotFound();
             }
-
-            var newRecord = new CoachingSession
-            {
-                StartedAt = coachingSession.StartedAt,
-                FinishedAt = coachingSession.FinishedAt,
-                CoachingProgramId = coachingSession.CoachingProgramId,
-                CoachingProgram = new CoachingProgram
-                {
-                    Coach = new ApplicationUser
-                    {
-                        Email = coachingSession.CoachingProgram.Coach.Email
-                    },
-                    Coachee = new ApplicationUser
-                    {
-                        Email = coachingSession.CoachingProgram.Coachee.Email
-                    }
-                }
-            };
+            var emailContent = ViewRenderer.RenderView("~/Views/Email/Session Deleted.cshtml",
+                new System.Web.Mvc.ViewDataDictionary { 
+            { "Session", coachingSession },
+            { "Url", String.Format("{0}/program/{1}/", Request.RequestUri.Authority, coachingSession.CoachingProgramId) },
+            });
+            var coachEmail = coachingSession.CoachingProgram.Coach.Email;
+            var coacheeEmail = coachingSession.CoachingProgram.Coachee.Email;
 
             AppDb.CoachingSessions.Remove(coachingSession);
             await AppDb.SaveChangesAsync();
 
-            var emailContent = ViewRenderer.RenderView("~/Views/Email/Session Deleted.cshtml",
-                new System.Web.Mvc.ViewDataDictionary { 
-                { "Session", newRecord },
-                { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
-                });
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Cancelled", emailContent);
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Cancelled", emailContent);
+            EmailSender.SendEmail(coachEmail, "right.now. Video Coaching Session Cancelled", emailContent);
+            EmailSender.SendEmail(coacheeEmail, "right.now. Video Coaching Session Cancelled", emailContent);
 
             return Ok(coachingSession);
         }
