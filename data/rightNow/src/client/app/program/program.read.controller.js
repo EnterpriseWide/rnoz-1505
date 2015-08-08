@@ -34,7 +34,7 @@
         vm.beginSessionOnTimeout = beginSessionOnTimeout;
         vm.setTheTimeout = setTheTimeout;
         vm.buttonTimeout = {};
-        vm.showNativeLink = false;
+        vm.deviceDetector = deviceDetector;
 
         activate();
 

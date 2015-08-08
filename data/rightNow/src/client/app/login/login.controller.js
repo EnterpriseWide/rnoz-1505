@@ -33,7 +33,6 @@
 
         function redirect() {
             var authData = authservice.authData;
-
             if (!authData.isAuthenticated) {
                 $state.go('login');
             } else if (authData.isAdmin) {
