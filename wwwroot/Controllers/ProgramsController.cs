@@ -145,6 +145,11 @@ namespace ewide.web.Controllers
             coachingProgram.CoacheeId = dto.CoacheeId;
             coachingProgram.UpdatedAt = DateTime.Now;
 
+            if (dto.SurveyIds == null)
+            {
+                dto.SurveyIds = new List<int>();
+            }
+
             foreach (var survey in coachingProgram.CoachingProgramSurveys.ToList())
             {
                 if (!dto.SurveyIds.Any(i => i == survey.SurveyId))
