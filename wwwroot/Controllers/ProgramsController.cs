@@ -235,6 +235,9 @@ namespace ewide.web.Controllers
         {
             var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
             var coachingProgram = GetCoachingPrograms(currentUser)
+                .Include(i => i.CoachingSessions)
+                .Include(i => i.Coach)
+                .Include(i => i.Coachee)
                 .FirstOrDefault(i => i.Id == id);
             if (coachingProgram == null || coachingProgram.IsClosed || coachingProgram.InvoiceAmount > 0)
             {

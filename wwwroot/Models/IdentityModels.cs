@@ -24,6 +24,8 @@ namespace ewide.web.Models
         public string Position { get; set; }
         public string LinkedInProfile { get; set; }
         public string WorkExperience { get; set; }
+        public string ABN { get; set; }
+        public string Address { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

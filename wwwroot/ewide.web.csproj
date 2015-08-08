@@ -373,6 +373,10 @@
     <Compile Include="Migrations\201508052143573_Replace Duration with FinishedAt on Session.Designer.cs">
       <DependentUpon>201508052143573_Replace Duration with FinishedAt on Session.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508080501074_Add ABN and Address Fields to User.cs" />
+    <Compile Include="Migrations\201508080501074_Add ABN and Address Fields to User.Designer.cs">
+      <DependentUpon>201508080501074_Add ABN and Address Fields to User.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\CoachingProgramSurvey.cs" />
@@ -656,6 +660,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508052143573_Replace Duration with FinishedAt on Session.resx">
       <DependentUpon>201508052143573_Replace Duration with FinishedAt on Session.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508080501074_Add ABN and Address Fields to User.resx">
+      <DependentUpon>201508080501074_Add ABN and Address Fields to User.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
