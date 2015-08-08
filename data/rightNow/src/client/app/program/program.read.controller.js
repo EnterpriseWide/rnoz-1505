@@ -29,7 +29,6 @@
             bodyTextSessionIntroCoach: '<p>This is a list of video coaching sessions that you have scheduled with your coachee. When a session is due to start, a \'begin session\' button will appear next to the session in the list. Click this button to begin the session, and then <em>right.<strong>now.</strong></em> will connect you to the virtual meeting room to begin your coaching session.</p><p class="hide show-for-ios">Please install the <a href="https://itunes.apple.com/au/app/vidyomobile/id444062464" target="_blank">VidyoMobile iOS app</a> to participate in video coaching sessions on your mobile device.</p><p class="hide show-for-android">Please install the <a href="https://play.google.com/store/apps/details?id=com.vidyo.VidyoClient" target="_blank">VidyoMobile Android app</a> to participate in video coaching sessions on your mobile device.</p>'
         };
         vm.beginSession = beginSession;
-        vm.finishTime = finishTime;
         vm.cancelSession = cancelSession;
         vm.setAsComplete = setAsComplete;
         vm.beginSessionOnTimeout = beginSessionOnTimeout;
@@ -62,7 +61,7 @@
         function beginSessionOnTimeout () {
             angular.forEach(vm.data.CoachingSessions, function (row) {
                 row.showButton = moment().isAfter(moment(row.StartedAt).subtract(5, 'm')) &&
-                    moment().isBefore(moment(row.StartedAt).add(row.Duration, 'm'));
+                    moment().isBefore(moment(row.FinishedAt));
             });
             vm.setTheTimeout($scope, vm.beginSessionOnTimeout, 2000);
         }
@@ -97,11 +96,6 @@
                     logger.success('Session set to Completed');
                 });
             });
-        }
-
-        function finishTime (session) {
-            var finishedAt = moment(session.StartedAt);
-            return finishedAt.add(session.Duration, 'm').toDate();
         }
 
         function beginSession() {

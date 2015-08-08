@@ -126,7 +126,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="pull-left session-date">
-                                                <h3><span class="inline-block"><span class="icon icon-event"></span>&nbsp;{{ session.StartedAt | date:'EEEE dd MMM yyyy' }}&nbsp;&nbsp;</span><span class="inline-block"><span class="icon icon-schedule"></span>&nbsp;{{ session.StartedAt | date:'hh:mm a' }} - {{ vm.finishTime(session) | date:'hh:mm a' }}</span></h3>
+                                                <h3><span class="inline-block"><span class="icon icon-event"></span>&nbsp;{{ session.StartedAt | date:'EEEE dd MMM yyyy' }}&nbsp;&nbsp;</span><span class="inline-block"><span class="icon icon-schedule"></span>&nbsp;{{ session.StartedAt | date:'hh:mm a' }} - {{ session.FinishedAt | date:'hh:mm a' }}</span></h3>
                                             </div>
                                             <div class="pull-right" ng-show="session.IsClosed">
                                                 <h3><span class="icon icon-check-box"></span>&nbsp;Complete</h3>
