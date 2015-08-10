@@ -21,6 +21,7 @@ using System.Web.Http.Description;
 using System.Data.Entity.Infrastructure;
 using System.Net;
 using ewide.web.Utils;
+using System.ComponentModel.DataAnnotations;
 
 namespace ewide.web.Controllers
 {
@@ -61,7 +62,6 @@ namespace ewide.web.Controllers
 
         // PUT: api/Assignments/5
         [ResponseType(typeof(void))]
-        [Authorize]
         [Route("userinfo")]
         public IHttpActionResult PutUserInfo(UserInfoViewModel item)
         {
@@ -146,11 +146,33 @@ namespace ewide.web.Controllers
                     return Ok("Please check your email to reset your password");
                 }
                 string code = await AppUserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = String.Format("{0}/#/reset-password/{1}/{2}/", Request.RequestUri.Authority, user.Id, code);
+                var callbackUrl = String.Format("{0}/#/login/ResetPassword?email={1}&token={2}", Request.RequestUri.Authority, email, code);
                 EmailSender.SendEmail(user.UserName, "right.now. - Reset your Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 return Ok("Please check your email to reset your password");
             }
             return Ok("Please check your email to reset your password");
+        }
+
+        [Route("ForgotPassword")]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var user = await AppUserManager.FindByNameAsync(model.Email);
+            if (user == null)
+            {
+                // Don't reveal that the user does not exist
+                return Ok();
+            }
+            var result = await AppUserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+            return GetErrorResult(result);
         }
 
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
@@ -530,4 +552,26 @@ namespace ewide.web.Controllers
 
         #endregion
     }
+
+    public class ResetPasswordViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        public string Code { get; set; }
+    }
+
 }

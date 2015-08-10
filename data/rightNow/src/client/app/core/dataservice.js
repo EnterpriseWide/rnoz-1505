@@ -15,6 +15,7 @@
 
             login: login,
             logout: logout,
+            forgotPassword: forgotPassword,
 
             readUserInfo: readUserInfo,
             updateUserInfo: updateUserInfo,

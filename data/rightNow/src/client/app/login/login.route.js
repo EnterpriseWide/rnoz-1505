@@ -18,11 +18,19 @@
                     templateUrl: 'app/login/login.html',
                     controller: 'LoginController',
                     controllerAs: 'vm',
-                    title: 'Login',
-                    settings: {
-                    }
+                    title: 'Login'
+                }
+            }, {
+                state: 'loginPasswordReset',
+                config: {
+                    url: '/login/resetpassword/:email?token',
+                    templateUrl: 'app/login/passwordreset.html',
+                    controller: 'LoginPasswordResetController',
+                    controllerAs: 'vm',
+                    title: 'Login'
                 }
             }
+
         ];
     }
 })();
