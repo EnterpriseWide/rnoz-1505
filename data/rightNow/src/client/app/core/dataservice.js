@@ -111,6 +111,22 @@
             return deferred.promise;
         }
 
+        function forgotPassword(email) {
+            return $http.post(service.apiurl + '/api/account/ForgotPassword?email=' + email)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(error) {
+                var msg = 'forgot Password failed to send. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
         function readUserInfo() {
             var deferred = $q.defer();
             $http.get(service.apiurl + '/api/account/userinfo')

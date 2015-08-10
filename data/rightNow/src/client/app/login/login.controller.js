@@ -4,8 +4,8 @@
     angular
         .module('app.login')
         .controller('LoginController', LoginController);
-    LoginController.$inject = ['authservice', '$location', 'logger', '$state', 'dataservice', 'menuservice'];
-    function LoginController(authservice, $location, logger, $state, dataservice, menuservice) {
+    LoginController.$inject = ['authservice', '$location', 'logger', '$state', 'dataservice', 'menuservice', 'ngDialog'];
+    function LoginController(authservice, $location, logger, $state, dataservice, menuservice, ngDialog) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'Login';
@@ -15,13 +15,13 @@
         };
         vm.message = '';
         vm.loginUser = loginUser;
-        vm.loginAUser = loginAUser;
         vm.authData = authservice.authData;
         vm.screenconfig = {
             oztrainUrl: 'http://www.oztrain.com.au',
             blurb: 'Welcome to <em>right.<strong>now</strong></em>, <em><strong>oz</strong>train’s</em> online coaching service. Please log in here if you are already registered with our coaching service. If you have a query about what <em>right.<strong>now</strong></em> can do for you, please <a href="http://www.oztrain.com.au/contact/" target="_blank">contact us on the <em><strong>oz</strong>train</em> website to make an enquiry <span class="icon icon-chevron-right"></span></a>'
         };
         vm.menu = menuservice.options;
+        vm.openForgotPassword = openForgotPassword;
 
         activate();
 
@@ -62,11 +62,27 @@
                 });
         }
 
-        function loginAUser(auser) {
-            vm.menu.programId = 0;
-            vm.loginData.userName = auser + '@ewide.biz';
-            vm.loginData.password = 'Abcd!234';
-            vm.loginUser();
+        var forgotPasswordOptions = {
+            template: 'app/login/forgotPassword.html'
+        };
+
+        function forgotPassword(email) {
+            if (email) {
+                dataservice.forgotPassword(email).then(function (data) {
+                    logger.success(data);
+                    console.log(data);
+                    vm.email = email;
+                });
+            } else {
+                ngDialog.openConfirm(forgotPasswordOptions)
+                    .then(openForgotPassword);
+            }
         }
+
+        function openForgotPassword(ev) {
+            ngDialog.openConfirm(forgotPasswordOptions)
+                .then(forgotPassword);
+        }
+
     }
 })();

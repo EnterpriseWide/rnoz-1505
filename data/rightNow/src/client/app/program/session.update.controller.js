@@ -79,12 +79,5 @@
             });
         }
 
-        function getRooms(date) {
-            return dataservice.listRooms().then(function (data) {
-                vm.rooms = data;
-                vm.data.RoomId = data[0].Id;
-            });
-        }
-
     }
 })();

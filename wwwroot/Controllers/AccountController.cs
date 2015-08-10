@@ -20,6 +20,7 @@ using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using System.Data.Entity.Infrastructure;
 using System.Net;
+using ewide.web.Utils;
 
 namespace ewide.web.Controllers
 {
@@ -133,6 +134,25 @@ namespace ewide.web.Controllers
             return Ok();
         }
 
+        [Route("ForgotPassword")]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> PostForgotPassword(string email)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await AppUserManager.FindByNameAsync(email);
+                if (user == null || !(await AppUserManager.IsEmailConfirmedAsync(user.Id)))
+                {
+                    return Ok("Please check your email to reset your password");
+                }
+                string code = await AppUserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = String.Format("{0}/#/reset-password/{1}/{2}/", Request.RequestUri.Authority, user.Id, code);
+                EmailSender.SendEmail(user.UserName, "right.now. - Reset your Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return Ok("Please check your email to reset your password");
+            }
+            return Ok("Please check your email to reset your password");
+        }
+
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
         [Route("ManageInfo")]
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
@@ -184,7 +204,7 @@ namespace ewide.web.Controllers
 
             IdentityResult result = await AppUserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -317,9 +337,9 @@ namespace ewide.web.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(AppUserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(AppUserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(AppUserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -427,7 +447,7 @@ namespace ewide.web.Controllers
             result = await AppUserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }
