@@ -46,7 +46,7 @@
                 vm.apiurl = dataservice.apiurl;
                 vm.authData = authservice.authData;
                 vm.beginSessionOnTimeout();
-                vm.showMobileLink = deviceDetector.os == 'ios' || deviceDetector.os == 'android';
+                vm.showMobileLink = deviceDetector.os === 'ios' || deviceDetector.os === 'android';
             }
         }
 
