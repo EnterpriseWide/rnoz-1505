@@ -26,6 +26,7 @@ namespace ewide.web.Models
         public string WorkExperience { get; set; }
         public string ABN { get; set; }
         public string Address { get; set; }
+        public string Timezone { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

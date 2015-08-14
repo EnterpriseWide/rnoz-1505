@@ -12,6 +12,7 @@
         var authData = {
             token: '',
             isAuthenticated: false,
+            isLoaded: false,
             isAdmin: false,
             isCoach: false,
             userName: '',

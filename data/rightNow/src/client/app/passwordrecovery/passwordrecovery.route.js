@@ -12,13 +12,13 @@
     function getStates() {
         return [
             {
-                state: 'login',
+                state: 'passwordrecovery',
                 config: {
-                    url: '/login',
-                    templateUrl: 'app/login/login.html',
-                    controller: 'LoginController',
+                    url: '/passwordrecovery/?email&token',
+                    templateUrl: 'app/passwordrecovery/passwordrecovery.html',
+                    controller: 'PasswordRecoveryController',
                     controllerAs: 'vm',
-                    title: 'Login'
+                    title: 'Password Recovery'
                 }
             }
         ];

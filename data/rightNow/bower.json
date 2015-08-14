@@ -42,6 +42,7 @@
     "angular-pretty-checkable": "~0.1.7",
     "angular-moment": "~0.10.2",
     "ng-device-detector": "~1.1.7",
-    "bootstrap-css-only": "~3.3.4"
+    "bootstrap-css-only": "~3.3.4",
+    "angular-timezone-selector": "~1.1.0"
   }
 }

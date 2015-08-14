@@ -5,8 +5,8 @@
     angular
         .module('app.core')
         .factory('dataservice', dataservice);
-    dataservice.$inject = ['$http', '$q', 'logger'];
-    function dataservice($http, $q, logger) {
+    dataservice.$inject = ['$http', '$q', 'logger', '$rootScope'];
+    function dataservice($http, $q, logger, $rootScope) {
         var service = {
             apiurl: '', // prod
             // apiurl: 'http://rightnow.muchmedia.com.au', // staging
@@ -139,7 +139,9 @@
             }
             function fail(error) {
                 var msg = 'query for userinfo failed. ' + error.data.description;
-                logger.error(msg);
+                if (!$rootScope.showSplash) {
+                    logger.error(msg);
+                }
                 deferred.reject(msg);
             }
         }

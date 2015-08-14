@@ -56,6 +56,7 @@ namespace ewide.web.Controllers
                         LastName = i.LastName,
                         IsCoach = i.Roles.Any(j => j.RoleId == coachRole.Id),
                         Email = i.UserName,
+                        Timezone = i.Timezone,
                     })
                     .ToList(),
             }); 
@@ -73,6 +74,7 @@ namespace ewide.web.Controllers
                     LastName = i.LastName,
                     IsCoach = i.Roles.Any(j => j.RoleId == coachRole.Id),
                     Email = i.UserName,
+                    Timezone = i.Timezone,
                 })
                 .ToList();
             return users;
@@ -98,6 +100,7 @@ namespace ewide.web.Controllers
                     IsCoach = user.Roles.Any(j => j.RoleId == coachRole.Id),
                     Email = user.UserName,
                     RoleIds = user.Roles.Select(i => i.RoleId).ToList(),
+                    Timezone = user.Timezone,
                 },
             };
             response.UsageCount = AppDb.CoachingPrograms
@@ -131,6 +134,7 @@ namespace ewide.web.Controllers
             user.LastName = applicationUser.LastName;
             user.Email = applicationUser.Email;
             user.UserName = applicationUser.Email;
+            user.Timezone = applicationUser.Timezone;
             AppUserManager.Update(user);
 
             foreach (var role in user.Roles.ToList())
@@ -246,6 +250,7 @@ namespace ewide.web.Controllers
         [EmailAddress]
         public string Email { get; set; }
         public List<String> RoleIds { get; set; }
+        public string Timezone { get; set; }
     }
 
     public class GetUserForAdminResponse

@@ -37,6 +37,7 @@ namespace ewide.web.Models
         public string Password { get; set; }
         public string ABN { get; set; }
         public string Address { get; set; }
+        public string Timezone { get; set; }
     }
 
     public class UserLoginInfoViewModel

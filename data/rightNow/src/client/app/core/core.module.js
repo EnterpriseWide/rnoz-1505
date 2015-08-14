@@ -3,6 +3,7 @@
 
     angular
         .module('app.core', [
+            'angular-timezone-selector',
             'blocks.exception',
             'blocks.logger',
             'blocks.router',
