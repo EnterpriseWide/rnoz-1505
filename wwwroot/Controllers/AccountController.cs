@@ -57,6 +57,7 @@ namespace ewide.web.Controllers
                 ABN = currentUser.ABN,
                 Address = currentUser.Address,
                 Timezone = currentUser.Timezone,
+                CVLink = currentUser.CVLink,
             };
             return Ok(user);
         }
@@ -98,6 +99,7 @@ namespace ewide.web.Controllers
             currentUser.ABN = item.ABN;
             currentUser.Address = item.Address;
             currentUser.Timezone = item.Timezone;
+            currentUser.CVLink = item.CVLink;
 
             AppUserManager.Update(currentUser);
 

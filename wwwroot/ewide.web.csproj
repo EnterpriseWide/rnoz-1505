@@ -381,6 +381,10 @@
     <Compile Include="Migrations\201508141943064_Add Timezone to user.Designer.cs">
       <DependentUpon>201508141943064_Add Timezone to user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508150232024_Add CV Link Field to user.cs" />
+    <Compile Include="Migrations\201508150232024_Add CV Link Field to user.Designer.cs">
+      <DependentUpon>201508150232024_Add CV Link Field to user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\CoachingProgramSurvey.cs" />
@@ -670,6 +674,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508141943064_Add Timezone to user.resx">
       <DependentUpon>201508141943064_Add Timezone to user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508150232024_Add CV Link Field to user.resx">
+      <DependentUpon>201508150232024_Add CV Link Field to user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

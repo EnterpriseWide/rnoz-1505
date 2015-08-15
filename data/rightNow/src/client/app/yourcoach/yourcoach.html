@@ -85,7 +85,7 @@
                                     </div>
                                
                             </div>
-                            <div class="user-list-item" ng-show="!vm.authData.isCoach">
+                            <div class="user-list-item" ng-show="!vm.authData.isCoach && vm.data.Coach.CVLink">
                                 
                                     <div class="clearfix">
                                         <div class="pull-left tile-side">
@@ -94,7 +94,7 @@
                                             </div>
                                         </div>
                                         <div class="tile-inner">
-                                            <span><a href="#" class="" target="_blank">Download CV<span class="icon icon-chevron-right"></span></a></span>
+                                            <span><a href="{{ vm.data.Coach.CVLink }}" class="" target="_blank">Download CV<span class="icon icon-chevron-right"></span></a></span>
                                         </div>
                                     </div>
                                
