@@ -40,7 +40,7 @@
                                             </div>
                                         </div>
                                         <div class="tile-inner">
-                                            <span>{{ vm.data.Coachee.Phone }}</span>
+                                            <span><a href="tel:{{ vm.data.Coachee.Phone.split(' ').join('') }}">{{ vm.data.Coachee.Phone }}</a></span>
                                         </div>
                                     </div>
                                
