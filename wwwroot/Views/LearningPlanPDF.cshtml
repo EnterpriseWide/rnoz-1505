@@ -64,8 +64,42 @@
             clear: both;
             border-bottom: 1px solid #ddd;
             border-top: 0;
-            margin-bottom: 45px;
+            margin-bottom: 35px;
         }
+        .padding-bottom { padding-bottom: 30px; }
+
+        table { border-collapse: collapse; }
+        td { padding-right: 20px; vertical-align: top; color: #555 !important; }
+
+        
+        .footer {
+          text-align: right;
+          padding-top: 30px;
+        }
+
+        .footer a {
+          color: #9e9e9e;
+          
+          text-decoration: none;
+        }
+        .footer a:focus, .footer a:hover {
+          color: #aaa;
+          text-decoration: none;
+        }
+
+        .footer .logo {
+            max-width: 50px;
+            vertical-align: bottom;
+        }
+
+        .footer p {
+            font-size: 11px;
+            line-height: 18px;
+            font-style: italic;
+            margin: 10px 0;
+            color: #aaa;
+        }
+
     </style>
 </head>
 <body>
@@ -74,12 +108,26 @@
     </div>
     <h1 class="page-heading">Learning Plan</h1>
     <hr />
-    <p>Coach: @String.Format("{0} {1}", Model.CoachingProgram.Coach.FirstName, Model.CoachingProgram.Coach.LastName)</p>
-    <p>Coachee: @String.Format("{0} {1}", Model.CoachingProgram.Coachee.FirstName, Model.CoachingProgram.Coachee.LastName)</p>
-    <p>Created At: @Model.CoachingProgram.CreatedAt</p>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <td><p><strong>Coach</strong></p></td>
+            <td><p>@String.Format("{0} {1}", Model.CoachingProgram.Coach.FirstName, Model.CoachingProgram.Coach.LastName)</p></td>
+        </tr>
+        <tr>
+            <td><p><strong>Coachee</strong></p></td>
+            <td><p>@String.Format("{0} {1}", Model.CoachingProgram.Coachee.FirstName, Model.CoachingProgram.Coachee.LastName)</p></td>
+        </tr>
+        <tr>
+            <td><p class="padding-bottom"><strong>Created</strong></p></td>
+            <td><p>@Model.CoachingProgram.CreatedAt.ToString("dd/MM/yyyy h:mmtt")</p></td>
+        </tr>
+    </table>
+    <hr />
     @Html.Raw(Model.LearningPlan)
-    <p>
-        <img width="100" src="http://rightnow.muchmedia.com.au/images/logo-vertical.png" />
-    </p>
+
+    <div class="footer">
+        <hr />
+        <p><a href="http://www.oztrain.com.au" target="_blank">right.now. developed by&nbsp;<img class="logo" src="http://rightnow.muchmedia.com.au/images/oztrain-logo.png" /></a></p>
+    </div>
 </body>
 </html>

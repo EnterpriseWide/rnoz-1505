@@ -391,7 +391,7 @@
     ',
             inCallParticipantsTemplate: '\
     <li class="nav-header inCallParticipantHeader">\
-        <div id="inCallParticipantHeaderName" title="{{sessionDisplayText}}">{{sessionDisplayText}}</div>\
+        <!--<div id="inCallParticipantHeaderName" title="{{sessionDisplayText}}">{{sessionDisplayText}}</div>-->\
         <div class="btn-toolbar">\
             {{#if isChatEnabled}}\
                 <a href="#" role="button" class="btn btn-small" data-type="group_chat" title="Chat with everyone"><i class="icon-comment-alt"></i></a>\

@@ -4,7 +4,7 @@ body { color: #555; font-family: Roboto, "Helvetica Neue", Helvetica, Arial, san
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
-  margin: 0;
+  margin: 0 0 84px;
   padding: 0;
   -webkit-font-smoothing: subpixel-antialiased;}
 
@@ -7489,7 +7489,7 @@ input[type="checkbox"]:checked + .switch-toggle-yellow:after, input[type="radio"
 }
 
 .footer {
-  background-color: #fafafa;
+  background-color: #fff;
   border-top: 1px solid #e0e0e0;
   color: #9e9e9e;
   text-align: center;
@@ -7498,11 +7498,30 @@ input[type="checkbox"]:checked + .switch-toggle-yellow:after, input[type="radio"
   right: 0;
   left: 0;
 }
+
 .footer a {
   color: #9e9e9e;
 }
 .footer a:focus, .footer a:hover {
-  color: #212121;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.footer .logo {
+    max-width: 50px;
+    vertical-align: bottom;
+}
+
+.padding-right {
+    padding-right: 8px;
+}
+
+.footer p {
+    font-size: 11px;
+    line-height: 18px;
+    font-style: italic;
+    margin: 10px 0;
+    color: #aaa;
 }
 
 .header {
