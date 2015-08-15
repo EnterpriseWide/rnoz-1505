@@ -9,9 +9,9 @@
     function dataservice($http, $q, logger, $rootScope) {
         var service = {
             apiurl: '', // prod
-            // apiurl: 'http://rightnow.muchmedia.com.au', // staging
-            // apiurl: 'http://localhost:54141', // dev
-            // apiurl: 'http://rightnow.oztrain.local', // dev
+            // apiurl: '//rightnow.muchmedia.com.au', // staging
+            // apiurl: '//localhost:54141', // dev
+            // apiurl: '//rightnow.oztrain.local', // dev
 
             login: login,
             logout: logout,
