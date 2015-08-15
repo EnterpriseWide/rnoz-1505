@@ -119,8 +119,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-inner" ng-bind-html="vm.screenconfig.bodyTextSessionIntroCoachee" ng-show="!vm.authData.isCoach && !vm.authData.isAdmin"></div>
-                            <div class="card-inner" ng-bind-html="vm.screenconfig.bodyTextSessionIntroCoach" ng-show="vm.authData.isCoach || vm.authData.isAdmin"></div>
+                            <div class="card-inner">
+                                <div ng-bind-html="vm.screenconfig.bodyTextSessionIntroCoachee" ng-show="!vm.authData.isCoach && !vm.authData.isAdmin"></div>
+                                <div ng-bind-html="vm.screenconfig.bodyTextSessionIntroCoach" ng-show="vm.authData.isCoach || vm.authData.isAdmin"></div>
+                                <div ng-bind-html="vm.screenconfig.bodyTextSessionIntroIos" ng-show="vm.deviceDetector.os == 'ios'"></div>
+                                <div ng-bind-html="vm.screenconfig.bodyTextSessionIntroAndroid" ng-show="vm.deviceDetector.os == 'android'"></div>
+                            </div>
                             <div class="session-list-item" ng-repeat="session in vm.data.CoachingSessions" ng-hide="session.isDeleted">
                                 <div class="card-inner">
                                     <div class="row">
