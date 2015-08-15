@@ -14,6 +14,7 @@
         vm.save = save;
         vm.data = {};
         vm.authData = authservice.authData;
+        vm.userError = [];
 
         activate();
 
@@ -24,7 +25,9 @@
             if (!(vm.authData.isCoach || vm.authData.isAdmin)) {
                 dataservice.listPrograms().then(function (data) {
                     var program = data[0];
-                    vm.programId = program.Id;
+                    if (program) {
+                        vm.programId = program.Id;
+                    }
                 });
             }
         }
@@ -34,6 +37,8 @@
             dataservice.updateUserInfo(vm.data).then(function (data) {
                 authservice.fillData();
                 logger.success('Profile Updated');
+            }, function (error) {
+                vm.userError = error[''];
             });
         }
     }

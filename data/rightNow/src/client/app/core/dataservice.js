@@ -152,9 +152,9 @@
             $http.put(url, data).success(function (response) {
                 deferred.resolve(response);
             }).error(function (error, status) {
-                var msg = 'update for profile failed. ' + error.Message;
+                var msg = 'update for profile failed.';
                 logger.error(msg);
-                deferred.reject(error.Message);
+                deferred.reject(error.ModelState);
             });
             return deferred.promise;
         }

@@ -22,12 +22,17 @@
                                         <div ng-include="'app/profile/_form.html'"></div>
                                     </form>
                                 </div>
+                                <div ng-show="vm.userError.length > 0" class="col-sm-12 margin-top margin-bottom clearfix">
+                                    <ul class="pull-right half-margin-top form-error-message">
+                                        <li ng-repeat="error in vm.userError">{{error}}</li>
+                                    </ul>
+                                </div>
                                 <div class="col-sm-12 margin-bottom clearfix">
                                     <div class="pull-right">
                                         <button data-ng-click="vm.save()" class="btn btn-blue waves-button waves-effect waves-light"><span class="icon icon-check"></span>&nbsp;Save</button>
                                     </div>
                                 </div>
-                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
