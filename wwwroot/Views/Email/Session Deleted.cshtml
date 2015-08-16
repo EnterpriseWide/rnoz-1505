@@ -8,5 +8,5 @@
 <p>Date: @data.StartedAt.ToString("dddd dd/MM/yyyy")</p>
 <p>Time: @data.StartedAt.ToString("h:mmtt") - @data.FinishedAt.ToString("h:mmtt")</p>
 
-<p>Coach: @*@data.Coach.FirstName @data.Coach.LastName*@ </p>
-<p>Coachee: @*@data.Coachee.FirstName @data.Coachee.LastName*@</p>
+<p>Coach: @data.CoachingProgram.Coach.FirstName @data.CoachingProgram.Coach.LastName </p>
+<p>Coachee: @data.CoachingProgram.Coachee.FirstName @data.CoachingProgram.Coachee.LastName</p>
