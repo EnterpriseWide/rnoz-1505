@@ -89,7 +89,7 @@
                         authData.isCoach = authData.Roles.indexOf('Coach') >= 0;
                         deferred.resolve(authData);
                     }, function() {
-                        deferred.resolve();
+                        deferred.reject();
                         $state.go('login');
                     });
             } else {
