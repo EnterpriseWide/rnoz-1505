@@ -18,6 +18,7 @@
         vm.getUser = getUser;
         vm.roles = [];
         vm.userError = [];
+        vm.timezones = [];
 
         activate();
 
@@ -26,8 +27,14 @@
                 $state.go('404');
             }
             vm.userId = $stateParams.userId;
-            var promises = [getUser(vm.userId), getRoles()];
+            var promises = [getUser(vm.userId), getRoles(), listTimezones()];
             return $q.all(promises);
+        }
+
+        function listTimezones() {
+            return dataservice.listTimezones().then(function (data) {
+                vm.timezones = data;
+            });
         }
 
         function getUser(id) {

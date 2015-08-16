@@ -14,6 +14,7 @@
         vm.save = save;
         vm.roles = [];
         vm.userError = [];
+        vm.timezones = [];
 
         activate();
 
@@ -21,6 +22,14 @@
             if (!vm.authData.isAdmin) {
                 $state.go('404');
             }
+            var promises = [listTimezones()];
+            return $q.all(promises);
+        }
+
+        function listTimezones() {
+            return dataservice.listTimezones().then(function (data) {
+                vm.timezones = data;
+            });
         }
 
         function save() {

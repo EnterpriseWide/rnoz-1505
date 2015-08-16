@@ -3,7 +3,6 @@
 
     angular
         .module('app.core', [
-            'angular-timezone-selector',
             'blocks.exception',
             'blocks.logger',
             'blocks.router',
@@ -22,6 +21,7 @@
             'ui.bootstrap',
             'ui.grid',
             'ui.grid.pagination',
-            'ui.router'
+            'ui.router',
+            'ui.select'
         ]);
 })();

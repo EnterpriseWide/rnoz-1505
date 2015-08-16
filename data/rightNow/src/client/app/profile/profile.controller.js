@@ -4,8 +4,8 @@
     angular
         .module('app.profile')
         .controller('ProfileController', ProfileController);
-    ProfileController.$inject = ['logger', 'authservice', 'dataservice', 'config'];
-    function ProfileController(logger, authservice, dataservice, config) {
+    ProfileController.$inject = ['logger', 'authservice', 'dataservice', 'config', '$q'];
+    function ProfileController(logger, authservice, dataservice, config, $q) {
         var vm = this;
         vm.title = 'Your Profile';
         vm.screenconfig = {
@@ -15,6 +15,7 @@
         vm.data = {};
         vm.authData = authservice.authData;
         vm.userError = [];
+        vm.timezones = [];
 
         activate();
 
@@ -22,14 +23,26 @@
             authservice.fillData().then(function () {
                 angular.extend(vm.data, authservice.authData);
             });
+            var promises = [listTimezones()];
             if (!(vm.authData.isCoach || vm.authData.isAdmin)) {
-                dataservice.listPrograms().then(function (data) {
-                    var program = data[0];
-                    if (program) {
-                        vm.programId = program.Id;
-                    }
-                });
+                promises.push[listPrograms()];
             }
+            return $q.all(promises);
+        }
+        
+        function listPrograms() {
+            return dataservice.listPrograms().then(function (data) {
+                var program = data[0];
+                if (program) {
+                    vm.programId = program.Id;
+                }
+            });
+        }
+
+        function listTimezones() {
+            return dataservice.listTimezones().then(function (data) {
+                vm.timezones = data;
+            });
         }
 
         function save() {

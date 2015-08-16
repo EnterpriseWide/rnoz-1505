@@ -20,10 +20,16 @@
   </div>
 </div>
 <div class="form-group">
-  <label for="name" class="col-sm-2 control-label">Timezone</label>
+  <div class="col-sm-2">
+    <label for="timezone" class="wide control-label">Timezone</label>
+  </div>
   <div class="col-sm-10">
-    <timezone-selector ng-model="vm.data.Timezone">
-    <span class="half-margin-top form-error-message" ng-hide="form.timezone.$valid || form.timezone.$pristine">A Timezone is required</span>
+    <ui-select ng-model="vm.data.Timezone">
+      <ui-select-match>{{$select.selected.DisplayName}}</ui-select-match>
+      <ui-select-choices repeat="item.Id as item in vm.timezones | filter: $select.search">
+        <div ng-bind-html="item.DisplayName | highlight: $select.search"></div>
+      </ui-select-choices>
+    </ui-select>
   </div>
 </div>
 <div class="form-group">

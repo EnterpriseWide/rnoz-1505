@@ -79,8 +79,9 @@
             updateRoom: updateRoom,
             deleteRoom: deleteRoom,
             listRooms: listRooms,
-            listRoomsForAdmin: listRoomsForAdmin
+            listRoomsForAdmin: listRoomsForAdmin,
 
+            listTimezones: listTimezones
         };
 
         return service;
@@ -942,6 +943,20 @@
             }
             function fail(error) {
                 var msg = 'query for rooms failed. ' + error.data.description;
+                logger.error(msg);
+                return $q.reject(msg);
+            }
+        }
+
+        function listTimezones() {
+            return $http.get(service.apiurl + '/api/Timezones')
+                .then(success)
+                .catch(fail);
+            function success(response) {
+                return response.data;
+            }
+            function fail(error) {
+                var msg = 'query for Timezones failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }
