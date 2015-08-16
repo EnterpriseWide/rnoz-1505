@@ -125,10 +125,12 @@ namespace ewide.web.Controllers
             using (var fileStream = new MemoryStream())
             {
                 var coacheeName = String.Format("{0} {1}", currentUser.FirstName, currentUser.LastName);
-                var subject = String.Format("Learning Plan for {0}", coacheeName);
+                var subject = String.Format("right.now. Coaching Learning Plan for {0}", coacheeName);
 
                 var html = ViewRenderer.RenderView("~/Views/LearningPlanPDF.cshtml", lp);
                 var converter = new SelectPdf.HtmlToPdf();
+                converter.Options.MarginTop = 35;
+                converter.Options.MarginBottom = 35;
                 var doc = converter.ConvertHtmlString(html);
                 doc.Save(fileStream);
                 fileStream.Position = 0;

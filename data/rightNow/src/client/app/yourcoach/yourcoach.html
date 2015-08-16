@@ -29,7 +29,7 @@
                                     </div>
                                 
                             </div>
-                            <div class="user-list-item">
+                            <div class="user-list-item" ng-show="vm.data.Coach.Phone">
                                 
                                     <div class="clearfix">
                                         <div class="pull-left tile-side">
@@ -57,21 +57,7 @@
                                     </div>
                                
                             </div>
-                            <div class="user-list-item">
-                                
-                                    <div class="clearfix">
-                                        <div class="pull-left tile-side">
-                                            <div class="avatar avatar-blue avatar-sm">
-                                                <span class="icon icon-quick-contacts-mail"></span>
-                                            </div>
-                                        </div>
-                                        <div class="tile-inner">
-                                            <span>Position: {{ vm.data.Coach.Position }} </span>
-                                        </div>
-                                    </div>
-                               
-                            </div>
-                            <div class="user-list-item">
+                            <div class="user-list-item" ng-show="vm.data.Coach.Company">
                                 
                                     <div class="clearfix">
                                         <div class="pull-left tile-side">
@@ -81,6 +67,20 @@
                                         </div>
                                         <div class="tile-inner">
                                             <span>Company: {{ vm.data.Coach.Company }} </span>
+                                        </div>
+                                    </div>
+                               
+                            </div>
+                            <div class="user-list-item" ng-show="vm.data.Coach.Position">
+                                
+                                    <div class="clearfix">
+                                        <div class="pull-left tile-side">
+                                            <div class="avatar avatar-blue avatar-sm">
+                                                <span class="icon icon-quick-contacts-mail"></span>
+                                            </div>
+                                        </div>
+                                        <div class="tile-inner">
+                                            <span>Position: {{ vm.data.Coach.Position }} </span>
                                         </div>
                                     </div>
                                
@@ -99,7 +99,7 @@
                                     </div>
                                
                             </div>
-                            <div class="user-list-item">
+                            <div class="user-list-item" ng-show="vm.data.Coach.LinkedInProfile">
                                 
                                     <div class="clearfix">
                                         <div class="pull-left tile-side">

@@ -4,8 +4,11 @@
     var data = (ewide.web.Models.CoachingSession)Model["Session"];
     var url = (string)Model["Url"];
 }
-    <p>&nbsp;</p>
-    <p>A video coaching session has been updated for you with following details</p>
-    <p>Started At: @data.StartedAt</p>
-    <p>Finished At: @data.FinishedAt</p>
-    <p><a href="https://rightnow.oztrain.com.au">Open <em>right.<strong>now.</strong></em></a></p>
+    <p>A video coaching session has been updated for you with following details:</p>
+<p><strong>Date:</strong> @data.StartedAt.ToString("dddd dd/MM/yyyy")</p>
+<p><strong>Time:</strong> @data.StartedAt.ToString("h:mmtt") - @data.FinishedAt.ToString("h:mmtt")</p>
+
+<p><strong>Coach:</strong> @*@data.Coach.FirstName @data.Coach.LastName*@ </p>
+<p><strong>Coachee:</strong> @*@data.Coachee.FirstName @data.Coachee.LastName*@</p>
+
+<p>Please log into <a href="https://rightnow.oztrain.com.au"><em>right.<strong>now.</strong></em></a> when the session is due to start and click the 'Begin Session' button under 'Video Coaching Sessions'.</p>
