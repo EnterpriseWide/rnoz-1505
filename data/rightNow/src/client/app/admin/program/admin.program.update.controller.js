@@ -22,9 +22,6 @@
         activate();
 
         function activate() {
-            if (!vm.authData.isAdmin) {
-                $state.go('404');
-            }
             var promises = [getProgram(vm.programId), getUsers(), getSurveys()];
             return $q.all(promises);
         }

@@ -12,7 +12,7 @@
     function getStates() {
         return [
             {
-                state: 'passwordrecovery',
+                state: 'passwordRecovery',
                 config: {
                     url: '/passwordrecovery/?email&token',
                     templateUrl: 'app/passwordrecovery/passwordrecovery.html',

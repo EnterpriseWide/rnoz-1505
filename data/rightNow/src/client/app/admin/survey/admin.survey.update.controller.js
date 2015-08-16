@@ -18,9 +18,6 @@
         activate();
 
         function activate() {
-            if (!vm.authData.isAdmin) {
-                $state.go('404');
-            }
             vm.surveyId = $stateParams.surveyId;
             var promises = [getSurvey(vm.surveyId)];
             return $q.all(promises);
