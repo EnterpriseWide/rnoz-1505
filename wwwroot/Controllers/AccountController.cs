@@ -150,7 +150,7 @@ namespace ewide.web.Controllers
                     return Ok("Please check your email to reset your password");
                 }
                 string code = await AppUserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = String.Format("http://{0}/#/login/ResetPassword?email={1}&token={2}", Request.RequestUri.Authority, email, HttpUtility.UrlEncode(code));
+                var callbackUrl = String.Format("http://{0}/#/passwordrecovery/?email={1}&token={2}", Request.RequestUri.Authority, email, HttpUtility.UrlEncode(code));
                 EmailSender.SendEmail(user.UserName, "right.now. - Reset your Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 return Ok("Please check your email to reset your password");
             }

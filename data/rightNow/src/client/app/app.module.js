@@ -10,6 +10,7 @@
             'app.layout',
             'app.learningplan',
             'app.login',
+            'app.passwordrecovery',
             'app.profile',
             'app.program',
             'app.survey',

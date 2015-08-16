@@ -4,16 +4,15 @@
     angular
         .module('app.passwordrecovery')
         .controller('PasswordRecoveryController', PasswordRecoveryController);
-    PasswordRecoveryController.$inject = ['authservice', '$location', 'logger', '$state', 'dataservice', 'menuservice', 'ngDialog'];
-    function PasswordRecoveryController(authservice, $location, logger, $state, dataservice, menuservice, ngDialog) {
-        /* jshint validthis:true */
+    PasswordRecoveryController.$inject = ['$stateParams'];
+    function PasswordRecoveryController($stateParams) {
         var vm = this;
         vm.title = 'Login';
+        vm.data = {};
 
         activate();
 
         function activate() {
-            console.log('activated password recovery');
         }
 
     }
