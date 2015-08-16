@@ -3,10 +3,12 @@
     Layout = "~/Views/Email/EmailMaster.cshtml";
     var data = (ewide.web.Models.CoachingSession)Model["Session"];
     var url = (string)Model["Url"];
+    var startedAt = (DateTime)Model["StartedAt"];
+    var finishedAt = (DateTime)Model["FinishedAt"];
 }
     <p>The following video coaching session has been cancelled:</p>
-<p>Date: @data.StartedAt.ToString("dddd dd/MM/yyyy")</p>
-<p>Time: @data.StartedAt.ToString("h:mmtt") - @data.FinishedAt.ToString("h:mmtt")</p>
+<p>Date: @startedAt.ToString("dddd dd/MM/yyyy")</p>
+<p>Time: @startedAt.ToString("h:mmtt") - @finishedAt.ToString("h:mmtt")</p>
 
 <p>Coach: @data.CoachingProgram.Coach.FirstName @data.CoachingProgram.Coach.LastName </p>
 <p>Coachee: @data.CoachingProgram.Coachee.FirstName @data.CoachingProgram.Coachee.LastName</p>

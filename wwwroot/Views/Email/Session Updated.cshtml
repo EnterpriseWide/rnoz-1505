@@ -3,10 +3,12 @@
     Layout = "~/Views/Email/EmailMaster.cshtml";
     var data = (ewide.web.Models.CoachingSession)Model["Session"];
     var url = (string)Model["Url"];
+    var startedAt = (DateTime)Model["StartedAt"];
+    var finishedAt = (DateTime)Model["FinishedAt"];
 }
     <p>A video coaching session has been updated for you with following details:</p>
-<p><strong>Date:</strong> @data.StartedAt.ToString("dddd dd/MM/yyyy")</p>
-<p><strong>Time:</strong> @data.StartedAt.ToString("h:mmtt") - @data.FinishedAt.ToString("h:mmtt")</p>
+<p><strong>Date:</strong> @startedAt.ToString("dddd dd/MM/yyyy")</p>
+<p><strong>Time:</strong> @startedAt.ToString("h:mmtt") - @finishedAt.ToString("h:mmtt")</p>
 
 <p><strong>Coach:</strong> @data.CoachingProgram.Coach.FirstName @data.CoachingProgram.Coach.LastName </p>
 <p><strong>Coachee:</strong> @data.CoachingProgram.Coachee.FirstName @data.CoachingProgram.Coachee.LastName</p>

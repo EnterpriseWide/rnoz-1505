@@ -128,13 +128,22 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == coachingSession.Id);
-            var emailContent = ViewRenderer.RenderView("~/Views/Email/Session Updated.cshtml",
+            var emailContentCoach = ViewRenderer.RenderView("~/Views/Email/Session Updated.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Session", newRecord },
                 { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
+                { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coach.Timezone)) },
+                { "FinishedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.FinishedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coach.Timezone)) },
                 });
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Updated", emailContent);
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Updated", emailContent);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Updated", emailContentCoach);
+            var emailContentCoachee = ViewRenderer.RenderView("~/Views/Email/Session Updated.cshtml",
+                new System.Web.Mvc.ViewDataDictionary { 
+                { "Session", newRecord },
+                { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
+                { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coachee.Timezone)) },
+                { "FinishedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.FinishedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coachee.Timezone)) },
+                });
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Updated", emailContentCoachee);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -198,13 +207,22 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == coachingSession.Id);
-            var emailContent = ViewRenderer.RenderView("~/Views/Email/Session Created.cshtml",
+            var emailContentCoach = ViewRenderer.RenderView("~/Views/Email/Session Created.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Session", newRecord },
                 { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
+                { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coach.Timezone)) },
+                { "FinishedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.FinishedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coach.Timezone)) },
                 });
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Created", emailContent);
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Created", emailContent);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Created", emailContentCoach);
+            var emailContentCoachee = ViewRenderer.RenderView("~/Views/Email/Session Created.cshtml",
+                new System.Web.Mvc.ViewDataDictionary { 
+                { "Session", newRecord },
+                { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
+                { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coachee.Timezone)) },
+                { "FinishedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.FinishedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coachee.Timezone)) },
+                });
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Created", emailContentCoachee);
 
             return CreatedAtRoute("DefaultApi", new { id = coachingSession.Id }, coachingSession);
         }
@@ -223,19 +241,28 @@ namespace ewide.web.Controllers
             {
                 return NotFound();
             }
-            var emailContent = ViewRenderer.RenderView("~/Views/Email/Session Deleted.cshtml",
+            var emailContentCoach = ViewRenderer.RenderView("~/Views/Email/Session Deleted.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
-            { "Session", coachingSession },
-            { "Url", String.Format("{0}/program/{1}/", Request.RequestUri.Authority, coachingSession.CoachingProgramId) },
+                { "Session", coachingSession },
+                { "Url", String.Format("{0}/program/{1}/", Request.RequestUri.Authority, coachingSession.CoachingProgramId) },
+                { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(coachingSession.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(coachingSession.CoachingProgram.Coach.Timezone)) },
+                { "FinishedAt", TimeZoneInfo.ConvertTimeFromUtc(coachingSession.FinishedAt, TimeZoneInfo.FindSystemTimeZoneById(coachingSession.CoachingProgram.Coach.Timezone)) },
             });
             var coachEmail = coachingSession.CoachingProgram.Coach.Email;
+            var emailContentCoachee = ViewRenderer.RenderView("~/Views/Email/Session Deleted.cshtml",
+                new System.Web.Mvc.ViewDataDictionary { 
+                { "Session", coachingSession },
+                { "Url", String.Format("{0}/program/{1}/", Request.RequestUri.Authority, coachingSession.CoachingProgramId) },
+                { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(coachingSession.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(coachingSession.CoachingProgram.Coachee.Timezone)) },
+                { "FinishedAt", TimeZoneInfo.ConvertTimeFromUtc(coachingSession.FinishedAt, TimeZoneInfo.FindSystemTimeZoneById(coachingSession.CoachingProgram.Coachee.Timezone)) },
+            });
             var coacheeEmail = coachingSession.CoachingProgram.Coachee.Email;
 
             AppDb.CoachingSessions.Remove(coachingSession);
             await AppDb.SaveChangesAsync();
 
-            EmailSender.SendEmail(coachEmail, "right.now. Video Coaching Session Cancelled", emailContent);
-            EmailSender.SendEmail(coacheeEmail, "right.now. Video Coaching Session Cancelled", emailContent);
+            EmailSender.SendEmail(coachEmail, "right.now. Video Coaching Session Cancelled", emailContentCoach);
+            EmailSender.SendEmail(coacheeEmail, "right.now. Video Coaching Session Cancelled", emailContentCoachee);
 
             return Ok(coachingSession);
         }
