@@ -17,9 +17,6 @@
         activate();
 
         function activate() {
-            if (!vm.authData.isAdmin) {
-                $state.go('404');
-            }
         }
 
         function save() {

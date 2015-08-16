@@ -19,9 +19,6 @@
         activate();
 
         function activate() {
-            if (!vm.authData.isAdmin) {
-                $state.go('404');
-            }
             var promises = [listTimezones()];
             return $q.all(promises);
         }

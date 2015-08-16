@@ -23,9 +23,6 @@
         activate();
 
         function activate() {
-            if (!vm.authData.isAdmin) {
-                $state.go('404');
-            }
             vm.userId = $stateParams.userId;
             var promises = [getUser(vm.userId), getRoles(), listTimezones()];
             return $q.all(promises);

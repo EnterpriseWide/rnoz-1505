@@ -171,9 +171,6 @@
         activate();
 
         function activate() {
-            if (!vm.authData.isAdmin) {
-                $location.path('/404');
-            }
             vm.showMobileLink = deviceDetector.os.ios || deviceDetector.os.android;
             getPagePrograms();
             getPageRooms();

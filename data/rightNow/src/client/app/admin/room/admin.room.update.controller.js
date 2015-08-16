@@ -18,9 +18,6 @@
         activate();
 
         function activate() {
-            if (!vm.authData.isAdmin) {
-                $state.go('404');
-            }
             vm.roomId = $stateParams.roomId;
             var promises = [getRoom(vm.roomId)];
             return $q.all(promises);
