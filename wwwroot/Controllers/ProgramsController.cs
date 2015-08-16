@@ -260,7 +260,7 @@ namespace ewide.web.Controllers
             try
             {
                 AppDb.SaveChanges();
-                EmailSender.SendEmail(ConfigurationManager.AppSettings["AdminEmail"], "right.now. Coaching Invoice", html);
+                EmailSender.SendEmail(ConfigurationManager.AppSettings["AdminEmail"], "right.now. Coaching Invoice - " + coachingProgram.Coach.FirstName + " " + coachingProgram.Coach.LastName, html, null, coachingProgram.Coach.Email, coachingProgram.Coach.FirstName + " " + coachingProgram.Coach.LastName);
             }
             catch (DbUpdateConcurrencyException)
             {

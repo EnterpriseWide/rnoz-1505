@@ -31,6 +31,8 @@ namespace ewide.web.MediaTypeFormatters
                 }
                 var converter = new SelectPdf.HtmlToPdf();
                 var html = ViewRenderer.RenderView("~/Views/LearningPlanPDF.cshtml", lp);
+                converter.Options.MarginTop = 35;
+                converter.Options.MarginBottom = 35;
                 var doc = converter.ConvertHtmlString(html);
                 doc.Save(writeStream);
             }

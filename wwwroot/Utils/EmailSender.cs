@@ -14,10 +14,12 @@ namespace ewide.web.Utils
             if (!string.IsNullOrEmpty(from_name) && !string.IsNullOrEmpty(from))
             {
                 message.From = new MailAddress(from, from_name);
+                message.ReplyToList.Add(from);
             }
             else if (!string.IsNullOrEmpty(from))
             {
                 message.From = new MailAddress(from);
+                message.ReplyToList.Add(from);
             }
             message.To.Add(new MailAddress(to));
             message.Subject = subject;

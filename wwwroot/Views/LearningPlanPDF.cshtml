@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width" />
     <style>
         body {
-            padding: 50px;
+            padding: 0px 50px;
             font-family: Verdana, Arial;
             color: #555 !important;
             font-size: 14px;
@@ -50,6 +50,8 @@
             font-weight: normal;
         }
 
+        li { color: inherit !important; padding-bottom: 10px; }
+
         .logo {
             float: right;
             padding-right: 20px;
@@ -69,7 +71,8 @@
         .padding-bottom { padding-bottom: 30px; }
 
         table { border-collapse: collapse; }
-        td { padding-right: 20px; vertical-align: top; color: #555 !important; }
+        td { color: #555 !important; vertical-align: bottom; }
+        table.header td { padding-right: 20px; vertical-align: top;}
 
         
         .footer {
@@ -88,7 +91,7 @@
         }
 
         .footer .logo {
-            max-width: 50px;
+            width: 75px;
             vertical-align: bottom;
         }
 
@@ -99,16 +102,17 @@
             margin: 10px 0;
             color: #aaa;
         }
-
+        .credits .text { text-align:right; }
+        .credits .text p { padding: 0 0 2px; margin: 0; }
     </style>
 </head>
 <body>
     <div class="logo">
-        <img width="100" src="http://rightnow.muchmedia.com.au/images/logo-vertical.png" />
+        <img width="100" src="https://rightnow.oztrain.com.au/images/logo-vertical.png" />
     </div>
     <h1 class="page-heading">Learning Plan</h1>
     <hr />
-    <table cellpadding="0" cellspacing="0">
+    <table class="header" cellpadding="0" cellspacing="0">
         <tr>
             <td><p><strong>Coach</strong></p></td>
             <td><p>@String.Format("{0} {1}", Model.CoachingProgram.Coach.FirstName, Model.CoachingProgram.Coach.LastName)</p></td>
@@ -118,8 +122,8 @@
             <td><p>@String.Format("{0} {1}", Model.CoachingProgram.Coachee.FirstName, Model.CoachingProgram.Coachee.LastName)</p></td>
         </tr>
         <tr>
-            <td><p class="padding-bottom"><strong>Created</strong></p></td>
-            <td><p>@Model.CoachingProgram.CreatedAt.ToString("dd/MM/yyyy h:mmtt")</p></td>
+            <td><p class="padding-bottom"><strong>Date</strong></p></td>
+            <td><p>@DateTime.Now.ToString("dd/MM/yyyy h:mmtt")</p></td>
         </tr>
     </table>
     <hr />
@@ -127,7 +131,13 @@
 
     <div class="footer">
         <hr />
-        <p><a href="http://www.oztrain.com.au" target="_blank">right.now. developed by&nbsp;<img class="logo" src="http://rightnow.muchmedia.com.au/images/oztrain-logo.png" /></a></p>
+        <table class="credits" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="text" style=""><p><a href="http://www.oztrain.com.au" target="_blank">right.<strong>now.</strong> developed by&nbsp;</a></p></td>
+                <td width="75"><a href="http://www.oztrain.com.au" target="_blank"><img class="logo" src="https://rightnow.oztrain.com.au/images/oztrain-logo.png" /></a></td>
+            </tr>
+        </table>
+        
     </div>
 </body>
 </html>

@@ -3,21 +3,20 @@
     Layout = "~/Views/Email/EmailMaster.cshtml";
     var program = (ewide.web.Models.CoachingProgram)Model["Program"];
 }
-<p>&nbsp;</p>
-<p>Tax invoice for Program Id @program.Id in the amount of @string.Format("{0:C}", program.InvoiceAmount.ToString())</p>
 
-<p>Coachee: @String.Format("{0} {1}", program.Coachee.FirstName, program.Coachee.LastName)</p>
-<p>Coach: @String.Format("{0} {1}", program.Coach.FirstName, program.Coach.LastName)</p>
-<p>Coach ABN: @program.Coach.ABN</p>
-<p>Coach Address: @program.Coach.Address</p>
-<p>Invoice Date (Current Date and Time): @DateTime.Now</p>
+<p>Tax invoice for coaching program Id @program.Id in the amount of @string.Format("{0:C}", Convert.ToDecimal(program.InvoiceAmount.ToString()))</p>
+<p><strong>Invoice Date:</strong> @DateTime.Now</p>
+<p><strong>Coachee:</strong> @String.Format("{0} {1}", program.Coachee.FirstName, program.Coachee.LastName)</p>
+<p><strong>Coach:</strong> @String.Format("{0} {1}", program.Coach.FirstName, program.Coach.LastName)</p>
+<p><strong>Coach ABN:</strong> @program.Coach.ABN</p>
+<p><strong>Coach Address:</strong> @program.Coach.Address</p>
 @if (program.CoachingSessions.Any())
 {
-    <h3>Sessions</h3>
+    <h3>Video Coaching Sessions</h3>
     <ul>
         @foreach (var session in program.CoachingSessions)
         {
-            <li>@session.StartedAt</li>
+            <li>@session.StartedAt.ToString("dddd dd/MM/yyyy h:mmtt") - @session.FinishedAt.ToString("h:mmtt")</li>
         }
     </ul>
 }
