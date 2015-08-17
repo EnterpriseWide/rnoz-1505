@@ -75,8 +75,9 @@
             authData.isCoach = false;
         }
 
-        function fillData() {
+        function fillData(force) {
             var deferred = $q.defer();
+            if (force === true) clearAuthStorage();
             var data = localStorageService.get('authorizationData');
             if (data) {
                 authData.token = data.token;
