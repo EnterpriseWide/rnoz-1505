@@ -18,7 +18,10 @@
                     templateUrl: 'app/login/login.html',
                     controller: 'LoginController',
                     controllerAs: 'vm',
-                    title: 'Login'
+                    title: 'Login',
+                    data: {
+                        access: 'public'
+                    }
                 }
             }
         ];

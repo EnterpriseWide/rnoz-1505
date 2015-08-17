@@ -18,7 +18,10 @@
                     templateUrl: 'app/passwordrecovery/passwordrecovery.html',
                     controller: 'PasswordRecoveryController',
                     controllerAs: 'vm',
-                    title: 'Password Recovery'
+                    title: 'Password Recovery',
+                    data: {
+                        access: 'public'
+                    }
                 }
             }
         ];
