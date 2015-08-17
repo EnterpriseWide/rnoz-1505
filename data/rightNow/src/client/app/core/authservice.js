@@ -99,5 +99,18 @@
             }
             return deferred.promise;
         }
+
+        function isInRole(role) {
+            if (!authData.isAuthenticated || !authData.Roles) return false;
+            return authData.roles.indexOf(role) != -1;
+        }
+        
+        function isInAnyRole(roles) {
+            if (!authData.isAuthenticated || !authData.Roles) return false;
+            for (var i = 0; i < roles.length; i++) {
+                if (this.isInRole(roles[i])) return true;
+            }
+            return false;
+        }
     }
 })();
