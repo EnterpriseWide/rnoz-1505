@@ -9,10 +9,16 @@
         var vm = this;
         vm.title = 'Login';
         vm.data = {};
+        vm.resetPassword = resetPassword;
 
         activate();
 
         function activate() {
+            vm.data.token = $stateParams.token;
+            vm.data.email = $stateParams.email;
+        }
+        
+        function resetPassword() {
         }
 
     }

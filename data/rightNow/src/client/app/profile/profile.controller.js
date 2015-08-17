@@ -25,11 +25,13 @@
             });
             var promises = [listTimezones()];
             if (!(vm.authData.isCoach || vm.authData.isAdmin)) {
-                promises.push[listPrograms()];
+                promises = [listTimezones(), listPrograms()];
+            } else {
+                promises = [listTimezones()];
             }
             return $q.all(promises);
         }
-        
+
         function listPrograms() {
             return dataservice.listPrograms().then(function (data) {
                 var program = data[0];

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.login')
+        .module('app.passwordrecovery')
         .run(appRun);
     appRun.$inject = ['routerHelper'];
     function appRun(routerHelper) {
