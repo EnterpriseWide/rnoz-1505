@@ -45,7 +45,6 @@
                     $state.go('program', {programId:program.Id});
                 });
             }
-
         }
 
         function loginUser() {

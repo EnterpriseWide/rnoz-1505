@@ -6,7 +6,7 @@
         .run(appRun);
     appRun.$inject = ['routerHelper'];
     function appRun(routerHelper) {
-        var otherwise = '/';
+        var otherwise = '/404';
         routerHelper.configureStates(getStates(), otherwise);
     }
 

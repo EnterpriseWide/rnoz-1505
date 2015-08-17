@@ -77,7 +77,9 @@
 
         function fillData(force) {
             var deferred = $q.defer();
-            if (force === true) clearAuthStorage();
+            if (force === true) {
+                clearAuthStorage();
+            }
             var data = localStorageService.get('authorizationData');
             if (data) {
                 authData.token = data.token;
@@ -101,16 +103,10 @@
         }
 
         function isInRole(role) {
-            if (!authData.isAuthenticated || !authData.Roles) return false;
-            return authData.roles.indexOf(role) != -1;
-        }
-        
-        function isInAnyRole(roles) {
-            if (!authData.isAuthenticated || !authData.Roles) return false;
-            for (var i = 0; i < roles.length; i++) {
-                if (this.isInRole(roles[i])) return true;
+            if (!authData.isAuthenticated || !authData.Roles) {
+                return false;
             }
-            return false;
+            return authData.roles.indexOf(role) !== -1;
         }
     }
 })();

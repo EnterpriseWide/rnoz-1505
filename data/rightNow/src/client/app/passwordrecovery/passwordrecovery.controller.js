@@ -17,7 +17,7 @@
             vm.data.token = $stateParams.token;
             vm.data.email = $stateParams.email;
         }
-        
+
         function resetPassword() {
         }
 
