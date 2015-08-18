@@ -4,9 +4,9 @@
     angular
         .module('app.admin.program')
         .controller('AdminProgramUpdateController', AdminProgramUpdateController);
-    AdminProgramUpdateController.$inject = ['authData', 'logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'ngDialog'];
+    AdminProgramUpdateController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'ngDialog'];
 
-    function AdminProgramUpdateController(authData, logger, authservice, $state, $stateParams, $q, dataservice, ngDialog) {
+    function AdminProgramUpdateController(logger, authservice, $state, $stateParams, $q, dataservice, ngDialog) {
         var vm = this;
         vm.title = 'Update Program';
         vm.programId = $stateParams.programId;

@@ -4,9 +4,9 @@
     angular
         .module('app.admin.survey')
         .controller('AdminSurveyUpdateController', AdminSurveyUpdateController);
-    AdminSurveyUpdateController.$inject = ['authData', 'logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'ngDialog'];
+    AdminSurveyUpdateController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'ngDialog'];
 
-    function AdminSurveyUpdateController(authData, logger, authservice, $state, $stateParams, $q, dataservice, ngDialog) {
+    function AdminSurveyUpdateController(logger, authservice, $state, $stateParams, $q, dataservice, ngDialog) {
         var vm = this;
         vm.title = 'Update Survey';
         vm.data = {};

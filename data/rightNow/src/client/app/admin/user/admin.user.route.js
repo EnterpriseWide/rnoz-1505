@@ -18,11 +18,6 @@
                     templateUrl: 'app/admin/user/admin.user.create.html',
                     controller: 'AdminUserCreateController',
                     controllerAs: 'vm',
-                    resolve: {
-                        authData: ['authservice', function (authservice) {
-                            return authservice.fillData();
-                        }]
-                    },
                     title: 'Admin'
                 }
             },
@@ -33,11 +28,6 @@
                     templateUrl: 'app/admin/user/admin.user.update.html',
                     controller: 'AdminUserUpdateController',
                     controllerAs: 'vm',
-                    resolve: {
-                        authData: ['authservice', function (authservice) {
-                            return authservice.fillData();
-                        }]
-                    },
                     title: 'Admin'
                 }
             }

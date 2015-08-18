@@ -18,11 +18,6 @@
                     templateUrl: 'app/admin/room/admin.room.create.html',
                     controller: 'AdminRoomCreateController',
                     controllerAs: 'vm',
-                    resolve: {
-                        authData: ['authservice', function (authservice) {
-                            return authservice.fillData();
-                        }]
-                    },
                     title: 'Admin'
                 }
             },
@@ -33,11 +28,6 @@
                     templateUrl: 'app/admin/room/admin.room.update.html',
                     controller: 'AdminRoomUpdateController',
                     controllerAs: 'vm',
-                    resolve: {
-                        authData: ['authservice', function (authservice) {
-                            return authservice.fillData();
-                        }]
-                    },
                     title: 'Admin'
                 }
             }

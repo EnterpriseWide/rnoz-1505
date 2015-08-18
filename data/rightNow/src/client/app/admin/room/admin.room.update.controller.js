@@ -4,9 +4,9 @@
     angular
         .module('app.admin')
         .controller('AdminRoomUpdateController', AdminRoomUpdateController);
-    AdminRoomUpdateController.$inject = ['authData', 'logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'ngDialog'];
+    AdminRoomUpdateController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'ngDialog'];
 
-    function AdminRoomUpdateController(authData, logger, authservice, $state, $stateParams, $q, dataservice, ngDialog) {
+    function AdminRoomUpdateController(logger, authservice, $state, $stateParams, $q, dataservice, ngDialog) {
         var vm = this;
         vm.title = 'Update Room';
         vm.data = {};

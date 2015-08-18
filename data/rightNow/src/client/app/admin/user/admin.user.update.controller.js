@@ -4,9 +4,9 @@
     angular
         .module('app.admin.user')
         .controller('AdminUserUpdateController', AdminUserUpdateController);
-    AdminUserUpdateController.$inject = ['authData', 'logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'ngDialog'];
+    AdminUserUpdateController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'ngDialog'];
 
-    function AdminUserUpdateController(authData, logger, authservice, $state, $stateParams, $q, dataservice, ngDialog) {
+    function AdminUserUpdateController(logger, authservice, $state, $stateParams, $q, dataservice, ngDialog) {
         var vm = this;
         vm.title = 'Update User';
         vm.data = {

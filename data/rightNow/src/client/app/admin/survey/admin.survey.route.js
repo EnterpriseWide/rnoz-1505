@@ -18,11 +18,6 @@
                     templateUrl: 'app/admin/survey/admin.survey.create.html',
                     controller: 'AdminSurveyCreateController',
                     controllerAs: 'vm',
-                    resolve: {
-                        authData: ['authservice', function (authservice) {
-                            return authservice.fillData();
-                        }]
-                    },
                     title: 'Admin'
                 }
             },
@@ -33,11 +28,6 @@
                     templateUrl: 'app/admin/survey/admin.survey.update.html',
                     controller: 'AdminSurveyUpdateController',
                     controllerAs: 'vm',
-                    resolve: {
-                        authData: ['authservice', function (authservice) {
-                            return authservice.fillData();
-                        }]
-                    },
                     title: 'Admin'
                 }
             }

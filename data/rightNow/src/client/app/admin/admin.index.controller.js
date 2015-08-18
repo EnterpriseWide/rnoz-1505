@@ -4,12 +4,12 @@
     angular
         .module('app.admin')
         .controller('AdminController', AdminController);
-    AdminController.$inject = ['authData', 'logger', '$location', 'dataservice', '$q', '$scope', 'deviceDetector'];
+    AdminController.$inject = ['logger', '$location', 'dataservice', '$q', '$scope', 'deviceDetector', 'authservice'];
 
-    function AdminController(authData, logger, $location, dataservice, $q, $scope, deviceDetector) {
+    function AdminController(logger, $location, dataservice, $q, $scope, deviceDetector, authservice) {
         var vm = this;
         vm.title = 'Admin Dashboard';
-        vm.authData = authData;
+        vm.authData = authservice.authData;
         vm.programs = [];
         vm.rooms = [];
         vm.surveys = [];

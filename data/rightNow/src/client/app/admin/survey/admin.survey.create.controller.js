@@ -4,9 +4,9 @@
     angular
         .module('app.admin.survey')
         .controller('AdminSurveyCreateController', AdminSurveyCreateController);
-    AdminSurveyCreateController.$inject = ['authData', 'logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'moment'];
+    AdminSurveyCreateController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'moment'];
 
-    function AdminSurveyCreateController(authData, logger, authservice, $state, $stateParams, $q, dataservice, moment) {
+    function AdminSurveyCreateController(logger, authservice, $state, $stateParams, $q, dataservice, moment) {
         var vm = this;
         vm.title = 'Add New Survey';
         vm.data = {

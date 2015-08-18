@@ -4,9 +4,9 @@
     angular
         .module('app.admin.program')
         .controller('AdminProgramCreateController', AdminProgramCreateController);
-    AdminProgramCreateController.$inject = ['authData', 'logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice'];
+    AdminProgramCreateController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice'];
 
-    function AdminProgramCreateController(authData, logger, authservice, $state, $stateParams, $q, dataservice) {
+    function AdminProgramCreateController(logger, authservice, $state, $stateParams, $q, dataservice) {
         var vm = this;
         vm.title = 'Add New Program';
         vm.data = {

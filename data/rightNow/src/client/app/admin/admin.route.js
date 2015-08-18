@@ -18,11 +18,6 @@
                     templateUrl: 'app/admin/admin.index.html',
                     controller: 'AdminController',
                     controllerAs: 'vm',
-                    resolve: {
-                        authData: ['authservice', function (authservice) {
-                            return authservice.fillData();
-                        }]
-                    },
                     title: 'Admin'
                 }
             }

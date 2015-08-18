@@ -4,9 +4,9 @@
     angular
         .module('app.admin')
         .controller('AdminRoomCreateController', AdminRoomCreateController);
-    AdminRoomCreateController.$inject = ['authData', 'logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'moment'];
+    AdminRoomCreateController.$inject = ['logger', 'authservice', '$state', '$stateParams', '$q', 'dataservice', 'moment'];
 
-    function AdminRoomCreateController(authData, logger, authservice, $state, $stateParams, $q, dataservice, moment) {
+    function AdminRoomCreateController(logger, authservice, $state, $stateParams, $q, dataservice, moment) {
         var vm = this;
         vm.title = 'Add New Room';
         vm.data = {};

@@ -18,11 +18,6 @@
                     templateUrl: 'app/admin/program/admin.program.create.html',
                     controller: 'AdminProgramCreateController',
                     controllerAs: 'vm',
-                    resolve: {
-                        authData: ['authservice', function (authservice) {
-                            return authservice.fillData();
-                        }]
-                    },
                     title: 'Admin'
                 }
             },
@@ -33,11 +28,6 @@
                     templateUrl: 'app/admin/program/admin.program.update.html',
                     controller: 'AdminProgramUpdateController',
                     controllerAs: 'vm',
-                    resolve: {
-                        authData: ['authservice', function (authservice) {
-                            return authservice.fillData();
-                        }]
-                    },
                     title: 'Admin'
                 }
             }
