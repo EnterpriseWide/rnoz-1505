@@ -16,6 +16,7 @@
             login: login,
             logout: logout,
             forgotPassword: forgotPassword,
+            updatePassword: updatePassword,
 
             readUserInfo: readUserInfo,
             updateUserInfo: updateUserInfo,
@@ -127,6 +128,19 @@
                 logger.error(msg);
                 return $q.reject(msg);
             }
+        }
+
+        function updatePassword(data) {
+            var url = service.apiurl + '/api/account/ResetPassword';
+            var deferred = $q.defer();
+            $http.put(url, data).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                var msg = 'update for password failed.';
+                logger.error(msg);
+                deferred.reject(error.ModelState);
+            });
+            return deferred.promise;
         }
 
         function readUserInfo() {
