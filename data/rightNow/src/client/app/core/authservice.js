@@ -80,24 +80,28 @@
             if (force === true) {
                 clearAuthStorage();
             }
-            var data = localStorageService.get('authorizationData');
-            if (data) {
-                authData.token = data.token;
-                authData.userName = data.userName;
-                dataservice.readUserInfo()
-                    .then(function(result) {
-                        authData.isAuthenticated = true;
-                        angular.extend(authData, result.data);
-                        authData.isAdmin = authData.Roles.indexOf('Admin') >= 0;
-                        authData.isCoach = authData.Roles.indexOf('Coach') >= 0;
-                        deferred.resolve(authData);
-                    }, function() {
-                        deferred.reject();
-                        $state.go('login');
-                    });
+            if (!authData.isAuthenticated) {
+                var data = localStorageService.get('authorizationData');
+                if (data) {
+                    authData.token = data.token;
+                    authData.userName = data.userName;
+                    dataservice.readUserInfo()
+                        .then(function(result) {
+                            angular.extend(authData, result.data);
+                            authData.isAuthenticated = true;
+                            authData.isAdmin = authData.Roles.indexOf('Admin') >= 0;
+                            authData.isCoach = authData.Roles.indexOf('Coach') >= 0;
+                            deferred.resolve(authData);
+                        }, function() {
+                            clearAuthStorage();
+                            deferred.resolve();
+                        });
+                } else {
+                    clearAuthStorage();
+                    deferred.resolve();
+                }
             } else {
                 deferred.resolve();
-                $state.go('login');
             }
             return deferred.promise;
         }

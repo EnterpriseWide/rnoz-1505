@@ -7,7 +7,7 @@
     ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'authservice', '$location', '$stateParams', '$state', '$q', 'menuservice'];
     function ShellController($rootScope, $timeout, config, logger, authservice, $location, $stateParams, $state, $q, menuservice) {
         var vm = this;
-        vm.authData = {};
+        vm.authData = authservice.authData;
         vm.busyMessage = 'Please wait ...';
         vm.isBusy = true;
         $rootScope.showSplash = true;
@@ -23,14 +23,7 @@
         activate();
 
         function activate() {
-            var promises = [authservice.fillData()];
-            return $q.all(promises)
-                .then(function() {
-                    vm.authData = authservice.authData;
-                    hideSplash();
-                }, function() {
-                    hideSplash();
-                });
+            hideSplash();
         }
 
         function toggleMenu() {

@@ -25,6 +25,7 @@
     function appRun($rootScope, logger, menuservice, authservice) {
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             switch (toState.controller) {
+                case 'PasswordRecoveryController':
                 case 'LoginController':
                     $rootScope.bodyClass = toState.controller;
                     break;

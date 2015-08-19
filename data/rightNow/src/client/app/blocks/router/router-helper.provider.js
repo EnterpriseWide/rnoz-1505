@@ -10,7 +10,11 @@
         /* jshint validthis:true */
         var config = {
             docTitle: undefined,
-            resolveAlways: {}
+            resolveAlways: {
+                authData: ['authservice', function (authservice) {
+                    return authservice.fillData();
+                }]
+            }
         };
 
         $locationProvider.html5Mode(true);
