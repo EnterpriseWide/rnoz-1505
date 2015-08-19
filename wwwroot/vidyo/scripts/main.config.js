@@ -42,7 +42,7 @@
             participantRefreshTimeout: 3000, // in ms
             progressStepInPercents: 15,
             /* Configuration of lib */
-            defaultPreviewMode: "Dock",
+            defaultPreviewMode: "PIP",
             enableShowConfParticipantName: true,
             defaultFullpageMode: true,
             /* Notifications */
