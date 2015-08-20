@@ -11,7 +11,7 @@
         var config = {
             docTitle: undefined,
             resolveAlways: {
-                authData: ['authservice', function (authservice) {
+                authData: ['authservice', '$state', '$location', function (authservice, $state, $location) {
                     return authservice.fillData();
                 }]
             }

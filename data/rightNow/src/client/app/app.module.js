@@ -21,12 +21,12 @@
             'app.yourcoachee'
         ])
         .run(appRun);
-    appRun.$inject = ['$rootScope', 'logger', 'menuservice', 'authservice'];
-    function appRun($rootScope, logger, menuservice, authservice) {
+    appRun.$inject = ['$rootScope', 'logger', 'menuservice', 'authservice', '$state', '$stateParams'];
+    function appRun($rootScope, logger, menuservice, authservice, $state, $stateParams) {
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-            switch (toState.controller) {
-                case 'PasswordRecoveryController':
-                case 'LoginController':
+            switch (toState.name) {
+                case 'passwordrecovery':
+                case 'login':
                     $rootScope.bodyClass = toState.controller;
                     break;
                 default:
