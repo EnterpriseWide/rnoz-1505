@@ -25,7 +25,7 @@
                     logger.success('Password Updated');
                     $state.go('login');
                 }, function (error) {
-                    vm.userError = error[Object.keys(error)[0]];;
+                    vm.userError = error[Object.keys(error)[0]];
                 });
         }
     }
