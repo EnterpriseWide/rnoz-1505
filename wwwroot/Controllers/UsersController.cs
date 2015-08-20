@@ -254,6 +254,7 @@ namespace ewide.web.Controllers
         [EmailAddress]
         public string Email { get; set; }
         public List<String> RoleIds { get; set; }
+        [Required]
         public string Timezone { get; set; }
         public string CVLink { get; set; }
     }
