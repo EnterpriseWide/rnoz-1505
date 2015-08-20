@@ -10,6 +10,7 @@
         vm.title = 'Login';
         vm.data = {};
         vm.resetPassword = resetPassword;
+        vm.userError = [];
 
         activate();
 
@@ -23,6 +24,8 @@
                 .then(function (response) {
                     logger.success('Password Updated');
                     $state.go('login');
+                }, function (error) {
+                    vm.userError = error[Object.keys(error)[0]];;
                 });
         }
     }
