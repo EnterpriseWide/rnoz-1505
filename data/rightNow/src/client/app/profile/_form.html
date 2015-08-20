@@ -54,7 +54,7 @@
     <label for="" class="wide control-label">Timezone</label>
   </div>
   <div class="col-sm-10">
-    <ui-select ng-model="vm.data.Timezone">
+    <ui-select ng-model="vm.data.Timezone" required="">
       <ui-select-match>{{$select.selected.DisplayName}}</ui-select-match>
       <ui-select-choices repeat="item.Id as item in vm.timezones | filter: $select.search">
         <div ng-bind-html="item.DisplayName | highlight: $select.search"></div>
