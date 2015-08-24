@@ -193,6 +193,7 @@ namespace ewide.web.Controllers
                 return BadRequest(ModelState);
             }
             applicationUser.UserName = applicationUser.Email;
+            applicationUser.EmailConfirmed = true;
 
             try
             {

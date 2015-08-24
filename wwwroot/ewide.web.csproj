@@ -596,6 +596,7 @@
     <Content Include="Views\Email\Session Updated.cshtml" />
     <Content Include="Views\Email\Session Deleted.cshtml" />
     <Content Include="Views\Email\Send Learning Plan as PDF.cshtml" />
+    <Content Include="Views\Email\Forgot Password.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

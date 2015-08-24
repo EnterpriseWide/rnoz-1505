@@ -147,14 +147,18 @@ namespace ewide.web.Controllers
                 var user = await AppUserManager.FindByNameAsync(email);
                 if (user == null || !(await AppUserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    return Ok("Please check your email to reset your password");
+                    return Ok("Please check your Inbox to reset your password");
                 }
                 string code = await AppUserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = String.Format("{0}/passwordrecovery/?email={1}&token={2}", Request.RequestUri.GetLeftPart(UriPartial.Authority), email, HttpUtility.UrlEncode(code));
-                EmailSender.SendEmail(user.UserName, "right.now. - Reset your Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                return Ok("Please check your email to reset your password");
+                var emailHtml = ViewRenderer.RenderView("~/Views/Email/Forgot Password.cshtml",
+                    new System.Web.Mvc.ViewDataDictionary { 
+                    { "Url", callbackUrl },
+                });
+                EmailSender.SendEmail(user.UserName, "right.now. - Reset your Password", emailHtml);
+                return Ok("Please check your Inbox to reset your password");
             }
-            return Ok("Please check your email to reset your password");
+            return Ok("Please check your Inbox to reset your password");
         }
 
         [Route("ResetPassword")]
