@@ -29,6 +29,10 @@ namespace ewide.web.Models
         public string Timezone { get; set; }
         public string CVLink { get; set; }
 
+        public string GetFullName()
+        {
+            return string.Format("{0} {1}", this.FirstName, this.LastName);
+        }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

@@ -1,4 +1,6 @@
-﻿using ewide.web.Extensions;
+﻿using DDay.iCal;
+using DDay.iCal.Serialization.iCalendar;
+using ewide.web.Extensions;
 using ewide.web.Models;
 using ewide.web.Utils;
 using Microsoft.AspNet.Identity;
@@ -9,9 +11,12 @@ using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.SqlServer;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -128,6 +133,7 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == coachingSession.Id);
+            var attachment = GetiCal(newRecord);
             var emailContentCoach = ViewRenderer.RenderView("~/Views/Email/Session Updated.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Session", newRecord },
@@ -146,6 +152,46 @@ namespace ewide.web.Controllers
             EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Updated", emailContentCoachee);
 
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        public System.Net.Mail.Attachment GetiCal(CoachingSession session)
+        {
+            if (String.IsNullOrEmpty(session.CoachingProgram.Coach.Email))
+            {
+                throw new Exception("Organizer provided was null");
+            }
+
+            var iCal = new iCalendar
+            {
+                Method = "PUBLISH",
+                Version = "2.0"
+            };
+
+            // "REQUEST" will update an existing event with the same UID (Unique ID) and a newer time stamp.
+            //if (updatePreviousEvent)
+            //{
+            //    iCal.Method = "REQUEST";
+            //}
+
+            var evt = iCal.Create<Event>();
+            evt.Summary = String.Format("Oztrain Coaching Session with {0} and {1}", session.CoachingProgram.Coach.GetFullName(), session.CoachingProgram.Coachee.GetFullName());
+            evt.Start = new iCalDateTime(session.StartedAt);
+            evt.End = new iCalDateTime(session.FinishedAt);
+            evt.Description = String.Format("Oztrain Coaching Session with {0} and {1}", session.CoachingProgram.Coach.GetFullName(), session.CoachingProgram.Coachee.GetFullName());
+            evt.IsAllDay = false;
+            evt.UID = session.Id.ToString();
+            evt.Organizer = new Organizer(session.CoachingProgram.Coach.Email);
+            evt.Alarms.Add(new Alarm
+            {
+                Duration = new TimeSpan(0, 15, 0),
+                Trigger = new Trigger(new TimeSpan(0, 15, 0)),
+                Action = AlarmAction.Display,
+                Description = "Reminder"
+            });
+
+            return System.Net.Mail.Attachment.CreateAttachmentFromString(
+                new iCalendarSerializer().SerializeToString(iCal), 
+                new ContentType("text/ical"));
         }
 
         // POST: api/CoachingSessions
