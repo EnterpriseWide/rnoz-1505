@@ -46,6 +46,7 @@
             createSession: createSession,
             readSession: readSession,
             updateSession: updateSession,
+            updateSessionAsClosed: updateSessionAsClosed,
             deleteSession: deleteSession,
             listSessions: listSessions,
             listSessionsByProgram: listSessionsByProgram,
@@ -618,6 +619,23 @@
             var url = service.apiurl + '/api/sessions/' + id;
 
             var deferred = $q.defer();
+
+            $http.put(url, data).success(function (response) {
+                deferred.resolve(response);
+            }).error(function (error, status) {
+                var msg = 'update for session ' + id + ' failed. ' + error.data.description;
+                logger.error(msg);
+                deferred.reject(msg);
+            });
+
+            return deferred.promise;
+        }
+
+        function updateSessionAsClosed(id) {
+            var url = service.apiurl + '/api/sessions/AsClosed?id=' + id;
+
+            var deferred = $q.defer();
+            var data = {};
 
             $http.put(url, data).success(function (response) {
                 deferred.resolve(response);

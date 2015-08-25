@@ -108,6 +108,7 @@ namespace ewide.web.Controllers
                 return BadRequest("Session Not Found");
             }
 
+            var updateICal = coachingSession.StartedAt != dto.StartedAt || coachingSession.FinishedAt != dto.FinishedAt;
             coachingSession.StartedAt = dto.StartedAt;
             coachingSession.FinishedAt = dto.FinishedAt;
             coachingSession.IsClosed = dto.IsClosed;
@@ -133,9 +134,74 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == coachingSession.Id);
-            var attachment = GetiCal(newRecord);
+            var subject = String.Format("Oztrain Coaching Session with {0} and {1}", newRecord.CoachingProgram.Coach.GetFullName(), newRecord.CoachingProgram.Coachee.GetFullName());
+            var ical = GetiCal(newRecord, subject, "REQUEST");
+            var attachment = System.Net.Mail.Attachment.CreateAttachmentFromString(ical, String.Format("{0}.ics", subject));
             var emailContentCoach = ViewRenderer.RenderView("~/Views/Email/Session Updated.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
+                { "Session", newRecord },
+                { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
+                { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coach.Timezone)) },
+                { "FinishedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.FinishedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coach.Timezone)) },
+                });
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Updated", emailContentCoach, updateICal ? attachment : null);
+            var emailContentCoachee = ViewRenderer.RenderView("~/Views/Email/Session Updated.cshtml",
+                new System.Web.Mvc.ViewDataDictionary { 
+                { "Session", newRecord },
+                { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
+                { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coachee.Timezone)) },
+                { "FinishedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.FinishedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coachee.Timezone)) },
+                });
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Updated", emailContentCoachee, updateICal ? attachment : null);
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [Route("AsClosed")]
+        public async Task<IHttpActionResult> PutCoachingSession(int id)
+        {
+            var currentUser = AppUserManager.FindById(User.Identity.GetUserId());
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var isAdmin = AppUserManager.IsInRole(currentUser.Id, "Admin");
+            var coachingSession = AppDb.CoachingSessions
+                .Where(i =>
+                    i.CoachingProgram.Coach.Id == currentUser.Id ||
+                    i.CoachingProgram.Coachee.Id == currentUser.Id ||
+                    isAdmin)
+                .FirstOrDefault(i => i.Id == id);
+            if (coachingSession == null)
+            {
+                return BadRequest("Session Not Found");
+            }
+
+            coachingSession.IsClosed = true;
+            coachingSession.UpdatedAt = DateTime.Now;
+
+            try
+            {
+                await AppDb.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CoachingSessionExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            var newRecord = AppDb.CoachingSessions
+                .Include(i => i.CoachingProgram.Coach)
+                .Include(i => i.CoachingProgram.Coachee)
+                .FirstOrDefault(i => i.Id == coachingSession.Id);
+            var emailContentCoach = ViewRenderer.RenderView("~/Views/Email/Session Updated.cshtml",
+                new System.Web.Mvc.ViewDataDictionary {
                 { "Session", newRecord },
                 { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
                 { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coach.Timezone)) },
@@ -154,7 +220,7 @@ namespace ewide.web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        public System.Net.Mail.Attachment GetiCal(CoachingSession session)
+        public String GetiCal(CoachingSession session, string subject, string method = "")
         {
             if (String.IsNullOrEmpty(session.CoachingProgram.Coach.Email))
             {
@@ -164,34 +230,33 @@ namespace ewide.web.Controllers
             var iCal = new iCalendar
             {
                 Method = "PUBLISH",
-                Version = "2.0"
+                Version = "2.0",
             };
 
-            // "REQUEST" will update an existing event with the same UID (Unique ID) and a newer time stamp.
-            //if (updatePreviousEvent)
-            //{
-            //    iCal.Method = "REQUEST";
-            //}
-
             var evt = iCal.Create<Event>();
-            evt.Summary = String.Format("Oztrain Coaching Session with {0} and {1}", session.CoachingProgram.Coach.GetFullName(), session.CoachingProgram.Coachee.GetFullName());
+
+            switch (method)
+            {
+                case "CANCELLED":
+                    iCal.Method = method;
+                    evt.Status = EventStatus.Cancelled;
+                    break;
+                case "REQUEST":
+                    iCal.Method = method;
+                    break;
+                default:
+                    break;
+            }
+
+            evt.Summary = subject;
             evt.Start = new iCalDateTime(session.StartedAt);
             evt.End = new iCalDateTime(session.FinishedAt);
-            evt.Description = String.Format("Oztrain Coaching Session with {0} and {1}", session.CoachingProgram.Coach.GetFullName(), session.CoachingProgram.Coachee.GetFullName());
+            evt.Description = subject;
             evt.IsAllDay = false;
-            evt.UID = session.Id.ToString();
+            evt.UID = String.Format("rightnow.oztrain.com.au-{0}", session.Id);
             evt.Organizer = new Organizer(session.CoachingProgram.Coach.Email);
-            evt.Alarms.Add(new Alarm
-            {
-                Duration = new TimeSpan(0, 15, 0),
-                Trigger = new Trigger(new TimeSpan(0, 15, 0)),
-                Action = AlarmAction.Display,
-                Description = "Reminder"
-            });
 
-            return System.Net.Mail.Attachment.CreateAttachmentFromString(
-                new iCalendarSerializer().SerializeToString(iCal), 
-                new ContentType("text/ical"));
+            return new iCalendarSerializer().SerializeToString(iCal);
         }
 
         // POST: api/CoachingSessions
@@ -253,6 +318,9 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == coachingSession.Id);
+            var subject = String.Format("Oztrain Coaching Session with {0} and {1}", newRecord.CoachingProgram.Coach.GetFullName(), newRecord.CoachingProgram.Coachee.GetFullName());
+            var ical = GetiCal(newRecord, subject);
+            var attachment = System.Net.Mail.Attachment.CreateAttachmentFromString(ical, String.Format("{0}.ics", subject));
             var emailContentCoach = ViewRenderer.RenderView("~/Views/Email/Session Created.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Session", newRecord },
@@ -260,7 +328,7 @@ namespace ewide.web.Controllers
                 { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coach.Timezone)) },
                 { "FinishedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.FinishedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coach.Timezone)) },
                 });
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Created", emailContentCoach);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coach.Email, "right.now. Video Coaching Session Created", emailContentCoach, attachment);
             var emailContentCoachee = ViewRenderer.RenderView("~/Views/Email/Session Created.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
                 { "Session", newRecord },
@@ -268,7 +336,7 @@ namespace ewide.web.Controllers
                 { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coachee.Timezone)) },
                 { "FinishedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.FinishedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coachee.Timezone)) },
                 });
-            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Created", emailContentCoachee);
+            EmailSender.SendEmail(newRecord.CoachingProgram.Coachee.Email, "right.now. Video Coaching Session Created", emailContentCoachee, attachment);
 
             return CreatedAtRoute("DefaultApi", new { id = coachingSession.Id }, coachingSession);
         }
@@ -283,6 +351,9 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == id);
+            var subject = String.Format("Oztrain Coaching Session with {0} and {1}", coachingSession.CoachingProgram.Coach.GetFullName(), coachingSession.CoachingProgram.Coachee.GetFullName());
+            var ical = GetiCal(coachingSession, subject, "CANCELLED");
+            var attachment = System.Net.Mail.Attachment.CreateAttachmentFromString(ical, String.Format("{0}.ics", subject));
             if (coachingSession == null)
             {
                 return NotFound();
@@ -307,8 +378,8 @@ namespace ewide.web.Controllers
             AppDb.CoachingSessions.Remove(coachingSession);
             await AppDb.SaveChangesAsync();
 
-            EmailSender.SendEmail(coachEmail, "right.now. Video Coaching Session Cancelled", emailContentCoach);
-            EmailSender.SendEmail(coacheeEmail, "right.now. Video Coaching Session Cancelled", emailContentCoachee);
+            EmailSender.SendEmail(coachEmail, "right.now. Video Coaching Session Cancelled", emailContentCoach, attachment);
+            EmailSender.SendEmail(coacheeEmail, "right.now. Video Coaching Session Cancelled", emailContentCoachee, attachment);
 
             return Ok(coachingSession);
         }

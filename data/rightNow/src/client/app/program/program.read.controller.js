@@ -93,8 +93,8 @@
                     '</div>',
                 plain: true
             }).then(function() {
-                session.IsClosed = true;
-                dataservice.updateSession(session.Id, session).then(function(data) {
+                dataservice.updateSessionAsClosed(session.Id).then(function(data) {
+                    session.IsClosed = true;
                     logger.success('Session set to Completed');
                 });
             });
