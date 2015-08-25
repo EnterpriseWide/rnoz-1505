@@ -9,6 +9,7 @@
             'fcsa-number',
             'LocalStorageModule',
             'angularMoment',
+            'mgcrea.ngStrap',
             'ng.deviceDetector',
             'ngAnimate',
             'ngDialog',

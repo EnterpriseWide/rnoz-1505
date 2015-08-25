@@ -43,6 +43,7 @@
     "angular-moment": "~0.10.2",
     "ng-device-detector": "~1.1.7",
     "bootstrap-css-only": "~3.3.4",
-    "angular-ui-select": "~0.12.1"
+    "angular-ui-select": "~0.12.1",
+    "angular-strap": "~2.3.1"
   }
 }
