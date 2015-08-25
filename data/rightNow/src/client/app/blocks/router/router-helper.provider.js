@@ -12,7 +12,16 @@
             docTitle: undefined,
             resolveAlways: {
                 authData: ['authservice', '$state', '$location', function (authservice, $state, $location) {
-                    return authservice.fillData();
+                    if (!this.data || this.data && this.data.access !== 'public') {
+                        return authservice.fillData()
+                            .then(function() {
+                                if (!authservice.authData.isAuthenticated) {
+                                    $state.go('login');
+                                }
+                            }, function() {
+                                $state.go('login');
+                            });
+                    }
                 }]
             }
         };
