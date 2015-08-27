@@ -69,6 +69,7 @@
         function save() {
             vm.data.CreatedAt = moment().toISOString();
             vm.data.UpdatedAt = moment().toISOString();
+            vm.data.Sequence = 0;
             dataservice.createSession(vm.data).then(function (data) {
                 logger.info('Session Created');
                 $state.go('program', {programId: vm.programId});
