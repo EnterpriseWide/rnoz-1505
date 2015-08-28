@@ -24,5 +24,7 @@ namespace ewide.web.Models
         public int RoomId { get; set; }
         public virtual Room Room { get; set; }
         public bool IsClosed { get; set; }
+        [Required]
+        public int Sequence { get; set; }
     }
 }

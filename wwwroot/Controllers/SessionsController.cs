@@ -109,6 +109,10 @@ namespace ewide.web.Controllers
             }
 
             var updateICal = coachingSession.StartedAt != dto.StartedAt || coachingSession.FinishedAt != dto.FinishedAt;
+            if (updateICal)
+            {
+                coachingSession.Sequence += 1;
+            }
             coachingSession.StartedAt = dto.StartedAt;
             coachingSession.FinishedAt = dto.FinishedAt;
             coachingSession.IsClosed = dto.IsClosed;
@@ -134,7 +138,7 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == coachingSession.Id);
-            var subject = String.Format("Oztrain Coaching Session with {0} and {1}", newRecord.CoachingProgram.Coach.GetFullName(), newRecord.CoachingProgram.Coachee.GetFullName());
+            var subject = String.Format("right.now. Coaching Session with {0} and {1}", newRecord.CoachingProgram.Coach.GetFullName(), newRecord.CoachingProgram.Coachee.GetFullName());
             var ical = GetiCal(newRecord, subject, "REQUEST");
             var attachment = System.Net.Mail.Attachment.CreateAttachmentFromString(ical, String.Format("{0}.ics", subject));
             var emailContentCoach = ViewRenderer.RenderView("~/Views/Email/Session Updated.cshtml",
@@ -255,6 +259,7 @@ namespace ewide.web.Controllers
             evt.IsAllDay = false;
             evt.UID = String.Format("rightnow.oztrain.com.au-{0}", session.Id);
             evt.Organizer = new Organizer(session.CoachingProgram.Coach.Email);
+            evt.Sequence = session.Sequence;
 
             return new iCalendarSerializer().SerializeToString(iCal);
         }
@@ -318,12 +323,12 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == coachingSession.Id);
-            var subject = String.Format("Oztrain Coaching Session with {0} and {1}", newRecord.CoachingProgram.Coach.GetFullName(), newRecord.CoachingProgram.Coachee.GetFullName());
+            var subject = String.Format("right.now. Coaching Session with {0} and {1}", newRecord.CoachingProgram.Coach.GetFullName(), newRecord.CoachingProgram.Coachee.GetFullName());
             var ical = GetiCal(newRecord, subject);
             var attachment = System.Net.Mail.Attachment.CreateAttachmentFromString(ical, String.Format("{0}.ics", subject));
             var emailContentCoach = ViewRenderer.RenderView("~/Views/Email/Session Created.cshtml",
                 new System.Web.Mvc.ViewDataDictionary { 
-                { "Session", newRecord },
+                    { "Session", newRecord },
                 { "Url", String.Format("{0}/#/program/{1}/", Request.RequestUri.Authority, newRecord.CoachingProgramId) },
                 { "StartedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.StartedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coach.Timezone)) },
                 { "FinishedAt", TimeZoneInfo.ConvertTimeFromUtc(newRecord.FinishedAt, TimeZoneInfo.FindSystemTimeZoneById(newRecord.CoachingProgram.Coach.Timezone)) },
@@ -351,7 +356,8 @@ namespace ewide.web.Controllers
                 .Include(i => i.CoachingProgram.Coach)
                 .Include(i => i.CoachingProgram.Coachee)
                 .FirstOrDefault(i => i.Id == id);
-            var subject = String.Format("Oztrain Coaching Session with {0} and {1}", coachingSession.CoachingProgram.Coach.GetFullName(), coachingSession.CoachingProgram.Coachee.GetFullName());
+            var subject = String.Format("right.now. Coaching Session with {0} and {1}", coachingSession.CoachingProgram.Coach.GetFullName(), coachingSession.CoachingProgram.Coachee.GetFullName());
+            coachingSession.Sequence += 1;
             var ical = GetiCal(coachingSession, subject, "CANCELLED");
             var attachment = System.Net.Mail.Attachment.CreateAttachmentFromString(ical, String.Format("{0}.ics", subject));
             if (coachingSession == null)
