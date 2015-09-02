@@ -605,6 +605,9 @@
     <Content Include="Views\Email\Session Deleted.cshtml" />
     <Content Include="Views\Email\Send Learning Plan as PDF.cshtml" />
     <Content Include="Views\Email\Forgot Password.cshtml" />
+    <Content Include="vidyo\files\VidyoWeb-macosx-x64-1.2.0.00088.pkg" />
+    <Content Include="vidyo\files\VidyoWeb-macosx-x86-1.2.0.00088.pkg" />
+    <Content Include="vidyo\files\VidyoWeb-win32-1.2.0.00088.msi" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
