@@ -10,7 +10,7 @@
         vm.title = 'Surveys';
         vm.data = [];
         vm.screenconfig = {
-            BodyTextSurveys: '<p>Still to come - some explanatory content about the surveys, perhaps one or two paragraphs? Or alternatively we can remove this text box.</p>'
+            BodyTextSurveys: '<p>In this part of your program you will find links to surveys you and your coach agree will be useful to complete.</p>'
         };
 
         activate();
