@@ -14,7 +14,7 @@
 /**
   * @fileOverview This file defines the module for the VidyoClient parameter objects.
   * @author Vidyo Inc.
-  * @version 1.1.1
+  * @version 1.1.0
   */
 
 define(

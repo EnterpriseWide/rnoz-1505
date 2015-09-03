@@ -14,7 +14,7 @@
 /**
   * @fileOverview This file defines the module for the VidyoClient wrapper object.
   * @author Vidyo Inc.
-  * @version 1.1.1
+  * @version 1.1.0
   */
 
 define(["./vidyo.client.messages"],
@@ -79,8 +79,8 @@ define(["./vidyo.client.messages"],
 			  */
 			var getSupportedPluginMimeTypes = function () {
 				var retVal = [
-					"application/x-vidyoweb-1.1.1.00075",
-					"application/x-vidyoweb-1.1.1.99999"
+					"application/x-vidyoweb-1.1.0.00070",
+					"application/x-vidyoweb-1.1.0.99999"
 				];
 				return retVal;
 			};

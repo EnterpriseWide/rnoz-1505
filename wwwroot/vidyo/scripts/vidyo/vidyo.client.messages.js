@@ -14,7 +14,7 @@
 /**
   * @fileOverview This file defines the module for the public VidyoClient message objects.
   * @author Vidyo Inc.
-  * @version 1.1.1
+  * @version 1.1.0
   */
 
 define(["./vidyo.client.parameters"],
@@ -2024,31 +2024,8 @@ define(["./vidyo.client.parameters"],
 				return "OutEventPrecallTestDevice";
 			},
 
-			/**
-			  * Creates a VidyoClient request object to Set log levels and categories for the Client API library.
-			  * Request used to set to change log levels and categories
-			  *
-			  * The passed in parameter object can store the following
-			  * properties:<br/>
-			  *  - levelsAndCategories<br/>
-			  *
-			  * @name vidyoClientMessages.RequestSetLogLevelsAndCategories
-			  * @function
-			  * @param {Object} params Reference to parameter object.
-			  * @return {Object} Reference to created object.
-			  */
-			'RequestSetLogLevelsAndCategories': function (params) {
-				// object created by this factory function
-				var that = this.request("RequestSetLogLevelsAndCategories");
 
-				// public properties for created object,
-				// initial values of which are potentially passed
-				// into this factory function
-				that.levelsAndCategories = params && params.levelsAndCategories || "fatal error warning info@App info@LmiApp info@AppGui info@LmiH264SvcPace info@AppWebProxy";
 
-				// return object created by this factory function
-				return that;
-			},
 
 			/**
 			  * Creates a VidyoClient configuration request object.
@@ -2888,67 +2865,7 @@ define(["./vidyo.client.parameters"],
 				// return object created by this factory function
 				return that;
 			},
-			
-			/**
-			  * Creates a VidyoClient get sharable window white list request object.
-			  * Request is used to get list of windows names that are marked as white list
-			  * and all those windows names matches with white list will be available
-			  * in requestGetWindowsAndDesktops even if they are not visible or a tool
-			  * window as per window style.
-			  *
-			  * The passed in parameter object can store the following
-			  * properties:<br/>
-			  *  - numWindows<br/>
-			  *  - windowName<br/>
-			  *
-			  * @name vidyoClientMessages.RequestGetSharableWindowWhiteList
-			  * @function
-			  * @param {Object} params Reference to parameter object.
-			  * @return {Object} Reference to created object.
-			  */
-			'RequestGetSharableWindowWhiteList': function (params) {
-				// object created by this factory function
-				var that = this.request("RequestGetSharableWindowWhiteList");
 
-				// public properties for created object,
-				// initial values of which are potentially passed
-				// into this factory function
-				that.numWindows = params && params.numWindows || 0;
-				that.windowName = params && params.windowName || [""];
-				// return object created by this factory function
-				return that;
-			},
-			
-			/**
-			  * Creates a VidyoClient set sharable window white list request object.
-			  * Request is used to set the list of windows names that has to be marked as white list.
-			  * All those windows names matches with white list will be available
-			  * in requestGetWindowsAndDesktops even if they are not visible or a tool
-			  * window as per window style.
-			  *
-			  * The passed in parameter object can store the following
-			  * properties:<br/>
-			  *  - numWindows<br/>
-			  *  - windowName<br/>
-			  *
-			  * @name vidyoClientMessages.RequestSetSharableWindowWhiteList
-			  * @function
-			  * @param {Object} params Reference to parameter object.
-			  * @return {Object} Reference to created object.
-			  */
-			'RequestSetSharableWindowWhiteList': function (params) {
-				// object created by this factory function
-				var that = this.request("RequestSetSharableWindowWhiteList");
-
-				// public properties for created object,
-				// initial values of which are potentially passed
-				// into this factory function
-				that.numWindows = params && params.numWindows || 0;
-				that.windowName = params && params.windowName || [""];
-				// return object created by this factory function
-				return that;
-			},
-			
 			/**
 			  * Creates a VidyoClient get connectivity info request object.
 			  * Request used to get information about connection to VidyoPortal
