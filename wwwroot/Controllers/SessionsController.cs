@@ -48,7 +48,6 @@ namespace ewide.web.Controllers
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
             var sessions = AppDb.CoachingSessions
-                .Include(i => i.Room)
                 .OnDay(date)
                 .ToList();
             return sessions;

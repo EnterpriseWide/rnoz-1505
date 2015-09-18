@@ -283,7 +283,6 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\TimezonesController.cs" />
-    <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
@@ -394,10 +393,13 @@
     <Compile Include="Migrations\201508272212375_Add session sequence for ical support.Designer.cs">
       <DependentUpon>201508272212375_Add session sequence for ical support.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509151315140_Remove Room.cs" />
+    <Compile Include="Migrations\201509151315140_Remove Room.Designer.cs">
+      <DependentUpon>201509151315140_Remove Room.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\CoachingProgramSurvey.cs" />
-    <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Survey.cs" />
     <Compile Include="Models\EmailDTO.cs" />
     <Compile Include="Models\ProgramMedia.cs" />
@@ -520,6 +522,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -541,7 +544,9 @@
     <Content Include="Views\Email\Session Created.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -647,6 +652,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508272212375_Add session sequence for ical support.resx">
       <DependentUpon>201508272212375_Add session sequence for ical support.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509151315140_Remove Room.resx">
+      <DependentUpon>201509151315140_Remove Room.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
