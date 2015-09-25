@@ -11,22 +11,8 @@
   <label for="name" class="col-sm-2 control-label">Duration in Minutes</label>
   <div class="col-sm-10">
     <div class="btn-group">
-      <label>
         <label class="btn btn-primary" ng-model="vm.data.Duration" ng-repeat="p in vm.durations" btn-radio="p" ng-click="vm.onDurationChanged(p)">{{ p }}</label>
-      </div>
     </div>
     <span class="half-margin-top form-error-message" ng-hide="vm.data.Duration || form.$pristine">A Duration is required</span>
-  </div>
-</div>
-<div class="form-group">
-  <label for="name" class="col-sm-2 control-label">Room</label>
-  <div class="col-sm-10">
-    <div class="btn-group">
-        <div ng-repeat="survey in vm.rooms">
-          <pretty-radio multiple ng-model="vm.data.RoomId" label="survey.Name" value="survey.Id"></pretty-checkbox>
-        </div>
-      </div>
-    </div>
-    <span class="half-margin-top form-error-message" ng-hide="vm.data.RoomId || form.$pristine">A Room is required</span>
   </div>
 </div>

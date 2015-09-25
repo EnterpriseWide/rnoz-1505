@@ -299,15 +299,6 @@ namespace ewide.web.Controllers
                     //    throw new Exception("Coachee cannot be double booked");
                     //}
 
-                    //// check if the room is double booked
-                    //var dbRoom = AppDb.CoachingSessions
-                    //    .Where(i => i.Room.Id == coachingSession.RoomId)
-                    //    .OnAtSameTime(coachingSession.StartedAt, coachingSession.FinishedAt);
-                    //if (dbCoach.Count() > 0)
-                    //{
-                    //    throw new Exception("Room cannot be double booked");
-                    //}
-
                     AppDb.CoachingSessions.Add(coachingSession);
                     await AppDb.SaveChangesAsync();
                     db.Commit();

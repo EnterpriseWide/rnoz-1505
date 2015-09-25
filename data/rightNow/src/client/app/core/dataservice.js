@@ -76,13 +76,6 @@
             sendEmailToTheCoach: sendEmailToTheCoach,
             sendEmailToTheCoachee: sendEmailToTheCoachee,
 
-            createRoom: createRoom,
-            readRoom: readRoom,
-            updateRoom: updateRoom,
-            deleteRoom: deleteRoom,
-            listRooms: listRooms,
-            listRoomsForAdmin: listRoomsForAdmin,
-
             listTimezones: listTimezones
         };
 
@@ -881,100 +874,6 @@
 
             function fail(error) {
                 var msg = 'creation of a new email for program ' + data.Id + ' failed. ' + error.data.description;
-                logger.error(msg);
-                return $q.reject(msg);
-            }
-        }
-
-        function createRoom(data) {
-            return $http.post(service.apiurl + '/api/rooms', data)
-                .then(success)
-                .catch(fail);
-
-            function success(response) {
-                return response.data;
-            }
-
-            function fail(error) {
-                var msg = 'creation of a new room failed. ' + error.data.description;
-                logger.error(msg);
-                return $q.reject(msg);
-            }
-        }
-
-        function readRoom(id) {
-            return $http.get(service.apiurl + '/api/rooms/' + id)
-                .then(success)
-                .catch(fail);
-
-            function success(response) {
-                return response.data;
-            }
-
-            function fail(error) {
-                var msg = 'query for room ' + id + ' failed. ' + error.data.description;
-                logger.error(msg);
-                return $q.reject(msg);
-            }
-        }
-
-        function updateRoom(id, data) {
-            var url = service.apiurl + '/api/rooms/' + id;
-
-            var deferred = $q.defer();
-
-            $http.put(url, data).success(function (response) {
-                deferred.resolve(response);
-            }).error(function (error, status) {
-                var msg = 'update for room ' + id + ' failed. ' + error.data.description;
-                logger.error(msg);
-                deferred.reject(msg);
-            });
-
-            return deferred.promise;
-        }
-
-        function deleteRoom(id) {
-            return $http.delete(service.apiurl + '/api/rooms/' + id + '/')
-                .then(success)
-                .catch(fail);
-
-            function success(response) {
-                return response.data;
-            }
-
-            function fail(error) {
-                var msg = 'delete for room ' + id + ' failed. ' + error.data.description;
-                logger.error(msg);
-                return $q.reject(msg);
-            }
-        }
-
-        function listRoomsForAdmin(data) {
-            return $http.get(service.apiurl + '/api/rooms/ForAdmin?pageNumber=' + data.pageNumber +
-                '&pageSize=' + data.pageSize +
-                '&sort=' + data.sort)
-                .then(success)
-                .catch(fail);
-            function success(response) {
-                return response.data;
-            }
-            function fail(error) {
-                var msg = 'query for rooms for Admin failed. ' + error.data.description;
-                logger.error(msg);
-                return $q.reject(msg);
-            }
-        }
-
-        function listRooms() {
-            return $http.get(service.apiurl + '/api/rooms')
-                .then(success)
-                .catch(fail);
-            function success(response) {
-                return response.data;
-            }
-            function fail(error) {
-                var msg = 'query for rooms failed. ' + error.data.description;
                 logger.error(msg);
                 return $q.reject(msg);
             }
