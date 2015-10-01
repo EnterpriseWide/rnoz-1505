@@ -398,6 +398,10 @@
     <Compile Include="Migrations\201509151315140_Remove Room.Designer.cs">
       <DependentUpon>201509151315140_Remove Room.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509290235305_Add Webex property to user table.cs" />
+    <Compile Include="Migrations\201509290235305_Add Webex property to user table.Designer.cs">
+      <DependentUpon>201509290235305_Add Webex property to user table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\CoachingProgramSurvey.cs" />
@@ -655,6 +659,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509151315140_Remove Room.resx">
       <DependentUpon>201509151315140_Remove Room.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509290235305_Add Webex property to user table.resx">
+      <DependentUpon>201509290235305_Add Webex property to user table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

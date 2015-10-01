@@ -39,6 +39,7 @@ namespace ewide.web.Models
         public string Address { get; set; }
         public string Timezone { get; set; }
         public string CVLink { get; set; }
+        public string Webex { get; set; }
     }
 
     public class UserLoginInfoViewModel
