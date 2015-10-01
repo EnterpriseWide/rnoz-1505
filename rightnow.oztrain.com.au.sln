@@ -31,7 +31,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "rightNow", "data\rightNow\"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "50435"
-		SlnRelativePath = "data\rightNow\"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "client", "data\rightNow\src\client\", "{ADE4E961-DCD7-4D05-94FC-2AFECB7BFB90}"
