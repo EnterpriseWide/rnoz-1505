@@ -17,7 +17,6 @@
         vm.setStartedAt = setStartedAt;
         vm.isStartedAtHidden = true;
         vm.sessions = [];
-        vm.rooms = [];
         vm.onDateChanged = onDateChanged;
         vm.onTimeChanged = onTimeChanged;
         vm.onDurationChanged = onDurationChanged;
@@ -30,7 +29,7 @@
             vm.data.Duration = 60;
             vm.data.CoachingProgramId = vm.programId;
             updateFinishedAt(vm.data.Duration);
-            var promises = [getSessions(date), getRooms()];
+            var promises = [getSessions(date)];
             return $q.all(promises);
         }
 
@@ -56,13 +55,6 @@
         function getSessions(date) {
             return dataservice.listSessionsByDate(date).then(function (data) {
                 vm.sessions = data;
-            });
-        }
-
-        function getRooms(date) {
-            return dataservice.listRooms().then(function (data) {
-                vm.rooms = data;
-                vm.data.RoomId = data[0].Id;
             });
         }
 

@@ -58,6 +58,7 @@ namespace ewide.web.Controllers
                         Email = i.UserName,
                         Timezone = i.Timezone,
                         CVLink = i.CVLink,
+                        Webex = i.Webex,
                     })
                     .ToList(),
             }); 
@@ -77,6 +78,7 @@ namespace ewide.web.Controllers
                     Email = i.UserName,
                     Timezone = i.Timezone,
                     CVLink = i.CVLink,
+                    Webex = i.Webex,
                 })
                 .ToList();
             return users;
@@ -104,6 +106,7 @@ namespace ewide.web.Controllers
                     RoleIds = user.Roles.Select(i => i.RoleId).ToList(),
                     Timezone = user.Timezone,
                     CVLink = user.CVLink,
+                    Webex = user.Webex,
                 },
             };
             response.UsageCount = AppDb.CoachingPrograms
@@ -258,6 +261,7 @@ namespace ewide.web.Controllers
         [Required]
         public string Timezone { get; set; }
         public string CVLink { get; set; }
+        public string Webex { get; set; }
     }
 
     public class GetUserForAdminResponse

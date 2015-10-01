@@ -28,6 +28,7 @@ namespace ewide.web.Models
         public string Address { get; set; }
         public string Timezone { get; set; }
         public string CVLink { get; set; }
+        public string Webex { get; set; }
 
         public string GetFullName()
         {
@@ -70,7 +71,6 @@ namespace ewide.web.Models
         public DbSet<ProgramMedia> ProgramMedia { get; set; }
         public DbSet<Survey> Survey { get; set; }
         public DbSet<CoachingProgramSurvey> CoachingProgramSurvey { get; set; }
-        public DbSet<Room> Room { get; set; }
 
         public static ApplicationDbContext Create()
         {

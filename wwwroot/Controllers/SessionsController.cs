@@ -48,7 +48,6 @@ namespace ewide.web.Controllers
         {
             var currentUser = this.AppUserManager.FindById(User.Identity.GetUserId());
             var sessions = AppDb.CoachingSessions
-                .Include(i => i.Room)
                 .OnDay(date)
                 .ToList();
             return sessions;
@@ -298,15 +297,6 @@ namespace ewide.web.Controllers
                     //if (dbCoach.Count() > 0)
                     //{
                     //    throw new Exception("Coachee cannot be double booked");
-                    //}
-
-                    //// check if the room is double booked
-                    //var dbRoom = AppDb.CoachingSessions
-                    //    .Where(i => i.Room.Id == coachingSession.RoomId)
-                    //    .OnAtSameTime(coachingSession.StartedAt, coachingSession.FinishedAt);
-                    //if (dbCoach.Count() > 0)
-                    //{
-                    //    throw new Exception("Room cannot be double booked");
                     //}
 
                     AppDb.CoachingSessions.Add(coachingSession);

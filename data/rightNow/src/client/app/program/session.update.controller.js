@@ -16,7 +16,6 @@
         vm.sessionId = $stateParams.sessionId;
         vm.durations = [30, 45, 60, 90];
         vm.sessions = [];
-        vm.rooms = [];
         vm.onDateChanged = onDateChanged;
         vm.onTimeChanged = onTimeChanged;
         vm.onDurationChanged = onDurationChanged;
@@ -24,15 +23,8 @@
         activate();
 
         function activate() {
-            var promises = [getSession(vm.sessionId), getRooms()];
+            var promises = [getSession(vm.sessionId)];
             return $q.all(promises);
-        }
-
-        function getRooms(date) {
-            return dataservice.listRooms().then(function (data) {
-                vm.rooms = data;
-                vm.data.RoomId = data[0].Id;
-            });
         }
 
         function getSession(id) {

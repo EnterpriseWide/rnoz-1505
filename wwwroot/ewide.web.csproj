@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <NuGetPackageImportStamp>5fce4a05</NuGetPackageImportStamp>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -283,7 +284,6 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\TimezonesController.cs" />
-    <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
@@ -394,10 +394,17 @@
     <Compile Include="Migrations\201508272212375_Add session sequence for ical support.Designer.cs">
       <DependentUpon>201508272212375_Add session sequence for ical support.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509151315140_Remove Room.cs" />
+    <Compile Include="Migrations\201509151315140_Remove Room.Designer.cs">
+      <DependentUpon>201509151315140_Remove Room.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509290235305_Add Webex property to user table.cs" />
+    <Compile Include="Migrations\201509290235305_Add Webex property to user table.Designer.cs">
+      <DependentUpon>201509290235305_Add Webex property to user table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssignmentDTO.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\CoachingProgramSurvey.cs" />
-    <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Survey.cs" />
     <Compile Include="Models\EmailDTO.cs" />
     <Compile Include="Models\ProgramMedia.cs" />
@@ -522,40 +529,6 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="vidyo\audio\incomingCall.mp3" />
-    <Content Include="vidyo\audio\incomingCall.wav" />
-    <Content Include="vidyo\css\bootstrap-notify.css" />
-    <Content Include="vidyo\css\bootstrap.min.css" />
-    <Content Include="vidyo\css\elusive-webfont-ie7.css" />
-    <Content Include="vidyo\css\elusive-webfont.css" />
-    <Content Include="vidyo\css\vidyo-app.css" />
-    <Content Include="vidyo\favicon.ico" />
-    <Content Include="vidyo\files\EULA.html" />
-    <Content Include="vidyo\font\Elusive-Icons.svg" />
-    <Content Include="vidyo\img\loader-bar.gif" />
-    <Content Include="vidyo\img\logo-big.jpg" />
-    <None Include="vidyo\Default.cshtml" />
-    <Content Include="vidyo\proxy\index.php" />
-    <Content Include="vidyo\proxy\soap_proxy.php" />
-    <Content Include="vidyo\scripts\libs\bootstrap-notify.1.0.js" />
-    <Content Include="vidyo\scripts\libs\bootstrap.min.2.3.2.js" />
-    <Content Include="vidyo\scripts\libs\domReady.2.0.1.js" />
-    <Content Include="vidyo\scripts\libs\handlebars.amd.min.1.3.0.js" />
-    <Content Include="vidyo\scripts\libs\jquery.1.11.0.min.js" />
-    <Content Include="vidyo\scripts\libs\jquery.html5storage.min.1.0.js" />
-    <Content Include="vidyo\scripts\libs\jquery.typewatch.2.2.js" />
-    <Content Include="vidyo\scripts\libs\lte-ie7.js" />
-    <Content Include="vidyo\scripts\libs\require.min.2.1.10.js" />
-    <Content Include="vidyo\scripts\main.config.js" />
-    <Content Include="vidyo\scripts\main.js" />
-    <Content Include="vidyo\scripts\utils\logger.js" />
-    <Content Include="vidyo\scripts\utils\soap-proxy.js" />
-    <Content Include="vidyo\scripts\vidyo\vidyo.app.strings.js" />
-    <Content Include="vidyo\scripts\vidyo\vidyo.client.js" />
-    <Content Include="vidyo\scripts\vidyo\vidyo.client.messages.js" />
-    <Content Include="vidyo\scripts\vidyo\vidyo.client.parameters.js" />
-    <Content Include="vidyo\scripts\vidyo\vidyo.client.private.messages.js" />
-    <Content Include="vidyo\scripts\vidyo\vidyo.client.test.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -575,7 +548,9 @@
     <Content Include="Views\Email\Session Created.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -590,24 +565,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\LearningPlanPDF.cshtml" />
-    <Content Include="vidyo\audio\incomingCall.ogg" />
-    <Content Include="vidyo\files\.DS_Store" />
-    <Content Include="vidyo\files\VidyoWeb-macosx-x64-1.1.1.00075.pkg" />
-    <Content Include="vidyo\files\VidyoWeb-win32-1.1.1.00075.msi" />
-    <Content Include="vidyo\font\Elusive-Icons.eot" />
-    <Content Include="vidyo\font\Elusive-Icons.ttf" />
-    <Content Include="vidyo\font\Elusive-Icons.woff" />
-    <Content Include="vidyo\scripts\.DS_Store" />
     <Content Include="Views\Email\Send Invoice.cshtml" />
-    <Content Include="vidyo\scripts\oztrain.custom.js" />
     <Content Include="Views\Email\EmailMaster.cshtml" />
     <Content Include="Views\Email\Session Updated.cshtml" />
     <Content Include="Views\Email\Session Deleted.cshtml" />
     <Content Include="Views\Email\Send Learning Plan as PDF.cshtml" />
     <Content Include="Views\Email\Forgot Password.cshtml" />
-    <Content Include="vidyo\files\VidyoWeb-macosx-x64-1.2.0.00088.pkg" />
-    <Content Include="vidyo\files\VidyoWeb-macosx-x86-1.2.0.00088.pkg" />
-    <Content Include="vidyo\files\VidyoWeb-win32-1.2.0.00088.msi" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -693,6 +656,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508272212375_Add session sequence for ical support.resx">
       <DependentUpon>201508272212375_Add session sequence for ical support.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509151315140_Remove Room.resx">
+      <DependentUpon>201509151315140_Remove Room.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509290235305_Add Webex property to user table.resx">
+      <DependentUpon>201509290235305_Add Webex property to user table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

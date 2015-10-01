@@ -11,13 +11,11 @@
         vm.title = 'Admin Dashboard';
         vm.authData = authservice.authData;
         vm.programs = [];
-        vm.rooms = [];
         vm.surveys = [];
         vm.users = [];
         vm.showMobileLink = false;
 
         vm.programPaginationOptions = {pageNumber: 1, pageSize: 25, sort: null};
-        vm.roomPaginationOptions = {pageNumber: 1, pageSize: 25, sort: null};
         vm.surveyPaginationOptions = {pageNumber: 1, pageSize: 25, sort: null};
         vm.userPaginationOptions = {pageNumber: 1, pageSize: 25, sort: null};
 
@@ -57,42 +55,6 @@
                     vm.programPaginationOptions.pageNumber = newPage;
                     vm.programPaginationOptions.pageSize = pageSize;
                     getPagePrograms();
-                });
-            }
-        };
-
-        vm.roomGridOptions = {
-            enableSorting: true,
-            paginationPageSizes: [25, 50, 75],
-            paginationPageSize: vm.roomPaginationOptions.pageSize,
-            useExternalPagination: true,
-            useExternalSorting: true,
-            columnDefs: [
-                {field: 'Name', type: 'string'},
-                {displayName: '', field: 'Link', visible: vm.showMobileLink, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a target="_blank" href="{{COL_FIELD}}" class="grid-link">Join Room</a></div>', type: 'string'},
-                {displayName: '', field: 'Link', visible: !vm.showMobileLink, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a target="_blank" href="' + dataservice.apiurl + '/vidyo/Default.cshtml?roomId={{ row.entity.Id }}&access_token=' + vm.authData.token + '" class="grid-link">Join Room</a></div>', type: 'string'},
-                {displayName: '', field: 'Id', enableColumnMenu: false, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents align-center"><a ui-sref="adminRoomUpdate({roomId: {{COL_FIELD}}})" class="grid-link"><span class="icon icon-edit"></span>&nbsp;Edit</a></div>', type: 'number'}
-            ],
-            onRegisterApi: function(gridApi) {
-                $scope.roomGridApi = gridApi;
-                $scope.roomGridApi.core.on.sortChanged($scope, function(grid, sortColumns) {
-                    if (sortColumns.length === 0) {
-                        vm.roomPaginationOptions.sort = null;
-                    } else {
-                        vm.roomPaginationOptions.sort = '';
-                        angular.forEach(sortColumns, function (row) {
-                            vm.roomPaginationOptions.sort += row.field;
-                            vm.roomPaginationOptions.sort += ' ';
-                            vm.roomPaginationOptions.sort += row.sort.direction;
-                            vm.roomPaginationOptions.sort += ',';
-                        });
-                    }
-                    getPageRooms();
-                });
-                gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
-                    vm.roomPaginationOptions.pageNumber = newPage;
-                    vm.roomPaginationOptions.pageSize = pageSize;
-                    getPageRooms();
                 });
             }
         };
@@ -173,7 +135,6 @@
         function activate() {
             vm.showMobileLink = deviceDetector.os.ios || deviceDetector.os.android;
             getPagePrograms();
-            getPageRooms();
             getPageSurveys();
             getPageUsers();
         }
@@ -183,14 +144,6 @@
                 .then(function (data) {
                     vm.programGridOptions.totalItems = data.TotalItems;
                     vm.programGridOptions.data = data.Items;
-                });
-        }
-
-        function getPageRooms() {
-            return dataservice.listRoomsForAdmin(vm.roomPaginationOptions)
-                .then(function (data) {
-                    vm.roomGridOptions.totalItems = data.TotalItems;
-                    vm.roomGridOptions.data = data.Items;
                 });
         }
 

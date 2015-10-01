@@ -58,6 +58,7 @@ namespace ewide.web.Controllers
                 Address = currentUser.Address,
                 Timezone = currentUser.Timezone,
                 CVLink = currentUser.CVLink,
+                Webex = currentUser.Webex,
             };
             return Ok(user);
         }
@@ -100,6 +101,7 @@ namespace ewide.web.Controllers
             currentUser.Address = item.Address;
             currentUser.Timezone = item.Timezone;
             currentUser.CVLink = item.CVLink;
+            currentUser.Webex = item.Webex;
 
             AppUserManager.Update(currentUser);
 
