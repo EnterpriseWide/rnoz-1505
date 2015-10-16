@@ -142,6 +142,7 @@ namespace ewide.web.Controllers
             user.UserName = applicationUser.Email;
             user.Timezone = applicationUser.Timezone;
             user.CVLink = applicationUser.CVLink;
+            user.Webex = applicationUser.Webex;
             AppUserManager.Update(user);
 
             foreach (var role in user.Roles.ToList())

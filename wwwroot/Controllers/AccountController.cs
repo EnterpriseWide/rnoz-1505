@@ -101,7 +101,6 @@ namespace ewide.web.Controllers
             currentUser.Address = item.Address;
             currentUser.Timezone = item.Timezone;
             currentUser.CVLink = item.CVLink;
-            currentUser.Webex = item.Webex;
 
             AppUserManager.Update(currentUser);
 
